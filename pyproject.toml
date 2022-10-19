@@ -3,7 +3,10 @@ name = "totemp"
 version = "0.1.0"
 description = "Temperature Converter"
 license = "MIT"
-authors = ["Edson Pimenta <edson.tibo@gmail.com>"]
+authors = [
+    "Edson Pimenta <edson.tibo@gmail.com>",
+    "Dávilos Tavares <daviloscostagg@hotmail.com>",
+]
 maintainers = [
     "Edson Pimenta <edson.tibo@gmail.com>",
     "Dávilos Tavares <daviloscostagg@hotmail.com>",
