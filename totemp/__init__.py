@@ -6,7 +6,7 @@ from .temperature_types import Celsius
 __author__ = 'Edson Pimenta and Dávilos Tavares'
 __credits__ = ['Edson Pimenta', 'Dávilos Tavares']
 __license__ = 'MIT'
-__version__ = '0.1.0'
+__version__ = '0.2.0'
 __maintainer__ = [
     'Edson Pimenta <edson.tibo@gmail.com>',
     'Dávilos Tavares <daviloscostagg@hotmail.com>',
