@@ -22,29 +22,72 @@ poetry add --group dev totemp
 
 Then, just use it:
 
-> In these two examples, we want to know the equivalent in Fahrenheit
-> of 35º Celsius and 18.746º Celsius to Newton.
+> In these examples, you can observe the methods working with both
+Classes available in the package
 
-```python
+````python
+# Import Celcius class
 from totemp import Celsius
 
-temperature = Celsius.to_fahrenheit(35)  # Return: 95.0
-```
-```python
-from totemp import Celsius
+temperature = Celsius.to_fahrenheit(35)
+print(temperature)  # 95.0 -> float
 
-temperature = Celsius.to_newton(18.746)  # Return: 6.186179999999999
-```
+temperature = Celsius.to_fahrenheit(35, float_ret=False)
+print(temperature)  # 95 -> int
+````
+````python
+# Import Fahrenheit class
+from totemp import Fahrenheit
 
-Note that **all returns are *float values***, and that **applies to all methods**.
+temperature = Fahrenheit.to_newton(18.746)
+print(temperature)  # -2.4299000000000004 -> float
 
-## Versions
+temperature = Fahrenheit.to_newton(18.746, float_ret=False)
+print(temperature)  # -2 -> int
+````
+````python
+# Import all classes (not recommended)
+from totemp import *
 
-- 0.1.0:
-  - Yanked, not functional
-- 0.2.0:
+temperature = Celsius.to_delisle(345.797)
+print(temperature)  # -368.69550000000004 -> float
+
+temperature = Celsius.to_delisle(345.797, float_ret=False)
+print(temperature)  # -368 -> int
+
+temperature = Fahrenheit.to_rankine(500)
+print(temperature)  # 959.6700000000001 -> float
+
+temperature = Fahrenheit.to_rankine(500, float_ret=False)
+print(temperature)  # 959 -> int
+````
+
+Note that **all returns are *float values*** if you dont specify "float_ret"
+parameter as False, which is True by default and that **applies to all methods**.
+
+All methods have two parameters, the **value** (which is positional-only)
+and the **return type** (which is <float_ret>, that is by default True to return float
+values and keyword-only)
+
+## Package Versions
+
+---
+
+- _0.1.0_:
+  - Yanked, not functional;
+- _0.2.0_:
   - Functional;
   - Can convert Celsius to Delisle, Fahrenheit, Kelvin, Newton, Rankine, Réaumur and Rømer.
+
+
+- **0.3.0**:
+  - Changed methods implementations and adds Fahrenheit conversions;
+    - <scale_value> parameter is now positional-only;
+    - Adds new paramater -> float_ret -> Float Return (True by default, keyword-only);
+    - Celsius class methods were updated and enhanced;
+    - Can now convert Fahrenheit to Celsius, Delisle, Kelvin, Newton, Rankine, Réaumur and Rømer.
+
+---
 
 ## License
 
