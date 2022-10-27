@@ -2,7 +2,7 @@
 name = "totemp"
 version = "0.3.0"
 description = "Temperature Converter"
-license = "MIT"
+license = "GPL-3.0-only"
 authors = [
     "Edson Pimenta <edson.tibo@gmail.com>",
     "Dávilos Tavares <daviloscostagg@hotmail.com>",

@@ -5,7 +5,7 @@ from .temperature_types import Celsius, Fahrenheit
 
 __author__ = 'Edson Pimenta and Dávilos Tavares'
 __credits__ = ['Edson Pimenta', 'Dávilos Tavares']
-__license__ = 'MIT'
+__license__ = 'GPL-3.0'
 __version__ = '0.3.0'
 __maintainer__ = [
     'Edson Pimenta <edson.tibo@gmail.com>',
