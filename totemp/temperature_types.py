@@ -248,3 +248,23 @@ class Fahrenheit:
         if float_ret:
             return float((fahrenheit - 32) * (7 / 24) + 7.5)
         return trunc((fahrenheit - 32) * (7 / 24) + 7.5)
+
+
+class Kelvin:
+    """Provides conversion of Kelvin to other temperature scales"""
+
+    @staticmethod
+    def to_celsius(kelvin: float | int, /, *, float_ret=True) -> float | int:
+        """
+        Converts Kelvin to Celsius, returning a float by default.
+
+        If the float_ret parameter is False, it returns an approximate int value
+        (using the math's module trunc function).
+
+        :param kelvin: Kelvin value to be converted
+        :param float_ret: Optional, True by default to return floats
+        :return: float or int
+        """
+        if float_ret:
+            return float(kelvin - 273.15)
+        return trunc(kelvin - 273.15)
