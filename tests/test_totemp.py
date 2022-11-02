@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from totemp import Celsius, Fahrenheit
+from totemp import Celsius, Fahrenheit, Kelvin
 
 
 class TestToTemp:
@@ -268,3 +268,22 @@ class TestToTemp:
         assert isinstance(
             Fahrenheit.to_romer(395.323729, float_ret=False), int
         )
+
+    # Kelvin to <other temp scale> tests
+    def test_kelvin_to_celsius(self) -> None:
+        """Tests the result of the convertion Kelvin to Celsius"""
+        assert Kelvin.to_celsius(67.498259) == -205.65174099999996
+
+    def test_kelvin_to_celsius_default_type(self) -> None:
+        """
+        Tests the type of the value returned on the convertion Kelvin to Celsius
+        with default parameter values
+        """
+        assert isinstance(Kelvin.to_celsius(10), float)
+
+    def test_kelvin_to_celsius_type_trunc_ret(self) -> None:
+        """
+        Tests the type of the value returned on the convertion Fahrenheit to Rømer
+        with default parameter setted to False
+        """
+        assert isinstance(Kelvin.to_celsius(10.498259, float_ret=False), int)
