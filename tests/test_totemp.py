@@ -283,7 +283,25 @@ class TestToTemp:
 
     def test_kelvin_to_celsius_type_trunc_ret(self) -> None:
         """
-        Tests the type of the value returned on the convertion Fahrenheit to Rømer
+        Tests the type of the value returned on the convertion Kelvin to Celsius
         with default parameter setted to False
         """
         assert isinstance(Kelvin.to_celsius(10.498259, float_ret=False), int)
+
+    def test_kelvin_to_delisle(self) -> None:
+        """Tests the result of the convertion Kelvin to Delisle"""
+        assert Kelvin.to_delisle(10.568) == 543.873
+
+    def test_kelvin_to_delisle_default_type(self) -> None:
+        """
+        Tests the type of the value returned on the convertion Kelvin to Delisle
+        with default parameter values
+        """
+        assert isinstance(Kelvin.to_delisle(10), float)
+
+    def test_kelvin_to_delisle_type_trunc_ret(self) -> None:
+        """
+        Tests the type of the value returned on the convertion Kelvin to Delisle
+        with default parameter setted to False
+        """
+        assert isinstance(Kelvin.to_delisle(10.498259, float_ret=False), int)
