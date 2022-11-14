@@ -341,3 +341,21 @@ class TestToTemp:
         with default parameter setted to False
         """
         assert isinstance(Kelvin.to_newton(25.8456, float_ret=False), int)
+
+    def test_kelvin_to_rankine(self) -> None:
+        """Tests the result of the convertion Kelvin to Rankine"""
+        assert Kelvin.to_rankine(44.28137746) == 79.70647942800001
+
+    def test_kelvin_to_rankine_default_type(self) -> None:
+        """
+        Tests the type of the value returned on the convertion Kelvin to Rankine
+        with default parameter values
+        """
+        assert isinstance(Kelvin.to_rankine(10), float)
+
+    def test_kelvin_to_rankine_type_trunc_ret(self) -> None:
+        """
+        Tests the type of the value returned on the convertion Kelvin to Rankine
+        with default parameter setted to False
+        """
+        assert isinstance(Kelvin.to_rankine(25.8456, float_ret=False), int)
