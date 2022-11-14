@@ -307,3 +307,21 @@ class TestToTemp:
         assert isinstance(
             Delisle.to_fahrenheit(10.28723, float_ret=False), int
         )
+
+    def test_delisle_to_kelvin(self) -> None:
+        """Tests the result of the conversion Delisle to Kelvin"""
+        assert Delisle.to_kelvin(99.227339) == 306.9984406666666
+
+    def test_delisle_to_kelvin_default_type(self) -> None:
+        """
+        Tests the type of the value returned on the conversion Delisle to Kelvin
+        with default parameter values
+        """
+        assert isinstance(Delisle.to_kelvin(99), float)
+
+    def test_delisle_to_kelvin_type_trunc_ret(self) -> None:
+        """
+        Tests the type of the value returned on the conversion Delisle to Kelvin
+        with default parameter set to False
+        """
+        assert isinstance(Delisle.to_kelvin(99.227339, float_ret=False), int)
