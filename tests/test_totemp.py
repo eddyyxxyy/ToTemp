@@ -305,3 +305,21 @@ class TestToTemp:
         with default parameter setted to False
         """
         assert isinstance(Kelvin.to_delisle(10.498259, float_ret=False), int)
+
+    def test_kelvin_to_fahrenheit(self) -> None:
+        """Tests the result of the convertion Kelvin to Fahrenheit"""
+        assert Kelvin.to_fahrenheit(44.28137746) == -379.963520572
+
+    def test_kelvin_to_fahrenheit_default_type(self) -> None:
+        """
+        Tests the type of the value returned on the convertion Kelvin to Fahrenheit
+        with default parameter values
+        """
+        assert isinstance(Kelvin.to_fahrenheit(10), float)
+
+    def test_kelvin_to_fahrenheit_type_trunc_ret(self) -> None:
+        """
+        Tests the type of the value returned on the convertion Kelvin to Fahrenheit
+        with default parameter setted to False
+        """
+        assert isinstance(Kelvin.to_fahrenheit(25.8456, float_ret=False), int)
