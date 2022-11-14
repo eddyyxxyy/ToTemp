@@ -359,3 +359,21 @@ class TestToTemp:
         with default parameter setted to False
         """
         assert isinstance(Kelvin.to_rankine(25.8456, float_ret=False), int)
+
+    def test_kelvin_to_reaumur(self) -> None:
+        """Tests the result of the convertion Kelvin to Réaumur"""
+        assert Kelvin.to_reaumur(44.28137746) == -183.094898032
+
+    def test_kelvin_to_reaumur_default_type(self) -> None:
+        """
+        Tests the type of the value returned on the convertion Kelvin to Réaumur
+        with default parameter values
+        """
+        assert isinstance(Kelvin.to_reaumur(10), float)
+
+    def test_kelvin_to_reaumur_type_trunc_ret(self) -> None:
+        """
+        Tests the type of the value returned on the convertion Kelvin to Réaumur
+        with default parameter setted to False
+        """
+        assert isinstance(Kelvin.to_reaumur(25.8456, float_ret=False), int)
