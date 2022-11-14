@@ -323,3 +323,21 @@ class TestToTemp:
         with default parameter setted to False
         """
         assert isinstance(Kelvin.to_fahrenheit(25.8456, float_ret=False), int)
+
+    def test_kelvin_to_newton(self) -> None:
+        """Tests the result of the convertion Kelvin to Newton"""
+        assert Kelvin.to_newton(44.28137746) == -75.52664543819999
+
+    def test_kelvin_to_newton_default_type(self) -> None:
+        """
+        Tests the type of the value returned on the convertion Kelvin to Newton
+        with default parameter values
+        """
+        assert isinstance(Kelvin.to_newton(10), float)
+
+    def test_kelvin_to_newton_type_trunc_ret(self) -> None:
+        """
+        Tests the type of the value returned on the convertion Kelvin to Newton
+        with default parameter setted to False
+        """
+        assert isinstance(Kelvin.to_newton(25.8456, float_ret=False), int)
