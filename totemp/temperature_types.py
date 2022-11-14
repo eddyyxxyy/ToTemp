@@ -268,3 +268,101 @@ class Kelvin:
         if float_ret:
             return float(kelvin - 273.15)
         return trunc(kelvin - 273.15)
+
+    @staticmethod
+    def to_delisle(kelvin: float | int, /, *, float_ret=True) -> float | int:
+        """
+        Converts Kelvin to Delisle, returning a float by default.
+
+        If the float_ret parameter is False, it returns an approximate int value
+        (using the math's module trunc function).
+
+        :param kelvin: Kelvin value to be converted
+        :param float_ret: Optional, True by default to return floats
+        :return: float or int
+        """
+        if float_ret:
+            return float((373.15 - kelvin) * 3 / 2)
+        return trunc((373.15 - kelvin) * 3 / 2)
+
+    @staticmethod
+    def to_fahrenheit(
+        kelvin: float | int, /, *, float_ret=True
+    ) -> float | int:
+        """
+        Converts Kelvin to Fahrenheit, returning a float by default.
+
+        If the float_ret parameter is False, it returns an approximate int value
+        (using the math's module trunc function).
+
+        :param kelvin: Kelvin value to be converted
+        :param float_ret: Optional, True by default to return floats
+        :return: float or int
+        """
+        if float_ret:
+            return float((kelvin * 9 / 5) - 459.67)
+        return trunc((kelvin * 9 / 5) - 459.67)
+
+    @staticmethod
+    def to_newton(kelvin: float | int, /, *, float_ret=True) -> float | int:
+        """
+        Converts Kelvin to Newton, returning a float by default.
+
+        If the float_ret parameter is False, it returns an approximate int value
+        (using the math's module trunc function).
+
+        :param kelvin: Kelvin value to be converted
+        :param float_ret: Optional, True by default to return floats
+        :return: float or int
+        """
+        if float_ret:
+            return float((kelvin - 273.15) * 33 / 100)
+        return trunc((kelvin - 273.15) * 33 / 100)
+
+    @staticmethod
+    def to_rankine(kelvin: float | int, /, *, float_ret=True) -> float | int:
+        """
+        Converts Kelvin to Rankine, returning a float by default.
+
+        If the float_ret parameter is False, it returns an approximate int value
+        (using the math's module trunc function).
+
+        :param kelvin: Kelvin value to be converted
+        :param float_ret: Optional, True by default to return floats
+        :return: float or int
+        """
+        if float_ret:
+            return float(kelvin * 1.8)
+        return trunc(kelvin * 1.8)
+
+    @staticmethod
+    def to_reaumur(kelvin: float | int, /, *, float_ret=True) -> float | int:
+        """
+        Converts Kelvin to Réaumur, returning a float by default.
+
+        If the float_ret parameter is False, it returns an approximate int value
+        (using the math's module trunc function).
+
+        :param kelvin: Kelvin value to be converted
+        :param float_ret: Optional, True by default to return floats
+        :return: float or int
+        """
+        if float_ret:
+            return float((kelvin - 273.15) * 4 / 5)
+        return trunc((kelvin - 273.15) * 4 / 5)
+
+    @staticmethod
+    def to_romer(kelvin: float | int, /, *, float_ret=True) -> float | int:
+        """
+        Converts Kelvin to Rømer, returning a float by default.
+
+        If the float_ret parameter is False, it returns an approximate int value
+        (using the math's module trunc function).
+
+        :param kelvin: Kelvin value to be converted
+        :param float_ret: Optional, True by default to return floats
+        :return: float or int
+        """
+        if float_ret:
+            return float((kelvin - 273.15) * (21 / 40) + 7.5)
+        return trunc((kelvin - 273.15) * (21 / 40) + 7.5)
