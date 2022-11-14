@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from totemp import Celsius, Fahrenheit
+from totemp import Celsius, Delisle, Fahrenheit
 
 
 class TestToTemp:
