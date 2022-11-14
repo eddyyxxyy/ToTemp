@@ -268,3 +268,21 @@ class TestToTemp:
         assert isinstance(
             Fahrenheit.to_romer(395.323729, float_ret=False), int
         )
+
+    def test_delisle_to_celsius(self) -> None:
+        """Tests the result of the convertion Delisle to Celsius"""
+        assert Delisle.to_celsius(27.29828) == 81.80114666666667
+
+    def test_delisle_to_celsius_default_type(self) -> None:
+        """
+        Tests the type of the value returned on the convertion Delisle to Celsius
+        with default parameter values
+        """
+        assert isinstance(Delisle.to_celsius(15), float)
+
+    def test_delisle_to_celsius_type_trunc_ret(self) -> None:
+        """
+        Tests the type of the value returned on the convertion Delisle to Celsius
+        with default parameter setted to False
+        """
+        assert isinstance(Delisle.to_celsius(27.29828, float_ret=False), int)
