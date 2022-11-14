@@ -250,6 +250,124 @@ class Fahrenheit:
         return trunc((fahrenheit - 32) * (7 / 24) + 7.5)
 
 
+class Delisle:
+    """Provides conversion of Delisle to other temperature scales"""
+
+    @staticmethod
+    def to_celsius(delisle: float | int, /, *, float_ret=True) -> float | int:
+        """
+        Converts Delisle to Celsius, returning a float by default.
+
+        If the float_ret parameter is False, it returns an approximate int value
+        (using the math's module trunc function).
+
+        :param delisle: Delisle value to be converted
+        :param float_ret: Optional, True by default to return floats
+        :return: float or int
+        """
+        if float_ret:
+            return float(100 - delisle * 2 / 3)
+        return trunc(100 - delisle * 2 / 3)
+
+    @staticmethod
+    def to_fahrenheit(
+        delisle: float | int, /, *, float_ret=True
+    ) -> float | int:
+        """
+        Converts Delisle to Fahrenheit, returning a float by default.
+
+        If the float_ret parameter is False, it returns an approximate int value
+        (using the math's module trunc function).
+
+        :param delisle: Delisle value to be converted
+        :param float_ret: Optional, True by default to return floats
+        :return: float or int
+        """
+        if float_ret:
+            return float(212 - delisle * 6 / 5)
+        return trunc(212 - delisle * 6 / 5)
+
+    @staticmethod
+    def to_kelvin(delisle: float | int, /, *, float_ret=True) -> float | int:
+        """
+        Converts Delisle to Kelvin, returning a float by default.
+
+        If the float_ret parameter is False, it returns an approximate int value
+        (using the math's module trunc function).
+
+        :param delisle: Delisle value to be converted
+        :param float_ret: Optional, True by default to return floats
+        :return: float or int
+        """
+        if float_ret:
+            return float(373.15 - (delisle * 2 / 3))
+        return trunc(373.15 - (delisle * 2 / 3))
+
+    @staticmethod
+    def to_newton(delisle: float | int, /, *, float_ret=True) -> float | int:
+        """
+        Converts Delisle to Newton, returning a float by default.
+
+        If the float_ret parameter is False, it returns an approximate int value
+        (using the math's module trunc function).
+
+        :param delisle: Delisle value to be converted
+        :param float_ret: Optional, True by default to return floats
+        :return: float or int
+        """
+        if float_ret:
+            return float(33 - delisle * 11 / 50)
+        return trunc(33 - delisle * 11 / 50)
+
+    @staticmethod
+    def to_rankine(delisle: float | int, /, *, float_ret=True) -> float | int:
+        """
+        Converts Delisle to Rankine, returning a float by default.
+
+        If the float_ret parameter is False, it returns an approximate int value
+        (using the math's module trunc function).
+
+        :param delisle: Delisle value to be converted
+        :param float_ret: Optional, True by default to return floats
+        :return: float or int
+        """
+        if float_ret:
+            return float(671.67 - delisle * 6 / 5)
+        return trunc(671.67 - delisle * 6 / 5)
+
+    @staticmethod
+    def to_reaumur(delisle: float | int, /, *, float_ret=True) -> float | int:
+        """
+        Converts Delisle to Réaumur, returning a float by default.
+
+        If the float_ret parameter is False, it returns an approximate int value
+        (using the math's module trunc function).
+
+        :param delisle: Delisle value to be converted
+        :param float_ret: Optional, True by default to return floats
+        :return: float or int
+        """
+        if float_ret:
+            return float(80 - delisle * 8 / 15)
+        return trunc(80 - delisle * 8 / 15)
+
+    @staticmethod
+    def to_romer(delisle: float | int, /, *, float_ret=True) -> float | int:
+        """
+        Converts Delisle to Rømer, returning a float by default.
+
+        If the float_ret parameter is False, it returns an approximate int value
+        (using the math's module trunc function).
+
+        :param delisle: Delisle value to be converted
+        :param float_ret: Optional, True by default to return floats
+        :return: float or int
+        """
+        if float_ret:
+            return float(60 - delisle * 7 / 20)
+        return trunc(60 - delisle * 7 / 20)
+
+
 class Kelvin:
     """Provides conversion of Kelvin to other temperature scales"""
 
@@ -257,10 +375,8 @@ class Kelvin:
     def to_celsius(kelvin: float | int, /, *, float_ret=True) -> float | int:
         """
         Converts Kelvin to Celsius, returning a float by default.
-
         If the float_ret parameter is False, it returns an approximate int value
         (using the math's module trunc function).
-
         :param kelvin: Kelvin value to be converted
         :param float_ret: Optional, True by default to return floats
         :return: float or int
@@ -273,10 +389,8 @@ class Kelvin:
     def to_delisle(kelvin: float | int, /, *, float_ret=True) -> float | int:
         """
         Converts Kelvin to Delisle, returning a float by default.
-
         If the float_ret parameter is False, it returns an approximate int value
         (using the math's module trunc function).
-
         :param kelvin: Kelvin value to be converted
         :param float_ret: Optional, True by default to return floats
         :return: float or int
@@ -291,10 +405,8 @@ class Kelvin:
     ) -> float | int:
         """
         Converts Kelvin to Fahrenheit, returning a float by default.
-
         If the float_ret parameter is False, it returns an approximate int value
         (using the math's module trunc function).
-
         :param kelvin: Kelvin value to be converted
         :param float_ret: Optional, True by default to return floats
         :return: float or int
@@ -307,10 +419,8 @@ class Kelvin:
     def to_newton(kelvin: float | int, /, *, float_ret=True) -> float | int:
         """
         Converts Kelvin to Newton, returning a float by default.
-
         If the float_ret parameter is False, it returns an approximate int value
         (using the math's module trunc function).
-
         :param kelvin: Kelvin value to be converted
         :param float_ret: Optional, True by default to return floats
         :return: float or int
@@ -323,10 +433,8 @@ class Kelvin:
     def to_rankine(kelvin: float | int, /, *, float_ret=True) -> float | int:
         """
         Converts Kelvin to Rankine, returning a float by default.
-
         If the float_ret parameter is False, it returns an approximate int value
         (using the math's module trunc function).
-
         :param kelvin: Kelvin value to be converted
         :param float_ret: Optional, True by default to return floats
         :return: float or int
@@ -339,10 +447,8 @@ class Kelvin:
     def to_reaumur(kelvin: float | int, /, *, float_ret=True) -> float | int:
         """
         Converts Kelvin to Réaumur, returning a float by default.
-
         If the float_ret parameter is False, it returns an approximate int value
         (using the math's module trunc function).
-
         :param kelvin: Kelvin value to be converted
         :param float_ret: Optional, True by default to return floats
         :return: float or int
@@ -355,10 +461,8 @@ class Kelvin:
     def to_romer(kelvin: float | int, /, *, float_ret=True) -> float | int:
         """
         Converts Kelvin to Rømer, returning a float by default.
-
         If the float_ret parameter is False, it returns an approximate int value
         (using the math's module trunc function).
-
         :param kelvin: Kelvin value to be converted
         :param float_ret: Optional, True by default to return floats
         :return: float or int

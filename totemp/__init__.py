@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from .temperature_types import Celsius, Fahrenheit, Kelvin
+from .temperature_types import Celsius, Delisle, Fahrenheit, Kelvin
+
 
 __author__ = 'Edson Pimenta and Dávilos Tavares'
 __credits__ = ['Edson Pimenta', 'Dávilos Tavares']
@@ -12,4 +13,4 @@ __maintainer__ = [
     'Dávilos Tavares <daviloscostagg@hotmail.com>',
 ]
 __status__ = 'Development'
-__all__ = ['Celsius', 'Fahrenheit', 'Kelvin']
+__all__ = ['Celsius', 'Fahrenheit', 'Delisle', 'Kelvin']
