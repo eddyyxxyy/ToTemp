@@ -251,6 +251,8 @@ class Fahrenheit:
 
 
 class Delisle:
+    """Provides conversion of Delisle to other temperature scales"""
+
     @staticmethod
     def to_celsius(delisle: float | int, /, *, float_ret=True) -> float | int:
         """
