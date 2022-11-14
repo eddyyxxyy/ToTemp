@@ -383,3 +383,21 @@ class TestToTemp:
         with default parameter set to False
         """
         assert isinstance(Delisle.to_reaumur(57.543, float_ret=False), int)
+
+    def test_delisle_to_romer(self) -> None:
+        """Tests the result of the conversion Delisle to Rømer"""
+        assert Delisle.to_romer(1324.799) == -403.67965000000004
+
+    def test_delisle_to_romer_default_type(self) -> None:
+        """
+        Tests the type of the value returned on the conversion Delisle to Rømer
+        with default parameter values
+        """
+        assert isinstance(Delisle.to_romer(1324), float)
+
+    def test_delisle_to_romer_type_trunc_ret(self) -> None:
+        """
+        Tests the type of the value returned on the conversion Delisle to Rømer
+        with default parameter set to False
+        """
+        assert isinstance(Delisle.to_romer(1324.799, float_ret=False), int)
