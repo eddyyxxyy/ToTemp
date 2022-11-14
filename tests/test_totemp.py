@@ -345,3 +345,23 @@ class TestToTemp:
         assert isinstance(
             Delisle.to_newton(1.98327392917266655, float_ret=False), int
         )
+
+    def test_delisle_to_rankine(self) -> None:
+        """Tests the result of the conversion Delisle to Rankine"""
+        assert Delisle.to_rankine(22.3862619237) == 644.8064856915599
+
+    def test_delisle_to_rankine_default_type(self) -> None:
+        """
+        Tests the type of the value returned on the conversion Delisle to Rankine
+        with default parameter values
+        """
+        assert isinstance(Delisle.to_rankine(22), float)
+
+    def test_delisle_to_rankine_type_trunc_ret(self) -> None:
+        """
+        Tests the type of the value returned on the conversion Delisle to Rankine
+        with default parameter set to False
+        """
+        assert isinstance(
+            Delisle.to_rankine(22.3862619237, float_ret=False), int
+        )
