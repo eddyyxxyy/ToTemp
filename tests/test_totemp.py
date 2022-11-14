@@ -377,3 +377,21 @@ class TestToTemp:
         with default parameter setted to False
         """
         assert isinstance(Kelvin.to_reaumur(25.8456, float_ret=False), int)
+
+    def test_kelvin_to_romer(self) -> None:
+        """Tests the result of the convertion Kelvin to Rømer"""
+        assert Kelvin.to_romer(44.28137746) == -112.6560268335
+
+    def test_kelvin_to_romer_default_type(self) -> None:
+        """
+        Tests the type of the value returned on the convertion Kelvin to Rømer
+        with default parameter values
+        """
+        assert isinstance(Kelvin.to_romer(10), float)
+
+    def test_kelvin_to_romer_type_trunc_ret(self) -> None:
+        """
+        Tests the type of the value returned on the convertion Kelvin to Rømer
+        with default parameter setted to False
+        """
+        assert isinstance(Kelvin.to_romer(25.8456, float_ret=False), int)
