@@ -4,7 +4,7 @@
   <img src="https://img.shields.io/pypi/l/totemp.svg"  alt="license"/>
 </div>
 
-**ToTemp** is a temperature conversion package between Celcius, Delisle, Fahrenheit, Kelvin, Rankine, Reaumur, Newton and Romer
+**ToTemp** is a temperature conversion package between Celsius, Delisle, Fahrenheit, Kelvin, Rankine, Reaumur, Newton and Romer
 
 ## Usage
 
@@ -22,11 +22,11 @@ poetry add --group dev totemp
 
 Then, just use it:
 
-> In these examples, you can observe the methods working with both
-Classes available in the package
+> In these examples, you can observe the methods working with all
+available Classes in this package
 
 ````python
-# Import Celcius class
+# Import Celsius class
 from totemp import Celsius
 
 temperature = Celsius.to_fahrenheit(35)
@@ -46,23 +46,55 @@ temperature = Fahrenheit.to_newton(18.746, float_ret=False)
 print(temperature)  # -2 -> int
 ````
 ````python
-# Import all classes (not recommended)
-from totemp import *
+# Import Delisle class
+from totemp import Delisle
 
-temperature = Celsius.to_delisle(345.797)
+temperature = Delisle.to_romer(37263.271)
+print(temperature)  # -12982.14485 -> float
+
+temperature = Delisle.to_romer(37263.271, float_ret=False)
+print(temperature)  # -12982 -> int
+````
+````python
+# Import Kelvin class
+from totemp import Kelvin
+
+temperature = Kelvin.to_reaumur(44.28137746)
+print(temperature)  # -183.094898032 -> float
+
+temperature = Kelvin.to_reaumur(44.28137746, float_ret=False)
+print(temperature)  # -183 -> int
+````
+````python
+# Import all classes
+import totemp as tp
+
+temperature = tp.Celsius.to_delisle(345.797)
 print(temperature)  # -368.69550000000004 -> float
 
-temperature = Celsius.to_delisle(345.797, float_ret=False)
+temperature = tp.Celsius.to_delisle(345.797, float_ret=False)
 print(temperature)  # -368 -> int
 
-temperature = Fahrenheit.to_rankine(500)
+temperature = tp.Fahrenheit.to_rankine(500)
 print(temperature)  # 959.6700000000001 -> float
 
-temperature = Fahrenheit.to_rankine(500, float_ret=False)
+temperature = tp.Fahrenheit.to_rankine(500, float_ret=False)
 print(temperature)  # 959 -> int
+
+temperature = tp.Delisle.to_kelvin(12.5887)
+print(temperature)  # 364.7575333333333 -> float
+
+temperature = tp.Delisle.to_kelvin(12.5887, float_ret=False)
+print(temperature)  # 364 -> int
+
+temperature = tp.Kelvin.to_romer(44.28137746)
+print(temperature)  # -112.6560268335 -> float
+
+temperature = tp.Kelvin.to_reaumur(44.28137746, float_ret=False)
+print(temperature)  # -112 -> int
 ````
 
-Note that **all returns are *float values*** if you dont specify "float_ret"
+Note that **all returns are *float values*** if you don't specify "float_ret"
 parameter as False, which is True by default and that **applies to all methods**.
 
 All methods have two parameters, the **value** (which is positional-only)
@@ -78,15 +110,16 @@ values and keyword-only)
 - _0.2.0_:
   - Functional;
   - Can convert Celsius to Delisle, Fahrenheit, Kelvin, Newton, Rankine, Réaumur and Rømer.
-
-
-- **0.3.0**:
+- _0.3.0_:
   - Changed methods implementations and adds Fahrenheit conversions;
-    - <scale_value> parameter is now positional-only;
-    - Adds new paramater -> float_ret -> Float Return (True by default, keyword-only);
-    - Celsius class methods were updated and enhanced;
-    - Can now convert Fahrenheit to Celsius, Delisle, Kelvin, Newton, Rankine, Réaumur and Rømer.
+      - <scale_value> parameter is now positional-only;
+      - Adds new parameter -> float_ret -> Float Return (True by default, keyword-only);
+      - Celsius class methods were updated and enhanced;
+      - Can now convert Fahrenheit to Celsius, Delisle, Kelvin, Newton, Rankine, Réaumur and Rømer.
 
+
+- **0.4.0**:
+  - There are **two new Classes**, **Kelvin** and **Delisle**, functional and ready-to-use.
 ---
 
 ## License
