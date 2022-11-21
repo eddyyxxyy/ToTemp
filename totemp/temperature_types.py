@@ -518,3 +518,17 @@ class Newton:
         if float_ret:
             return float((newton * 4.5455) - 100)
         return trunc((newton * 4.5455) - 100)
+
+    @staticmethod
+    def to_kelvin(newton: float | int, /, *, float_ret=True) -> float | int:
+        """
+        Converts Newton to Kelvin, returning a float by default.
+        If the float_ret parameter is False, it returns an approximate int value
+        (using the math's module trunc function).
+        :param Newton: Newton value to be converted
+        :param float_ret: Optional, True by default to return floats
+        :return: float or int
+        """
+        if float_ret:
+            return float((newton / 0.33000) + 273.15)
+        return trunc((newton / 0.33000) + 273.15)
