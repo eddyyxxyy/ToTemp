@@ -375,8 +375,10 @@ class Kelvin:
     def to_celsius(kelvin: float | int, /, *, float_ret=True) -> float | int:
         """
         Converts Kelvin to Celsius, returning a float by default.
+
         If the float_ret parameter is False, it returns an approximate int value
         (using the math's module trunc function).
+
         :param kelvin: Kelvin value to be converted
         :param float_ret: Optional, True by default to return floats
         :return: float or int
@@ -389,8 +391,10 @@ class Kelvin:
     def to_delisle(kelvin: float | int, /, *, float_ret=True) -> float | int:
         """
         Converts Kelvin to Delisle, returning a float by default.
+
         If the float_ret parameter is False, it returns an approximate int value
         (using the math's module trunc function).
+
         :param kelvin: Kelvin value to be converted
         :param float_ret: Optional, True by default to return floats
         :return: float or int
@@ -405,8 +409,10 @@ class Kelvin:
     ) -> float | int:
         """
         Converts Kelvin to Fahrenheit, returning a float by default.
+
         If the float_ret parameter is False, it returns an approximate int value
         (using the math's module trunc function).
+
         :param kelvin: Kelvin value to be converted
         :param float_ret: Optional, True by default to return floats
         :return: float or int
@@ -419,8 +425,10 @@ class Kelvin:
     def to_newton(kelvin: float | int, /, *, float_ret=True) -> float | int:
         """
         Converts Kelvin to Newton, returning a float by default.
+
         If the float_ret parameter is False, it returns an approximate int value
         (using the math's module trunc function).
+
         :param kelvin: Kelvin value to be converted
         :param float_ret: Optional, True by default to return floats
         :return: float or int
@@ -433,8 +441,10 @@ class Kelvin:
     def to_rankine(kelvin: float | int, /, *, float_ret=True) -> float | int:
         """
         Converts Kelvin to Rankine, returning a float by default.
+
         If the float_ret parameter is False, it returns an approximate int value
         (using the math's module trunc function).
+
         :param kelvin: Kelvin value to be converted
         :param float_ret: Optional, True by default to return floats
         :return: float or int
@@ -447,8 +457,10 @@ class Kelvin:
     def to_reaumur(kelvin: float | int, /, *, float_ret=True) -> float | int:
         """
         Converts Kelvin to Réaumur, returning a float by default.
+
         If the float_ret parameter is False, it returns an approximate int value
         (using the math's module trunc function).
+
         :param kelvin: Kelvin value to be converted
         :param float_ret: Optional, True by default to return floats
         :return: float or int
@@ -461,8 +473,10 @@ class Kelvin:
     def to_romer(kelvin: float | int, /, *, float_ret=True) -> float | int:
         """
         Converts Kelvin to Rømer, returning a float by default.
+
         If the float_ret parameter is False, it returns an approximate int value
         (using the math's module trunc function).
+
         :param kelvin: Kelvin value to be converted
         :param float_ret: Optional, True by default to return floats
         :return: float or int
@@ -479,9 +493,11 @@ class Newton:
     def to_celsius(newton: float | int, /, *, float_ret=True) -> float | int:
         """
         Converts Newton to Celsius, returning a float by default.
+
         If the float_ret parameter is False, it returns an approximate int value
         (using the math's module trunc function).
-        :param Newton: Newton value to be converted
+
+        :param newton: Newton value to be converted
         :param float_ret: Optional, True by default to return floats
         :return: float or int
         """
@@ -495,9 +511,11 @@ class Newton:
     ) -> float | int:
         """
         Converts Newton to Fahrenheit, returning a float by default.
+
         If the float_ret parameter is False, it returns an approximate int value
         (using the math's module trunc function).
-        :param Newton: Newton value to be converted
+
+        :param newton: Newton value to be converted
         :param float_ret: Optional, True by default to return floats
         :return: float or int
         """
@@ -508,10 +526,12 @@ class Newton:
     @staticmethod
     def to_delisle(newton: float | int, /, *, float_ret=True) -> float | int:
         """
-        Converts Newton to Desile, returning a float by default.
+        Converts Newton to Delisle, returning a float by default.
+
         If the float_ret parameter is False, it returns an approximate int value
         (using the math's module trunc function).
-        :param Newton: Newton value to be converted
+
+        :param newton: Newton value to be converted
         :param float_ret: Optional, True by default to return floats
         :return: float or int
         """
@@ -523,9 +543,11 @@ class Newton:
     def to_kelvin(newton: float | int, /, *, float_ret=True) -> float | int:
         """
         Converts Newton to Kelvin, returning a float by default.
+
         If the float_ret parameter is False, it returns an approximate int value
         (using the math's module trunc function).
-        :param Newton: Newton value to be converted
+
+        :param newton: Newton value to be converted
         :param float_ret: Optional, True by default to return floats
         :return: float or int
         """
@@ -537,9 +559,11 @@ class Newton:
     def to_rankine(newton: float | int, /, *, float_ret=True) -> float | int:
         """
         Converts Newton to Rankine, returning a float by default.
+
         If the float_ret parameter is False, it returns an approximate int value
         (using the math's module trunc function).
-        :param Newton: Newton value to be converted
+
+        :param newton: Newton value to be converted
         :param float_ret: Optional, True by default to return floats
         :return: float or int
         """
@@ -551,9 +575,11 @@ class Newton:
     def to_romer(newton: float | int, /, *, float_ret=True) -> float | int:
         """
         Converts Newton to Rømer, returning a float by default.
+
         If the float_ret parameter is False, it returns an approximate int value
         (using the math's module trunc function).
-        :param Newton: Newton value to be converted
+
+        :param newton: Newton value to be converted
         :param float_ret: Optional, True by default to return floats
         :return: float or int
         """
@@ -562,12 +588,14 @@ class Newton:
         return trunc(newton * 35 / 22 + 7.5)
 
     @staticmethod
-    def to_reamur(newton: float | int, /, *, float_ret=True) -> float | int:
+    def to_reaumur(newton: float | int, /, *, float_ret=True) -> float | int:
         """
         Converts Newton to Réaumur, returning a float by default.
+
         If the float_ret parameter is False, it returns an approximate int value
         (using the math's module trunc function).
-        :param Newton: Newton value to be converted
+
+        :param newton: Newton value to be converted
         :param float_ret: Optional, True by default to return floats
         :return: float or int
         """
