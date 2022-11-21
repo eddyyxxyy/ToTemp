@@ -504,3 +504,17 @@ class Newton:
         if float_ret:
             return float((newton * 5.4545) + 32.00)
         return trunc((newton * 5.4545) + 32.00)
+
+    @staticmethod
+    def to_delisle(newton: float | int, /, *, float_ret=True) -> float | int:
+        """
+        Converts Newton to Desile, returning a float by default.
+        If the float_ret parameter is False, it returns an approximate int value
+        (using the math's module trunc function).
+        :param Newton: Newton value to be converted
+        :param float_ret: Optional, True by default to return floats
+        :return: float or int
+        """
+        if float_ret:
+            return float((newton * 4.5455) - 100)
+        return trunc((newton * 4.5455) - 100)
