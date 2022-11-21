@@ -470,3 +470,9 @@ class Kelvin:
         if float_ret:
             return float((kelvin - 273.15) * (21 / 40) + 7.5)
         return trunc((kelvin - 273.15) * (21 / 40) + 7.5)
+
+
+class Newton:
+    """Provides conversion of Newton to other temperature scales"""
+
+    pass
