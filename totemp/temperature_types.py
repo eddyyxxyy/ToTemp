@@ -560,3 +560,17 @@ class Newton:
         if float_ret:
             return float((newton * 1.5909) + 7.50)
         return trunc((newton * 1.5909) + 7.50)
+
+    @staticmethod
+    def to_reamur(newton: float | int, /, *, float_ret=True) -> float | int:
+        """
+        Converts Newton to Réaumur, returning a float by default.
+        If the float_ret parameter is False, it returns an approximate int value
+        (using the math's module trunc function).
+        :param Newton: Newton value to be converted
+        :param float_ret: Optional, True by default to return floats
+        :return: float or int
+        """
+        if float_ret:
+            return float(newton * 2.4242)
+        return trunc(newton * 2.4242)
