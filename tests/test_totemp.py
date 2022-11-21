@@ -618,3 +618,21 @@ class TestToTemp:
         with default parameter set to False
         """
         assert isinstance(Newton.to_rankine(3.331, float_ret=False), int)
+
+    def test_newton_to_romer(self) -> None:
+        """Tests the result of the conversion Newton to Romer"""
+        assert Newton.to_romer(3.331) == 12.79932
+
+    def test_newton_to_romer_default_type(self) -> None:
+        """
+        Tests the type of the value returned on the conversion Newton to Romer
+        with default parameter values
+        """
+        assert isinstance(Newton.to_romer(3), float)
+
+    def test_newton_to_romer_type_trunc_ret(self) -> None:
+        """
+        Tests the type of the value returned on the conversion Newton to Romer
+        with default parameter set to False
+        """
+        assert isinstance(Newton.to_romer(3.331, float_ret=False), int)
