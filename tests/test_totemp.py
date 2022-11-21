@@ -531,7 +531,7 @@ class TestToTemp:
 
     def test_newton_to_celsius(self) -> None:
         """Tests the result of the conversion Newton to Celsius"""
-        assert Newton.to_celsius(3.3) == 10.00000
+        assert Newton.to_celsius(3.3) == 9.999999999999998
 
     def test_newton_to_celsius_default_type(self) -> None:
         """
@@ -547,9 +547,9 @@ class TestToTemp:
         """
         assert isinstance(Newton.to_celsius(3.3, float_ret=False), int)
 
-    def test_newton_to_fahreinheit(self) -> None:
+    def test_newton_to_fahrenheit(self) -> None:
         """Tests the result of the conversion Newton to Fahrenheit"""
-        assert Newton.to_fahrenheit(3.331) == 150.16909
+        assert Newton.to_fahrenheit(3.331) == 50.16909090909091
 
     def test_newton_to_fahreinheit_default_type(self) -> None:
         """
@@ -565,9 +565,9 @@ class TestToTemp:
         """
         assert isinstance(Newton.to_fahrenheit(3.331, float_ret=False), int)
 
-    def test_newkelvindelisle(self) -> None:
+    def test_newton_to_delisle(self) -> None:
         """Tests the result of the conversion Newton to Delisle"""
-        assert Newton.to_delisle(3.331) == -84.85909
+        assert Newton.to_delisle(3.331) == 134.85909090909092
 
     def test_newton_to_delisle_default_type(self) -> None:
         """
@@ -585,7 +585,7 @@ class TestToTemp:
 
     def test_newton_to_kelvin(self) -> None:
         """Tests the result of the conversion Newton to Kelvin"""
-        assert Newton.to_kelvin(3.331) == -84.85909
+        assert Newton.to_kelvin(3.331) == 283.2439393939394
 
     def test_newton_to_kelvin_default_type(self) -> None:
         """
@@ -603,7 +603,7 @@ class TestToTemp:
 
     def test_newton_to_rankine(self) -> None:
         """Tests the result of the conversion Newton to Rankine"""
-        assert Newton.to_rankine(3.331) == 509.8391
+        assert Newton.to_rankine(3.331) == 509.83893950000004
 
     def test_newton_to_rankine_default_type(self) -> None:
         """
@@ -621,7 +621,7 @@ class TestToTemp:
 
     def test_newton_to_romer(self) -> None:
         """Tests the result of the conversion Newton to Romer"""
-        assert Newton.to_romer(3.331) == 12.79932
+        assert Newton.to_romer(3.331) == 12.799318181818181
 
     def test_newton_to_romer_default_type(self) -> None:
         """
@@ -639,7 +639,7 @@ class TestToTemp:
 
     def test_newton_to_reamur(self) -> None:
         """Tests the result of the conversion Newton to Reamur"""
-        assert Newton.to_reamur(3.331) == 8.075152
+        assert Newton.to_reamur(3.331) == 8.075151515151516
 
     def test_newton_to_reamur_default_type(self) -> None:
         """
