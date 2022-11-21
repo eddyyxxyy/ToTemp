@@ -475,4 +475,16 @@ class Kelvin:
 class Newton:
     """Provides conversion of Newton to other temperature scales"""
 
-    pass
+    @staticmethod
+    def to_celsius(newton: float | int, /, *, float_ret=True) -> float | int:
+        """
+        Converts Newton to Celsius, returning a float by default.
+        If the float_ret parameter is False, it returns an approximate int value
+        (using the math's module trunc function).
+        :param Newton: Newton value to be converted
+        :param float_ret: Optional, True by default to return floats
+        :return: float or int
+        """
+        if float_ret:
+            return float(newton / 0.33)
+        return trunc(newton / 0.33)
