@@ -1,15 +1,17 @@
 [tool.poetry]
 name = "totemp"
-version = "0.4.0"
+version = "0.5.0"
 description = "Temperature Converter"
 license = "GPL-3.0-only"
 authors = [
     "Edson Pimenta <edson.tibo@gmail.com>",
     "Dávilos Tavares <daviloscostagg@hotmail.com>",
+    "Raul Silva <raul_bardela@hotmail.com>"
 ]
 maintainers = [
     "Edson Pimenta <edson.tibo@gmail.com>",
     "Dávilos Tavares <daviloscostagg@hotmail.com>",
+    "Raul Silva <raul_bardela@hotmail.com>"
 ]
 readme = "README.md"
 homepage = "https://github.com/eddyyxxyy/ToTemp"
