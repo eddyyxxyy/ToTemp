@@ -548,19 +548,37 @@ class TestToTemp:
         assert isinstance(Newton.to_celsius(3.3, float_ret=False), int)
 
     def test_newton_to_fahreinheit(self) -> None:
-        """Tests the result of the conversion Newton to Celsius"""
+        """Tests the result of the conversion Newton to Fahrenheit"""
         assert Newton.to_fahrenheit(3.331) == 150.16909
 
     def test_newton_to_fahreinheit_default_type(self) -> None:
         """
-        Tests the type of the value returned on the conversion Newton to Celsius
+        Tests the type of the value returned on the conversion Newton to Fahrenheit
         with default parameter values
         """
         assert isinstance(Newton.to_fahrenheit(3), float)
 
     def test_newton_to_fahreinheit_type_trunc_ret(self) -> None:
         """
-        Tests the type of the value returned on the conversion Newton to Celsius
+        Tests the type of the value returned on the conversion Newton to Fahrenheit
         with default parameter set to False
         """
         assert isinstance(Newton.to_fahrenheit(3.331, float_ret=False), int)
+
+    def test_newton_to_fdelisle(self) -> None:
+        """Tests the result of the conversion Newton to Delisle"""
+        assert Newton.to_delisle(3.331) == -84.85909
+
+    def test_newton_to_fdelisle_default_type(self) -> None:
+        """
+        Tests the type of the value returned on the conversion Newton to Delisle
+        with default parameter values
+        """
+        assert isinstance(Newton.to_delisle(3), float)
+
+    def test_newton_to_fdelisle_type_trunc_ret(self) -> None:
+        """
+        Tests the type of the value returned on the conversion Newton to Delisle
+        with default parameter set to False
+        """
+        assert isinstance(Newton.to_delisle(3.331, float_ret=False), int)
