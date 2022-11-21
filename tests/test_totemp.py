@@ -529,6 +529,7 @@ class TestToTemp:
         """
         assert isinstance(Delisle.to_romer(1324.799, float_ret=False), int)
 
+    # Newton to <other temp scale> tests
     def test_newton_to_celsius(self) -> None:
         """Tests the result of the conversion Newton to Celsius"""
         assert Newton.to_celsius(3.3) == 9.999999999999998
@@ -620,37 +621,37 @@ class TestToTemp:
         assert isinstance(Newton.to_rankine(3.331, float_ret=False), int)
 
     def test_newton_to_romer(self) -> None:
-        """Tests the result of the conversion Newton to Romer"""
+        """Tests the result of the conversion Newton to Rømer"""
         assert Newton.to_romer(3.331) == 12.799318181818181
 
     def test_newton_to_romer_default_type(self) -> None:
         """
-        Tests the type of the value returned on the conversion Newton to Romer
+        Tests the type of the value returned on the conversion Newton to Rømer
         with default parameter values
         """
         assert isinstance(Newton.to_romer(3), float)
 
     def test_newton_to_romer_type_trunc_ret(self) -> None:
         """
-        Tests the type of the value returned on the conversion Newton to Romer
+        Tests the type of the value returned on the conversion Newton to Rømer
         with default parameter set to False
         """
         assert isinstance(Newton.to_romer(3.331, float_ret=False), int)
 
-    def test_newton_to_reamur(self) -> None:
-        """Tests the result of the conversion Newton to Reamur"""
-        assert Newton.to_reamur(3.331) == 8.075151515151516
+    def test_newton_to_reaumur(self) -> None:
+        """Tests the result of the conversion Newton to Réaumur"""
+        assert Newton.to_reaumur(3.331) == 8.075151515151516
 
-    def test_newton_to_reamur_default_type(self) -> None:
+    def test_newton_to_reaumur_default_type(self) -> None:
         """
-        Tests the type of the value returned on the conversion Newton to Reamur
+        Tests the type of the value returned on the conversion Newton to Réaumur
         with default parameter values
         """
-        assert isinstance(Newton.to_reamur(3), float)
+        assert isinstance(Newton.to_reaumur(3), float)
 
-    def test_newton_to_reamur_type_trunc_ret(self) -> None:
+    def test_newton_to_reaumur_type_trunc_ret(self) -> None:
         """
-        Tests the type of the value returned on the conversion Newton to Reamur
+        Tests the type of the value returned on the conversion Newton to Réaumur
         with default parameter set to False
         """
-        assert isinstance(Newton.to_reamur(3.331, float_ret=False), int)
+        assert isinstance(Newton.to_reaumur(3.331, float_ret=False), int)
