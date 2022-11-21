@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from totemp import Celsius, Delisle, Fahrenheit, Kelvin
+from totemp import Celsius, Delisle, Fahrenheit, Kelvin, Newton
 
 
 class TestToTemp:
@@ -528,3 +528,21 @@ class TestToTemp:
         with default parameter set to False
         """
         assert isinstance(Delisle.to_romer(1324.799, float_ret=False), int)
+
+    def test_newton_to_celsius(self) -> None:
+        """Tests the result of the conversion Newton to Celsius"""
+        assert Newton.to_celsius(3.3) == 10.00000
+
+    def test_newton_to_celsius_default_type(self) -> None:
+        """
+        Tests the type of the value returned on the conversion Newton to Celsius
+        with default parameter values
+        """
+        assert isinstance(Newton.to_celsius(3), float)
+
+    def test_newton_to_celsius_type_trunc_ret(self) -> None:
+        """
+        Tests the type of the value returned on the conversion Newton to Celsius
+        with default parameter set to False
+        """
+        assert isinstance(Newton.to_celsius(3.3, float_ret=False), int)
