@@ -636,3 +636,21 @@ class TestToTemp:
         with default parameter set to False
         """
         assert isinstance(Newton.to_romer(3.331, float_ret=False), int)
+
+    def test_newton_to_reamur(self) -> None:
+        """Tests the result of the conversion Newton to Reamur"""
+        assert Newton.to_reamur(3.331) == 8.075152
+
+    def test_newton_to_reamur_default_type(self) -> None:
+        """
+        Tests the type of the value returned on the conversion Newton to Reamur
+        with default parameter values
+        """
+        assert isinstance(Newton.to_reamur(3), float)
+
+    def test_newton_to_reamur_type_trunc_ret(self) -> None:
+        """
+        Tests the type of the value returned on the conversion Newton to Reamur
+        with default parameter set to False
+        """
+        assert isinstance(Newton.to_reamur(3.331, float_ret=False), int)
