@@ -502,8 +502,8 @@ class Newton:
         :return: float or int
         """
         if float_ret:
-            return float((newton * 5.4545) + 32.00)
-        return trunc((newton * 5.4545) + 32.00)
+            return float(newton * 60 / 11 + 32)
+        return trunc(newton * 60 / 11 + 32)
 
     @staticmethod
     def to_delisle(newton: float | int, /, *, float_ret=True) -> float | int:
@@ -516,8 +516,8 @@ class Newton:
         :return: float or int
         """
         if float_ret:
-            return float((newton * 4.5455) - 100)
-        return trunc((newton * 4.5455) - 100)
+            return float((33 - newton) * 50 / 11)
+        return trunc((33 - newton) * 50 / 11)
 
     @staticmethod
     def to_kelvin(newton: float | int, /, *, float_ret=True) -> float | int:
@@ -558,8 +558,8 @@ class Newton:
         :return: float or int
         """
         if float_ret:
-            return float((newton * 1.5909) + 7.50)
-        return trunc((newton * 1.5909) + 7.50)
+            return float(newton * 35 / 22 + 7.5)
+        return trunc(newton * 35 / 22 + 7.5)
 
     @staticmethod
     def to_reamur(newton: float | int, /, *, float_ret=True) -> float | int:
@@ -572,5 +572,5 @@ class Newton:
         :return: float or int
         """
         if float_ret:
-            return float(newton * 2.4242)
-        return trunc(newton * 2.4242)
+            return float(newton * 80 / 33)
+        return trunc(newton * 80 / 33)
