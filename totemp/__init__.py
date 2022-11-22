@@ -1,7 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from .temperature_types import Celsius, Delisle, Fahrenheit, Kelvin, Newton
+from .temperature_types import (
+    Celsius,
+    Delisle,
+    Fahrenheit,
+    Kelvin,
+    Newton,
+    Rankine,
+    Reaumur,
+    Romer,
+)
 
 __author__ = 'Edson Pimenta and Dávilos Tavares'
 __credits__ = ['Edson Pimenta', 'Dávilos Tavares']
@@ -13,4 +22,13 @@ __maintainer__ = [
     'Raul Silva <raul_bardela@hotmail.com>',
 ]
 __status__ = 'Development'
-__all__ = ['Celsius', 'Fahrenheit', 'Delisle', 'Kelvin', 'Newton']
+__all__ = [
+    'Celsius',
+    'Fahrenheit',
+    'Delisle',
+    'Kelvin',
+    'Newton',
+    'Rankine',
+    'Reaumur',
+    'Romer',
+]
