@@ -44,6 +44,8 @@ mypy = "^0.982"
 
 [tool.isort]
 profile = "black"
+multi_line_output = 3
+line-length = 79
 
 [build-system]
 requires = ["poetry-core"]
