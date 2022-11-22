@@ -1,7 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from totemp import Celsius, Delisle, Fahrenheit, Kelvin, Newton
+from totemp import (
+    Celsius,
+    Delisle,
+    Fahrenheit,
+    Kelvin,
+    Newton,
+    Rankine,
+    Reaumur,
+    Romer,
+)
 
 
 class TestToTemp:
@@ -655,3 +664,5 @@ class TestToTemp:
         with default parameter set to False
         """
         assert isinstance(Newton.to_reaumur(3.331, float_ret=False), int)
+
+    # Rankine to <other temp scale> tests
