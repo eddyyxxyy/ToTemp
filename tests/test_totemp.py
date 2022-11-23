@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from random import choice, randint, uniform
+from random import randint, uniform
 
 from totemp import (
     Celsius,
