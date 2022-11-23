@@ -694,4 +694,4 @@ class TestToTemp:
 
     def test_rounded_rankine_to_celsius(self) -> None:
         """Tests the rounded result of the conversion Rankine to Celsius"""
-        assert Rankine(25).rounded().to_celsius() == Celsius(value=-259)
+        assert Rankine(25.25).rounded().to_celsius() == Celsius(value=-259)
