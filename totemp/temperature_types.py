@@ -754,10 +754,10 @@ class Rankine(Generic[TEMP]):
 
     def to_kelvin(self) -> 'Kelvin[TEMP]':
         """
-        Returns a Delisle object which contains the class attribute "value"
+        Returns a Kelvin object which contains the class attribute "value"
         with the result from the conversion typed the same as the attribute.
 
-        :return: Delisle object
+        :return: Kelvin object
         """
         kelvin = type(self.value)(self.value * 5 / 9)
         return Kelvin(kelvin)
