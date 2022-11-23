@@ -9,9 +9,56 @@ TEMP = TypeVar('TEMP', int, float)
 
 @dataclass
 class Celsius(Generic[TEMP]):
-    """Provides conversion of Celsius to other temperature scales"""
+    """
+    A Dataclass that represents Celsius temperature scale
+    and provides conversions to other temperature scales.
+
+    ...
+
+    Attributes
+    ----------
+    value: int | float
+        temperature value (e.g. 36ºC)
+
+    Methods
+    -------
+    precise():
+        returns the Celsius object with value converted to float.
+    rounded():
+        returns the Celsius object with value converted to int (rounded).
+    to_fahrenheit():
+        returns a Fahrenheit object which contains the converted value
+    to_delisle():
+        returns a Delisle object which contains the converted value
+    to_kelvin():
+        returns a Kelvin object which contains the converted value
+    to_newton():
+        returns a Newton object which contains the converted value
+    to_rankine():
+        returns a Rankine object which contains the converted value
+    to_reaumur():
+        returns a Réaumur object which contains the converted value
+    to_romer():
+        returns a Rømer object which contains the converted value
+    """
 
     value: TEMP
+
+    def precise(self) -> 'Celsius[float]':
+        """
+        Returns a Celsius object with float value.
+
+        :return: Celsius Object
+        """
+        return Celsius(float(self.value))
+
+    def rounded(self) -> 'Celsius[int]':
+        """
+        Returns a Celsius object with int (rounded) value.
+
+        :return: Celsius Object
+        """
+        return Celsius(round(self.value))
 
     @staticmethod
     def to_fahrenheit(
@@ -637,10 +684,10 @@ class Rankine(Generic[TEMP]):
 
     Methods
     -------
-    with_float():
-        returns a Rankine object with float value.
-    with_int():
-        returns a Rankine object with int (rounded) value.
+    precise():
+        returns the Celsius object with value converted to float.
+    rounded():
+        returns the Celsius object with value converted to int (rounded).
     to_celsius():
         returns a Celsius object which contains the converted value
     to_fahrenheit():
