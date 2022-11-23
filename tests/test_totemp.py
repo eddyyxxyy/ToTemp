@@ -682,7 +682,7 @@ class TestToTemp:
         assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
     def test_precise_rounded_rankine_to_celsius(self) -> None:
-        """Tests the default, rounded and precise result of the conversion Rankine to Celsius"""
+        """Tests the rounded and precise result of the conversion Rankine to Celsius"""
         temps = (
             Rankine(25).precise().to_celsius(),
             Celsius(value=-259.2611111111111),
@@ -704,7 +704,7 @@ class TestToTemp:
         assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
     def test_precise_rounded_rankine_to_fahrenheit(self) -> None:
-        """Tests the default, rounded and precise result of the conversion Rankine to Fahrenheit"""
+        """Tests the rounded and precise result of the conversion Rankine to Fahrenheit"""
         temps = (
             Rankine(25).precise().to_fahrenheit(),
             Fahrenheit(value=-434.67),
@@ -726,12 +726,34 @@ class TestToTemp:
         assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
     def test_precise_rounded_rankine_to_delisle(self) -> None:
-        """Tests the default, rounded and precise result of the conversion Rankine to Delisle"""
+        """Tests the rounded and precise result of the conversion Rankine to Delisle"""
         temps = (
             Rankine(25).precise().to_delisle(),
             Delisle(value=538.8916666666667),
             Rankine(25.25).rounded().to_delisle(),
             Delisle(value=538),
+        )
+        errors = func_to_test_precise_rounded_results(temps)
+
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
+
+    def test_dynamic_type_return_rankine_to_kelvin(self) -> None:
+        """Tests the dynamic typed results of the conversion Rankine to Kelvin"""
+        temps = (
+            Rankine(randint(1, 20)).to_kelvin(),
+            Rankine(uniform(0.0, 20.0)).to_kelvin(),
+        )
+        errors = func_to_test_dynamic_returns(temps)
+
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
+
+    def test_precise_rounded_rankine_to_kelvin(self) -> None:
+        """Tests the rounded and precise result of the conversion Rankine to Kelvin"""
+        temps = (
+            Rankine(25).precise().to_kelvin(),
+            Kelvin(value=13.88888888888889),
+            Rankine(25.25).rounded().to_kelvin(),
+            Kelvin(value=13),
         )
         errors = func_to_test_precise_rounded_results(temps)
 
