@@ -802,3 +802,25 @@ class TestToTemp:
         errors = func_to_test_precise_rounded_results(temps)
 
         assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
+
+    def test_dynamic_type_return_rankine_to_romer(self) -> None:
+        """Tests the dynamic typed results of the conversion Rankine to Rømer"""
+        temps = (
+            Rankine(randint(1, 20)).to_romer(),
+            Rankine(uniform(0.0, 20.0)).to_romer(),
+        )
+        errors = func_to_test_dynamic_returns(temps)
+
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
+
+    def test_precise_rounded_rankine_to_romer(self) -> None:
+        """Tests the rounded and precise result of the conversion Rankine to Rømer"""
+        temps = (
+            Rankine(25).precise().to_romer(),
+            Romer(value=-128.61208333333335),
+            Rankine(25.25).rounded().to_romer(),
+            Romer(value=-128),
+        )
+        errors = func_to_test_precise_rounded_results(temps)
+
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
