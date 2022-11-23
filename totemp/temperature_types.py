@@ -212,6 +212,22 @@ class Fahrenheit(Generic[TEMP]):
 
     value: TEMP
 
+    def precise(self) -> 'Fahrenheit[float]':
+        """
+        Returns a Fahrenheit object with float value.
+
+        :return: Fahrenheit Object
+        """
+        return Fahrenheit(float(self.value))
+
+    def rounded(self) -> 'Fahrenheit[int]':
+        """
+        Returns a Fahrenheit object with int (rounded) value.
+
+        :return: Fahrenheit Object
+        """
+        return Fahrenheit(round(self.value))
+
     @staticmethod
     def to_celsius(
         fahrenheit: float | int, /, *, float_ret=True
@@ -374,6 +390,22 @@ class Delisle(Generic[TEMP]):
 
     value: TEMP
 
+    def precise(self) -> 'Delisle[float]':
+        """
+        Returns a Delisle object with float value.
+
+        :return: Delisle Object
+        """
+        return Delisle(float(self.value))
+
+    def rounded(self) -> 'Delisle[int]':
+        """
+        Returns a Delisle object with int (rounded) value.
+
+        :return: Delisle Object
+        """
+        return Delisle(round(self.value))
+
     @staticmethod
     def to_celsius(delisle: float | int, /, *, float_ret=True) -> float | int:
         """
@@ -526,6 +558,22 @@ class Kelvin(Generic[TEMP]):
 
     value: TEMP
 
+    def precise(self) -> 'Kelvin[float]':
+        """
+        Returns a Kelvin object with float value.
+
+        :return: Kelvin Object
+        """
+        return Kelvin(float(self.value))
+
+    def rounded(self) -> 'Kelvin[int]':
+        """
+        Returns a Kelvin object with int (rounded) value.
+
+        :return: Kelvin Object
+        """
+        return Kelvin(round(self.value))
+
     @staticmethod
     def to_celsius(kelvin: float | int, /, *, float_ret=True) -> float | int:
         """
@@ -677,6 +725,22 @@ class Newton(Generic[TEMP]):
     """
 
     value: TEMP
+
+    def precise(self) -> 'Newton[float]':
+        """
+        Returns a Newton object with float value.
+
+        :return: Newton Object
+        """
+        return Newton(float(self.value))
+
+    def rounded(self) -> 'Newton[int]':
+        """
+        Returns a Newton object with int (rounded) value.
+
+        :return: Newton Object
+        """
+        return Newton(round(self.value))
 
     @staticmethod
     def to_celsius(newton: float | int, /, *, float_ret=True) -> float | int:
@@ -954,6 +1018,22 @@ class Reaumur(Generic[TEMP]):
 
     value: TEMP
 
+    def precise(self) -> 'Reaumur[float]':
+        """
+        Returns a Réaumur object with float value.
+
+        :return: Réaumur Object
+        """
+        return Reaumur(float(self.value))
+
+    def rounded(self) -> 'Reaumur[int]':
+        """
+        Returns a Réaumur object with int (rounded) value.
+
+        :return: Réaumur Object
+        """
+        return Reaumur(round(self.value))
+
 
 @dataclass
 class Romer(Generic[TEMP]):
@@ -991,3 +1071,19 @@ class Romer(Generic[TEMP]):
     """
 
     value: TEMP
+
+    def precise(self) -> 'Romer[float]':
+        """
+        Returns a Rømer object with float value.
+
+        :return: Rømer Object
+        """
+        return Romer(float(self.value))
+
+    def rounded(self) -> 'Romer[int]':
+        """
+        Returns a Rømer object with int (rounded) value.
+
+        :return: Rømer Object
+        """
+        return Romer(round(self.value))
