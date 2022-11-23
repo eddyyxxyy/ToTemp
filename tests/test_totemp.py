@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+from random import choice, randint, uniform
 
 from totemp import (
     Celsius,
@@ -666,3 +667,31 @@ class TestToTemp:
         assert isinstance(Newton.to_reaumur(3.331, float_ret=False), int)
 
     # Rankine to <other temp scale> tests
+    def test_dynamic_type_return_rankine_to_celsius(self) -> None:
+        """Tests the dynamic typed results of the conversion Rankine to Celsius"""
+        temps = (
+            Rankine(randint(1, 20)).to_celsius(),
+            Rankine(uniform(0.0, 20.0)).to_celsius(),
+        )
+        errors: list = []
+
+        if not isinstance(temps[0].value, int):
+            errors.append(
+                f'temps[0] value -> ({temps[0].value}) -> should be an integer'
+            )
+        if not isinstance(temps[1].value, float):
+            errors.append(
+                f'temps[1] value -> {temps[1].value} -> should be float'
+            )
+
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
+
+    def test_precise_rankine_to_celsius(self) -> None:
+        """Tests the precise result of the conversion Rankine to Celsius"""
+        assert Rankine(25).precise().to_celsius() == Celsius(
+            value=-259.2611111111111
+        )
+
+    def test_rounded_rankine_to_celsius(self) -> None:
+        """Tests the rounded result of the conversion Rankine to Celsius"""
+        assert Rankine(25).rounded().to_celsius() == Celsius(value=-259)
