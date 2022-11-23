@@ -714,3 +714,25 @@ class TestToTemp:
         errors = func_to_test_precise_rounded_results(temps)
 
         assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
+
+    def test_dynamic_type_return_rankine_to_delisle(self) -> None:
+        """Tests the dynamic typed results of the conversion Rankine to Delisle"""
+        temps = (
+            Rankine(randint(1, 20)).to_delisle(),
+            Rankine(uniform(0.0, 20.0)).to_delisle(),
+        )
+        errors = func_to_test_dynamic_returns(temps)
+
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
+
+    def test_precise_rounded_rankine_to_delisle(self) -> None:
+        """Tests the default, rounded and precise result of the conversion Rankine to Delisle"""
+        temps = (
+            Rankine(25).precise().to_delisle(),
+            Delisle(value=538.8916666666667),
+            Rankine(25.25).rounded().to_delisle(),
+            Delisle(value=538),
+        )
+        errors = func_to_test_precise_rounded_results(temps)
+
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
