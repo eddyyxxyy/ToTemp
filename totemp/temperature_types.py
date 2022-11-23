@@ -779,7 +779,7 @@ class Rankine(Generic[TEMP]):
 
         :return: Reaumur object
         """
-        reaumur = type(self.value)((self.value - 491.67) * 11 / 60)
+        reaumur = type(self.value)((self.value - 491.67) * 4 / 9)
         return Reaumur(reaumur)
 
     def to_romer(self) -> 'Romer[TEMP]':
