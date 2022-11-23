@@ -685,9 +685,9 @@ class Rankine(Generic[TEMP]):
     Methods
     -------
     precise():
-        returns the Celsius object with value converted to float.
+        returns the Rankine object with value converted to float.
     rounded():
-        returns the Celsius object with value converted to int (rounded).
+        returns the Rankine object with value converted to int (rounded).
     to_celsius():
         returns a Celsius object which contains the converted value
     to_fahrenheit():
