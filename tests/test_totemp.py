@@ -758,3 +758,25 @@ class TestToTemp:
         errors = func_to_test_precise_rounded_results(temps)
 
         assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
+
+    def test_dynamic_type_return_rankine_to_newton(self) -> None:
+        """Tests the dynamic typed results of the conversion Rankine to Newton"""
+        temps = (
+            Rankine(randint(1, 20)).to_newton(),
+            Rankine(uniform(0.0, 20.0)).to_newton(),
+        )
+        errors = func_to_test_dynamic_returns(temps)
+
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
+
+    def test_precise_rounded_rankine_to_newton(self) -> None:
+        """Tests the rounded and precise result of the conversion Rankine to Newton"""
+        temps = (
+            Rankine(25).precise().to_newton(),
+            Newton(value=-85.55616666666667),
+            Rankine(25.25).rounded().to_newton(),
+            Newton(value=-85),
+        )
+        errors = func_to_test_precise_rounded_results(temps)
+
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
