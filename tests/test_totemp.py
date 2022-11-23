@@ -2,6 +2,10 @@
 # -*- coding: utf-8 -*-
 from random import randint, uniform
 
+from tests.test_funcs import (
+    func_to_test_dynamic_returns,
+    func_to_test_precise_rounded_results,
+)
 from totemp import (
     Celsius,
     Delisle,
@@ -673,25 +677,40 @@ class TestToTemp:
             Rankine(randint(1, 20)).to_celsius(),
             Rankine(uniform(0.0, 20.0)).to_celsius(),
         )
-        errors: list = []
-
-        if not isinstance(temps[0].value, int):
-            errors.append(
-                f'temps[0] value -> ({temps[0].value}) -> should be an integer'
-            )
-        if not isinstance(temps[1].value, float):
-            errors.append(
-                f'temps[1] value -> {temps[1].value} -> should be float'
-            )
+        errors = func_to_test_dynamic_returns(temps)
 
         assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
-    def test_precise_rankine_to_celsius(self) -> None:
-        """Tests the precise result of the conversion Rankine to Celsius"""
-        assert Rankine(25).precise().to_celsius() == Celsius(
-            value=-259.2611111111111
+    def test_precise_rounded_rankine_to_celsius(self) -> None:
+        """Tests the default, rounded and precise result of the conversion Rankine to Celsius"""
+        temps = (
+            Rankine(25).precise().to_celsius(),
+            Celsius(value=-259.2611111111111),
+            Rankine(25.25).rounded().to_celsius(),
+            Celsius(value=-259),
         )
+        errors = func_to_test_precise_rounded_results(temps)
 
-    def test_rounded_rankine_to_celsius(self) -> None:
-        """Tests the rounded result of the conversion Rankine to Celsius"""
-        assert Rankine(25.25).rounded().to_celsius() == Celsius(value=-259)
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
+
+    def test_dynamic_type_return_rankine_to_fahrenheit(self) -> None:
+        """Tests the dynamic typed results of the conversion Rankine to Fahrenheit"""
+        temps = (
+            Rankine(randint(1, 20)).to_fahrenheit(),
+            Rankine(uniform(0.0, 20.0)).to_fahrenheit(),
+        )
+        errors = func_to_test_dynamic_returns(temps)
+
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
+
+    def test_precise_rounded_rankine_to_fahrenheit(self) -> None:
+        """Tests the default, rounded and precise result of the conversion Rankine to Fahrenheit"""
+        temps = (
+            Rankine(25).precise().to_fahrenheit(),
+            Fahrenheit(value=-434.67),
+            Rankine(25.25).rounded().to_fahrenheit(),
+            Fahrenheit(value=-434),
+        )
+        errors = func_to_test_precise_rounded_results(temps)
+
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
