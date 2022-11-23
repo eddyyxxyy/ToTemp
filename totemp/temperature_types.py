@@ -27,19 +27,19 @@ class Celsius(Generic[TEMP]):
     rounded():
         returns the Celsius object with value converted to int (rounded).
     to_fahrenheit():
-        returns a Fahrenheit object which contains the converted value
+        returns a Fahrenheit object which contains the converted value.
     to_delisle():
-        returns a Delisle object which contains the converted value
+        returns a Delisle object which contains the converted value.
     to_kelvin():
-        returns a Kelvin object which contains the converted value
+        returns a Kelvin object which contains the converted value.
     to_newton():
-        returns a Newton object which contains the converted value
+        returns a Newton object which contains the converted value.
     to_rankine():
-        returns a Rankine object which contains the converted value
+        returns a Rankine object which contains the converted value.
     to_reaumur():
-        returns a Réaumur object which contains the converted value
+        returns a Réaumur object which contains the converted value.
     to_romer():
-        returns a Rømer object which contains the converted value
+        returns a Rømer object which contains the converted value.
     """
 
     value: TEMP
@@ -177,7 +177,38 @@ class Celsius(Generic[TEMP]):
 
 @dataclass
 class Fahrenheit(Generic[TEMP]):
-    """Provides conversion of Fahrenheit to other temperature scales"""
+    """
+    A Dataclass that represents Fahrenheit temperature scale
+    and provides conversions to other temperature scales.
+
+    ...
+
+    Attributes
+    ----------
+    value: int | float
+        temperature value (e.g. 36ºF)
+
+    Methods
+    -------
+    precise():
+        returns the Fahrenheit object with value converted to float.
+    rounded():
+        returns the Fahrenheit object with value converted to int (rounded).
+    to_celsius():
+        returns a Celsius object which contains the converted value.
+    to_delisle():
+        returns a Delisle object which contains the converted value.
+    to_kelvin():
+        returns a Kelvin object which contains the converted value.
+    to_newton():
+        returns a Newton object which contains the converted value.
+    to_rankine():
+        returns a Rankine object which contains the converted value.
+    to_reaumur():
+        returns a Réaumur object which contains the converted value.
+    to_romer():
+        returns a Rømer object which contains the converted value.
+    """
 
     value: TEMP
 
@@ -308,7 +339,38 @@ class Fahrenheit(Generic[TEMP]):
 
 @dataclass
 class Delisle(Generic[TEMP]):
-    """Provides conversion of Delisle to other temperature scales"""
+    """
+    A Dataclass that represents Delisle temperature scale
+    and provides conversions to other temperature scales.
+
+    ...
+
+    Attributes
+    ----------
+    value: int | float
+        temperature value (e.g. 36ºDe)
+
+    Methods
+    -------
+    precise():
+        returns the Delisle object with value converted to float.
+    rounded():
+        returns the Delisle object with value converted to int (rounded).
+    to_celsius():
+        returns a Celsius object which contains the converted value.
+    to_fahrenheit():
+        returns a Fahrenheit object which contains the converted value.
+    to_kelvin():
+        returns a Kelvin object which contains the converted value.
+    to_newton():
+        returns a Newton object which contains the converted value.
+    to_rankine():
+        returns a Rankine object which contains the converted value.
+    to_reaumur():
+        returns a Réaumur object which contains the converted value.
+    to_romer():
+        returns a Rømer object which contains the converted value.
+    """
 
     value: TEMP
 
@@ -429,7 +491,38 @@ class Delisle(Generic[TEMP]):
 
 @dataclass
 class Kelvin(Generic[TEMP]):
-    """Provides conversion of Kelvin to other temperature scales"""
+    """
+    A Dataclass that represents Kelvin temperature scale
+    and provides conversions to other temperature scales.
+
+    ...
+
+    Attributes
+    ----------
+    value: int | float
+        temperature value (e.g. 36ºK)
+
+    Methods
+    -------
+    precise():
+        returns the Kelvin object with value converted to float.
+    rounded():
+        returns the Kelvin object with value converted to int (rounded).
+    to_celsius():
+        returns a Celsius object which contains the converted value.
+    to_fahrenheit():
+        returns a Fahrenheit object which contains the converted value.
+    to_delisle():
+        returns a Delisle object which contains the converted value.
+    to_newton():
+        returns a Newton object which contains the converted value.
+    to_rankine():
+        returns a Rankine object which contains the converted value.
+    to_reaumur():
+        returns a Réaumur object which contains the converted value.
+    to_romer():
+        returns a Rømer object which contains the converted value.
+    """
 
     value: TEMP
 
@@ -550,7 +643,38 @@ class Kelvin(Generic[TEMP]):
 
 @dataclass
 class Newton(Generic[TEMP]):
-    """Provides conversion of Newton to other temperature scales"""
+    """
+    A Dataclass that represents Newton temperature scale
+    and provides conversions to other temperature scales.
+
+    ...
+
+    Attributes
+    ----------
+    value: int | float
+        temperature value (e.g. 36ºN)
+
+    Methods
+    -------
+    precise():
+        returns the Newton object with value converted to float.
+    rounded():
+        returns the Newton object with value converted to int (rounded).
+    to_celsius():
+        returns a Celsius object which contains the converted value.
+    to_fahrenheit():
+        returns a Fahrenheit object which contains the converted value.
+    to_delisle():
+        returns a Delisle object which contains the converted value.
+    to_kelvin():
+        returns a Kelvin object which contains the converted value.
+    to_rankine():
+        returns a Rankine object which contains the converted value.
+    to_reaumur():
+        returns a Réaumur object which contains the converted value.
+    to_romer():
+        returns a Rømer object which contains the converted value.
+    """
 
     value: TEMP
 
@@ -680,7 +804,7 @@ class Rankine(Generic[TEMP]):
     Attributes
     ----------
     value: int | float
-        temperature value (e.g. 36ºC)
+        temperature value (e.g. 36ºR)
 
     Methods
     -------
@@ -689,19 +813,19 @@ class Rankine(Generic[TEMP]):
     rounded():
         returns the Rankine object with value converted to int (rounded).
     to_celsius():
-        returns a Celsius object which contains the converted value
+        returns a Celsius object which contains the converted value.
     to_fahrenheit():
-        returns a Fahrenheit object which contains the converted value
+        returns a Fahrenheit object which contains the converted value.
     to_delisle():
-        returns a Delisle object which contains the converted value
+        returns a Delisle object which contains the converted value.
     to_kelvin():
-        returns a Kelvin object which contains the converted value
+        returns a Kelvin object which contains the converted value.
     to_newton():
-        returns a Newton object which contains the converted value
+        returns a Newton object which contains the converted value.
     to_reaumur():
-        returns a Réaumur object which contains the converted value
+        returns a Réaumur object which contains the converted value.
     to_romer():
-        returns a Rømer object which contains the converted value
+        returns a Rømer object which contains the converted value.
     """
 
     value: TEMP
@@ -795,9 +919,75 @@ class Rankine(Generic[TEMP]):
 
 @dataclass
 class Reaumur(Generic[TEMP]):
+    """
+    A Dataclass that represents Réaumur temperature scale
+    and provides conversions to other temperature scales.
+
+    ...
+
+    Attributes
+    ----------
+    value: int | float
+        temperature value (e.g. 36ºRé)
+
+    Methods
+    -------
+    precise():
+        returns the Réaumur object with value converted to float.
+    rounded():
+        returns the Réaumur object with value converted to int (rounded).
+    to_celsius():
+        returns a Celsius object which contains the converted value.
+    to_fahrenheit():
+        returns a Fahrenheit object which contains the converted value.
+    to_delisle():
+        returns a Delisle object which contains the converted value.
+    to_kelvin():
+        returns a Kelvin object which contains the converted value.
+    to_newton():
+        returns a Newton object which contains the converted value.
+    to_rankine():
+        returns a Rankine object which contains the converted value.
+    to_romer():
+        returns a Rømer object which contains the converted value.
+    """
+
     value: TEMP
 
 
 @dataclass
 class Romer(Generic[TEMP]):
+    """
+    A Dataclass that represents Rømer temperature scale
+    and provides conversions to other temperature scales.
+
+    ...
+
+    Attributes
+    ----------
+    value: int | float
+        temperature value (e.g. 36ºRø)
+
+    Methods
+    -------
+    precise():
+        returns the Rømer object with value converted to float.
+    rounded():
+        returns the Rømer object with value converted to int (rounded).
+    to_celsius():
+        returns a Celsius object which contains the converted value.
+    to_fahrenheit():
+        returns a Fahrenheit object which contains the converted value.
+    to_delisle():
+        returns a Delisle object which contains the converted value.
+    to_kelvin():
+        returns a Kelvin object which contains the converted value.
+    to_newton():
+        returns a Newton object which contains the converted value.
+    to_rankine():
+        returns a Rankine object which contains the converted value.
+    to_reaumur():
+        returns a Réaumur object which contains the converted value.
+    """
+
     value: TEMP
