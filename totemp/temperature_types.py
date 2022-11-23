@@ -659,7 +659,7 @@ class Rankine(Generic[TEMP]):
 
     value: TEMP
 
-    def with_float(self) -> 'Rankine[float]':
+    def precise(self) -> 'Rankine[float]':
         """
         Returns a Rankine object with float value.
 
@@ -667,7 +667,7 @@ class Rankine(Generic[TEMP]):
         """
         return Rankine(float(self.value))
 
-    def with_int(self) -> 'Rankine[int]':
+    def rounded(self) -> 'Rankine[int]':
         """
         Returns a Rankine object with int (rounded) value.
 
