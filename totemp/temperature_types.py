@@ -604,21 +604,15 @@ class Kelvin(Generic[TEMP]):
         delisle = type(self.value)((373.15 - self.value) * 3 / 2)
         return Delisle(delisle)
 
-    @staticmethod
-    def to_newton(kelvin: float | int, /, *, float_ret=True) -> float | int:
+    def to_newton(self) -> 'Newton[TEMP]':
         """
-        Converts Kelvin to Newton, returning a float by default.
+        Returns a Newton object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
 
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
-
-        :param kelvin: Kelvin value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
+        :return: Newton object
         """
-        if float_ret:
-            return float((kelvin - 273.15) * 33 / 100)
-        return trunc((kelvin - 273.15) * 33 / 100)
+        newton = type(self.value)((self.value - 273.15) * 33 / 100)
+        return Newton(newton)
 
     @staticmethod
     def to_rankine(kelvin: float | int, /, *, float_ret=True) -> float | int:
