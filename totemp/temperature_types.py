@@ -600,23 +600,15 @@ class Kelvin(Generic[TEMP]):
             return float((373.15 - kelvin) * 3 / 2)
         return trunc((373.15 - kelvin) * 3 / 2)
 
-    @staticmethod
-    def to_fahrenheit(
-        kelvin: float | int, /, *, float_ret=True
-    ) -> float | int:
+    def to_fahrenheit(self) -> 'Fahrenheit[TEMP]':
         """
-        Converts Kelvin to Fahrenheit, returning a float by default.
+        Returns a Fahrenheit object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
 
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
-
-        :param kelvin: Kelvin value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
+        :return: Fahrenheit object
         """
-        if float_ret:
-            return float((kelvin * 9 / 5) - 459.67)
-        return trunc((kelvin * 9 / 5) - 459.67)
+        fahrenheit = type(self.value)((self.value * 9 / 5) - 459.67)
+        return Fahrenheit(fahrenheit)
 
     @staticmethod
     def to_newton(kelvin: float | int, /, *, float_ret=True) -> float | int:
