@@ -544,23 +544,27 @@ class TestToTemp:
         assert isinstance(Delisle.to_romer(1324.799, float_ret=False), int)
 
     # Newton to <other temp scale> tests
-    def test_newton_to_celsius(self) -> None:
-        """Tests the result of the conversion Newton to Celsius"""
-        assert Newton.to_celsius(3.3) == 9.999999999999998
+    def test_dynamic_type_return_newton_to_celsius(self) -> None:
+        """Tests the dynamic typed results of the conversion Newton to Celsius"""
+        temps = (
+            Newton(randint(1, 20)).to_celsius(),
+            Newton(uniform(0.0, 20.0)).to_celsius(),
+        )
+        errors = func_to_test_dynamic_returns(temps)
 
-    def test_newton_to_celsius_default_type(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Newton to Celsius
-        with default parameter values
-        """
-        assert isinstance(Newton.to_celsius(3), float)
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
-    def test_newton_to_celsius_type_trunc_ret(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Newton to Celsius
-        with default parameter set to False
-        """
-        assert isinstance(Newton.to_celsius(3.3, float_ret=False), int)
+    def test_precise_rounded_newton_to_celsius(self) -> None:
+        """Tests the rounded and precise result of the conversion Newton to Celsius"""
+        temps = (
+            Newton(25).precise().to_celsius(),
+            Celsius(value=75.75757575757575),
+            Newton(25.25).rounded().to_celsius(),
+            Celsius(value=75),
+        )
+        errors = func_to_test_precise_rounded_results(temps)
+
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
     def test_newton_to_fahrenheit(self) -> None:
         """Tests the result of the conversion Newton to Fahrenheit"""
