@@ -654,23 +654,27 @@ class TestToTemp:
 
         assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
-    def test_newton_to_romer(self) -> None:
-        """Tests the result of the conversion Newton to Rømer"""
-        assert Newton.to_romer(3.331) == 12.799318181818181
+    def test_dynamic_type_return_newton_to_romer(self) -> None:
+        """Tests the dynamic typed results of the conversion Newton to Rømer"""
+        temps = (
+            Newton(randint(1, 20)).to_romer(),
+            Newton(uniform(0.0, 20.0)).to_romer(),
+        )
+        errors = func_to_test_dynamic_returns(temps)
 
-    def test_newton_to_romer_default_type(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Newton to Rømer
-        with default parameter values
-        """
-        assert isinstance(Newton.to_romer(3), float)
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
-    def test_newton_to_romer_type_trunc_ret(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Newton to Rømer
-        with default parameter set to False
-        """
-        assert isinstance(Newton.to_romer(3.331, float_ret=False), int)
+    def test_precise_rounded_newton_to_romer(self) -> None:
+        """Tests the rounded and precise result of the conversion Newton to Rømer"""
+        temps = (
+            Newton(25).precise().to_romer(),
+            Romer(value=47.27272727272727),
+            Newton(25.25).rounded().to_romer(),
+            Romer(value=47),
+        )
+        errors = func_to_test_precise_rounded_results(temps)
+
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
     def test_newton_to_reaumur(self) -> None:
         """Tests the result of the conversion Newton to Réaumur"""
