@@ -574,21 +574,15 @@ class Kelvin(Generic[TEMP]):
         """
         return Kelvin(round(self.value))
 
-    @staticmethod
-    def to_celsius(kelvin: float | int, /, *, float_ret=True) -> float | int:
+    def to_celsius(self) -> 'Celsius[TEMP]':
         """
-        Converts Kelvin to Celsius, returning a float by default.
+        Returns a Celsius object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
 
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
-
-        :param kelvin: Kelvin value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
+        :return: Celsius object
         """
-        if float_ret:
-            return float(kelvin - 273.15)
-        return trunc(kelvin - 273.15)
+        celsius = type(self.value)((self.value - 273.15))
+        return Celsius(celsius)
 
     @staticmethod
     def to_delisle(kelvin: float | int, /, *, float_ret=True) -> float | int:
@@ -792,16 +786,6 @@ class Newton(Generic[TEMP]):
         rankine = type(self.value)(self.value * 5.4545 + 491.67)
         return Rankine(rankine)
 
-    def to_romer(self) -> 'Romer[TEMP]':
-        """
-        Returns a Rømer object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
-
-        :return: Romer object
-        """
-        romer = type(self.value)(self.value * 35 / 22 + 7.5)
-        return Romer(romer)
-
     def to_reaumur(self) -> 'Reaumur[TEMP]':
         """
         Returns a Réaumur object which contains the class attribute "value"
@@ -811,6 +795,16 @@ class Newton(Generic[TEMP]):
         """
         reaumur = type(self.value)(self.value * 80 / 33)
         return Reaumur(reaumur)
+
+    def to_romer(self) -> 'Romer[TEMP]':
+        """
+        Returns a Rømer object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
+
+        :return: Romer object
+        """
+        romer = type(self.value)(self.value * 35 / 22 + 7.5)
+        return Romer(romer)
 
 
 @dataclass
