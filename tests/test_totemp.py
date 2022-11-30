@@ -44,12 +44,27 @@ class TestToTemp:
 
         assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
-    def test_celsius_to_delisle_type_trunc_ret(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Celsius to Delisle
-        with default parameter set to False
-        """
-        assert isinstance(Celsius.to_delisle(20, float_ret=False), int)
+    def test_dynamic_type_return_celsius_to_delisle(self) -> None:
+        """Tests the dynamic typed results of the conversion Celsius to Delisle"""
+        temps = (
+            Celsius(randint(1, 20)).to_delisle(),
+            Celsius(uniform(0.0, 20.0)).to_delisle(),
+        )
+        errors = func_to_test_dynamic_returns(temps)
+
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
+
+    def test_precise_rounded_celsius_to_delisle(self) -> None:
+        """Tests the rounded and precise result of the conversion Celsius to Delisle"""
+        temps = (
+            Celsius(25).precise().to_delisle(),
+            Delisle(value=-62.50000),
+            Celsius(25.25).rounded().to_delisle(),
+            Delisle(value=-62),
+        )
+        errors = func_to_test_precise_rounded_results(temps)
+
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
     def test_celsius_to_kelvin(self) -> None:
         """Tests the result of the conversion Celsius to Kelvin"""
