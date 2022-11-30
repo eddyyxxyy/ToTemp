@@ -783,21 +783,15 @@ class Newton(Generic[TEMP]):
         kelvin = type(self.value)(self.value / 0.33000 + 273.15)
         return Kelvin(kelvin)
 
-    @staticmethod
-    def to_rankine(newton: float | int, /, *, float_ret=True) -> float | int:
+    def to_rankine(self) -> 'Rankine[TEMP]':
         """
-        Converts Newton to Rankine, returning a float by default.
+        Returns a Rankine object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
 
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
-
-        :param newton: Newton value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
+        :return: Rankine object
         """
-        if float_ret:
-            return float((newton * 5.4545) + 491.67)
-        return trunc((newton * 5.4545) + 491.67)
+        rankine = type(self.value)(self.value * 5.4545 + 491.67)
+        return Rankine(rankine)
 
     @staticmethod
     def to_romer(newton: float | int, /, *, float_ret=True) -> float | int:
