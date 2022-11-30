@@ -306,23 +306,27 @@ class TestToTemp:
 
         assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
-    def test_kelvin_to_delisle(self) -> None:
-        """Tests the result of the conversion Kelvin to Delisle"""
-        assert Kelvin.to_delisle(10.568) == 543.873
+    def test_dynamic_type_return_kelvin_to_delisle(self) -> None:
+        """Tests the dynamic typed results of the conversion Kelvin to Delisle"""
+        temps = (
+            Kelvin(randint(1, 20)).to_delisle(),
+            Kelvin(uniform(0.0, 20.0)).to_delisle(),
+        )
+        errors = func_to_test_dynamic_returns(temps)
 
-    def test_kelvin_to_delisle_default_type(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Kelvin to Delisle
-        with default parameter values
-        """
-        assert isinstance(Kelvin.to_delisle(10), float)
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
-    def test_kelvin_to_delisle_type_trunc_ret(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Kelvin to Delisle
-        with default parameter set to False
-        """
-        assert isinstance(Kelvin.to_delisle(10.498259, float_ret=False), int)
+    def test_precise_rounded_kelvin_to_delisle(self) -> None:
+        """Tests the rounded and precise result of the conversion Kelvin to Delisle"""
+        temps = (
+            Kelvin(25).precise().to_delisle(),
+            Delisle(value=522.2249999999999),
+            Kelvin(25.25).rounded().to_delisle(),
+            Delisle(value=522),
+        )
+        errors = func_to_test_precise_rounded_results(temps)
+
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
     def test_dynamic_type_return_kelvin_to_fahrenheit(self) -> None:
         """Tests the dynamic typed results of the conversion Kelvin to Fahrenheit"""
