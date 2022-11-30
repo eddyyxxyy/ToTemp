@@ -120,21 +120,15 @@ class Celsius(Generic[TEMP]):
         reaumur = type(self.value)(self.value * 4 / 5)
         return Reaumur(reaumur)
 
-    @staticmethod
-    def to_romer(celsius: float | int, /, *, float_ret=True) -> float | int:
+    def to_romer(self) -> 'Romer[TEMP]':
         """
-        Converts Celsius to Rømer, returning a float by default.
+        Returns a Rømer object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
 
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
-
-        :param celsius: Celsius value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
+        :return: Rømer object
         """
-        if float_ret:
-            return float(celsius * 21 / 40 + 7.5)
-        return trunc(celsius * 21 / 40 + 7.5)
+        romer = type(self.value)(self.value * 0.52500 + 7.50)
+        return Romer(romer)
 
 
 @dataclass
