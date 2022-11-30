@@ -614,21 +614,15 @@ class Kelvin(Generic[TEMP]):
         newton = type(self.value)((self.value - 273.15) * 33 / 100)
         return Newton(newton)
 
-    @staticmethod
-    def to_rankine(kelvin: float | int, /, *, float_ret=True) -> float | int:
+    def to_rankine(self) -> 'Rankine[TEMP]':
         """
-        Converts Kelvin to Rankine, returning a float by default.
+        Returns a Rankine object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
 
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
-
-        :param kelvin: Kelvin value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
+        :return: Rankine object
         """
-        if float_ret:
-            return float(kelvin * 1.8)
-        return trunc(kelvin * 1.8)
+        rankine = type(self.value)(self.value * 1.8)
+        return Rankine(rankine)
 
     @staticmethod
     def to_reaumur(kelvin: float | int, /, *, float_ret=True) -> float | int:
