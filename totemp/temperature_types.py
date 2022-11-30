@@ -742,119 +742,75 @@ class Newton(Generic[TEMP]):
         """
         return Newton(round(self.value))
 
-    @staticmethod
-    def to_celsius(newton: float | int, /, *, float_ret=True) -> float | int:
+    def to_celsius(self) -> 'Celsius[TEMP]':
         """
-        Converts Newton to Celsius, returning a float by default.
+        Returns a Celsius object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
 
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
-
-        :param newton: Newton value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
+        :return: Celsius object
         """
-        if float_ret:
-            return float(newton / 0.33)
-        return trunc(newton / 0.33)
+        celsius = type(self.value)((self.value / 0.33))
+        return Celsius(celsius)
 
-    @staticmethod
-    def to_fahrenheit(
-        newton: float | int, /, *, float_ret=True
-    ) -> float | int:
+    def to_fahrenheit(self) -> 'Fahrenheit[TEMP]':
         """
-        Converts Newton to Fahrenheit, returning a float by default.
+        Returns a Fahrenheit object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
 
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
-
-        :param newton: Newton value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
+        :return: Fahrenheit object
         """
-        if float_ret:
-            return float(newton * 60 / 11 + 32)
-        return trunc(newton * 60 / 11 + 32)
+        fahrenheit = type(self.value)(self.value * 60 / 11 + 32)
+        return Fahrenheit(fahrenheit)
 
-    @staticmethod
-    def to_delisle(newton: float | int, /, *, float_ret=True) -> float | int:
+    def to_delisle(self) -> 'Delisle[TEMP]':
         """
-        Converts Newton to Delisle, returning a float by default.
+        Returns a Delisle object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
 
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
-
-        :param newton: Newton value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
+        :return: Delisle object
         """
-        if float_ret:
-            return float((33 - newton) * 50 / 11)
-        return trunc((33 - newton) * 50 / 11)
+        delisle = type(self.value)(self.value * 4.5455 - 100)
+        return Delisle(delisle)
 
-    @staticmethod
-    def to_kelvin(newton: float | int, /, *, float_ret=True) -> float | int:
+    def to_kelvin(self) -> 'Kelvin[TEMP]':
         """
-        Converts Newton to Kelvin, returning a float by default.
+        Returns a Kelvin object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
 
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
-
-        :param newton: Newton value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
+        :return: Kelvin object
         """
-        if float_ret:
-            return float((newton / 0.33000) + 273.15)
-        return trunc((newton / 0.33000) + 273.15)
+        kelvin = type(self.value)(self.value / 0.33000 + 273.15)
+        return Kelvin(kelvin)
 
-    @staticmethod
-    def to_rankine(newton: float | int, /, *, float_ret=True) -> float | int:
+    def to_rankine(self) -> 'Rankine[TEMP]':
         """
-        Converts Newton to Rankine, returning a float by default.
+        Returns a Rankine object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
 
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
-
-        :param newton: Newton value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
+        :return: Rankine object
         """
-        if float_ret:
-            return float((newton * 5.4545) + 491.67)
-        return trunc((newton * 5.4545) + 491.67)
+        rankine = type(self.value)(self.value * 5.4545 + 491.67)
+        return Rankine(rankine)
 
-    @staticmethod
-    def to_romer(newton: float | int, /, *, float_ret=True) -> float | int:
+    def to_romer(self) -> 'Romer[TEMP]':
         """
-        Converts Newton to Rømer, returning a float by default.
+        Returns a Rømer object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
 
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
-
-        :param newton: Newton value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
+        :return: Romer object
         """
-        if float_ret:
-            return float(newton * 35 / 22 + 7.5)
-        return trunc(newton * 35 / 22 + 7.5)
+        romer = type(self.value)(self.value * 35 / 22 + 7.5)
+        return Romer(romer)
 
-    @staticmethod
-    def to_reaumur(newton: float | int, /, *, float_ret=True) -> float | int:
+    def to_reaumur(self) -> 'Reaumur[TEMP]':
         """
-        Converts Newton to Réaumur, returning a float by default.
+        Returns a Réaumur object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
 
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
-
-        :param newton: Newton value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
+        :return: Reaumur object
         """
-        if float_ret:
-            return float(newton * 80 / 33)
-        return trunc(newton * 80 / 33)
+        reaumur = type(self.value)(self.value * 80 / 33)
+        return Reaumur(reaumur)
 
 
 @dataclass

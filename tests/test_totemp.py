@@ -544,131 +544,159 @@ class TestToTemp:
         assert isinstance(Delisle.to_romer(1324.799, float_ret=False), int)
 
     # Newton to <other temp scale> tests
-    def test_newton_to_celsius(self) -> None:
-        """Tests the result of the conversion Newton to Celsius"""
-        assert Newton.to_celsius(3.3) == 9.999999999999998
+    def test_dynamic_type_return_newton_to_celsius(self) -> None:
+        """Tests the dynamic typed results of the conversion Newton to Celsius"""
+        temps = (
+            Newton(randint(1, 20)).to_celsius(),
+            Newton(uniform(0.0, 20.0)).to_celsius(),
+        )
+        errors = func_to_test_dynamic_returns(temps)
 
-    def test_newton_to_celsius_default_type(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Newton to Celsius
-        with default parameter values
-        """
-        assert isinstance(Newton.to_celsius(3), float)
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
-    def test_newton_to_celsius_type_trunc_ret(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Newton to Celsius
-        with default parameter set to False
-        """
-        assert isinstance(Newton.to_celsius(3.3, float_ret=False), int)
+    def test_precise_rounded_newton_to_celsius(self) -> None:
+        """Tests the rounded and precise result of the conversion Newton to Celsius"""
+        temps = (
+            Newton(25).precise().to_celsius(),
+            Celsius(value=75.75757575757575),
+            Newton(25.25).rounded().to_celsius(),
+            Celsius(value=75),
+        )
+        errors = func_to_test_precise_rounded_results(temps)
 
-    def test_newton_to_fahrenheit(self) -> None:
-        """Tests the result of the conversion Newton to Fahrenheit"""
-        assert Newton.to_fahrenheit(3.331) == 50.16909090909091
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
-    def test_newton_to_fahreinheit_default_type(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Newton to Fahrenheit
-        with default parameter values
-        """
-        assert isinstance(Newton.to_fahrenheit(3), float)
+    def test_dynamic_type_return_newton_to_fahrenheit(self) -> None:
+        """Tests the dynamic typed results of the conversion Newton to Fahrenheit"""
+        temps = (
+            Newton(randint(1, 20)).to_fahrenheit(),
+            Newton(uniform(0.0, 20.0)).to_fahrenheit(),
+        )
+        errors = func_to_test_dynamic_returns(temps)
 
-    def test_newton_to_fahreinheit_type_trunc_ret(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Newton to Fahrenheit
-        with default parameter set to False
-        """
-        assert isinstance(Newton.to_fahrenheit(3.331, float_ret=False), int)
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
-    def test_newton_to_delisle(self) -> None:
-        """Tests the result of the conversion Newton to Delisle"""
-        assert Newton.to_delisle(3.331) == 134.85909090909092
+    def test_precise_rounded_newton_to_fahrenheit(self) -> None:
+        """Tests the rounded and precise result of the conversion Newton to Fahrenheit"""
+        temps = (
+            Newton(25).precise().to_fahrenheit(),
+            Fahrenheit(value=168.36363636363637),
+            Newton(25.25).rounded().to_fahrenheit(),
+            Fahrenheit(value=168),
+        )
+        errors = func_to_test_precise_rounded_results(temps)
 
-    def test_newton_to_delisle_default_type(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Newton to Delisle
-        with default parameter values
-        """
-        assert isinstance(Newton.to_delisle(3), float)
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
-    def test_newton_to_delisle_type_trunc_ret(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Newton to Delisle
-        with default parameter set to False
-        """
-        assert isinstance(Newton.to_delisle(3.331, float_ret=False), int)
+    def test_dynamic_type_return_newton_to_delisle(self) -> None:
+        """Tests the dynamic typed results of the conversion Newton to Delisle"""
+        temps = (
+            Newton(randint(1, 20)).to_delisle(),
+            Newton(uniform(0.0, 20.0)).to_delisle(),
+        )
+        errors = func_to_test_dynamic_returns(temps)
 
-    def test_newton_to_kelvin(self) -> None:
-        """Tests the result of the conversion Newton to Kelvin"""
-        assert Newton.to_kelvin(3.331) == 283.2439393939394
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
-    def test_newton_to_kelvin_default_type(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Newton to Kelvin
-        with default parameter values
-        """
-        assert isinstance(Newton.to_kelvin(3), float)
+    def test_precise_rounded_newton_to_delisle(self) -> None:
+        """Tests the rounded and precise result of the conversion Newton to Delisle"""
+        temps = (
+            Newton(25).precise().to_delisle(),
+            Delisle(value=13.637499999999989),
+            Newton(25.25).rounded().to_delisle(),
+            Delisle(value=13),
+        )
+        errors = func_to_test_precise_rounded_results(temps)
 
-    def test_newton_to_kelvin_type_trunc_ret(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Newton to Kelvin
-        with default parameter set to False
-        """
-        assert isinstance(Newton.to_kelvin(3.331, float_ret=False), int)
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
-    def test_newton_to_rankine(self) -> None:
-        """Tests the result of the conversion Newton to Rankine"""
-        assert Newton.to_rankine(3.331) == 509.83893950000004
+    def test_dynamic_type_return_newton_to_rankine(self) -> None:
+        """Tests the dynamic typed results of the conversion Newton to Rankine"""
+        temps = (
+            Newton(randint(1, 20)).to_rankine(),
+            Newton(uniform(0.0, 20.0)).to_rankine(),
+        )
+        errors = func_to_test_dynamic_returns(temps)
 
-    def test_newton_to_rankine_default_type(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Newton to Rankine
-        with default parameter values
-        """
-        assert isinstance(Newton.to_rankine(3), float)
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
-    def test_newton_to_rankine_type_trunc_ret(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Newton to Rankine
-        with default parameter set to False
-        """
-        assert isinstance(Newton.to_rankine(3.331, float_ret=False), int)
+    def test_precise_rounded_newton_to_rankine(self) -> None:
+        """Tests the rounded and precise result of the conversion Newton to Rankine"""
+        temps = (
+            Newton(25).precise().to_rankine(),
+            Rankine(value=628.0325),
+            Newton(25.25).rounded().to_rankine(),
+            Rankine(value=628),
+        )
+        errors = func_to_test_precise_rounded_results(temps)
 
-    def test_newton_to_romer(self) -> None:
-        """Tests the result of the conversion Newton to Rømer"""
-        assert Newton.to_romer(3.331) == 12.799318181818181
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
-    def test_newton_to_romer_default_type(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Newton to Rømer
-        with default parameter values
-        """
-        assert isinstance(Newton.to_romer(3), float)
+    def test_dynamic_type_return_newton_to_kelvin(self) -> None:
+        """Tests the dynamic typed results of the conversion Newton to Kelvin"""
+        temps = (
+            Newton(randint(1, 20)).to_kelvin(),
+            Newton(uniform(0.0, 20.0)).to_kelvin(),
+        )
+        errors = func_to_test_dynamic_returns(temps)
 
-    def test_newton_to_romer_type_trunc_ret(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Newton to Rømer
-        with default parameter set to False
-        """
-        assert isinstance(Newton.to_romer(3.331, float_ret=False), int)
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
-    def test_newton_to_reaumur(self) -> None:
-        """Tests the result of the conversion Newton to Réaumur"""
-        assert Newton.to_reaumur(3.331) == 8.075151515151516
+    def test_precise_rounded_newton_to_kelvin(self) -> None:
+        """Tests the rounded and precise result of the conversion Newton to Kelvin"""
+        temps = (
+            Newton(25).precise().to_kelvin(),
+            Kelvin(value=348.9075757575757),
+            Newton(25.25).rounded().to_kelvin(),
+            Kelvin(value=348),
+        )
+        errors = func_to_test_precise_rounded_results(temps)
 
-    def test_newton_to_reaumur_default_type(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Newton to Réaumur
-        with default parameter values
-        """
-        assert isinstance(Newton.to_reaumur(3), float)
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
-    def test_newton_to_reaumur_type_trunc_ret(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Newton to Réaumur
-        with default parameter set to False
-        """
-        assert isinstance(Newton.to_reaumur(3.331, float_ret=False), int)
+    def test_dynamic_type_return_newton_to_romer(self) -> None:
+        """Tests the dynamic typed results of the conversion Newton to Rømer"""
+        temps = (
+            Newton(randint(1, 20)).to_romer(),
+            Newton(uniform(0.0, 20.0)).to_romer(),
+        )
+        errors = func_to_test_dynamic_returns(temps)
+
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
+
+    def test_precise_rounded_newton_to_romer(self) -> None:
+        """Tests the rounded and precise result of the conversion Newton to Rømer"""
+        temps = (
+            Newton(25).precise().to_romer(),
+            Romer(value=47.27272727272727),
+            Newton(25.25).rounded().to_romer(),
+            Romer(value=47),
+        )
+        errors = func_to_test_precise_rounded_results(temps)
+
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
+
+    def test_dynamic_type_return_newton_to_reaumur(self) -> None:
+        """Tests the dynamic typed results of the conversion Newton to Réaumur"""
+        temps = (
+            Newton(randint(1, 20)).to_reaumur(),
+            Newton(uniform(0.0, 20.0)).to_reaumur(),
+        )
+        errors = func_to_test_dynamic_returns(temps)
+
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
+
+    def test_precise_rounded_newton_to_reaumur(self) -> None:
+        """Tests the rounded and precise result of the conversion Newton to Réaumur"""
+        temps = (
+            Newton(25).precise().to_reaumur(),
+            Reaumur(value=60.60606060606061),
+            Newton(25.25).rounded().to_reaumur(),
+            Reaumur(value=60),
+        )
+        errors = func_to_test_precise_rounded_results(temps)
+
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
     # Rankine to <other temp scale> tests
     def test_dynamic_type_return_rankine_to_celsius(self) -> None:
