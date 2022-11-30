@@ -22,16 +22,27 @@ class TestToTemp:
     """Tests all methods of all Classes in temperature_types.py"""
 
     # Celsius to <other temp scale> tests
-    def test_celsius_to_delisle(self) -> None:
-        """Tests the result of the conversion Celsius to Delisle"""
-        assert Celsius.to_delisle(20.25) == 119.625
+    def test_dynamic_type_return_celsius_to_fahrenheit(self) -> None:
+        """Tests the dynamic typed results of the conversion Celsius to Fahrenheit"""
+        temps = (
+            Celsius(randint(1, 20)).to_fahrenheit(),
+            Celsius(uniform(0.0, 20.0)).to_fahrenheit(),
+        )
+        errors = func_to_test_dynamic_returns(temps)
 
-    def test_celsius_to_delisle_default_type(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Celsius to Delisle
-        with default parameter values
-        """
-        assert isinstance(Celsius.to_delisle(68), float)
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
+
+    def test_precise_rounded_celsius_to_fahrenheit(self) -> None:
+        """Tests the rounded and precise result of the conversion Celsius to Fahrenheit"""
+        temps = (
+            Celsius(25).precise().to_fahrenheit(),
+            Fahrenheit(value=77.00000),
+            Celsius(25.25).rounded().to_fahrenheit(),
+            Fahrenheit(value=77),
+        )
+        errors = func_to_test_precise_rounded_results(temps)
+
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
     def test_celsius_to_delisle_type_trunc_ret(self) -> None:
         """
@@ -39,24 +50,6 @@ class TestToTemp:
         with default parameter set to False
         """
         assert isinstance(Celsius.to_delisle(20, float_ret=False), int)
-
-    def test_celsius_to_fahrenheit(self) -> None:
-        """Tests the result of the conversion Celsius to Fahrenheit"""
-        assert Celsius.to_fahrenheit(41.985) == 107.57300000000001
-
-    def test_celsius_to_fahrenheit_default_type(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Celsius to Fahrenheit
-        with default parameter values
-        """
-        assert isinstance(Celsius.to_fahrenheit(41), float)
-
-    def test_celsius_to_fahrenheit_type_trunc_ret(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Celsius to Fahrenheit
-        with default parameter set to False
-        """
-        assert isinstance(Celsius.to_fahrenheit(41.985, float_ret=False), int)
 
     def test_celsius_to_kelvin(self) -> None:
         """Tests the result of the conversion Celsius to Kelvin"""
