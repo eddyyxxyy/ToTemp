@@ -689,7 +689,6 @@ class Kelvin(Generic[TEMP]):
         return trunc((kelvin - 273.15) * (21 / 40) + 7.5)
 
 
-########################################################################
 @dataclass
 class Newton(Generic[TEMP]):
     """
