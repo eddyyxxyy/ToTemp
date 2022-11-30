@@ -90,21 +90,15 @@ class Celsius(Generic[TEMP]):
         kelvin = type(self.value)(self.value + 273.15)
         return Kelvin(kelvin)
 
-    @staticmethod
-    def to_newton(celsius: float | int, /, *, float_ret=True) -> float | int:
+    def to_newton(self) -> 'Newton[TEMP]':
         """
-        Converts Celsius to Newton, returning a float by default.
+        Returns a Newton object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
 
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
-
-        :param celsius: Celsius value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
+        :return: Newton object
         """
-        if float_ret:
-            return float(celsius * 33 / 100)
-        return trunc(celsius * 33 / 100)
+        newton = type(self.value)(self.value * 33 / 100)
+        return Newton(newton)
 
     @staticmethod
     def to_rankine(celsius: float | int, /, *, float_ret=True) -> float | int:
