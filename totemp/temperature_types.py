@@ -798,26 +798,20 @@ class Newton(Generic[TEMP]):
         Returns a Rømer object which contains the class attribute "value"
         with the result from the conversion typed the same as the attribute.
 
-        :return: Kelvin object
+        :return: Romer object
         """
         romer = type(self.value)(self.value * 35 / 22 + 7.5)
         return Romer(romer)
 
-    @staticmethod
-    def to_reaumur(newton: float | int, /, *, float_ret=True) -> float | int:
+    def to_reaumur(self) -> 'Reaumur[TEMP]':
         """
-        Converts Newton to Réaumur, returning a float by default.
+        Returns a Réaumur object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
 
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
-
-        :param newton: Newton value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
+        :return: Reaumur object
         """
-        if float_ret:
-            return float(newton * 80 / 33)
-        return trunc(newton * 80 / 33)
+        reaumur = type(self.value)(self.value * 80 / 33)
+        return Reaumur(reaumur)
 
 
 @dataclass
