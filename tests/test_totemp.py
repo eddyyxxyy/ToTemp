@@ -350,23 +350,27 @@ class TestToTemp:
 
         assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
-    def test_kelvin_to_newton(self) -> None:
-        """Tests the result of the conversion Kelvin to Newton"""
-        assert Kelvin.to_newton(44.28137746) == -75.52664543819999
+    def test_dynamic_type_return_kelvin_to_newton(self) -> None:
+        """Tests the dynamic typed results of the conversion Kelvin to Newton"""
+        temps = (
+            Kelvin(randint(1, 20)).to_newton(),
+            Kelvin(uniform(0.0, 20.0)).to_newton(),
+        )
+        errors = func_to_test_dynamic_returns(temps)
 
-    def test_kelvin_to_newton_default_type(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Kelvin to Newton
-        with default parameter values
-        """
-        assert isinstance(Kelvin.to_newton(10), float)
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
-    def test_kelvin_to_newton_type_trunc_ret(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Kelvin to Newton
-        with default parameter set to False
-        """
-        assert isinstance(Kelvin.to_newton(25.8456, float_ret=False), int)
+    def test_precise_rounded_kelvin_to_newton(self) -> None:
+        """Tests the rounded and precise result of the conversion Kelvin to Newton"""
+        temps = (
+            Kelvin(25).precise().to_newton(),
+            Newton(value=-81.889499999999987),
+            Kelvin(25.25).rounded().to_newton(),
+            Newton(value=-81),
+        )
+        errors = func_to_test_precise_rounded_results(temps)
+
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
     def test_kelvin_to_rankine(self) -> None:
         """Tests the result of the conversion Kelvin to Rankine"""
