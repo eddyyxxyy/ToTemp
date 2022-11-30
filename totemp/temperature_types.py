@@ -80,21 +80,15 @@ class Celsius(Generic[TEMP]):
         delisle = type(self.value)(self.value * 1.5000 - 100.00)
         return Delisle(delisle)
 
-    @staticmethod
-    def to_kelvin(celsius: float | int, /, *, float_ret=True) -> float | int:
+    def to_kelvin(self) -> 'Kelvin[TEMP]':
         """
-        Converts Celsius to Kelvin, returning a float by default.
+        Returns a Kelvin object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
 
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
-
-        :param celsius: Celsius value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
+        :return: Kelvin object
         """
-        if float_ret:
-            return float(celsius + 273.15)
-        return trunc(celsius + 273.15)
+        kelvin = type(self.value)(self.value + 273.15)
+        return Kelvin(kelvin)
 
     @staticmethod
     def to_newton(celsius: float | int, /, *, float_ret=True) -> float | int:
