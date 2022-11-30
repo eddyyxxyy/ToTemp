@@ -304,131 +304,159 @@ class TestToTemp:
         )
 
     # Kelvin to <other temp scale> tests
-    def test_kelvin_to_celsius(self) -> None:
-        """Tests the result of the conversion Kelvin to Celsius"""
-        assert Kelvin.to_celsius(67.498259) == -205.65174099999996
+    def test_dynamic_type_return_kelvin_to_celsius(self) -> None:
+        """Tests the dynamic typed results of the conversion Kelvin to Celsius"""
+        temps = (
+            Kelvin(randint(1, 20)).to_celsius(),
+            Kelvin(uniform(0.0, 20.0)).to_celsius(),
+        )
+        errors = func_to_test_dynamic_returns(temps)
 
-    def test_kelvin_to_celsius_default_type(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Kelvin to Celsius
-        with default parameter values
-        """
-        assert isinstance(Kelvin.to_celsius(10), float)
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
-    def test_kelvin_to_celsius_type_trunc_ret(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Kelvin to Celsius
-        with default parameter set to False
-        """
-        assert isinstance(Kelvin.to_celsius(10.498259, float_ret=False), int)
+    def test_precise_rounded_kelvin_to_celsius(self) -> None:
+        """Tests the rounded and precise result of the conversion Kelvin to Celsius"""
+        temps = (
+            Kelvin(25).precise().to_celsius(),
+            Celsius(value=-248.14999999999998),
+            Kelvin(25.25).rounded().to_celsius(),
+            Celsius(value=-248),
+        )
+        errors = func_to_test_precise_rounded_results(temps)
 
-    def test_kelvin_to_delisle(self) -> None:
-        """Tests the result of the conversion Kelvin to Delisle"""
-        assert Kelvin.to_delisle(10.568) == 543.873
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
-    def test_kelvin_to_delisle_default_type(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Kelvin to Delisle
-        with default parameter values
-        """
-        assert isinstance(Kelvin.to_delisle(10), float)
+    def test_dynamic_type_return_kelvin_to_delisle(self) -> None:
+        """Tests the dynamic typed results of the conversion Kelvin to Delisle"""
+        temps = (
+            Kelvin(randint(1, 20)).to_delisle(),
+            Kelvin(uniform(0.0, 20.0)).to_delisle(),
+        )
+        errors = func_to_test_dynamic_returns(temps)
 
-    def test_kelvin_to_delisle_type_trunc_ret(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Kelvin to Delisle
-        with default parameter set to False
-        """
-        assert isinstance(Kelvin.to_delisle(10.498259, float_ret=False), int)
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
-    def test_kelvin_to_fahrenheit(self) -> None:
-        """Tests the result of the conversion Kelvin to Fahrenheit"""
-        assert Kelvin.to_fahrenheit(44.28137746) == -379.963520572
+    def test_precise_rounded_kelvin_to_delisle(self) -> None:
+        """Tests the rounded and precise result of the conversion Kelvin to Delisle"""
+        temps = (
+            Kelvin(25).precise().to_delisle(),
+            Delisle(value=522.2249999999999),
+            Kelvin(25.25).rounded().to_delisle(),
+            Delisle(value=522),
+        )
+        errors = func_to_test_precise_rounded_results(temps)
 
-    def test_kelvin_to_fahrenheit_default_type(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Kelvin to Fahrenheit
-        with default parameter values
-        """
-        assert isinstance(Kelvin.to_fahrenheit(10), float)
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
-    def test_kelvin_to_fahrenheit_type_trunc_ret(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Kelvin to Fahrenheit
-        with default parameter set to False
-        """
-        assert isinstance(Kelvin.to_fahrenheit(25.8456, float_ret=False), int)
+    def test_dynamic_type_return_kelvin_to_fahrenheit(self) -> None:
+        """Tests the dynamic typed results of the conversion Kelvin to Fahrenheit"""
+        temps = (
+            Kelvin(randint(1, 20)).to_fahrenheit(),
+            Kelvin(uniform(0.0, 20.0)).to_fahrenheit(),
+        )
+        errors = func_to_test_dynamic_returns(temps)
 
-    def test_kelvin_to_newton(self) -> None:
-        """Tests the result of the conversion Kelvin to Newton"""
-        assert Kelvin.to_newton(44.28137746) == -75.52664543819999
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
-    def test_kelvin_to_newton_default_type(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Kelvin to Newton
-        with default parameter values
-        """
-        assert isinstance(Kelvin.to_newton(10), float)
+    def test_precise_rounded_kelvin_to_fahrenheit(self) -> None:
+        """Tests the rounded and precise result of the conversion Kelvin to Fahrenheit"""
+        temps = (
+            Kelvin(25).precise().to_fahrenheit(),
+            Fahrenheit(value=-414.67),
+            Kelvin(25.25).rounded().to_fahrenheit(),
+            Fahrenheit(value=-414),
+        )
+        errors = func_to_test_precise_rounded_results(temps)
 
-    def test_kelvin_to_newton_type_trunc_ret(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Kelvin to Newton
-        with default parameter set to False
-        """
-        assert isinstance(Kelvin.to_newton(25.8456, float_ret=False), int)
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
-    def test_kelvin_to_rankine(self) -> None:
-        """Tests the result of the conversion Kelvin to Rankine"""
-        assert Kelvin.to_rankine(44.28137746) == 79.70647942800001
+    def test_dynamic_type_return_kelvin_to_newton(self) -> None:
+        """Tests the dynamic typed results of the conversion Kelvin to Newton"""
+        temps = (
+            Kelvin(randint(1, 20)).to_newton(),
+            Kelvin(uniform(0.0, 20.0)).to_newton(),
+        )
+        errors = func_to_test_dynamic_returns(temps)
 
-    def test_kelvin_to_rankine_default_type(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Kelvin to Rankine
-        with default parameter values
-        """
-        assert isinstance(Kelvin.to_rankine(10), float)
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
-    def test_kelvin_to_rankine_type_trunc_ret(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Kelvin to Rankine
-        with default parameter set to False
-        """
-        assert isinstance(Kelvin.to_rankine(25.8456, float_ret=False), int)
+    def test_precise_rounded_kelvin_to_newton(self) -> None:
+        """Tests the rounded and precise result of the conversion Kelvin to Newton"""
+        temps = (
+            Kelvin(25).precise().to_newton(),
+            Newton(value=-81.889499999999987),
+            Kelvin(25.25).rounded().to_newton(),
+            Newton(value=-81),
+        )
+        errors = func_to_test_precise_rounded_results(temps)
 
-    def test_kelvin_to_reaumur(self) -> None:
-        """Tests the result of the conversion Kelvin to Réaumur"""
-        assert Kelvin.to_reaumur(44.28137746) == -183.094898032
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
-    def test_kelvin_to_reaumur_default_type(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Kelvin to Réaumur
-        with default parameter values
-        """
-        assert isinstance(Kelvin.to_reaumur(10), float)
+    def test_dynamic_type_return_kelvin_to_rankine(self) -> None:
+        """Tests the dynamic typed results of the conversion Kelvin to Rankine"""
+        temps = (
+            Kelvin(randint(1, 20)).to_rankine(),
+            Kelvin(uniform(0.0, 20.0)).to_rankine(),
+        )
+        errors = func_to_test_dynamic_returns(temps)
 
-    def test_kelvin_to_reaumur_type_trunc_ret(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Kelvin to Réaumur
-        with default parameter set to False
-        """
-        assert isinstance(Kelvin.to_reaumur(25.8456, float_ret=False), int)
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
-    def test_kelvin_to_romer(self) -> None:
-        """Tests the result of the conversion Kelvin to Rømer"""
-        assert Kelvin.to_romer(44.28137746) == -112.6560268335
+    def test_precise_rounded_kelvin_to_rankine(self) -> None:
+        """Tests the rounded and precise result of the conversion Kelvin to Rankine"""
+        temps = (
+            Kelvin(25).precise().to_rankine(),
+            Rankine(value=45.0),
+            Kelvin(25.25).rounded().to_rankine(),
+            Rankine(value=45),
+        )
+        errors = func_to_test_precise_rounded_results(temps)
 
-    def test_kelvin_to_romer_default_type(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Kelvin to Rømer
-        with default parameter values
-        """
-        assert isinstance(Kelvin.to_romer(10), float)
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
-    def test_kelvin_to_romer_type_trunc_ret(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Kelvin to Rømer
-        with default parameter set to False
-        """
-        assert isinstance(Kelvin.to_romer(25.8456, float_ret=False), int)
+    def test_dynamic_type_return_kelvin_to_reaumur(self) -> None:
+        """Tests the dynamic typed results of the conversion Kelvin to Réaumur"""
+        temps = (
+            Kelvin(randint(1, 20)).to_reaumur(),
+            Kelvin(uniform(0.0, 20.0)).to_reaumur(),
+        )
+        errors = func_to_test_dynamic_returns(temps)
+
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
+
+    def test_precise_rounded_kelvin_to_reaumur(self) -> None:
+        """Tests the rounded and precise result of the conversion Kelvin to Réaumur"""
+        temps = (
+            Kelvin(25).precise().to_reaumur(),
+            Reaumur(value=-198.51999999999998),
+            Kelvin(25.25).rounded().to_reaumur(),
+            Reaumur(value=-198),
+        )
+        errors = func_to_test_precise_rounded_results(temps)
+
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
+
+    def test_dynamic_type_return_kelvin_to_romer(self) -> None:
+        """Tests the dynamic typed results of the conversion Kelvin to Rømer"""
+        temps = (
+            Kelvin(randint(1, 20)).to_romer(),
+            Kelvin(uniform(0.0, 20.0)).to_romer(),
+        )
+        errors = func_to_test_dynamic_returns(temps)
+
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
+
+    def test_precise_rounded_kelvin_to_romer(self) -> None:
+        """Tests the rounded and precise result of the conversion Kelvin to Rømer"""
+        temps = (
+            Kelvin(25).precise().to_romer(),
+            Romer(value=-122.77875),
+            Kelvin(25.25).rounded().to_romer(),
+            Romer(value=-122),
+        )
+        errors = func_to_test_precise_rounded_results(temps)
+
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
     # Delisle to <other temp scale> tests
     def test_delisle_to_celsius(self) -> None:
