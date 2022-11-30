@@ -372,23 +372,27 @@ class TestToTemp:
 
         assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
-    def test_kelvin_to_rankine(self) -> None:
-        """Tests the result of the conversion Kelvin to Rankine"""
-        assert Kelvin.to_rankine(44.28137746) == 79.70647942800001
+    def test_dynamic_type_return_kelvin_to_rankine(self) -> None:
+        """Tests the dynamic typed results of the conversion Kelvin to Rankine"""
+        temps = (
+            Kelvin(randint(1, 20)).to_rankine(),
+            Kelvin(uniform(0.0, 20.0)).to_rankine(),
+        )
+        errors = func_to_test_dynamic_returns(temps)
 
-    def test_kelvin_to_rankine_default_type(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Kelvin to Rankine
-        with default parameter values
-        """
-        assert isinstance(Kelvin.to_rankine(10), float)
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
-    def test_kelvin_to_rankine_type_trunc_ret(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Kelvin to Rankine
-        with default parameter set to False
-        """
-        assert isinstance(Kelvin.to_rankine(25.8456, float_ret=False), int)
+    def test_precise_rounded_kelvin_to_rankine(self) -> None:
+        """Tests the rounded and precise result of the conversion Kelvin to Rankine"""
+        temps = (
+            Kelvin(25).precise().to_rankine(),
+            Rankine(value=45.0),
+            Kelvin(25.25).rounded().to_rankine(),
+            Rankine(value=45),
+        )
+        errors = func_to_test_precise_rounded_results(temps)
+
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
     def test_kelvin_to_reaumur(self) -> None:
         """Tests the result of the conversion Kelvin to Réaumur"""
