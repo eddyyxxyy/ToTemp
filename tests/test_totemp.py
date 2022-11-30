@@ -154,23 +154,27 @@ class TestToTemp:
 
         assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
-    def test_celsius_to_romer(self) -> None:
-        """Tests the result of the conversion Celsius to Rømer"""
-        assert Celsius.to_romer(237.236438) == 132.04912995
+    def test_dynamic_type_return_celsius_to_romer(self) -> None:
+        """Tests the dynamic typed results of the conversion Celsius to Rømer"""
+        temps = (
+            Celsius(randint(1, 20)).to_romer(),
+            Celsius(uniform(0.0, 20.0)).to_romer(),
+        )
+        errors = func_to_test_dynamic_returns(temps)
 
-    def test_celsius_to_romer_default_type(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Celsius to Rømer
-        with default parameter values
-        """
-        assert isinstance(Celsius.to_romer(237), float)
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
-    def test_celsius_to_romer_type_trunc_ret(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Celsius to Réaumur
-        with default parameter set to False
-        """
-        assert isinstance(Celsius.to_romer(237, float_ret=False), int)
+    def test_precise_rounded_celsius_to_romer(self) -> None:
+        """Tests the rounded and precise result of the conversion Celsius to Rømer"""
+        temps = (
+            Celsius(25).precise().to_romer(),
+            Romer(value=20.62500),
+            Celsius(25.25).rounded().to_romer(),
+            Romer(value=20),
+        )
+        errors = func_to_test_precise_rounded_results(temps)
+
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
     # Fahrenheit to <other temp scale> tests
     def test_fahrenheit_to_celsius(self) -> None:
