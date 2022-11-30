@@ -66,27 +66,27 @@ class TestToTemp:
 
         assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
-    def test_celsius_to_kelvin(self) -> None:
-        """Tests the result of the conversion Celsius to Kelvin"""
-        assert Celsius.to_kelvin(72.111) == 345.26099999999997
+    def test_dynamic_type_return_celsius_to_kelvin(self) -> None:
+        """Tests the dynamic typed results of the conversion Celsius to Kelvin"""
+        temps = (
+            Celsius(randint(1, 20)).to_kelvin(),
+            Celsius(uniform(0.0, 20.0)).to_kelvin(),
+        )
+        errors = func_to_test_dynamic_returns(temps)
 
-    def test_celsius_to_kelvin_default_type(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Celsius to Kelvin
-        with default parameter values
-        """
-        assert isinstance(Celsius.to_kelvin(72), float)
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
-    def test_celsius_to_kelvin_type_trunc_ret(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Celsius to Kelvin
-        with default parameter set to False
-        """
-        assert isinstance(Celsius.to_kelvin(72, float_ret=False), int)
+    def test_precise_rounded_celsius_to_kelvin(self) -> None:
+        """Tests the rounded and precise result of the conversion Celsius to Kelvin"""
+        temps = (
+            Celsius(25).precise().to_kelvin(),
+            Kelvin(value=298.1500),
+            Celsius(25.25).rounded().to_kelvin(),
+            Kelvin(value=298),
+        )
+        errors = func_to_test_precise_rounded_results(temps)
 
-    def test_celsius_to_newton(self) -> None:
-        """Tests the result of the conversion Celsius to Newton"""
-        assert Celsius.to_newton(144.9955) == 47.848515
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
     def test_celsius_to_newton_default_type(self) -> None:
         """
