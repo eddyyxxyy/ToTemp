@@ -611,7 +611,7 @@ class TestToTemp:
         assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
     def test_dynamic_type_return_newton_to_rankine(self) -> None:
-        """Tests the dynamic typed results of the conversion Rankine to Kelvin"""
+        """Tests the dynamic typed results of the conversion Newton to Rankine"""
         temps = (
             Newton(randint(1, 20)).to_rankine(),
             Newton(uniform(0.0, 20.0)).to_rankine(),
