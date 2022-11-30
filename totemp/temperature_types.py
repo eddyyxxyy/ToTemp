@@ -689,6 +689,7 @@ class Kelvin(Generic[TEMP]):
         return trunc((kelvin - 273.15) * (21 / 40) + 7.5)
 
 
+########################################################################
 @dataclass
 class Newton(Generic[TEMP]):
     """
@@ -742,21 +743,15 @@ class Newton(Generic[TEMP]):
         """
         return Newton(round(self.value))
 
-    @staticmethod
-    def to_celsius(newton: float | int, /, *, float_ret=True) -> float | int:
+    def to_celsius(self) -> 'Celsius[TEMP]':
         """
-        Converts Newton to Celsius, returning a float by default.
+        Returns a Celsius object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
 
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
-
-        :param newton: Newton value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
+        :return: Celsius object
         """
-        if float_ret:
-            return float(newton / 0.33)
-        return trunc(newton / 0.33)
+        celsius = type(self.value)((self.value / 0.33))
+        return Celsius(celsius)
 
     @staticmethod
     def to_fahrenheit(
