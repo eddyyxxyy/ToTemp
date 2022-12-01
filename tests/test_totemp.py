@@ -467,23 +467,27 @@ class TestToTemp:
         assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
     # Delisle to <other temp scale> tests
-    def test_delisle_to_celsius(self) -> None:
-        """Tests the result of the conversion Delisle to Celsius"""
-        assert Delisle.to_celsius(27.29828) == 81.80114666666667
+    def test_dynamic_type_return_delisle_to_celsius(self) -> None:
+        """Tests the dynamic typed results of the conversion Delisle to Celsius"""
+        temps = (
+            Delisle(randint(1, 20)).to_celsius(),
+            Delisle(uniform(0.0, 20.0)).to_celsius(),
+        )
+        errors = func_to_test_dynamic_returns(temps)
 
-    def test_delisle_to_celsius_default_type(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Delisle to Celsius
-        with default parameter values
-        """
-        assert isinstance(Delisle.to_celsius(15), float)
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
-    def test_delisle_to_celsius_type_trunc_ret(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Delisle to Celsius
-        with default parameter set to False
-        """
-        assert isinstance(Delisle.to_celsius(27.29828, float_ret=False), int)
+    def test_precise_rounded_delisle_to_celsius(self) -> None:
+        """Tests the rounded and precise result of the conversion Delisle to Celsius"""
+        temps = (
+            Delisle(25).precise().to_celsius(),
+            Celsius(value=83.33333333333333),
+            Delisle(25.25).rounded().to_celsius(),
+            Celsius(value=83),
+        )
+        errors = func_to_test_precise_rounded_results(temps)
+
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
     def test_delisle_to_fahrenheit(self) -> None:
         """Tests the result of the conversion Delisle to Fahrenheit"""
