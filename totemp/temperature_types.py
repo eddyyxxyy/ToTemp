@@ -422,21 +422,15 @@ class Delisle(Generic[TEMP]):
         reaumur = type(self.value)(80 - self.value * 8 / 15)
         return Reaumur(reaumur)
 
-    @staticmethod
-    def to_romer(delisle: float | int, /, *, float_ret=True) -> float | int:
+    def to_romer(self) -> 'Romer[TEMP]':
         """
-        Converts Delisle to Rømer, returning a float by default.
+        Returns a Rømer object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
 
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
-
-        :param delisle: Delisle value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
+        :return: Romer object
         """
-        if float_ret:
-            return float(60 - delisle * 7 / 20)
-        return trunc(60 - delisle * 7 / 20)
+        romer = type(self.value)(60 - self.value * 7 / 20)
+        return Romer(romer)
 
 
 @dataclass
