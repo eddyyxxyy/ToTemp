@@ -577,23 +577,27 @@ class TestToTemp:
 
         assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
-    def test_delisle_to_reaumur(self) -> None:
-        """Tests the result of the conversion Delisle to Réaumur"""
-        assert Delisle.to_reaumur(57.543) == 49.3104
+    def test_dynamic_type_return_delisle_to_reaumur(self) -> None:
+        """Tests the dynamic typed results of the conversion Delisle to Réaumur"""
+        temps = (
+            Delisle(randint(1, 20)).to_reaumur(),
+            Delisle(uniform(0.0, 20.0)).to_reaumur(),
+        )
+        errors = func_to_test_dynamic_returns(temps)
 
-    def test_delisle_to_reaumur_default_type(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Delisle to Réaumur
-        with default parameter values
-        """
-        assert isinstance(Delisle.to_reaumur(57), float)
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
-    def test_delisle_to_reaumur_type_trunc_ret(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Delisle to Réaumur
-        with default parameter set to False
-        """
-        assert isinstance(Delisle.to_reaumur(57.543, float_ret=False), int)
+    def test_precise_rounded_delisle_to_reaumur(self) -> None:
+        """Tests the rounded and precise result of the conversion Delisle to Réaumur"""
+        temps = (
+            Delisle(25).precise().to_reaumur(),
+            Reaumur(value=66.66666666666667),
+            Delisle(25.25).rounded().to_reaumur(),
+            Reaumur(value=66),
+        )
+        errors = func_to_test_precise_rounded_results(temps)
+
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
     def test_delisle_to_romer(self) -> None:
         """Tests the result of the conversion Delisle to Rømer"""
