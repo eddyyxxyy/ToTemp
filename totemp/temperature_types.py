@@ -112,7 +112,7 @@ class Celsius(Generic[TEMP]):
 
     def to_reaumur(self) -> 'Reaumur[TEMP]':
         """
-        Returns a Reaumur object which contains the class attribute "value"
+        Returns a Réaumur object which contains the class attribute "value"
         with the result from the conversion typed the same as the attribute.
 
         :return: Reaumur object
