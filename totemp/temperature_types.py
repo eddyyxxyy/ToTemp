@@ -382,21 +382,15 @@ class Delisle(Generic[TEMP]):
         fahrenheit = type(self.value)(212 - self.value * 6 / 5)
         return Fahrenheit(fahrenheit)
 
-    @staticmethod
-    def to_kelvin(delisle: float | int, /, *, float_ret=True) -> float | int:
+    def to_kelvin(self) -> 'Kelvin[TEMP]':
         """
-        Converts Delisle to Kelvin, returning a float by default.
+        Returns a Kelvin object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
 
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
-
-        :param delisle: Delisle value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
+        :return: Kelvin object
         """
-        if float_ret:
-            return float(373.15 - (delisle * 2 / 3))
-        return trunc(373.15 - (delisle * 2 / 3))
+        kelvin = type(self.value)(373.15 - (self.value * 2 / 3))
+        return Kelvin(kelvin)
 
     @staticmethod
     def to_newton(delisle: float | int, /, *, float_ret=True) -> float | int:
