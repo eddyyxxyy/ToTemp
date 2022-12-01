@@ -412,21 +412,15 @@ class Delisle(Generic[TEMP]):
         rankine = type(self.value)(671.67 - self.value * 6 / 5)
         return Rankine(rankine)
 
-    @staticmethod
-    def to_reaumur(delisle: float | int, /, *, float_ret=True) -> float | int:
+    def to_reaumur(self) -> 'Reaumur[TEMP]':
         """
-        Converts Delisle to Réaumur, returning a float by default.
+        Returns a Réaumur object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
 
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
-
-        :param delisle: Delisle value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
+        :return: Reaumur object
         """
-        if float_ret:
-            return float(80 - delisle * 8 / 15)
-        return trunc(80 - delisle * 8 / 15)
+        reaumur = type(self.value)(80 - self.value * 8 / 15)
+        return Reaumur(reaumur)
 
     @staticmethod
     def to_romer(delisle: float | int, /, *, float_ret=True) -> float | int:
