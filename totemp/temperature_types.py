@@ -402,21 +402,15 @@ class Delisle(Generic[TEMP]):
         newton = type(self.value)(33 - self.value * 11 / 50)
         return Newton(newton)
 
-    @staticmethod
-    def to_rankine(delisle: float | int, /, *, float_ret=True) -> float | int:
+    def to_rankine(self) -> 'Rankine[TEMP]':
         """
-        Converts Delisle to Rankine, returning a float by default.
+        Returns a Rankine object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
 
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
-
-        :param delisle: Delisle value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
+        :return: Rankine object
         """
-        if float_ret:
-            return float(671.67 - delisle * 6 / 5)
-        return trunc(671.67 - delisle * 6 / 5)
+        rankine = type(self.value)(671.67 - self.value * 6 / 5)
+        return Rankine(rankine)
 
     @staticmethod
     def to_reaumur(delisle: float | int, /, *, float_ret=True) -> float | int:
