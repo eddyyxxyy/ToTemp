@@ -533,25 +533,27 @@ class TestToTemp:
 
         assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
-    def test_delisle_to_newton(self) -> None:
-        """Tests the result of the conversion Delisle to Newton"""
-        assert Delisle.to_newton(1.98327392917266655) == 32.563679735582014
-
-    def test_delisle_to_newton_default_type(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Delisle to Newton
-        with default parameter values
-        """
-        assert isinstance(Delisle.to_newton(1), float)
-
-    def test_delisle_to_newton_type_trunc_ret(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Delisle to Newton
-        with default parameter set to False
-        """
-        assert isinstance(
-            Delisle.to_newton(1.98327392917266655, float_ret=False), int
+    def test_dynamic_type_return_delisle_to_newton(self) -> None:
+        """Tests the dynamic typed results of the conversion Delisle to Newton"""
+        temps = (
+            Delisle(randint(1, 20)).to_newton(),
+            Delisle(uniform(0.0, 20.0)).to_newton(),
         )
+        errors = func_to_test_dynamic_returns(temps)
+
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
+
+    def test_precise_rounded_delisle_to_newton(self) -> None:
+        """Tests the rounded and precise result of the conversion Delisle to Newton"""
+        temps = (
+            Delisle(25).precise().to_newton(),
+            Newton(value=27.5),
+            Delisle(25.25).rounded().to_newton(),
+            Newton(value=27),
+        )
+        errors = func_to_test_precise_rounded_results(temps)
+
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
     def test_delisle_to_rankine(self) -> None:
         """Tests the result of the conversion Delisle to Rankine"""
