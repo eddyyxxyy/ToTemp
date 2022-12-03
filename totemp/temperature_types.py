@@ -184,129 +184,75 @@ class Fahrenheit(Generic[TEMP]):
         """
         return Fahrenheit(round(self.value))
 
-    @staticmethod
-    def to_celsius(
-        fahrenheit: float | int, /, *, float_ret=True
-    ) -> float | int:
+    def to_celsius(self) -> 'Celsius[TEMP]':
         """
-        Converts Fahrenheit to Celsius, returning a float by default.
+        Returns a Celsius object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
 
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
-
-        :param fahrenheit: Fahrenheit value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
+        :return: Celsius object
         """
-        if float_ret:
-            return float((fahrenheit - 32) * 5 / 9)
-        return trunc((fahrenheit - 32) * 5 / 9)
+        celsius = type(self.value)((self.value - 32) * 5 / 9)
+        return Celsius(celsius)
 
-    @staticmethod
-    def to_delisle(
-        fahrenheit: float | int, /, *, float_ret=True
-    ) -> float | int:
+    def to_delisle(self) -> 'Delisle[TEMP]':
         """
-        Converts Fahrenheit to Delisle, returning a float by default.
+        Returns a Delisle object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
 
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
-
-        :param fahrenheit: Fahrenheit value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
+        :return: Delisle object
         """
-        if float_ret:
-            return float((212 - fahrenheit) * 5 / 6)
-        return trunc((212 - fahrenheit) * 5 / 6)
+        delisle = type(self.value)((212 - self.value) * 5 / 6)
+        return Delisle(delisle)
 
-    @staticmethod
-    def to_kelvin(
-        fahrenheit: float | int, /, *, float_ret=True
-    ) -> float | int:
+    def to_kelvin(self) -> 'Kelvin[TEMP]':
         """
-        Converts Fahrenheit to Kelvin, returning a float by default.
+        Returns a Kelvin object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
 
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
-
-        :param fahrenheit: Fahrenheit value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
+        :return: Kelvin object
         """
-        if float_ret:
-            return float((fahrenheit + 459.67) * 5 / 9)
-        return trunc((fahrenheit + 459.67) * 5 / 9)
+        kelvin = type(self.value)((self.value + 459.67) * 5 / 9)
+        return Kelvin(kelvin)
 
-    @staticmethod
-    def to_newton(
-        fahrenheit: float | int, /, *, float_ret=True
-    ) -> float | int:
+    def to_newton(self) -> 'Newton[TEMP]':
         """
-        Converts Fahrenheit to Newton, returning a float by default.
+        Returns a Newton object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
 
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
-
-        :param fahrenheit: Fahrenheit value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
+        :return: Newton object
         """
-        if float_ret:
-            return float((fahrenheit - 32) * 11 / 60)
-        return trunc((fahrenheit - 32) * 11 / 60)
+        newton = type(self.value)((self.value - 32) * 11 / 60)
+        return Newton(newton)
 
-    @staticmethod
-    def to_rankine(
-        fahrenheit: float | int, /, *, float_ret=True
-    ) -> float | int:
+    def to_rankine(self) -> 'Rankine[TEMP]':
         """
-        Converts Fahrenheit to Rankine, returning a float by default.
+        Returns a Rankine object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
 
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
-
-        :param fahrenheit: Fahrenheit value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
+        :return: Rankine object
         """
-        if float_ret:
-            return float(fahrenheit + 459.67)
-        return trunc(fahrenheit + 459.67)
+        rankine = type(self.value)(self.value + 459.67)
+        return Rankine(rankine)
 
-    @staticmethod
-    def to_reaumur(
-        fahrenheit: float | int, /, *, float_ret=True
-    ) -> float | int:
+    def to_reaumur(self) -> 'Reaumur[TEMP]':
         """
-        Converts Fahrenheit to Réaumur, returning a float by default.
+        Returns a Réaumur object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
 
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
-
-        :param fahrenheit: Fahrenheit value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
+        :return: Réaumur object
         """
-        if float_ret:
-            return float((fahrenheit - 32) * 4 / 9)
-        return trunc((fahrenheit - 32) * 4 / 9)
+        reaumur = type(self.value)((self.value - 32) * 4 / 9)
+        return Reaumur(reaumur)
 
-    @staticmethod
-    def to_romer(fahrenheit: float | int, /, *, float_ret=True) -> float | int:
+    def to_romer(self) -> 'Romer[TEMP]':
         """
-        Converts Fahrenheit to Rømer, returning a float by default.
+        Returns a Rømer object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
 
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
-
-        :param fahrenheit: Fahrenheit value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
+        :return: Rømer object
         """
-        if float_ret:
-            return float((fahrenheit - 32) * (7 / 24) + 7.5)
-        return trunc((fahrenheit - 32) * (7 / 24) + 7.5)
+        romer = type(self.value)((self.value - 32) * (7 / 24) + 7.5)
+        return Romer(romer)
 
 
 @dataclass
