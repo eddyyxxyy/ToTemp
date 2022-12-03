@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 from dataclasses import dataclass
-from math import trunc
 from typing import Generic, TypeVar
 
 TEMP = TypeVar('TEMP', int, float)
