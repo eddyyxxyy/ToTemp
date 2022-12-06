@@ -177,139 +177,159 @@ class TestToTemp:
         assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
     # Fahrenheit to <other temp scale> tests
-    def test_fahrenheit_to_celsius(self) -> None:
-        """Tests the result of the conversion Fahrenheit to Celsius"""
-        assert Fahrenheit.to_celsius(107.57300000000001) == 41.985
-
-    def test_fahrenheit_to_celsius_default_type(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Fahrenheit to Celsius
-        with default parameter values
-        """
-        assert isinstance(Fahrenheit.to_celsius(107), float)
-
-    def test_fahrenheit_to_celsius_type_trunc_ret(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Fahrenheit to Celsius
-        with default parameter set to False
-        """
-        assert isinstance(
-            Fahrenheit.to_celsius(107.57300000000001, float_ret=False), int
+    def test_dynamic_type_return_fahrenheit_to_celsius(self) -> None:
+        """Tests the dynamic typed results of the conversion Fahrenheit to Celsius"""
+        temps = (
+            Fahrenheit(randint(1, 20)).to_celsius(),
+            Fahrenheit(uniform(0.0, 20.0)).to_celsius(),
         )
+        errors = func_to_test_dynamic_returns(temps)
 
-    def test_fahrenheit_to_delisle(self) -> None:
-        """Tests the result of the conversion Fahrenheit to Delisle"""
-        assert Fahrenheit.to_delisle(20.25) == 159.79166666666666
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
-    def test_fahrenheit_to_delisle_default_type(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Fahrenheit to Delisle
-        with default parameter values
-        """
-        assert isinstance(Fahrenheit.to_delisle(20), float)
-
-    def test_fahrenheit_to_delisle_type_trunc_ret(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Fahrenheit to Delisle
-        with default parameter set to False
-        """
-        assert isinstance(Fahrenheit.to_delisle(20.25, float_ret=False), int)
-
-    def test_fahrenheit_to_kelvin(self) -> None:
-        """Tests the result of the conversion Fahrenheit to Kelvin"""
-        assert Fahrenheit.to_kelvin(123.4555) == 323.9586111111111
-
-    def test_fahrenheit_to_kelvin_default_type(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Fahrenheit to Kelvin
-        with default parameter values
-        """
-        assert isinstance(Fahrenheit.to_kelvin(123), float)
-
-    def test_fahrenheit_to_kelvin_type_trunc_ret(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Fahrenheit to Kelvin
-        with default parameter set to False
-        """
-        assert isinstance(Fahrenheit.to_kelvin(123.4555, float_ret=False), int)
-
-    def test_fahrenheit_to_newton(self) -> None:
-        """Tests the result of the conversion Fahrenheit to Newton"""
-        assert Fahrenheit.to_newton(58.9011) == 4.931868333333333
-
-    def test_fahrenheit_to_newton_default_type(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Fahrenheit to Newton
-        with default parameter values
-        """
-        assert isinstance(Fahrenheit.to_newton(58), float)
-
-    def test_fahrenheit_to_newton_type_trunc_ret(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Fahrenheit to Newton
-        with default parameter set to False
-        """
-        assert isinstance(Fahrenheit.to_newton(58.9011, float_ret=False), int)
-
-    def test_fahrenheit_to_rankine(self) -> None:
-        """Tests the result of the conversion Fahrenheit to Rankine"""
-        assert Fahrenheit.to_rankine(12.35343264363) == 472.02343264363003
-
-    def test_fahrenheit_to_rankine_default_type(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Fahrenheit to Rankine
-        with default parameter values
-        """
-        assert isinstance(Fahrenheit.to_rankine(12), float)
-
-    def test_fahrenheit_to_rankine_type_trunc_ret(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Fahrenheit to Rankine
-        with default parameter set to False
-        """
-        assert isinstance(
-            Fahrenheit.to_rankine(12.35343264363, float_ret=False), int
+    def test_precise_rounded_fahrenheit_to_celsius(self) -> None:
+        """Tests the rounded and precise result of the conversion Fahrenheit to Celsius"""
+        temps = (
+            Fahrenheit(25).precise().to_celsius(),
+            Celsius(value=-3.888888888888889),
+            Fahrenheit(25.25).rounded().to_celsius(),
+            Celsius(value=-3),
         )
+        errors = func_to_test_precise_rounded_results(temps)
 
-    def test_fahrenheit_to_reaumur(self) -> None:
-        """Tests the result of the conversion Fahrenheit to Réaumur"""
-        assert Fahrenheit.to_reaumur(1001.03438221) == 430.68194764888887
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
-    def test_fahrenheit_to_reaumur_default_type(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Fahrenheit to Réaumur
-        with default parameter values
-        """
-        assert isinstance(Fahrenheit.to_reaumur(1001), float)
-
-    def test_fahrenheit_to_reaumur_type_trunc_ret(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Fahrenheit to Réaumur
-        with default parameter set to False
-        """
-        assert isinstance(
-            Fahrenheit.to_reaumur(1001.03438221, float_ret=False), int
+    def test_dynamic_type_return_fahrenheit_to_delisle(self) -> None:
+        """Tests the dynamic typed results of the conversion Fahrenheit to Delisle"""
+        temps = (
+            Fahrenheit(randint(1, 20)).to_delisle(),
+            Fahrenheit(uniform(0.0, 20.0)).to_delisle(),
         )
+        errors = func_to_test_dynamic_returns(temps)
 
-    def test_fahrenheit_to_romer(self) -> None:
-        """Tests the result of the conversion Fahrenheit to Rømer"""
-        assert Fahrenheit.to_romer(395.323729) == 113.46942095833334
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
-    def test_fahrenheit_to_romer_default_type(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Fahrenheit to Rømer
-        with default parameter values
-        """
-        assert isinstance(Fahrenheit.to_romer(395), float)
-
-    def test_fahrenheit_to_romer_type_trunc_ret(self) -> None:
-        """
-        Tests the type of the value returned on the conversion Fahrenheit to Rømer
-        with default parameter set to False
-        """
-        assert isinstance(
-            Fahrenheit.to_romer(395.323729, float_ret=False), int
+    def test_precise_rounded_fahrenheit_to_delisle(self) -> None:
+        """Tests the rounded and precise result of the conversion Fahrenheit to Delisle"""
+        temps = (
+            Fahrenheit(25).precise().to_delisle(),
+            Delisle(value=155.83333333333334),
+            Fahrenheit(25.25).rounded().to_delisle(),
+            Delisle(value=155),
         )
+        errors = func_to_test_precise_rounded_results(temps)
+
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
+
+    def test_dynamic_type_return_fahrenheit_to_kelvin(self) -> None:
+        """Tests the dynamic typed results of the conversion Fahrenheit to Kelvin"""
+        temps = (
+            Fahrenheit(randint(1, 20)).to_kelvin(),
+            Fahrenheit(uniform(0.0, 20.0)).to_kelvin(),
+        )
+        errors = func_to_test_dynamic_returns(temps)
+
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
+
+    def test_precise_rounded_fahrenheit_to_kelvin(self) -> None:
+        """Tests the rounded and precise result of the conversion Fahrenheit to Kelvin"""
+        temps = (
+            Fahrenheit(25).precise().to_kelvin(),
+            Kelvin(value=269.2611111111111),
+            Fahrenheit(25.25).rounded().to_kelvin(),
+            Kelvin(value=269),
+        )
+        errors = func_to_test_precise_rounded_results(temps)
+
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
+
+    def test_dynamic_type_return_fahrenheit_to_newton(self) -> None:
+        """Tests the dynamic typed results of the conversion Fahrenheit to Newton"""
+        temps = (
+            Fahrenheit(randint(1, 20)).to_newton(),
+            Fahrenheit(uniform(0.0, 20.0)).to_newton(),
+        )
+        errors = func_to_test_dynamic_returns(temps)
+
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
+
+    def test_precise_rounded_fahrenheit_to_newton(self) -> None:
+        """Tests the rounded and precise result of the conversion Fahrenheit to Newton"""
+        temps = (
+            Fahrenheit(25).precise().to_newton(),
+            Newton(value=-1.2833333333333334),
+            Fahrenheit(25.25).rounded().to_newton(),
+            Newton(value=-1),
+        )
+        errors = func_to_test_precise_rounded_results(temps)
+
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
+
+    def test_dynamic_type_return_fahrenheit_to_rankine(self) -> None:
+        """Tests the dynamic typed results of the conversion Fahrenheit to Rankine"""
+        temps = (
+            Fahrenheit(randint(1, 20)).to_rankine(),
+            Fahrenheit(uniform(0.0, 20.0)).to_rankine(),
+        )
+        errors = func_to_test_dynamic_returns(temps)
+
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
+
+    def test_precise_rounded_fahrenheit_to_rankine(self) -> None:
+        """Tests the rounded and precise result of the conversion Fahrenheit to Rankine"""
+        temps = (
+            Fahrenheit(25).precise().to_rankine(),
+            Rankine(value=484.67),
+            Fahrenheit(25.25).rounded().to_rankine(),
+            Rankine(value=484),
+        )
+        errors = func_to_test_precise_rounded_results(temps)
+
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
+
+    def test_dynamic_type_return_fahrenheit_to_reaumur(self) -> None:
+        """Tests the dynamic typed results of the conversion Fahrenheit to Réaumur"""
+        temps = (
+            Fahrenheit(randint(1, 20)).to_reaumur(),
+            Fahrenheit(uniform(0.0, 20.0)).to_reaumur(),
+        )
+        errors = func_to_test_dynamic_returns(temps)
+
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
+
+    def test_precise_rounded_fahrenheit_to_reaumur(self) -> None:
+        """Tests the rounded and precise result of the conversion Fahrenheit to Réaumur"""
+        temps = (
+            Fahrenheit(25).precise().to_reaumur(),
+            Reaumur(value=-3.111111111111111),
+            Fahrenheit(25.25).rounded().to_reaumur(),
+            Reaumur(value=-3),
+        )
+        errors = func_to_test_precise_rounded_results(temps)
+
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
+
+    def test_dynamic_type_return_fahrenheit_to_romer(self) -> None:
+        """Tests the dynamic typed results of the conversion Fahrenheit to Rømer"""
+        temps = (
+            Fahrenheit(randint(1, 20)).to_romer(),
+            Fahrenheit(uniform(0.0, 20.0)).to_romer(),
+        )
+        errors = func_to_test_dynamic_returns(temps)
+
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
+
+    def test_precise_rounded_fahrenheit_to_romer(self) -> None:
+        """Tests the rounded and precise result of the conversion Fahrenheit to Rømer"""
+        temps = (
+            Fahrenheit(25).precise().to_romer(),
+            Romer(value=5.458333333333333),
+            Fahrenheit(25.25).rounded().to_romer(),
+            Romer(value=5),
+        )
+        errors = func_to_test_precise_rounded_results(temps)
+
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
     # Kelvin to <other temp scale> tests
     def test_dynamic_type_return_kelvin_to_celsius(self) -> None:

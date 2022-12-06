@@ -12,8 +12,8 @@ from .temperature_types import (
     Romer,
 )
 
-__author__ = 'Edson Pimenta and Dávilos Tavares'
-__credits__ = ['Edson Pimenta', 'Dávilos Tavares']
+__author__ = 'Edson Pimenta, Raul Silva and Dávilos Tavares'
+__credits__ = ['Edson Pimenta', 'Dávilos Tavares', 'Raul Silva']
 __license__ = 'GPL-3.0'
 __version__ = '0.5.0'
 __maintainer__ = [
