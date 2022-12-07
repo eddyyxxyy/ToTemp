@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Generic, TypeVar
 
 TEMP = TypeVar('TEMP', int, float)
@@ -19,29 +19,48 @@ class Celsius(Generic[TEMP]):
     value: int | float
         temperature value (e.g. 36ºC)
 
+    __symbol: str
+        Official Celsius scale symbol
+
     Methods
     -------
     precise():
         returns the Celsius object with value converted to float.
+
     rounded():
         returns the Celsius object with value converted to int (rounded).
+
     to_fahrenheit():
         returns a Fahrenheit object which contains the converted value.
+
     to_delisle():
         returns a Delisle object which contains the converted value.
+
     to_kelvin():
         returns a Kelvin object which contains the converted value.
+
     to_newton():
         returns a Newton object which contains the converted value.
+
     to_rankine():
         returns a Rankine object which contains the converted value.
+
     to_reaumur():
         returns a Réaumur object which contains the converted value.
+
     to_romer():
         returns a Rømer object which contains the converted value.
     """
 
     value: TEMP
+    __symbol: str = field(compare=False, repr=False, default='ºC')
+
+    def __str__(self) -> str:
+        return f'{self.value}{self.__symbol}'
+
+    @property
+    def symbol(self):
+        return self.__symbol
 
     def precise(self) -> 'Celsius[float]':
         """
@@ -143,29 +162,49 @@ class Fahrenheit(Generic[TEMP]):
     value: int | float
         temperature value (e.g. 36ºF)
 
+    __symbol: str
+        Official Fahrenheit scale symbol
+
     Methods
     -------
     precise():
         returns the Fahrenheit object with value converted to float.
+
     rounded():
         returns the Fahrenheit object with value converted to int (rounded).
+
     to_celsius():
         returns a Celsius object which contains the converted value.
+
     to_delisle():
         returns a Delisle object which contains the converted value.
+
     to_kelvin():
         returns a Kelvin object which contains the converted value.
+
     to_newton():
         returns a Newton object which contains the converted value.
+
     to_rankine():
+
         returns a Rankine object which contains the converted value.
+
     to_reaumur():
         returns a Réaumur object which contains the converted value.
+
     to_romer():
         returns a Rømer object which contains the converted value.
     """
 
     value: TEMP
+    __symbol: str = field(compare=False, repr=False, default='ºF')
+
+    def __str__(self) -> str:
+        return f'{self.value}{self.__symbol}'
+
+    @property
+    def symbol(self):
+        return self.__symbol
 
     def precise(self) -> 'Fahrenheit[float]':
         """
@@ -267,29 +306,48 @@ class Delisle(Generic[TEMP]):
     value: int | float
         temperature value (e.g. 36ºDe)
 
+    __symbol: str
+        Official Delisle scale symbol
+
     Methods
     -------
     precise():
         returns the Delisle object with value converted to float.
+
     rounded():
         returns the Delisle object with value converted to int (rounded).
+
     to_celsius():
         returns a Celsius object which contains the converted value.
+
     to_fahrenheit():
         returns a Fahrenheit object which contains the converted value.
+
     to_kelvin():
         returns a Kelvin object which contains the converted value.
+
     to_newton():
         returns a Newton object which contains the converted value.
+
     to_rankine():
         returns a Rankine object which contains the converted value.
+
     to_reaumur():
         returns a Réaumur object which contains the converted value.
+
     to_romer():
         returns a Rømer object which contains the converted value.
     """
 
     value: TEMP
+    __symbol: str = field(compare=False, repr=False, default='ºDe')
+
+    def __str__(self) -> str:
+        return f'{self.value}{self.__symbol}'
+
+    @property
+    def symbol(self):
+        return self.__symbol
 
     def precise(self) -> 'Delisle[float]':
         """
@@ -391,29 +449,48 @@ class Kelvin(Generic[TEMP]):
     value: int | float
         temperature value (e.g. 36ºK)
 
+    __symbol: str
+        Official Kelvin scale symbol
+
     Methods
     -------
     precise():
         returns the Kelvin object with value converted to float.
+
     rounded():
         returns the Kelvin object with value converted to int (rounded).
+
     to_celsius():
         returns a Celsius object which contains the converted value.
+
     to_fahrenheit():
         returns a Fahrenheit object which contains the converted value.
+
     to_delisle():
         returns a Delisle object which contains the converted value.
+
     to_newton():
         returns a Newton object which contains the converted value.
+
     to_rankine():
         returns a Rankine object which contains the converted value.
+
     to_reaumur():
         returns a Réaumur object which contains the converted value.
+
     to_romer():
         returns a Rømer object which contains the converted value.
     """
 
     value: TEMP
+    __symbol: str = field(compare=False, repr=False, default='ºK')
+
+    def __str__(self) -> str:
+        return f'{self.value}{self.__symbol}'
+
+    @property
+    def symbol(self):
+        return self.__symbol
 
     def precise(self) -> 'Kelvin[float]':
         """
@@ -515,29 +592,48 @@ class Newton(Generic[TEMP]):
     value: int | float
         temperature value (e.g. 36ºN)
 
+    __symbol: str
+        Official Newton scale symbol
+
     Methods
     -------
     precise():
         returns the Newton object with value converted to float.
+
     rounded():
         returns the Newton object with value converted to int (rounded).
+
     to_celsius():
         returns a Celsius object which contains the converted value.
+
     to_fahrenheit():
         returns a Fahrenheit object which contains the converted value.
+
     to_delisle():
         returns a Delisle object which contains the converted value.
+
     to_kelvin():
         returns a Kelvin object which contains the converted value.
+
     to_rankine():
         returns a Rankine object which contains the converted value.
+
     to_reaumur():
         returns a Réaumur object which contains the converted value.
+
     to_romer():
         returns a Rømer object which contains the converted value.
     """
 
     value: TEMP
+    __symbol: str = field(compare=False, repr=False, default='ºN')
+
+    def __str__(self) -> str:
+        return f'{self.value}{self.__symbol}'
+
+    @property
+    def symbol(self):
+        return self.__symbol
 
     def precise(self) -> 'Newton[float]':
         """
@@ -639,29 +735,48 @@ class Rankine(Generic[TEMP]):
     value: int | float
         temperature value (e.g. 36ºR)
 
+    __symbol: str
+        Official Rankine scale symbol
+
     Methods
     -------
     precise():
         returns the Rankine object with value converted to float.
+
     rounded():
         returns the Rankine object with value converted to int (rounded).
+
     to_celsius():
         returns a Celsius object which contains the converted value.
+
     to_fahrenheit():
         returns a Fahrenheit object which contains the converted value.
+
     to_delisle():
         returns a Delisle object which contains the converted value.
+
     to_kelvin():
         returns a Kelvin object which contains the converted value.
+
     to_newton():
         returns a Newton object which contains the converted value.
+
     to_reaumur():
         returns a Réaumur object which contains the converted value.
+
     to_romer():
         returns a Rømer object which contains the converted value.
     """
 
     value: TEMP
+    __symbol: str = field(compare=False, repr=False, default='ºR')
+
+    @property
+    def symbol(self):
+        return self.__symbol
+
+    def __str__(self) -> str:
+        return f'{self.value}{self.__symbol}'
 
     def precise(self) -> 'Rankine[float]':
         """
@@ -763,29 +878,48 @@ class Reaumur(Generic[TEMP]):
     value: int | float
         temperature value (e.g. 36ºRé)
 
+    __symbol: str
+        Official Réaumur scale symbol
+
     Methods
     -------
     precise():
         returns the Réaumur object with value converted to float.
+
     rounded():
         returns the Réaumur object with value converted to int (rounded).
+
     to_celsius():
         returns a Celsius object which contains the converted value.
+
     to_fahrenheit():
         returns a Fahrenheit object which contains the converted value.
+
     to_delisle():
         returns a Delisle object which contains the converted value.
+
     to_kelvin():
         returns a Kelvin object which contains the converted value.
+
     to_newton():
         returns a Newton object which contains the converted value.
+
     to_rankine():
         returns a Rankine object which contains the converted value.
+
     to_romer():
         returns a Rømer object which contains the converted value.
     """
 
     value: TEMP
+    __symbol: str = field(compare=False, repr=False, default='ºRé')
+
+    def __str__(self) -> str:
+        return f'{self.value}{self.__symbol}'
+
+    @property
+    def symbol(self):
+        return self.__symbol
 
     def precise(self) -> 'Reaumur[float]':
         """
@@ -817,29 +951,48 @@ class Romer(Generic[TEMP]):
     value: int | float
         temperature value (e.g. 36ºRø)
 
+    __symbol: str
+        Official Rømer scale symbol
+
     Methods
     -------
     precise():
         returns the Rømer object with value converted to float.
+
     rounded():
         returns the Rømer object with value converted to int (rounded).
+
     to_celsius():
         returns a Celsius object which contains the converted value.
+
     to_fahrenheit():
         returns a Fahrenheit object which contains the converted value.
+
     to_delisle():
         returns a Delisle object which contains the converted value.
+
     to_kelvin():
         returns a Kelvin object which contains the converted value.
+
     to_newton():
         returns a Newton object which contains the converted value.
+
     to_rankine():
         returns a Rankine object which contains the converted value.
+
     to_reaumur():
         returns a Réaumur object which contains the converted value.
     """
 
     value: TEMP
+    __symbol: str = field(compare=False, repr=False, default='ºRø')
+
+    def __str__(self) -> str:
+        return f'{self.value}{self.__symbol}'
+
+    @property
+    def symbol(self):
+        return self.__symbol
 
     def precise(self) -> 'Romer[float]':
         """
