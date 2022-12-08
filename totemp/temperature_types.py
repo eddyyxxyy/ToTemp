@@ -1248,3 +1248,15 @@ class Romer(Generic[TEMP]):
         """
         newton = type(self.value)((self.value - 7.5) * 22 / 35)
         return Newton(newton)
+
+    def to_rankine(self) -> 'Rankine[TEMP]':
+        """
+        Returns a Rankine object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
+
+        Returns
+        -------
+        Rankine[TEMP]
+        """
+        rankine = type(self.value)((self.value - 7.5) * 24 / 7 + 491.67)
+        return Rankine(rankine)
