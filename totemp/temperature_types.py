@@ -1200,3 +1200,15 @@ class Romer(Generic[TEMP]):
         """
         celsius = type(self.value)((self.value - 7.5) * 40 / 21)
         return Celsius(celsius)
+
+    def to_fahrenheit(self) -> 'Fahrenheit[TEMP]':
+        """
+        Returns a Fahrenheit object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
+
+        Returns
+        -------
+        Fahrenheit[TEMP]
+        """
+        fahrenheit = type(self.value)((self.value - 7.5) * 24 / 7 + 32)
+        return Fahrenheit(fahrenheit)
