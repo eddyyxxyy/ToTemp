@@ -1176,6 +1176,18 @@ class Reaumur(Generic[TEMP]):
         rankine = type(self.value)(self.value * 9 / 4 + 491.67)
         return Rankine(rankine)
 
+    def to_romer(self) -> 'Romer[TEMP]':
+        """
+        Returns a Rømer object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
+
+        Returns
+        -------
+        Romer[TEMP]
+        """
+        romer = type(self.value)(self.value * (21 / 32) + 7.5)
+        return Romer(romer)
+
 
 @dataclass
 class Romer(Generic[TEMP]):
