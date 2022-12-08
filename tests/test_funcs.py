@@ -20,6 +20,8 @@ def func_to_test_precise_rounded_results(temps: tuple) -> list:
         errors.append(f'{temps[0]} != ({temps[1]}) -> should be equal')
     if not temps[2] == temps[3]:
         errors.append(f'{temps[2]} != ({temps[3]}) -> should be equal')
+    if not isinstance(temps[0].value, float):
+        errors.append(f'({temps[0]}) -> should be float')
     if not isinstance(temps[2].value, int):
         errors.append(f'({temps[2]}) -> should be int')
 
