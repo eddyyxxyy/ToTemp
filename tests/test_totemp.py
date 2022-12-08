@@ -1062,6 +1062,28 @@ class TestToTemp:
 
         assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
+    def test_dynamic_type_return_reaumur_to_rankine(self) -> None:
+        """Tests the dynamic typed results of the conversion Réaumur to Rankine"""
+        temps = (
+            Reaumur(randint(1, 20)).to_rankine(),
+            Reaumur(uniform(0.0, 20.0)).to_rankine(),
+        )
+        errors = func_to_test_dynamic_returns(temps)
+
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
+
+    def test_precise_rounded_reaumur_to_rankine(self) -> None:
+        """Tests the rounded and precise result of the conversion Réaumur to Rankine"""
+        temps = (
+            Reaumur(25).precise().to_rankine(),
+            Rankine(value=547.9200000000001),
+            Reaumur(25.25).rounded().to_rankine(),
+            Rankine(value=547),
+        )
+        errors = func_to_test_precise_rounded_results(temps)
+
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
+
     # Rømer to <other temp scale> tests
     def test_dynamic_type_return_romer_to_celsius(self) -> None:
         """Tests the dynamic typed results of the conversion Rømer to Celsius"""
