@@ -1188,3 +1188,15 @@ class Romer(Generic[TEMP]):
         Romer[int]
         """
         return Romer(round(self.value))
+
+    def to_celsius(self) -> 'Celsius[TEMP]':
+        """
+        Returns a Celsius object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
+
+        Returns
+        -------
+        Celsius[TEMP]
+        """
+        celsius = type(self.value)((self.value - 7.5) * 40 / 21)
+        return Celsius(celsius)
