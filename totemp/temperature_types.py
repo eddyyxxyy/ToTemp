@@ -1116,6 +1116,18 @@ class Reaumur(Generic[TEMP]):
         celsius = type(self.value)(self.value * 5 / 4)
         return Celsius(celsius)
 
+    def to_fahrenheit(self) -> 'Fahrenheit[TEMP]':
+        """
+        Returns a Fahrenheit object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
+
+        Returns
+        -------
+        Fahrenheit[TEMP]
+        """
+        fahrenheit = type(self.value)(self.value * 9 / 4 + 32)
+        return Fahrenheit(fahrenheit)
+
 
 @dataclass
 class Romer(Generic[TEMP]):
