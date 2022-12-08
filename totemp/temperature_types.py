@@ -1236,3 +1236,15 @@ class Romer(Generic[TEMP]):
         """
         kelvin = type(self.value)((self.value - 7.5) * 40 / 21 + 273.15)
         return Kelvin(kelvin)
+
+    def to_newton(self) -> 'Newton[TEMP]':
+        """
+        Returns a Newton object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
+
+        Returns
+        -------
+        Newton[TEMP]
+        """
+        newton = type(self.value)((self.value - 7.5) * 22 / 35)
+        return Newton(newton)
