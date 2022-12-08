@@ -1140,6 +1140,18 @@ class Reaumur(Generic[TEMP]):
         delisle = type(self.value)((80 - self.value) * 15 / 8)
         return Delisle(delisle)
 
+    def to_kelvin(self) -> 'Kelvin[TEMP]':
+        """
+        Returns a Kelvin object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
+
+        Returns
+        -------
+        Kelvin[TEMP]
+        """
+        kelvin = type(self.value)(self.value * 5 / 4 + 273.15)
+        return Kelvin(kelvin)
+
 
 @dataclass
 class Romer(Generic[TEMP]):
