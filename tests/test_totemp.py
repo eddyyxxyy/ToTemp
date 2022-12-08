@@ -2,10 +2,11 @@
 # -*- coding: utf-8 -*-
 from random import randint, uniform
 
-from tests.test_funcs import (
+from test_funcs import (
     func_to_test_dynamic_returns,
     func_to_test_precise_rounded_results,
 )
+
 from totemp import (
     Celsius,
     Delisle,
