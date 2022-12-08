@@ -1152,6 +1152,18 @@ class Reaumur(Generic[TEMP]):
         kelvin = type(self.value)(self.value * 5 / 4 + 273.15)
         return Kelvin(kelvin)
 
+    def to_newton(self) -> 'Newton[TEMP]':
+        """
+        Returns a Newton object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
+
+        Returns
+        -------
+        Newton[TEMP]
+        """
+        newton = type(self.value)(self.value * 33 / 80)
+        return Newton(newton)
+
 
 @dataclass
 class Romer(Generic[TEMP]):
