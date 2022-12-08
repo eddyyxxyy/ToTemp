@@ -1017,3 +1017,25 @@ class TestToTemp:
         errors = func_to_test_precise_rounded_results(temps)
 
         assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
+
+    def test_dynamic_type_return_romer_to_kelvin(self) -> None:
+        """Tests the dynamic typed results of the conversion Rømer to Kelvin"""
+        temps = (
+            Romer(randint(1, 20)).to_kelvin(),
+            Romer(uniform(0.0, 20.0)).to_kelvin(),
+        )
+        errors = func_to_test_dynamic_returns(temps)
+
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
+
+    def test_precise_rounded_romer_to_kelvin(self) -> None:
+        """Tests the rounded and precise result of the conversion Rømer to Kelvin"""
+        temps = (
+            Romer(25).precise().to_kelvin(),
+            Kelvin(value=306.4833333333333),
+            Romer(25.25).rounded().to_kelvin(),
+            Kelvin(value=306),
+        )
+        errors = func_to_test_precise_rounded_results(temps)
+
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
