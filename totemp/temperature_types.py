@@ -1217,9 +1217,22 @@ class Romer(Generic[TEMP]):
         """
         Returns a Delisle object which contains the class attribute "value"
         with the result from the conversion typed the same as the attribute.
+
         Returns
         -------
         Delisle[TEMP]
         """
         delisle = type(self.value)((60 - self.value) * 20 / 7)
         return Delisle(delisle)
+
+    def to_kelvin(self) -> 'Kelvin[TEMP]':
+        """
+        Returns a Kelvin object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
+
+        Returns
+        -------
+        Kelvin[TEMP]
+        """
+        kelvin = type(self.value)((self.value - 7.5) * 40 / 21 + 273.15)
+        return Kelvin(kelvin)
