@@ -974,6 +974,28 @@ class TestToTemp:
 
         assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
 
+    def test_dynamic_type_return_reaumur_to_fahrenheit(self) -> None:
+        """Tests the dynamic typed results of the conversion Réaumur to Fahrenheit"""
+        temps = (
+            Reaumur(randint(1, 20)).to_fahrenheit(),
+            Reaumur(uniform(0.0, 20.0)).to_fahrenheit(),
+        )
+        errors = func_to_test_dynamic_returns(temps)
+
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
+
+    def test_precise_rounded_reaumur_to_fahrenheit(self) -> None:
+        """Tests the rounded and precise result of the conversion Réaumur to Fahrenheit"""
+        temps = (
+            Reaumur(25).precise().to_fahrenheit(),
+            Fahrenheit(value=88.25),
+            Reaumur(25.25).rounded().to_fahrenheit(),
+            Fahrenheit(value=88),
+        )
+        errors = func_to_test_precise_rounded_results(temps)
+
+        assert not errors, 'errors occurred:\n{}'.format('\n'.join(errors))
+
     # Rømer to <other temp scale> tests
     def test_dynamic_type_return_romer_to_celsius(self) -> None:
         """Tests the dynamic typed results of the conversion Rømer to Celsius"""
