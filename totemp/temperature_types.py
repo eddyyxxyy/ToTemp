@@ -3,7 +3,7 @@
 from dataclasses import dataclass, field
 from typing import Generic, TypeVar
 
-TEMP = TypeVar('TEMP', int, float)
+TEMP = TypeVar('TEMP', int, float)  # TEMP must be int or float
 
 
 @dataclass
@@ -16,7 +16,7 @@ class Celsius(Generic[TEMP]):
 
     Attributes
     ----------
-    value : int | float
+    __value : int | float
         Temperature value (e.g. 36ºC).
 
     __symbol : str
@@ -52,16 +52,35 @@ class Celsius(Generic[TEMP]):
         returns a Rømer object which contains the converted value.
     """
 
-    value: TEMP
+    __value: TEMP
     __symbol: str = field(compare=False, repr=False, default='ºC')
 
     def __str__(self) -> str:
-        return f'{self.value}{self.__symbol}'
+        return f'{self.__value}{self.__symbol}'
+
+    def __repr__(self) -> str:
+        return f'Celsius({self.__value})'
+
+    @property
+    def value(self) -> 'TEMP':
+        """
+        Returns Celsius object temperature value.
+
+        Returns
+        -------
+        __value : int | float
+            self.__value
+        """
+        return self.__value
+
+    @value.setter
+    def value(self, other: TEMP) -> None:
+        self.__value = other
 
     @property
     def symbol(self) -> str:
         """
-        Returns Celsius object official symbol.
+        Returns Celsius object official symbol (read-only property).
 
         Returns
         -------
@@ -78,7 +97,7 @@ class Celsius(Generic[TEMP]):
         -------
         Celsius[float]
         """
-        return Celsius(float(self.value))
+        return Celsius(float(self.__value))
 
     def rounded(self) -> 'Celsius[int]':
         """
@@ -88,7 +107,7 @@ class Celsius(Generic[TEMP]):
         -------
         Celsius[int]
         """
-        return Celsius(round(self.value))
+        return Celsius(round(self.__value))
 
     def to_fahrenheit(self) -> 'Fahrenheit[TEMP]':
         """
@@ -99,7 +118,7 @@ class Celsius(Generic[TEMP]):
         -------
         Fahrenheit[TEMP]
         """
-        fahrenheit = type(self.value)(self.value * 9 / 5 + 32)
+        fahrenheit = type(self.__value)(self.__value * 9 / 5 + 32)
         return Fahrenheit(fahrenheit)
 
     def to_delisle(self) -> 'Delisle[TEMP]':
@@ -111,7 +130,7 @@ class Celsius(Generic[TEMP]):
         -------
         Delisle[TEMP]
         """
-        delisle = type(self.value)(self.value * 1.5000 - 100.00)
+        delisle = type(self.__value)(self.__value * 1.5000 - 100.00)
         return Delisle(delisle)
 
     def to_kelvin(self) -> 'Kelvin[TEMP]':
@@ -123,7 +142,7 @@ class Celsius(Generic[TEMP]):
         -------
         Kelvin[TEMP]
         """
-        kelvin = type(self.value)(self.value + 273.15)
+        kelvin = type(self.__value)(self.__value + 273.15)
         return Kelvin(kelvin)
 
     def to_newton(self) -> 'Newton[TEMP]':
@@ -135,7 +154,7 @@ class Celsius(Generic[TEMP]):
         -------
         Newton[TEMP]
         """
-        newton = type(self.value)(self.value * 33 / 100)
+        newton = type(self.__value)(self.__value * 33 / 100)
         return Newton(newton)
 
     def to_rankine(self) -> 'Rankine[TEMP]':
@@ -147,7 +166,7 @@ class Celsius(Generic[TEMP]):
         -------
         Rankine[TEMP]
         """
-        rankine = type(self.value)(self.value * 9 / 5 + 491.67)
+        rankine = type(self.__value)(self.__value * 9 / 5 + 491.67)
         return Rankine(rankine)
 
     def to_reaumur(self) -> 'Reaumur[TEMP]':
@@ -159,7 +178,7 @@ class Celsius(Generic[TEMP]):
         -------
         Reaumur[TEMP]
         """
-        reaumur = type(self.value)(self.value * 4 / 5)
+        reaumur = type(self.__value)(self.__value * 4 / 5)
         return Reaumur(reaumur)
 
     def to_romer(self) -> 'Romer[TEMP]':
@@ -171,7 +190,7 @@ class Celsius(Generic[TEMP]):
         -------
         Romer[TEMP]
         """
-        romer = type(self.value)(self.value * 0.52500 + 7.50)
+        romer = type(self.__value)(self.__value * 0.52500 + 7.50)
         return Romer(romer)
 
 
@@ -185,7 +204,7 @@ class Fahrenheit(Generic[TEMP]):
 
     Attributes
     ----------
-    value : int | float
+    __value : int | float
         Temperature value (e.g. 36ºF).
 
     __symbol : str
@@ -221,16 +240,35 @@ class Fahrenheit(Generic[TEMP]):
         returns a Rømer object which contains the converted value.
     """
 
-    value: TEMP
+    __value: TEMP
     __symbol: str = field(compare=False, repr=False, default='ºF')
 
     def __str__(self) -> str:
-        return f'{self.value}{self.__symbol}'
+        return f'{self.__value}{self.__symbol}'
+
+    def __repr__(self) -> str:
+        return f'Fahrenheit({self.__value})'
+
+    @property
+    def value(self) -> 'TEMP':
+        """
+        Returns Fahrenheit object temperature value.
+
+        Returns
+        -------
+        __value : int | float
+            self.__value
+        """
+        return self.__value
+
+    @value.setter
+    def value(self, other: TEMP) -> None:
+        self.__value = other
 
     @property
     def symbol(self) -> str:
         """
-        Returns Fahrenheit object official symbol.
+        Returns Fahrenheit object official symbol (read-only property).
 
         Returns
         -------
@@ -247,7 +285,7 @@ class Fahrenheit(Generic[TEMP]):
         -------
         Fahrenheit[float]
         """
-        return Fahrenheit(float(self.value))
+        return Fahrenheit(float(self.__value))
 
     def rounded(self) -> 'Fahrenheit[int]':
         """
@@ -257,7 +295,7 @@ class Fahrenheit(Generic[TEMP]):
         -------
         Fahrenheit[int]
         """
-        return Fahrenheit(round(self.value))
+        return Fahrenheit(round(self.__value))
 
     def to_celsius(self) -> 'Celsius[TEMP]':
         """
@@ -268,7 +306,7 @@ class Fahrenheit(Generic[TEMP]):
         -------
         Celsius[TEMP]
         """
-        celsius = type(self.value)((self.value - 32) * 5 / 9)
+        celsius = type(self.__value)((self.__value - 32) * 5 / 9)
         return Celsius(celsius)
 
     def to_delisle(self) -> 'Delisle[TEMP]':
@@ -280,7 +318,7 @@ class Fahrenheit(Generic[TEMP]):
         -------
         Delisle[TEMP]
         """
-        delisle = type(self.value)((212 - self.value) * 5 / 6)
+        delisle = type(self.__value)((212 - self.__value) * 5 / 6)
         return Delisle(delisle)
 
     def to_kelvin(self) -> 'Kelvin[TEMP]':
@@ -292,7 +330,7 @@ class Fahrenheit(Generic[TEMP]):
         -------
         Kelvin[TEMP]
         """
-        kelvin = type(self.value)((self.value + 459.67) * 5 / 9)
+        kelvin = type(self.__value)((self.__value + 459.67) * 5 / 9)
         return Kelvin(kelvin)
 
     def to_newton(self) -> 'Newton[TEMP]':
@@ -304,7 +342,7 @@ class Fahrenheit(Generic[TEMP]):
         -------
         Newton[TEMP]
         """
-        newton = type(self.value)((self.value - 32) * 11 / 60)
+        newton = type(self.__value)((self.__value - 32) * 11 / 60)
         return Newton(newton)
 
     def to_rankine(self) -> 'Rankine[TEMP]':
@@ -316,7 +354,7 @@ class Fahrenheit(Generic[TEMP]):
         -------
         Rankine[TEMP]
         """
-        rankine = type(self.value)(self.value + 459.67)
+        rankine = type(self.__value)(self.__value + 459.67)
         return Rankine(rankine)
 
     def to_reaumur(self) -> 'Reaumur[TEMP]':
@@ -328,7 +366,7 @@ class Fahrenheit(Generic[TEMP]):
         -------
         Reaumur[TEMP]
         """
-        reaumur = type(self.value)((self.value - 32) * 4 / 9)
+        reaumur = type(self.__value)((self.__value - 32) * 4 / 9)
         return Reaumur(reaumur)
 
     def to_romer(self) -> 'Romer[TEMP]':
@@ -340,7 +378,7 @@ class Fahrenheit(Generic[TEMP]):
         -------
         Romer[TEMP]
         """
-        romer = type(self.value)((self.value - 32) * (7 / 24) + 7.5)
+        romer = type(self.__value)((self.__value - 32) * (7 / 24) + 7.5)
         return Romer(romer)
 
 
@@ -354,7 +392,7 @@ class Delisle(Generic[TEMP]):
 
     Attributes
     ----------
-    value : int | float
+    __value : int | float
         Temperature value (e.g. 36ºDe).
 
     __symbol : str
@@ -390,16 +428,35 @@ class Delisle(Generic[TEMP]):
         returns a Rømer object which contains the converted value.
     """
 
-    value: TEMP
+    __value: TEMP
     __symbol: str = field(compare=False, repr=False, default='ºDe')
 
     def __str__(self) -> str:
-        return f'{self.value}{self.__symbol}'
+        return f'{self.__value}{self.__symbol}'
+
+    def __repr__(self) -> str:
+        return f'Delisle({self.__value})'
+
+    @property
+    def value(self) -> 'TEMP':
+        """
+        Returns Delisle object temperature value.
+
+        Returns
+        -------
+        __value : int | float
+            self.__value
+        """
+        return self.__value
+
+    @value.setter
+    def value(self, other: TEMP) -> None:
+        self.__value = other
 
     @property
     def symbol(self) -> str:
         """
-        Returns Delisle object official symbol.
+        Returns Delisle object official symbol (read-only property).
 
         Returns
         -------
@@ -416,7 +473,7 @@ class Delisle(Generic[TEMP]):
         -------
         Delisle[float]
         """
-        return Delisle(float(self.value))
+        return Delisle(float(self.__value))
 
     def rounded(self) -> 'Delisle[int]':
         """
@@ -426,7 +483,7 @@ class Delisle(Generic[TEMP]):
         -------
         Delisle[int]
         """
-        return Delisle(round(self.value))
+        return Delisle(round(self.__value))
 
     def to_celsius(self) -> 'Celsius[TEMP]':
         """
@@ -437,7 +494,7 @@ class Delisle(Generic[TEMP]):
         -------
         Celsius[TEMP]
         """
-        celsius = type(self.value)((100 - self.value * 2 / 3))
+        celsius = type(self.__value)((100 - self.__value * 2 / 3))
         return Celsius(celsius)
 
     def to_fahrenheit(self) -> 'Fahrenheit[TEMP]':
@@ -449,7 +506,7 @@ class Delisle(Generic[TEMP]):
         -------
         Fahrenheit[TEMP]
         """
-        fahrenheit = type(self.value)(212 - self.value * 6 / 5)
+        fahrenheit = type(self.__value)(212 - self.__value * 6 / 5)
         return Fahrenheit(fahrenheit)
 
     def to_kelvin(self) -> 'Kelvin[TEMP]':
@@ -461,7 +518,7 @@ class Delisle(Generic[TEMP]):
         -------
         Kelvin[TEMP]
         """
-        kelvin = type(self.value)(373.15 - (self.value * 2 / 3))
+        kelvin = type(self.__value)(373.15 - (self.__value * 2 / 3))
         return Kelvin(kelvin)
 
     def to_newton(self) -> 'Newton[TEMP]':
@@ -473,7 +530,7 @@ class Delisle(Generic[TEMP]):
         -------
         Newton[TEMP]
         """
-        newton = type(self.value)(33 - self.value * 11 / 50)
+        newton = type(self.__value)(33 - self.__value * 11 / 50)
         return Newton(newton)
 
     def to_rankine(self) -> 'Rankine[TEMP]':
@@ -485,7 +542,7 @@ class Delisle(Generic[TEMP]):
         -------
         Rankine[TEMP]
         """
-        rankine = type(self.value)(671.67 - self.value * 6 / 5)
+        rankine = type(self.__value)(671.67 - self.__value * 6 / 5)
         return Rankine(rankine)
 
     def to_reaumur(self) -> 'Reaumur[TEMP]':
@@ -497,7 +554,7 @@ class Delisle(Generic[TEMP]):
         -------
         Reaumur[TEMP]
         """
-        reaumur = type(self.value)(80 - self.value * 8 / 15)
+        reaumur = type(self.__value)(80 - self.__value * 8 / 15)
         return Reaumur(reaumur)
 
     def to_romer(self) -> 'Romer[TEMP]':
@@ -509,7 +566,7 @@ class Delisle(Generic[TEMP]):
         -------
         Romer[TEMP]
         """
-        romer = type(self.value)(60 - self.value * 7 / 20)
+        romer = type(self.__value)(60 - self.__value * 7 / 20)
         return Romer(romer)
 
 
@@ -523,7 +580,7 @@ class Kelvin(Generic[TEMP]):
 
     Attributes
     ----------
-    value : int | float
+    __value : int | float
         Temperature value (e.g. 36ºK).
 
     __symbol : str
@@ -559,16 +616,35 @@ class Kelvin(Generic[TEMP]):
         returns a Rømer object which contains the converted value.
     """
 
-    value: TEMP
+    __value: TEMP
     __symbol: str = field(compare=False, repr=False, default='ºK')
 
     def __str__(self) -> str:
-        return f'{self.value}{self.__symbol}'
+        return f'{self.__value}{self.__symbol}'
+
+    def __repr__(self) -> str:
+        return f'Kelvin({self.__value})'
+
+    @property
+    def value(self) -> 'TEMP':
+        """
+        Returns Kelvin object temperature value.
+
+        Returns
+        -------
+        __value : int | float
+            self.__value
+        """
+        return self.__value
+
+    @value.setter
+    def value(self, other: TEMP) -> None:
+        self.__value = other
 
     @property
     def symbol(self) -> str:
         """
-        Returns Kelvin object official symbol.
+        Returns Kelvin object official symbol (read-only property).
 
         Returns
         -------
@@ -585,7 +661,7 @@ class Kelvin(Generic[TEMP]):
         -------
         Kelvin[float]
         """
-        return Kelvin(float(self.value))
+        return Kelvin(float(self.__value))
 
     def rounded(self) -> 'Kelvin[int]':
         """
@@ -595,7 +671,7 @@ class Kelvin(Generic[TEMP]):
         -------
         Kelvin[int]
         """
-        return Kelvin(round(self.value))
+        return Kelvin(round(self.__value))
 
     def to_celsius(self) -> 'Celsius[TEMP]':
         """
@@ -606,7 +682,7 @@ class Kelvin(Generic[TEMP]):
         -------
         Celsius[TEMP]
         """
-        celsius = type(self.value)((self.value - 273.15))
+        celsius = type(self.__value)((self.__value - 273.15))
         return Celsius(celsius)
 
     def to_fahrenheit(self) -> 'Fahrenheit[TEMP]':
@@ -618,7 +694,7 @@ class Kelvin(Generic[TEMP]):
         -------
         Fahrenheit[TEMP]
         """
-        fahrenheit = type(self.value)((self.value * 9 / 5) - 459.67)
+        fahrenheit = type(self.__value)((self.__value * 9 / 5) - 459.67)
         return Fahrenheit(fahrenheit)
 
     def to_delisle(self) -> 'Delisle[TEMP]':
@@ -630,7 +706,7 @@ class Kelvin(Generic[TEMP]):
         -------
         Delisle[TEMP]
         """
-        delisle = type(self.value)((373.15 - self.value) * 3 / 2)
+        delisle = type(self.__value)((373.15 - self.__value) * 3 / 2)
         return Delisle(delisle)
 
     def to_newton(self) -> 'Newton[TEMP]':
@@ -642,7 +718,7 @@ class Kelvin(Generic[TEMP]):
         -------
         Newton[TEMP]
         """
-        newton = type(self.value)((self.value - 273.15) * 33 / 100)
+        newton = type(self.__value)((self.__value - 273.15) * 33 / 100)
         return Newton(newton)
 
     def to_rankine(self) -> 'Rankine[TEMP]':
@@ -654,7 +730,7 @@ class Kelvin(Generic[TEMP]):
         -------
         Rankine[TEMP]
         """
-        rankine = type(self.value)(self.value * 1.8)
+        rankine = type(self.__value)(self.__value * 1.8)
         return Rankine(rankine)
 
     def to_reaumur(self) -> 'Reaumur[TEMP]':
@@ -666,7 +742,7 @@ class Kelvin(Generic[TEMP]):
         -------
         Reaumur[TEMP]
         """
-        reaumur = type(self.value)((self.value - 273.15) * 4 / 5)
+        reaumur = type(self.__value)((self.__value - 273.15) * 4 / 5)
         return Reaumur(reaumur)
 
     def to_romer(self) -> 'Romer[TEMP]':
@@ -678,7 +754,7 @@ class Kelvin(Generic[TEMP]):
         -------
         Romer[TEMP]
         """
-        romer = type(self.value)((self.value - 273.15) * (21 / 40) + 7.5)
+        romer = type(self.__value)((self.__value - 273.15) * (21 / 40) + 7.5)
         return Romer(romer)
 
 
@@ -692,7 +768,7 @@ class Newton(Generic[TEMP]):
 
     Attributes
     ----------
-    value : int | float
+    __value : int | float
         Temperature value (e.g. 36ºN).
 
     __symbol : str
@@ -728,16 +804,35 @@ class Newton(Generic[TEMP]):
         returns a Rømer object which contains the converted value.
     """
 
-    value: TEMP
+    __value: TEMP
     __symbol: str = field(compare=False, repr=False, default='ºN')
 
     def __str__(self) -> str:
-        return f'{self.value}{self.__symbol}'
+        return f'{self.__value}{self.__symbol}'
+
+    def __repr__(self) -> str:
+        return f'Newton({self.__value})'
+
+    @property
+    def value(self) -> 'TEMP':
+        """
+        Returns Newton object temperature value.
+
+        Returns
+        -------
+        __value : int | float
+            self.__value
+        """
+        return self.__value
+
+    @value.setter
+    def value(self, other: TEMP) -> None:
+        self.__value = other
 
     @property
     def symbol(self) -> str:
         """
-        Returns Newton object official symbol.
+        Returns Newton object official symbol (read-only property).
 
         Returns
         -------
@@ -754,7 +849,7 @@ class Newton(Generic[TEMP]):
         -------
         Newton[float]
         """
-        return Newton(float(self.value))
+        return Newton(float(self.__value))
 
     def rounded(self) -> 'Newton[int]':
         """
@@ -764,7 +859,7 @@ class Newton(Generic[TEMP]):
         -------
         Newton[int]
         """
-        return Newton(round(self.value))
+        return Newton(round(self.__value))
 
     def to_celsius(self) -> 'Celsius[TEMP]':
         """
@@ -775,7 +870,7 @@ class Newton(Generic[TEMP]):
         -------
         Celsius[TEMP]
         """
-        celsius = type(self.value)((self.value / 0.33))
+        celsius = type(self.__value)((self.__value / 0.33))
         return Celsius(celsius)
 
     def to_fahrenheit(self) -> 'Fahrenheit[TEMP]':
@@ -787,7 +882,7 @@ class Newton(Generic[TEMP]):
         -------
         Fahrenheit[TEMP]
         """
-        fahrenheit = type(self.value)(self.value * 60 / 11 + 32)
+        fahrenheit = type(self.__value)(self.__value * 60 / 11 + 32)
         return Fahrenheit(fahrenheit)
 
     def to_delisle(self) -> 'Delisle[TEMP]':
@@ -799,7 +894,7 @@ class Newton(Generic[TEMP]):
         -------
         Delisle[TEMP]
         """
-        delisle = type(self.value)(self.value * 4.5455 - 100)
+        delisle = type(self.__value)(self.__value * 4.5455 - 100)
         return Delisle(delisle)
 
     def to_kelvin(self) -> 'Kelvin[TEMP]':
@@ -811,7 +906,7 @@ class Newton(Generic[TEMP]):
         -------
         Kelvin[TEMP]
         """
-        kelvin = type(self.value)(self.value / 0.33000 + 273.15)
+        kelvin = type(self.__value)(self.__value / 0.33000 + 273.15)
         return Kelvin(kelvin)
 
     def to_rankine(self) -> 'Rankine[TEMP]':
@@ -823,7 +918,7 @@ class Newton(Generic[TEMP]):
         -------
         Rankine[TEMP]
         """
-        rankine = type(self.value)(self.value * 5.4545 + 491.67)
+        rankine = type(self.__value)(self.__value * 5.4545 + 491.67)
         return Rankine(rankine)
 
     def to_reaumur(self) -> 'Reaumur[TEMP]':
@@ -835,7 +930,7 @@ class Newton(Generic[TEMP]):
         -------
         Reaumur[TEMP]
         """
-        reaumur = type(self.value)(self.value * 80 / 33)
+        reaumur = type(self.__value)(self.__value * 80 / 33)
         return Reaumur(reaumur)
 
     def to_romer(self) -> 'Romer[TEMP]':
@@ -847,7 +942,7 @@ class Newton(Generic[TEMP]):
         -------
         Romer[TEMP]
         """
-        romer = type(self.value)(self.value * 35 / 22 + 7.5)
+        romer = type(self.__value)(self.__value * 35 / 22 + 7.5)
         return Romer(romer)
 
 
@@ -861,7 +956,7 @@ class Rankine(Generic[TEMP]):
 
     Attributes
     ----------
-    value : int | float
+    __value : int | float
         Temperature value (e.g. 36ºR).
 
     __symbol : str
@@ -897,16 +992,35 @@ class Rankine(Generic[TEMP]):
         returns a Rømer object which contains the converted value.
     """
 
-    value: TEMP
+    __value: TEMP
     __symbol: str = field(compare=False, repr=False, default='ºR')
 
     def __str__(self) -> str:
-        return f'{self.value}{self.__symbol}'
+        return f'{self.__value}{self.__symbol}'
+
+    def __repr__(self) -> str:
+        return f'Rankine({self.__value})'
+
+    @property
+    def value(self) -> 'TEMP':
+        """
+        Returns Rankine object temperature value.
+
+        Returns
+        -------
+        __value : int | float
+            self.__value
+        """
+        return self.__value
+
+    @value.setter
+    def value(self, other: TEMP) -> None:
+        self.__value = other
 
     @property
     def symbol(self) -> str:
         """
-        Returns Rankine object official symbol.
+        Returns Rankine object official symbol (read-only property).
 
         Returns
         -------
@@ -923,7 +1037,7 @@ class Rankine(Generic[TEMP]):
         -------
         Rankine[float]
         """
-        return Rankine(float(self.value))
+        return Rankine(float(self.__value))
 
     def rounded(self) -> 'Rankine[int]':
         """
@@ -933,7 +1047,7 @@ class Rankine(Generic[TEMP]):
         -------
         Rankine[int]
         """
-        return Rankine(round(self.value))
+        return Rankine(round(self.__value))
 
     def to_celsius(self) -> 'Celsius[TEMP]':
         """
@@ -944,7 +1058,7 @@ class Rankine(Generic[TEMP]):
         -------
         Celsius[TEMP]
         """
-        celsius = type(self.value)((self.value - 491.67) * 5 / 9)
+        celsius = type(self.__value)((self.__value - 491.67) * 5 / 9)
         return Celsius(celsius)
 
     def to_fahrenheit(self) -> 'Fahrenheit[TEMP]':
@@ -956,7 +1070,7 @@ class Rankine(Generic[TEMP]):
         -------
         Fahrenheit[TEMP]
         """
-        fahrenheit = type(self.value)(self.value - 459.67)
+        fahrenheit = type(self.__value)(self.__value - 459.67)
         return Fahrenheit(fahrenheit)
 
     def to_delisle(self) -> 'Delisle[TEMP]':
@@ -968,7 +1082,7 @@ class Rankine(Generic[TEMP]):
         -------
         Delisle[TEMP]
         """
-        delisle = type(self.value)((671.67 - self.value) * 5 / 6)
+        delisle = type(self.__value)((671.67 - self.__value) * 5 / 6)
         return Delisle(delisle)
 
     def to_kelvin(self) -> 'Kelvin[TEMP]':
@@ -980,7 +1094,7 @@ class Rankine(Generic[TEMP]):
         -------
         Kelvin[TEMP]
         """
-        kelvin = type(self.value)(self.value * 5 / 9)
+        kelvin = type(self.__value)(self.__value * 5 / 9)
         return Kelvin(kelvin)
 
     def to_newton(self) -> 'Newton[TEMP]':
@@ -992,7 +1106,7 @@ class Rankine(Generic[TEMP]):
         -------
         Newton[TEMP]
         """
-        newton = type(self.value)((self.value - 491.67) * 11 / 60)
+        newton = type(self.__value)((self.__value - 491.67) * 11 / 60)
         return Newton(newton)
 
     def to_reaumur(self) -> 'Reaumur[TEMP]':
@@ -1004,7 +1118,7 @@ class Rankine(Generic[TEMP]):
         -------
         Reaumur[TEMP]
         """
-        reaumur = type(self.value)((self.value - 491.67) * 4 / 9)
+        reaumur = type(self.__value)((self.__value - 491.67) * 4 / 9)
         return Reaumur(reaumur)
 
     def to_romer(self) -> 'Romer[TEMP]':
@@ -1016,7 +1130,7 @@ class Rankine(Generic[TEMP]):
         -------
         Romer[TEMP]
         """
-        romer = type(self.value)((self.value - 491.67) * (7 / 24) + 7.5)
+        romer = type(self.__value)((self.__value - 491.67) * (7 / 24) + 7.5)
         return Romer(romer)
 
 
@@ -1030,7 +1144,7 @@ class Reaumur(Generic[TEMP]):
 
     Attributes
     ----------
-    value : int | float
+    __value : int | float
         Temperature value (e.g. 36ºRé).
 
     __symbol : str
@@ -1066,16 +1180,35 @@ class Reaumur(Generic[TEMP]):
         returns a Rømer object which contains the converted value.
     """
 
-    value: TEMP
+    __value: TEMP
     __symbol: str = field(compare=False, repr=False, default='ºRé')
 
     def __str__(self) -> str:
-        return f'{self.value}{self.__symbol}'
+        return f'{self.__value}{self.__symbol}'
+
+    def __repr__(self) -> str:
+        return f'Reaumur({self.__value})'
+
+    @property
+    def value(self) -> 'TEMP':
+        """
+        Returns Réaumur object temperature value.
+
+        Returns
+        -------
+        __value : int | float
+            self.__value
+        """
+        return self.__value
+
+    @value.setter
+    def value(self, other: TEMP) -> None:
+        self.__value = other
 
     @property
     def symbol(self) -> str:
         """
-        Returns Réaumur object official symbol.
+        Returns Réaumur object official symbol (read-only property).
 
         Returns
         -------
@@ -1092,7 +1225,7 @@ class Reaumur(Generic[TEMP]):
         -------
         Reaumur[float]
         """
-        return Reaumur(float(self.value))
+        return Reaumur(float(self.__value))
 
     def rounded(self) -> 'Reaumur[int]':
         """
@@ -1102,7 +1235,7 @@ class Reaumur(Generic[TEMP]):
         -------
         Reaumur[int]
         """
-        return Reaumur(round(self.value))
+        return Reaumur(round(self.__value))
 
     def to_celsius(self) -> 'Celsius[TEMP]':
         """
@@ -1113,7 +1246,7 @@ class Reaumur(Generic[TEMP]):
         -------
         Celsius[TEMP]
         """
-        celsius = type(self.value)(self.value * 5 / 4)
+        celsius = type(self.__value)(self.__value * 5 / 4)
         return Celsius(celsius)
 
     def to_fahrenheit(self) -> 'Fahrenheit[TEMP]':
@@ -1125,7 +1258,7 @@ class Reaumur(Generic[TEMP]):
         -------
         Fahrenheit[TEMP]
         """
-        fahrenheit = type(self.value)(self.value * 9 / 4 + 32)
+        fahrenheit = type(self.__value)(self.__value * 9 / 4 + 32)
         return Fahrenheit(fahrenheit)
 
     def to_delisle(self) -> 'Delisle[TEMP]':
@@ -1137,7 +1270,7 @@ class Reaumur(Generic[TEMP]):
         -------
         Delisle[TEMP]
         """
-        delisle = type(self.value)((80 - self.value) * 15 / 8)
+        delisle = type(self.__value)((80 - self.__value) * 15 / 8)
         return Delisle(delisle)
 
     def to_kelvin(self) -> 'Kelvin[TEMP]':
@@ -1149,7 +1282,7 @@ class Reaumur(Generic[TEMP]):
         -------
         Kelvin[TEMP]
         """
-        kelvin = type(self.value)(self.value * 5 / 4 + 273.15)
+        kelvin = type(self.__value)(self.__value * 5 / 4 + 273.15)
         return Kelvin(kelvin)
 
     def to_newton(self) -> 'Newton[TEMP]':
@@ -1161,7 +1294,7 @@ class Reaumur(Generic[TEMP]):
         -------
         Newton[TEMP]
         """
-        newton = type(self.value)(self.value * 33 / 80)
+        newton = type(self.__value)(self.__value * 33 / 80)
         return Newton(newton)
 
     def to_rankine(self) -> 'Rankine[TEMP]':
@@ -1173,7 +1306,7 @@ class Reaumur(Generic[TEMP]):
         -------
         Rankine[TEMP]
         """
-        rankine = type(self.value)(self.value * 9 / 4 + 491.67)
+        rankine = type(self.__value)(self.__value * 9 / 4 + 491.67)
         return Rankine(rankine)
 
     def to_romer(self) -> 'Romer[TEMP]':
@@ -1185,7 +1318,7 @@ class Reaumur(Generic[TEMP]):
         -------
         Romer[TEMP]
         """
-        romer = type(self.value)(self.value * (21 / 32) + 7.5)
+        romer = type(self.__value)(self.__value * (21 / 32) + 7.5)
         return Romer(romer)
 
 
@@ -1199,7 +1332,7 @@ class Romer(Generic[TEMP]):
 
     Attributes
     ----------
-    value : int | float
+    __value : int | float
         Temperature value (e.g. 36ºRø).
 
     __symbol : str
@@ -1235,16 +1368,35 @@ class Romer(Generic[TEMP]):
         returns a Réaumur object which contains the converted value.
     """
 
-    value: TEMP
+    __value: TEMP
     __symbol: str = field(compare=False, repr=False, default='ºRø')
 
     def __str__(self) -> str:
-        return f'{self.value}{self.__symbol}'
+        return f'{self.__value}{self.__symbol}'
+
+    def __repr__(self) -> str:
+        return f'Romer({self.__value})'
+
+    @property
+    def value(self) -> 'TEMP':
+        """
+        Returns Rømer object temperature value.
+
+        Returns
+        -------
+        __value : int | float
+            self.__value
+        """
+        return self.__value
+
+    @value.setter
+    def value(self, other: TEMP) -> None:
+        self.__value = other
 
     @property
     def symbol(self) -> str:
         """
-        Returns Rømer object official symbol.
+        Returns Rømer object official symbol (read-only property).
 
         Returns
         -------
@@ -1261,7 +1413,7 @@ class Romer(Generic[TEMP]):
         -------
         Romer[float]
         """
-        return Romer(float(self.value))
+        return Romer(float(self.__value))
 
     def rounded(self) -> 'Romer[int]':
         """
@@ -1271,7 +1423,7 @@ class Romer(Generic[TEMP]):
         -------
         Romer[int]
         """
-        return Romer(round(self.value))
+        return Romer(round(self.__value))
 
     def to_celsius(self) -> 'Celsius[TEMP]':
         """
@@ -1282,7 +1434,7 @@ class Romer(Generic[TEMP]):
         -------
         Celsius[TEMP]
         """
-        celsius = type(self.value)((self.value - 7.5) * 40 / 21)
+        celsius = type(self.__value)((self.__value - 7.5) * 40 / 21)
         return Celsius(celsius)
 
     def to_fahrenheit(self) -> 'Fahrenheit[TEMP]':
@@ -1294,7 +1446,7 @@ class Romer(Generic[TEMP]):
         -------
         Fahrenheit[TEMP]
         """
-        fahrenheit = type(self.value)((self.value - 7.5) * 24 / 7 + 32)
+        fahrenheit = type(self.__value)((self.__value - 7.5) * 24 / 7 + 32)
         return Fahrenheit(fahrenheit)
 
     def to_delisle(self) -> 'Delisle[TEMP]':
@@ -1306,7 +1458,7 @@ class Romer(Generic[TEMP]):
         -------
         Delisle[TEMP]
         """
-        delisle = type(self.value)((60 - self.value) * 20 / 7)
+        delisle = type(self.__value)((60 - self.__value) * 20 / 7)
         return Delisle(delisle)
 
     def to_kelvin(self) -> 'Kelvin[TEMP]':
@@ -1318,7 +1470,7 @@ class Romer(Generic[TEMP]):
         -------
         Kelvin[TEMP]
         """
-        kelvin = type(self.value)((self.value - 7.5) * 40 / 21 + 273.15)
+        kelvin = type(self.__value)((self.__value - 7.5) * 40 / 21 + 273.15)
         return Kelvin(kelvin)
 
     def to_newton(self) -> 'Newton[TEMP]':
@@ -1330,7 +1482,7 @@ class Romer(Generic[TEMP]):
         -------
         Newton[TEMP]
         """
-        newton = type(self.value)((self.value - 7.5) * 22 / 35)
+        newton = type(self.__value)((self.__value - 7.5) * 22 / 35)
         return Newton(newton)
 
     def to_rankine(self) -> 'Rankine[TEMP]':
@@ -1342,7 +1494,7 @@ class Romer(Generic[TEMP]):
         -------
         Rankine[TEMP]
         """
-        rankine = type(self.value)((self.value - 7.5) * 24 / 7 + 491.67)
+        rankine = type(self.__value)((self.__value - 7.5) * 24 / 7 + 491.67)
         return Rankine(rankine)
 
     def to_reaumur(self) -> 'Reaumur[TEMP]':
@@ -1354,5 +1506,5 @@ class Romer(Generic[TEMP]):
         -------
         Reaumur[TEMP]
         """
-        reaumur = type(self.value)((self.value - 7.5) * 32 / 21)
+        reaumur = type(self.__value)((self.__value - 7.5) * 32 / 21)
         return Reaumur(reaumur)
