@@ -1104,6 +1104,18 @@ class Reaumur(Generic[TEMP]):
         """
         return Reaumur(round(self.value))
 
+    def to_celsius(self) -> 'Celsius[TEMP]':
+        """
+        Returns a Celsius object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
+
+        Returns
+        -------
+        Celsius[TEMP]
+        """
+        celsius = type(self.value)(self.value * 5 / 4)
+        return Celsius(celsius)
+
 
 @dataclass
 class Romer(Generic[TEMP]):
