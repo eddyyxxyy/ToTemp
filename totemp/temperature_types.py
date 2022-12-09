@@ -130,7 +130,7 @@ class Celsius(Generic[TEMP]):
         -------
         Delisle[TEMP]
         """
-        delisle = type(self.__value)(self.__value * 1.5000 - 100.00)
+        delisle = type(self.__value)((100 - self.__value) * 3 / 2)
         return Delisle(delisle)
 
     def to_kelvin(self) -> 'Kelvin[TEMP]':
@@ -166,7 +166,7 @@ class Celsius(Generic[TEMP]):
         -------
         Rankine[TEMP]
         """
-        rankine = type(self.__value)(self.__value * 9 / 5 + 491.67)
+        rankine = type(self.__value)((self.__value + 273.15) * 9 / 5)
         return Rankine(rankine)
 
     def to_reaumur(self) -> 'Reaumur[TEMP]':
@@ -190,7 +190,7 @@ class Celsius(Generic[TEMP]):
         -------
         Romer[TEMP]
         """
-        romer = type(self.__value)(self.__value * 0.52500 + 7.50)
+        romer = type(self.__value)(self.__value * 21 / 40 + 7.5)
         return Romer(romer)
 
 
@@ -894,7 +894,7 @@ class Newton(Generic[TEMP]):
         -------
         Delisle[TEMP]
         """
-        delisle = type(self.__value)(self.__value * 4.5455 - 100)
+        delisle = type(self.__value)((33 - self.__value) * 50 / 11)
         return Delisle(delisle)
 
     def to_kelvin(self) -> 'Kelvin[TEMP]':
@@ -918,7 +918,7 @@ class Newton(Generic[TEMP]):
         -------
         Rankine[TEMP]
         """
-        rankine = type(self.__value)(self.__value * 5.4545 + 491.67)
+        rankine = type(self.__value)(self.__value * 60 / 11 + 491.67)
         return Rankine(rankine)
 
     def to_reaumur(self) -> 'Reaumur[TEMP]':
