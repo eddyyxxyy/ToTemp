@@ -36,7 +36,7 @@ class TestToTemp:
         """Tests the rounded and precise result of the conversion Celsius to Fahrenheit"""
         temps = (
             Celsius(25).precise().to_fahrenheit(),
-            Fahrenheit(77.00000),
+            Fahrenheit(77.0),
             Celsius(25.25).rounded().to_fahrenheit(),
             Fahrenheit(77),
         )
@@ -58,9 +58,9 @@ class TestToTemp:
         """Tests the rounded and precise result of the conversion Celsius to Delisle"""
         temps = (
             Celsius(25).precise().to_delisle(),
-            Delisle(-62.50000),
+            Delisle(112.5),
             Celsius(25.25).rounded().to_delisle(),
-            Delisle(-62),
+            Delisle(112),
         )
         errors = func_to_test_precise_rounded_results(temps)
 
@@ -80,7 +80,7 @@ class TestToTemp:
         """Tests the rounded and precise result of the conversion Celsius to Kelvin"""
         temps = (
             Celsius(25).precise().to_kelvin(),
-            Kelvin(298.1500),
+            Kelvin(298.15),
             Celsius(25.25).rounded().to_kelvin(),
             Kelvin(298),
         )
@@ -102,7 +102,7 @@ class TestToTemp:
         """Tests the rounded and precise result of the conversion Celsius to Newton"""
         temps = (
             Celsius(25).precise().to_newton(),
-            Newton(8.250000),
+            Newton(8.25),
             Celsius(25.25).rounded().to_newton(),
             Newton(8),
         )
@@ -124,7 +124,7 @@ class TestToTemp:
         """Tests the rounded and precise result of the conversion Celsius to Rankine"""
         temps = (
             Celsius(25).precise().to_rankine(),
-            Rankine(536.6700000000001),
+            Rankine(536.67),
             Celsius(25.25).rounded().to_rankine(),
             Rankine(536),
         )
@@ -146,7 +146,7 @@ class TestToTemp:
         """Tests the rounded and precise result of the conversion Celsius to Réaumur"""
         temps = (
             Celsius(25).precise().to_reaumur(),
-            Reaumur(20.00000),
+            Reaumur(20.0),
             Celsius(25.25).rounded().to_reaumur(),
             Reaumur(20),
         )
@@ -168,7 +168,7 @@ class TestToTemp:
         """Tests the rounded and precise result of the conversion Celsius to Rømer"""
         temps = (
             Celsius(25).precise().to_romer(),
-            Romer(20.62500),
+            Romer(20.625),
             Celsius(25.25).rounded().to_romer(),
             Romer(20),
         )
@@ -700,9 +700,9 @@ class TestToTemp:
         """Tests the rounded and precise result of the conversion Newton to Delisle"""
         temps = (
             Newton(25).precise().to_delisle(),
-            Delisle(13.637499999999989),
+            Delisle(36.36363636363637),
             Newton(25.25).rounded().to_delisle(),
-            Delisle(13),
+            Delisle(36),
         )
         errors = func_to_test_precise_rounded_results(temps)
 
@@ -722,7 +722,7 @@ class TestToTemp:
         """Tests the rounded and precise result of the conversion Newton to Rankine"""
         temps = (
             Newton(25).precise().to_rankine(),
-            Rankine(628.0325),
+            Rankine(628.0336363636363),
             Newton(25.25).rounded().to_rankine(),
             Rankine(628),
         )
