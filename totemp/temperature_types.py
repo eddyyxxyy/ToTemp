@@ -1,1350 +1,31 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from dataclasses import dataclass, field
-from typing import Generic, TypeVar
+from __future__ import annotations
+from abc import ABCMeta, abstractmethod
+from typing import Any, ClassVar, TypeVar
 
-TEMP = TypeVar('TEMP', int, float)  # TEMP must be int or float
+
+T = TypeVar("T", bound="AbstractTemperature")
 
 
-@dataclass
-class Celsius(Generic[TEMP]):
+class AbstractTemperature(metaclass=ABCMeta):
     """
-    A Dataclass that represents Celsius temperature scale
-    and provides conversions to other temperature scales.
-
-    ...
+    Abstract base class for all temperature types.
 
     Attributes
     ----------
-    __value : int | float
-        Temperature value (e.g. 36ºC).
 
-    __symbol : str
-        Official Celsius scale symbol.
+    _symbol : ClassVar[str]
+        Official scale symbol.
 
-    Methods
-    -------
-    precise()
-        returns the Celsius object with value converted to float.
-
-    rounded()
-        returns the Celsius object with value converted to int (rounded).
-
-    to_fahrenheit()
-        returns a Fahrenheit object which contains the converted value.
-
-    to_delisle()
-        returns a Delisle object which contains the converted value.
-
-    to_kelvin()
-        returns a Kelvin object which contains the converted value.
-
-    to_newton()
-        returns a Newton object which contains the converted value.
-
-    to_rankine()
-        returns a Rankine object which contains the converted value.
-
-    to_reaumur()
-        returns a Réaumur object which contains the converted value.
-
-    to_romer()
-        returns a Rømer object which contains the converted value.
-    """
-
-    __value: TEMP
-    __symbol: str = field(compare=False, repr=False, default='ºC')
-
-    def __str__(self) -> str:
-        return f'{self.__value}{self.__symbol}'
-
-    def __repr__(self) -> str:
-        return f'Celsius({self.__value})'
-
-    @property
-    def value(self) -> 'TEMP':
-        """
-        Returns Celsius object temperature value.
-
-        Returns
-        -------
-        __value : int | float
-            self.__value
-        """
-        return self.__value
-
-    @value.setter
-    def value(self, other: TEMP) -> None:
-        self.__value = other
-
-    @property
-    def symbol(self) -> str:
-        """
-        Returns Celsius object official symbol (read-only property).
-
-        Returns
-        -------
-        __symbol : str
-            'ºC'
-        """
-        return self.__symbol
-
-    def precise(self) -> 'Celsius[float]':
-        """
-        Returns a Celsius object with the same value now converted to float.
-
-        Returns
-        -------
-        Celsius[float]
-        """
-        return Celsius(float(self.__value))
-
-    def rounded(self) -> 'Celsius[int]':
-        """
-        Returns a Celsius object with the same value now converted to int (rounded).
-
-        Returns
-        -------
-        Celsius[int]
-        """
-        return Celsius(round(self.__value))
-
-    def to_fahrenheit(self) -> 'Fahrenheit[TEMP]':
-        """
-        Returns a Fahrenheit object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
-
-        Returns
-        -------
-        Fahrenheit[TEMP]
-        """
-        fahrenheit = type(self.__value)(self.__value * 9 / 5 + 32)
-        return Fahrenheit(fahrenheit)
-
-    def to_delisle(self) -> 'Delisle[TEMP]':
-        """
-        Returns a Delisle object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
-
-        Returns
-        -------
-        Delisle[TEMP]
-        """
-        delisle = type(self.__value)((100 - self.__value) * 3 / 2)
-        return Delisle(delisle)
-
-    def to_kelvin(self) -> 'Kelvin[TEMP]':
-        """
-        Returns a Kelvin object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
-
-        Returns
-        -------
-        Kelvin[TEMP]
-        """
-        kelvin = type(self.__value)(self.__value + 273.15)
-        return Kelvin(kelvin)
-
-    def to_newton(self) -> 'Newton[TEMP]':
-        """
-        Returns a Newton object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
-
-        Returns
-        -------
-        Newton[TEMP]
-        """
-        newton = type(self.__value)(self.__value * 33 / 100)
-        return Newton(newton)
-
-    def to_rankine(self) -> 'Rankine[TEMP]':
-        """
-        Returns a Rankine object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
-
-        Returns
-        -------
-        Rankine[TEMP]
-        """
-        rankine = type(self.__value)((self.__value + 273.15) * 9 / 5)
-        return Rankine(rankine)
-
-    def to_reaumur(self) -> 'Reaumur[TEMP]':
-        """
-        Returns a Réaumur object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
-
-        Returns
-        -------
-        Reaumur[TEMP]
-        """
-        reaumur = type(self.__value)(self.__value * 4 / 5)
-        return Reaumur(reaumur)
-
-    def to_romer(self) -> 'Romer[TEMP]':
-        """
-        Returns a Rømer object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
-
-        Returns
-        -------
-        Romer[TEMP]
-        """
-        romer = type(self.__value)(self.__value * 21 / 40 + 7.5)
-        return Romer(romer)
-
-
-@dataclass
-class Fahrenheit(Generic[TEMP]):
-    """
-    A Dataclass that represents Fahrenheit temperature scale
-    and provides conversions to other temperature scales.
-
-    ...
-
-    Attributes
-    ----------
-    __value : int | float
-        Temperature value (e.g. 36ºF).
-
-    __symbol : str
-        Official Fahrenheit scale symbol.
+    _value : float
+        Temperature value (e.g. `36` or `-3.14`).
 
     Methods
     -------
-    precise()
-        returns the Fahrenheit object with value converted to float.
 
     rounded()
-        returns the Fahrenheit object with value converted to int (rounded).
-
-    to_celsius()
-        returns a Celsius object which contains the converted value.
-
-    to_delisle()
-        returns a Delisle object which contains the converted value.
-
-    to_kelvin()
-        returns a Kelvin object which contains the converted value.
-
-    to_newton()
-        returns a Newton object which contains the converted value.
-
-    to_rankine()
-        returns a Rankine object which contains the converted value.
-
-    to_reaumur()
-        returns a Réaumur object which contains the converted value.
-
-    to_romer()
-        returns a Rømer object which contains the converted value.
-    """
-
-    __value: TEMP
-    __symbol: str = field(compare=False, repr=False, default='ºF')
-
-    def __str__(self) -> str:
-        return f'{self.__value}{self.__symbol}'
-
-    def __repr__(self) -> str:
-        return f'Fahrenheit({self.__value})'
-
-    @property
-    def value(self) -> 'TEMP':
-        """
-        Returns Fahrenheit object temperature value.
-
-        Returns
-        -------
-        __value : int | float
-            self.__value
-        """
-        return self.__value
-
-    @value.setter
-    def value(self, other: TEMP) -> None:
-        self.__value = other
-
-    @property
-    def symbol(self) -> str:
-        """
-        Returns Fahrenheit object official symbol (read-only property).
-
-        Returns
-        -------
-        __symbol : str
-            'ºF'
-        """
-        return self.__symbol
-
-    def precise(self) -> 'Fahrenheit[float]':
-        """
-        Returns a Fahrenheit object with the same value now converted to float.
-
-        Returns
-        -------
-        Fahrenheit[float]
-        """
-        return Fahrenheit(float(self.__value))
-
-    def rounded(self) -> 'Fahrenheit[int]':
-        """
-        Returns a Fahrenheit object with the same value now converted to int (rounded).
-
-        Returns
-        -------
-        Fahrenheit[int]
-        """
-        return Fahrenheit(round(self.__value))
-
-    def to_celsius(self) -> 'Celsius[TEMP]':
-        """
-        Returns a Celsius object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
-
-        Returns
-        -------
-        Celsius[TEMP]
-        """
-        celsius = type(self.__value)((self.__value - 32) * 5 / 9)
-        return Celsius(celsius)
-
-    def to_delisle(self) -> 'Delisle[TEMP]':
-        """
-        Returns a Delisle object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
-
-        Returns
-        -------
-        Delisle[TEMP]
-        """
-        delisle = type(self.__value)((212 - self.__value) * 5 / 6)
-        return Delisle(delisle)
-
-    def to_kelvin(self) -> 'Kelvin[TEMP]':
-        """
-        Returns a Kelvin object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
-
-        Returns
-        -------
-        Kelvin[TEMP]
-        """
-        kelvin = type(self.__value)((self.__value + 459.67) * 5 / 9)
-        return Kelvin(kelvin)
-
-    def to_newton(self) -> 'Newton[TEMP]':
-        """
-        Returns a Newton object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
-
-        Returns
-        -------
-        Newton[TEMP]
-        """
-        newton = type(self.__value)((self.__value - 32) * 11 / 60)
-        return Newton(newton)
-
-    def to_rankine(self) -> 'Rankine[TEMP]':
-        """
-        Returns a Rankine object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
-
-        Returns
-        -------
-        Rankine[TEMP]
-        """
-        rankine = type(self.__value)(self.__value + 459.67)
-        return Rankine(rankine)
-
-    def to_reaumur(self) -> 'Reaumur[TEMP]':
-        """
-        Returns a Réaumur object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
-
-        Returns
-        -------
-        Reaumur[TEMP]
-        """
-        reaumur = type(self.__value)((self.__value - 32) * 4 / 9)
-        return Reaumur(reaumur)
-
-    def to_romer(self) -> 'Romer[TEMP]':
-        """
-        Returns a Rømer object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
-
-        Returns
-        -------
-        Romer[TEMP]
-        """
-        romer = type(self.__value)((self.__value - 32) * (7 / 24) + 7.5)
-        return Romer(romer)
-
-
-@dataclass
-class Delisle(Generic[TEMP]):
-    """
-    A Dataclass that represents Delisle temperature scale
-    and provides conversions to other temperature scales.
-
-    ...
-
-    Attributes
-    ----------
-    __value : int | float
-        Temperature value (e.g. 36ºDe).
-
-    __symbol : str
-        Official Delisle scale symbol.
-
-    Methods
-    -------
-    precise()
-        returns the Delisle object with value converted to float.
-
-    rounded()
-        returns the Delisle object with value converted to int (rounded).
-
-    to_celsius()
-        returns a Celsius object which contains the converted value.
-
-    to_fahrenheit()
-        returns a Fahrenheit object which contains the converted value.
-
-    to_kelvin()
-        returns a Kelvin object which contains the converted value.
-
-    to_newton()
-        returns a Newton object which contains the converted value.
-
-    to_rankine()
-        returns a Rankine object which contains the converted value.
-
-    to_reaumur()
-        returns a Réaumur object which contains the converted value.
-
-    to_romer()
-        returns a Rømer object which contains the converted value.
-    """
-
-    __value: TEMP
-    __symbol: str = field(compare=False, repr=False, default='ºDe')
-
-    def __str__(self) -> str:
-        return f'{self.__value}{self.__symbol}'
-
-    def __repr__(self) -> str:
-        return f'Delisle({self.__value})'
-
-    @property
-    def value(self) -> 'TEMP':
-        """
-        Returns Delisle object temperature value.
-
-        Returns
-        -------
-        __value : int | float
-            self.__value
-        """
-        return self.__value
-
-    @value.setter
-    def value(self, other: TEMP) -> None:
-        self.__value = other
-
-    @property
-    def symbol(self) -> str:
-        """
-        Returns Delisle object official symbol (read-only property).
-
-        Returns
-        -------
-        __symbol : str
-            'ºDe'
-        """
-        return self.__symbol
-
-    def precise(self) -> 'Delisle[float]':
-        """
-        Returns a Delisle object with the same value now converted to float.
-
-        Returns
-        -------
-        Delisle[float]
-        """
-        return Delisle(float(self.__value))
-
-    def rounded(self) -> 'Delisle[int]':
-        """
-        Returns a Delisle object with the same value now converted to int (rounded).
-
-        Returns
-        -------
-        Delisle[int]
-        """
-        return Delisle(round(self.__value))
-
-    def to_celsius(self) -> 'Celsius[TEMP]':
-        """
-        Returns a Celsius object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
-
-        Returns
-        -------
-        Celsius[TEMP]
-        """
-        celsius = type(self.__value)((100 - self.__value * 2 / 3))
-        return Celsius(celsius)
-
-    def to_fahrenheit(self) -> 'Fahrenheit[TEMP]':
-        """
-        Returns a Fahrenheit object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
-
-        Returns
-        -------
-        Fahrenheit[TEMP]
-        """
-        fahrenheit = type(self.__value)(212 - self.__value * 6 / 5)
-        return Fahrenheit(fahrenheit)
-
-    def to_kelvin(self) -> 'Kelvin[TEMP]':
-        """
-        Returns a Kelvin object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
-
-        Returns
-        -------
-        Kelvin[TEMP]
-        """
-        kelvin = type(self.__value)(373.15 - (self.__value * 2 / 3))
-        return Kelvin(kelvin)
-
-    def to_newton(self) -> 'Newton[TEMP]':
-        """
-        Returns a Newton object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
-
-        Returns
-        -------
-        Newton[TEMP]
-        """
-        newton = type(self.__value)(33 - self.__value * 11 / 50)
-        return Newton(newton)
-
-    def to_rankine(self) -> 'Rankine[TEMP]':
-        """
-        Returns a Rankine object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
-
-        Returns
-        -------
-        Rankine[TEMP]
-        """
-        rankine = type(self.__value)(671.67 - self.__value * 6 / 5)
-        return Rankine(rankine)
-
-    def to_reaumur(self) -> 'Reaumur[TEMP]':
-        """
-        Returns a Réaumur object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
-
-        Returns
-        -------
-        Reaumur[TEMP]
-        """
-        reaumur = type(self.__value)(80 - self.__value * 8 / 15)
-        return Reaumur(reaumur)
-
-    def to_romer(self) -> 'Romer[TEMP]':
-        """
-        Returns a Rømer object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
-
-        Returns
-        -------
-        Romer[TEMP]
-        """
-        romer = type(self.__value)(60 - self.__value * 7 / 20)
-        return Romer(romer)
-
-
-@dataclass
-class Kelvin(Generic[TEMP]):
-    """
-    A Dataclass that represents Kelvin temperature scale
-    and provides conversions to other temperature scales.
-
-    ...
-
-    Attributes
-    ----------
-    __value : int | float
-        Temperature value (e.g. 36ºK).
-
-    __symbol : str
-        Official Kelvin scale symbol.
-
-    Methods
-    -------
-    precise()
-        returns the Kelvin object with value converted to float.
-
-    rounded()
-        returns the Kelvin object with value converted to int (rounded).
-
-    to_celsius()
-        returns a Celsius object which contains the converted value.
-
-    to_fahrenheit()
-        returns a Fahrenheit object which contains the converted value.
-
-    to_delisle()
-        returns a Delisle object which contains the converted value.
-
-    to_newton()
-        returns a Newton object which contains the converted value.
-
-    to_rankine()
-        returns a Rankine object which contains the converted value.
-
-    to_reaumur()
-        returns a Réaumur object which contains the converted value.
-
-    to_romer()
-        returns a Rømer object which contains the converted value.
-    """
-
-    __value: TEMP
-    __symbol: str = field(compare=False, repr=False, default='ºK')
-
-    def __str__(self) -> str:
-        return f'{self.__value}{self.__symbol}'
-
-    def __repr__(self) -> str:
-        return f'Kelvin({self.__value})'
-
-    @property
-    def value(self) -> 'TEMP':
-        """
-        Returns Kelvin object temperature value.
-
-        Returns
-        -------
-        __value : int | float
-            self.__value
-        """
-        return self.__value
-
-    @value.setter
-    def value(self, other: TEMP) -> None:
-        self.__value = other
-
-    @property
-    def symbol(self) -> str:
-        """
-        Returns Kelvin object official symbol (read-only property).
-
-        Returns
-        -------
-        __symbol : str
-            'ºK'
-        """
-        return self.__symbol
-
-    def precise(self) -> 'Kelvin[float]':
-        """
-        Returns a Kelvin object with the same value now converted to float.
-
-        Returns
-        -------
-        Kelvin[float]
-        """
-        return Kelvin(float(self.__value))
-
-    def rounded(self) -> 'Kelvin[int]':
-        """
-        Returns a Kelvin object with the same value now converted to int (rounded).
-
-        Returns
-        -------
-        Kelvin[int]
-        """
-        return Kelvin(round(self.__value))
-
-    def to_celsius(self) -> 'Celsius[TEMP]':
-        """
-        Returns a Celsius object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
-
-        Returns
-        -------
-        Celsius[TEMP]
-        """
-        celsius = type(self.__value)((self.__value - 273.15))
-        return Celsius(celsius)
-
-    def to_fahrenheit(self) -> 'Fahrenheit[TEMP]':
-        """
-        Returns a Fahrenheit object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
-
-        Returns
-        -------
-        Fahrenheit[TEMP]
-        """
-        fahrenheit = type(self.__value)((self.__value * 9 / 5) - 459.67)
-        return Fahrenheit(fahrenheit)
-
-    def to_delisle(self) -> 'Delisle[TEMP]':
-        """
-        Returns a Delisle object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
-
-        Returns
-        -------
-        Delisle[TEMP]
-        """
-        delisle = type(self.__value)((373.15 - self.__value) * 3 / 2)
-        return Delisle(delisle)
-
-    def to_newton(self) -> 'Newton[TEMP]':
-        """
-        Returns a Newton object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
-
-        Returns
-        -------
-        Newton[TEMP]
-        """
-        newton = type(self.__value)((self.__value - 273.15) * 33 / 100)
-        return Newton(newton)
-
-    def to_rankine(self) -> 'Rankine[TEMP]':
-        """
-        Returns a Rankine object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
-
-        Returns
-        -------
-        Rankine[TEMP]
-        """
-        rankine = type(self.__value)(self.__value * 1.8)
-        return Rankine(rankine)
-
-    def to_reaumur(self) -> 'Reaumur[TEMP]':
-        """
-        Returns a Réaumur object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
-
-        Returns
-        -------
-        Reaumur[TEMP]
-        """
-        reaumur = type(self.__value)((self.__value - 273.15) * 4 / 5)
-        return Reaumur(reaumur)
-
-    def to_romer(self) -> 'Romer[TEMP]':
-        """
-        Returns a Rømer object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
-
-        Returns
-        -------
-        Romer[TEMP]
-        """
-        romer = type(self.__value)((self.__value - 273.15) * (21 / 40) + 7.5)
-        return Romer(romer)
-
-
-@dataclass
-class Newton(Generic[TEMP]):
-    """
-    A Dataclass that represents Newton temperature scale
-    and provides conversions to other temperature scales.
-
-    ...
-
-    Attributes
-    ----------
-    __value : int | float
-        Temperature value (e.g. 36ºN).
-
-    __symbol : str
-        Official Newton scale symbol.
-
-    Methods
-    -------
-    precise()
-        returns the Newton object with value converted to float.
-
-    rounded()
-        returns the Newton object with value converted to int (rounded).
-
-    to_celsius()
-        returns a Celsius object which contains the converted value.
-
-    to_fahrenheit()
-        returns a Fahrenheit object which contains the converted value.
-
-    to_delisle()
-        returns a Delisle object which contains the converted value.
-
-    to_kelvin()
-        returns a Kelvin object which contains the converted value.
-
-    to_rankine()
-        returns a Rankine object which contains the converted value.
-
-    to_reaumur()
-        returns a Réaumur object which contains the converted value.
-
-    to_romer()
-        returns a Rømer object which contains the converted value.
-    """
-
-    __value: TEMP
-    __symbol: str = field(compare=False, repr=False, default='ºN')
-
-    def __str__(self) -> str:
-        return f'{self.__value}{self.__symbol}'
-
-    def __repr__(self) -> str:
-        return f'Newton({self.__value})'
-
-    @property
-    def value(self) -> 'TEMP':
-        """
-        Returns Newton object temperature value.
-
-        Returns
-        -------
-        __value : int | float
-            self.__value
-        """
-        return self.__value
-
-    @value.setter
-    def value(self, other: TEMP) -> None:
-        self.__value = other
-
-    @property
-    def symbol(self) -> str:
-        """
-        Returns Newton object official symbol (read-only property).
-
-        Returns
-        -------
-        __symbol : str
-            'ºN'
-        """
-        return self.__symbol
-
-    def precise(self) -> 'Newton[float]':
-        """
-        Returns a Newton object with the same value now converted to float.
-
-        Returns
-        -------
-        Newton[float]
-        """
-        return Newton(float(self.__value))
-
-    def rounded(self) -> 'Newton[int]':
-        """
-        Returns a Newton object with the same value now converted to int (rounded).
-
-        Returns
-        -------
-        Newton[int]
-        """
-        return Newton(round(self.__value))
-
-    def to_celsius(self) -> 'Celsius[TEMP]':
-        """
-        Returns a Celsius object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
-
-        Returns
-        -------
-        Celsius[TEMP]
-        """
-        celsius = type(self.__value)((self.__value / 0.33))
-        return Celsius(celsius)
-
-    def to_fahrenheit(self) -> 'Fahrenheit[TEMP]':
-        """
-        Returns a Fahrenheit object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
-
-        Returns
-        -------
-        Fahrenheit[TEMP]
-        """
-        fahrenheit = type(self.__value)(self.__value * 60 / 11 + 32)
-        return Fahrenheit(fahrenheit)
-
-    def to_delisle(self) -> 'Delisle[TEMP]':
-        """
-        Returns a Delisle object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
-
-        Returns
-        -------
-        Delisle[TEMP]
-        """
-        delisle = type(self.__value)((33 - self.__value) * 50 / 11)
-        return Delisle(delisle)
-
-    def to_kelvin(self) -> 'Kelvin[TEMP]':
-        """
-        Returns a Kelvin object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
-
-        Returns
-        -------
-        Kelvin[TEMP]
-        """
-        kelvin = type(self.__value)(self.__value / 0.33000 + 273.15)
-        return Kelvin(kelvin)
-
-    def to_rankine(self) -> 'Rankine[TEMP]':
-        """
-        Returns a Rankine object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
-
-        Returns
-        -------
-        Rankine[TEMP]
-        """
-        rankine = type(self.__value)(self.__value * 60 / 11 + 491.67)
-        return Rankine(rankine)
-
-    def to_reaumur(self) -> 'Reaumur[TEMP]':
-        """
-        Returns a Réaumur object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
-
-        Returns
-        -------
-        Reaumur[TEMP]
-        """
-        reaumur = type(self.__value)(self.__value * 80 / 33)
-        return Reaumur(reaumur)
-
-    def to_romer(self) -> 'Romer[TEMP]':
-        """
-        Returns a Rømer object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
-
-        Returns
-        -------
-        Romer[TEMP]
-        """
-        romer = type(self.__value)(self.__value * 35 / 22 + 7.5)
-        return Romer(romer)
-
-
-@dataclass
-class Rankine(Generic[TEMP]):
-    """
-    A Dataclass that represents Rankine temperature scale
-    and provides conversions to other temperature scales.
-
-    ...
-
-    Attributes
-    ----------
-    __value : int | float
-        Temperature value (e.g. 36ºR).
-
-    __symbol : str
-        Official Rankine scale symbol.
-
-    Methods
-    -------
-    precise()
-        returns the Rankine object with value converted to float.
-
-    rounded()
-        returns the Rankine object with value converted to int (rounded).
-
-    to_celsius()
-        returns a Celsius object which contains the converted value.
-
-    to_fahrenheit()
-        returns a Fahrenheit object which contains the converted value.
-
-    to_delisle()
-        returns a Delisle object which contains the converted value.
-
-    to_kelvin()
-        returns a Kelvin object which contains the converted value.
-
-    to_newton()
-        returns a Newton object which contains the converted value.
-
-    to_reaumur()
-        returns a Réaumur object which contains the converted value.
-
-    to_romer()
-        returns a Rømer object which contains the converted value.
-    """
-
-    __value: TEMP
-    __symbol: str = field(compare=False, repr=False, default='ºR')
-
-    def __str__(self) -> str:
-        return f'{self.__value}{self.__symbol}'
-
-    def __repr__(self) -> str:
-        return f'Rankine({self.__value})'
-
-    @property
-    def value(self) -> 'TEMP':
-        """
-        Returns Rankine object temperature value.
-
-        Returns
-        -------
-        __value : int | float
-            self.__value
-        """
-        return self.__value
-
-    @value.setter
-    def value(self, other: TEMP) -> None:
-        self.__value = other
-
-    @property
-    def symbol(self) -> str:
-        """
-        Returns Rankine object official symbol (read-only property).
-
-        Returns
-        -------
-        __symbol : str
-            'ºR'
-        """
-        return self.__symbol
-
-    def precise(self) -> 'Rankine[float]':
-        """
-        Returns a Rankine object with the same value now converted to float.
-
-        Returns
-        -------
-        Rankine[float]
-        """
-        return Rankine(float(self.__value))
-
-    def rounded(self) -> 'Rankine[int]':
-        """
-        Returns a Rankine object with the same value now converted to int (rounded).
-
-        Returns
-        -------
-        Rankine[int]
-        """
-        return Rankine(round(self.__value))
-
-    def to_celsius(self) -> 'Celsius[TEMP]':
-        """
-        Returns a Celsius object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
-
-        Returns
-        -------
-        Celsius[TEMP]
-        """
-        celsius = type(self.__value)((self.__value - 491.67) * 5 / 9)
-        return Celsius(celsius)
-
-    def to_fahrenheit(self) -> 'Fahrenheit[TEMP]':
-        """
-        Returns a Fahrenheit object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
-
-        Returns
-        -------
-        Fahrenheit[TEMP]
-        """
-        fahrenheit = type(self.__value)(self.__value - 459.67)
-        return Fahrenheit(fahrenheit)
-
-    def to_delisle(self) -> 'Delisle[TEMP]':
-        """
-        Returns a Delisle object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
-
-        Returns
-        -------
-        Delisle[TEMP]
-        """
-        delisle = type(self.__value)((671.67 - self.__value) * 5 / 6)
-        return Delisle(delisle)
-
-    def to_kelvin(self) -> 'Kelvin[TEMP]':
-        """
-        Returns a Kelvin object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
-
-        Returns
-        -------
-        Kelvin[TEMP]
-        """
-        kelvin = type(self.__value)(self.__value * 5 / 9)
-        return Kelvin(kelvin)
-
-    def to_newton(self) -> 'Newton[TEMP]':
-        """
-        Returns a Newton object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
-
-        Returns
-        -------
-        Newton[TEMP]
-        """
-        newton = type(self.__value)((self.__value - 491.67) * 11 / 60)
-        return Newton(newton)
-
-    def to_reaumur(self) -> 'Reaumur[TEMP]':
-        """
-        Returns a Réaumur object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
-
-        Returns
-        -------
-        Reaumur[TEMP]
-        """
-        reaumur = type(self.__value)((self.__value - 491.67) * 4 / 9)
-        return Reaumur(reaumur)
-
-    def to_romer(self) -> 'Romer[TEMP]':
-        """
-        Returns a Rømer object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
-
-        Returns
-        -------
-        Romer[TEMP]
-        """
-        romer = type(self.__value)((self.__value - 491.67) * (7 / 24) + 7.5)
-        return Romer(romer)
-
-
-@dataclass
-class Reaumur(Generic[TEMP]):
-    """
-    A Dataclass that represents Réaumur temperature scale
-    and provides conversions to other temperature scales.
-
-    ...
-
-    Attributes
-    ----------
-    __value : int | float
-        Temperature value (e.g. 36ºRé).
-
-    __symbol : str
-        Official Réaumur scale symbol.
-
-    Methods
-    -------
-    precise()
-        returns the Réaumur object with value converted to float.
-
-    rounded()
-        returns the Réaumur object with value converted to int (rounded).
-
-    to_celsius()
-        returns a Celsius object which contains the converted value.
-
-    to_fahrenheit()
-        returns a Fahrenheit object which contains the converted value.
-
-    to_delisle()
-        returns a Delisle object which contains the converted value.
-
-    to_kelvin()
-        returns a Kelvin object which contains the converted value.
-
-    to_newton()
-        returns a Newton object which contains the converted value.
-
-    to_rankine()
-        returns a Rankine object which contains the converted value.
-
-    to_romer()
-        returns a Rømer object which contains the converted value.
-    """
-
-    __value: TEMP
-    __symbol: str = field(compare=False, repr=False, default='ºRé')
-
-    def __str__(self) -> str:
-        return f'{self.__value}{self.__symbol}'
-
-    def __repr__(self) -> str:
-        return f'Reaumur({self.__value})'
-
-    @property
-    def value(self) -> 'TEMP':
-        """
-        Returns Réaumur object temperature value.
-
-        Returns
-        -------
-        __value : int | float
-            self.__value
-        """
-        return self.__value
-
-    @value.setter
-    def value(self, other: TEMP) -> None:
-        self.__value = other
-
-    @property
-    def symbol(self) -> str:
-        """
-        Returns Réaumur object official symbol (read-only property).
-
-        Returns
-        -------
-        __symbol : str
-            'ºRé'
-        """
-        return self.__symbol
-
-    def precise(self) -> 'Reaumur[float]':
-        """
-        Returns a Réaumur object with the same value now converted to float.
-
-        Returns
-        -------
-        Reaumur[float]
-        """
-        return Reaumur(float(self.__value))
-
-    def rounded(self) -> 'Reaumur[int]':
-        """
-        Returns a Réaumur object with the same value now converted to int (rounded).
-
-        Returns
-        -------
-        Reaumur[int]
-        """
-        return Reaumur(round(self.__value))
-
-    def to_celsius(self) -> 'Celsius[TEMP]':
-        """
-        Returns a Celsius object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
-
-        Returns
-        -------
-        Celsius[TEMP]
-        """
-        celsius = type(self.__value)(self.__value * 5 / 4)
-        return Celsius(celsius)
-
-    def to_fahrenheit(self) -> 'Fahrenheit[TEMP]':
-        """
-        Returns a Fahrenheit object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
-
-        Returns
-        -------
-        Fahrenheit[TEMP]
-        """
-        fahrenheit = type(self.__value)(self.__value * 9 / 4 + 32)
-        return Fahrenheit(fahrenheit)
-
-    def to_delisle(self) -> 'Delisle[TEMP]':
-        """
-        Returns a Delisle object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
-
-        Returns
-        -------
-        Delisle[TEMP]
-        """
-        delisle = type(self.__value)((80 - self.__value) * 15 / 8)
-        return Delisle(delisle)
-
-    def to_kelvin(self) -> 'Kelvin[TEMP]':
-        """
-        Returns a Kelvin object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
-
-        Returns
-        -------
-        Kelvin[TEMP]
-        """
-        kelvin = type(self.__value)(self.__value * 5 / 4 + 273.15)
-        return Kelvin(kelvin)
-
-    def to_newton(self) -> 'Newton[TEMP]':
-        """
-        Returns a Newton object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
-
-        Returns
-        -------
-        Newton[TEMP]
-        """
-        newton = type(self.__value)(self.__value * 33 / 80)
-        return Newton(newton)
-
-    def to_rankine(self) -> 'Rankine[TEMP]':
-        """
-        Returns a Rankine object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
-
-        Returns
-        -------
-        Rankine[TEMP]
-        """
-        rankine = type(self.__value)(self.__value * 9 / 4 + 491.67)
-        return Rankine(rankine)
-
-    def to_romer(self) -> 'Romer[TEMP]':
-        """
-        Returns a Rømer object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
-
-        Returns
-        -------
-        Romer[TEMP]
-        """
-        romer = type(self.__value)(self.__value * (21 / 32) + 7.5)
-        return Romer(romer)
-
-
-@dataclass
-class Romer(Generic[TEMP]):
-    """
-    A Dataclass that represents Rømer temperature scale
-    and provides conversions to other temperature scales.
-
-    ...
-
-    Attributes
-    ----------
-    __value : int | float
-        Temperature value (e.g. 36ºRø).
-
-    __symbol : str
-        Official Rømer scale symbol.
-
-    Methods
-    -------
-    precise()
-        returns the Rømer object with value converted to float.
-
-    rounded()
-        returns the Rømer object with value converted to int (rounded).
+        returns a new object of the same class with the value converted to int.
 
     to_celsius()
         returns a Celsius object which contains the converted value.
@@ -1366,145 +47,281 @@ class Romer(Generic[TEMP]):
 
     to_reaumur()
         returns a Réaumur object which contains the converted value.
-    """
 
-    __value: TEMP
-    __symbol: str = field(compare=False, repr=False, default='ºRø')
+    to_romer()
+        returns a Rømer object which contains the converted value.
+
+    convert_to(temp_cls)
+        returns an instance of `temp_cls` which contains the converted value.
+
+    """
+    _symbol: ClassVar[str]
+    _value: float
+
+    @classmethod
+    def __init_subclass__(cls, **kwargs: object) -> None:
+        """Ensures subclasses set the `_symbol` attribute."""
+        super().__init_subclass__(**kwargs)
+        try:
+            _ = cls._symbol
+        except AttributeError:
+            raise AttributeError(
+                "Temperature subclasses must set the `_symbol` class attribute"
+            ) from None
+
+    def __init__(self, value: float) -> None:
+        self._value = value
 
     def __str__(self) -> str:
-        return f'{self.__value}{self.__symbol}'
+        return f'{self._value} {self._symbol}'
 
     def __repr__(self) -> str:
-        return f'Romer({self.__value})'
+        return f'{self.__class__.__name__}({self._value})'
+
+    def __add__(self: T, other: Any) -> T:
+        """
+        Returns a new instance of the same class with the sum of the values.
+
+        If `other` is a temperature instance, it is first converted to the
+        calling class, then the values are added.
+        Otherwise, an attempt is made to add `other` to the value directly.
+        """
+        cls = self.__class__
+        try:
+            if isinstance(other, AbstractTemperature):
+                return cls(self._value + other.convert_to(cls).value)
+            return cls(self._value + other)
+        except TypeError:
+            return NotImplemented
 
     @property
-    def value(self) -> 'TEMP':
-        """
-        Returns Rømer object temperature value.
-
-        Returns
-        -------
-        __value : int | float
-            self.__value
-        """
-        return self.__value
+    def value(self) -> float:
+        return self._value
 
     @value.setter
-    def value(self, other: TEMP) -> None:
-        self.__value = other
+    def value(self, other: float) -> None:
+        self._value = other
 
     @property
     def symbol(self) -> str:
-        """
-        Returns Rømer object official symbol (read-only property).
+        return self._symbol
 
-        Returns
-        -------
-        __symbol : str
-            'ºRø'
-        """
-        return self.__symbol
+    def rounded(self: T) -> T:
+        return self.__class__(int(round(self._value)))
 
-    def precise(self) -> 'Romer[float]':
-        """
-        Returns a Rømer object with the same value now converted to float.
+    def to_celsius(self) -> Celsius:
+        return self.convert_to(Celsius)
 
-        Returns
-        -------
-        Romer[float]
-        """
-        return Romer(float(self.__value))
+    def to_fahrenheit(self) -> Fahrenheit:
+        return self.convert_to(Fahrenheit)
 
-    def rounded(self) -> 'Romer[int]':
-        """
-        Returns a Rømer object with the same value now converted to int (rounded).
+    def to_delisle(self) -> Delisle:
+        return self.convert_to(Delisle)
 
-        Returns
-        -------
-        Romer[int]
-        """
-        return Romer(round(self.__value))
+    def to_kelvin(self) -> Kelvin:
+        return self.convert_to(Kelvin)
 
-    def to_celsius(self) -> 'Celsius[TEMP]':
-        """
-        Returns a Celsius object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
+    def to_newton(self) -> Newton:
+        return self.convert_to(Newton)
 
-        Returns
-        -------
-        Celsius[TEMP]
-        """
-        celsius = type(self.__value)((self.__value - 7.5) * 40 / 21)
-        return Celsius(celsius)
+    def to_rankine(self) -> Rankine:
+        return self.convert_to(Rankine)
 
-    def to_fahrenheit(self) -> 'Fahrenheit[TEMP]':
-        """
-        Returns a Fahrenheit object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
+    def to_reaumur(self) -> Reaumur:
+        return self.convert_to(Reaumur)
 
-        Returns
-        -------
-        Fahrenheit[TEMP]
-        """
-        fahrenheit = type(self.__value)((self.__value - 7.5) * 24 / 7 + 32)
-        return Fahrenheit(fahrenheit)
+    def to_romer(self) -> Romer:
+        return self.convert_to(Romer)
 
-    def to_delisle(self) -> 'Delisle[TEMP]':
+    @abstractmethod
+    def convert_to(self, temp_cls: type[T]) -> T:
         """
-        Returns a Delisle object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
+        Returns an instance of `temp_cls` containing the converted value.
 
-        Returns
-        -------
-        Delisle[TEMP]
+        If no conversion to `temp_cls` is possible, `TypeError` is raised.
         """
-        delisle = type(self.__value)((60 - self.__value) * 20 / 7)
-        return Delisle(delisle)
+        ...
 
-    def to_kelvin(self) -> 'Kelvin[TEMP]':
-        """
-        Returns a Kelvin object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
 
-        Returns
-        -------
-        Kelvin[TEMP]
-        """
-        kelvin = type(self.__value)((self.__value - 7.5) * 40 / 21 + 273.15)
-        return Kelvin(kelvin)
+class Celsius(AbstractTemperature):
+    _symbol = 'ºC'
 
-    def to_newton(self) -> 'Newton[TEMP]':
-        """
-        Returns a Newton object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
+    def convert_to(self, temp_cls: type[T]) -> T:
+        if temp_cls is Celsius:
+            return temp_cls(self._value)
+        if temp_cls is Fahrenheit:
+            return temp_cls(self._value * 9 / 5 + 32)
+        if temp_cls is Delisle:
+            return temp_cls((100 - self._value) * 3 / 2)
+        if temp_cls is Kelvin:
+            return temp_cls(self._value + 273.15)
+        if temp_cls is Newton:
+            return temp_cls(self._value * 33 / 100)
+        if temp_cls is Rankine:
+            return temp_cls((self._value + 273.15) * 9 / 5)
+        if temp_cls is Reaumur:
+            return temp_cls(self._value * 4 / 5)
+        if temp_cls is Romer:
+            return temp_cls(self._value * 21 / 40 + 7.5)
+        raise TypeError
 
-        Returns
-        -------
-        Newton[TEMP]
-        """
-        newton = type(self.__value)((self.__value - 7.5) * 22 / 35)
-        return Newton(newton)
 
-    def to_rankine(self) -> 'Rankine[TEMP]':
-        """
-        Returns a Rankine object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
+class Fahrenheit(AbstractTemperature):
+    _symbol = 'ºF'
 
-        Returns
-        -------
-        Rankine[TEMP]
-        """
-        rankine = type(self.__value)((self.__value - 7.5) * 24 / 7 + 491.67)
-        return Rankine(rankine)
+    def convert_to(self, temp_cls: type[T]) -> T:
+        if temp_cls is Celsius:
+            return temp_cls((self._value - 32) * 5 / 9)
+        if temp_cls is Fahrenheit:
+            return temp_cls(self._value)
+        if temp_cls is Delisle:
+            return temp_cls((212 - self._value) * 5 / 6)
+        if temp_cls is Kelvin:
+            return temp_cls((self._value + 459.67) * 5 / 9)
+        if temp_cls is Newton:
+            return temp_cls((self._value - 32) * 11 / 60)
+        if temp_cls is Rankine:
+            return temp_cls(self._value + 459.67)
+        if temp_cls is Reaumur:
+            return temp_cls((self._value - 32) * 4 / 9)
+        if temp_cls is Romer:
+            return temp_cls((self._value - 32) * (7 / 24) + 7.5)
+        raise TypeError
 
-    def to_reaumur(self) -> 'Reaumur[TEMP]':
-        """
-        Returns a Réaumur object which contains the class attribute "value"
-        with the result from the conversion typed the same as the attribute.
 
-        Returns
-        -------
-        Reaumur[TEMP]
-        """
-        reaumur = type(self.__value)((self.__value - 7.5) * 32 / 21)
-        return Reaumur(reaumur)
+class Delisle(AbstractTemperature):
+    _symbol = 'ºDe'
+
+    def convert_to(self, temp_cls: type[T]) -> T:
+        if temp_cls is Celsius:
+            return temp_cls(100 - self._value * 2 / 3)
+        if temp_cls is Fahrenheit:
+            return temp_cls(212 - self._value * 6 / 5)
+        if temp_cls is Delisle:
+            return temp_cls(self._value)
+        if temp_cls is Kelvin:
+            return temp_cls(373.15 - self._value * 2 / 3)
+        if temp_cls is Newton:
+            return temp_cls(33 - self._value * 11 / 50)
+        if temp_cls is Rankine:
+            return temp_cls(671.67 - self._value * 6 / 5)
+        if temp_cls is Reaumur:
+            return temp_cls(80 - self._value * 8 / 15)
+        if temp_cls is Romer:
+            return temp_cls(60 - self._value * 7 / 20)
+        raise TypeError
+
+
+class Kelvin(AbstractTemperature):
+    _symbol = 'K'
+
+    def convert_to(self, temp_cls: type[T]) -> T:
+        if temp_cls is Celsius:
+            return temp_cls(self._value - 273.15)
+        if temp_cls is Fahrenheit:
+            return temp_cls(self._value * 9 / 5 - 459.67)
+        if temp_cls is Delisle:
+            return temp_cls((373.15 - self._value) * 3 / 2)
+        if temp_cls is Kelvin:
+            return temp_cls(self._value)
+        if temp_cls is Newton:
+            return temp_cls((self._value - 273.15) * 33 / 100)
+        if temp_cls is Rankine:
+            return temp_cls(self._value * 1.8)
+        if temp_cls is Reaumur:
+            return temp_cls((self._value - 273.15) * 4 / 5)
+        if temp_cls is Romer:
+            return temp_cls((self._value - 273.15) * 21 / 40 + 7.5)
+        raise TypeError
+
+
+class Newton(AbstractTemperature):
+    _symbol = 'ºN'
+
+    def convert_to(self, temp_cls: type[T]) -> T:
+        if temp_cls is Celsius:
+            return temp_cls(self._value / 0.33)
+        if temp_cls is Fahrenheit:
+            return temp_cls(self._value * 60 / 11 + 32)
+        if temp_cls is Delisle:
+            return temp_cls((33 - self._value) * 50 / 11)
+        if temp_cls is Kelvin:
+            return temp_cls(self._value / 0.33000 + 273.15)
+        if temp_cls is Newton:
+            return temp_cls(self._value)
+        if temp_cls is Rankine:
+            return temp_cls(self._value * 60 / 11 + 491.67)
+        if temp_cls is Reaumur:
+            return temp_cls(self._value * 80 / 33)
+        if temp_cls is Romer:
+            return temp_cls(self._value * 35 / 22 + 7.5)
+        raise TypeError
+
+
+class Rankine(AbstractTemperature):
+    _symbol = 'ºR'
+
+    def convert_to(self, temp_cls: type[T]) -> T:
+        if temp_cls is Celsius:
+            return temp_cls((self._value - 491.67) * 5 / 9)
+        if temp_cls is Fahrenheit:
+            return temp_cls(self._value - 459.67)
+        if temp_cls is Delisle:
+            return temp_cls((671.67 - self._value) * 5 / 6)
+        if temp_cls is Kelvin:
+            return temp_cls(self._value * 5 / 9)
+        if temp_cls is Newton:
+            return temp_cls((self._value - 491.67) * 11 / 60)
+        if temp_cls is Rankine:
+            return temp_cls(self._value)
+        if temp_cls is Reaumur:
+            return temp_cls((self._value - 491.67) * 4 / 9)
+        if temp_cls is Romer:
+            return temp_cls((self._value - 491.67) * 7 / 24 + 7.5)
+        raise TypeError
+
+
+class Reaumur(AbstractTemperature):
+    _symbol = 'ºRé'
+
+    def convert_to(self, temp_cls: type[T]) -> T:
+        if temp_cls is Celsius:
+            return temp_cls(self._value * 5 / 4)
+        if temp_cls is Fahrenheit:
+            return temp_cls(self._value * 9 / 4 + 32)
+        if temp_cls is Delisle:
+            return temp_cls((80 - self._value) * 15 / 8)
+        if temp_cls is Kelvin:
+            return temp_cls(self._value * 5 / 4 + 273.15)
+        if temp_cls is Newton:
+            return temp_cls(self._value * 33 / 80)
+        if temp_cls is Rankine:
+            return temp_cls(self._value * 9 / 4 + 491.67)
+        if temp_cls is Reaumur:
+            return temp_cls(self._value)
+        if temp_cls is Romer:
+            return temp_cls(self._value * 21 / 32 + 7.5)
+        raise TypeError
+
+
+class Romer(AbstractTemperature):
+    _symbol = 'ºRø'
+
+    def convert_to(self, temp_cls: type[T]) -> T:
+        if temp_cls is Celsius:
+            return temp_cls((self._value - 7.5) * 40 / 21)
+        if temp_cls is Fahrenheit:
+            return temp_cls((self._value - 7.5) * 24 / 7 + 32)
+        if temp_cls is Delisle:
+            return temp_cls((60 - self._value) * 20 / 7)
+        if temp_cls is Kelvin:
+            return temp_cls((self._value - 7.5) * 40 / 21 + 273.15)
+        if temp_cls is Newton:
+            return temp_cls((self._value - 7.5) * 22 / 35)
+        if temp_cls is Rankine:
+            return temp_cls((self._value - 7.5) * 24 / 7 + 491.67)
+        if temp_cls is Reaumur:
+            return temp_cls((self._value - 7.5) * 32 / 21)
+        if temp_cls is Romer:
+            return temp_cls(self._value)
+        raise TypeError
