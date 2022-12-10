@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 from __future__ import annotations
+
 from abc import ABCMeta, abstractmethod
 from typing import Any, ClassVar, TypeVar
 
-
-T = TypeVar("T", bound="AbstractTemperature")
+T = TypeVar('T', bound='AbstractTemperature')
 
 
 class AbstractTemperature(metaclass=ABCMeta):
@@ -55,6 +55,7 @@ class AbstractTemperature(metaclass=ABCMeta):
         returns an instance of `temp_cls` which contains the converted value.
 
     """
+
     _symbol: ClassVar[str]
     _value: float
 
@@ -66,7 +67,7 @@ class AbstractTemperature(metaclass=ABCMeta):
             _ = cls._symbol
         except AttributeError:
             raise AttributeError(
-                "Temperature subclasses must set the `_symbol` class attribute"
+                'Temperature subclasses must set the `_symbol` class attribute'
             ) from None
 
     def __init__(self, value: float) -> None:
