@@ -10,7 +10,7 @@ Base class
 **All classes inherit from this one.**
 
 .. autoclass:: totemp.temperature_types.AbstractTemperature
-   :special-members: __init_subclass__,__add__
+   :special-members: __add__
    :show-inheritance:
    :member-order: bysource
 
@@ -21,8 +21,8 @@ All **temperature objects inherit a convertion to itself** that
 **when called it will always return the same object** (and that's
 why those methods aren't included here in each class doc).
 
-The **symbol property is read-only** and different for each
-class.
+.. note::
+   The **symbol property is read-only** and different for each class.
 
 .. autoclass:: totemp.Celsius
    :members: symbol,value,rounded,to_delisle,to_fahrenheit,to_kelvin,to_newton,to_rankine,to_reaumur,to_romer,convert_to
