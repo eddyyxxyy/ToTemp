@@ -95,6 +95,22 @@ class AbstractTemperature(metaclass=ABCMeta):
         except TypeError:
             return NotImplemented
 
+    def __sub__(self: T, other: Any) -> T:
+        """
+        Returns a new instance of the same class with the subtraction of the values.
+
+        If `other` is a temperature instance, it is first converted to the
+        calling class, then the values are subtracted.
+        Otherwise, an attempt is made to subtract `other` to the value directly.
+        """
+        cls = self.__class__
+        try:
+            if isinstance(other, AbstractTemperature):
+                return cls(self._value - other.convert_to(cls).value)
+            return cls(self._value - other)
+        except TypeError:
+            return NotImplemented
+
     @property
     def value(self) -> float:
         """
