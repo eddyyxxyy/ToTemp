@@ -10,7 +10,7 @@ Base class
 **All classes inherit from this one.**
 
 .. autoclass:: totemp.temperature_types.AbstractTemperature
-   :special-members: __add__
+   :special-members: __add__,__sub__
    :show-inheritance:
    :member-order: bysource
 
