@@ -97,6 +97,14 @@ class AbstractTemperature(metaclass=ABCMeta):
 
     @property
     def value(self) -> float:
+        """
+        Returns temperature object value.
+
+        Returns
+        -------
+        __value : float
+            self.__value
+        """
         return self._value
 
     @value.setter
@@ -105,33 +113,112 @@ class AbstractTemperature(metaclass=ABCMeta):
 
     @property
     def symbol(self) -> str:
+        """
+        Returns official scale symbol (read-only).
+
+        Returns
+        -------
+        _symbol : str
+            self._symbol
+        """
         return self._symbol
 
     def rounded(self: T) -> T:
+        """
+        Returns the temperature object with converted value to int (rounded).
+
+        Returns
+        -------
+        __class__(int(round(self._value))) : T
+        """
         return self.__class__(int(round(self._value)))
 
     def to_celsius(self) -> Celsius:
+        """
+        Returns a Celsius object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
+
+        Returns
+        -------
+        convert_to(Celsius) : Celsius
+        """
         return self.convert_to(Celsius)
 
     def to_fahrenheit(self) -> Fahrenheit:
+        """
+        Returns a Fahrenheit object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
+
+        Returns
+        -------
+        convert_to(Fahrenheit) : Fahrenheit
+        """
         return self.convert_to(Fahrenheit)
 
     def to_delisle(self) -> Delisle:
+        """
+        Returns a Delisle object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
+
+        Returns
+        -------
+        convert_to(Delisle) : Delisle
+        """
         return self.convert_to(Delisle)
 
     def to_kelvin(self) -> Kelvin:
+        """
+        Returns a Kelvin object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
+
+        Returns
+        -------
+        convert_to(Kelvin) : Kelvin
+        """
         return self.convert_to(Kelvin)
 
     def to_newton(self) -> Newton:
+        """
+        Returns a Newton object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
+
+        Returns
+        -------
+        convert_to(Newton) : Newton
+        """
         return self.convert_to(Newton)
 
     def to_rankine(self) -> Rankine:
+        """
+        Returns a Rankine object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
+
+        Returns
+        -------
+        convert_to(Rankine) : Rankine
+        """
         return self.convert_to(Rankine)
 
     def to_reaumur(self) -> Reaumur:
+        """
+        Returns a Réaumur object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
+
+        Returns
+        -------
+        convert_to(Reaumur) : Reaumur
+        """
         return self.convert_to(Reaumur)
 
     def to_romer(self) -> Romer:
+        """
+        Returns a Rømer object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
+
+        Returns
+        -------
+        convert_to(Rømer) : Rømer
+        """
         return self.convert_to(Romer)
 
     @abstractmethod
@@ -145,6 +232,19 @@ class AbstractTemperature(metaclass=ABCMeta):
 
 
 class Celsius(AbstractTemperature):
+    """
+    Class to represent Celsius temperature scale.
+
+    Attributes
+    ----------
+
+    _symbol : str
+        Celsius official scale symbol.
+
+    _value : float
+        Temperature value (e.g. `36` or `-3.14`).
+    """
+
     _symbol = 'ºC'
 
     def convert_to(self, temp_cls: type[T]) -> T:
@@ -168,6 +268,19 @@ class Celsius(AbstractTemperature):
 
 
 class Fahrenheit(AbstractTemperature):
+    """
+    Class to represent Fahrenheit temperature scale.
+
+    Attributes
+    ----------
+
+    _symbol : str
+        Fahrenheit official scale symbol.
+
+    _value : float
+        Temperature value (e.g. `36` or `-3.14`).
+    """
+
     _symbol = 'ºF'
 
     def convert_to(self, temp_cls: type[T]) -> T:
@@ -191,6 +304,19 @@ class Fahrenheit(AbstractTemperature):
 
 
 class Delisle(AbstractTemperature):
+    """
+    Class to represent Delisle temperature scale.
+
+    Attributes
+    ----------
+
+    _symbol : str
+        Delisle official scale symbol.
+
+    _value : float
+        Temperature value (e.g. `36` or `-3.14`).
+    """
+
     _symbol = 'ºDe'
 
     def convert_to(self, temp_cls: type[T]) -> T:
@@ -214,6 +340,19 @@ class Delisle(AbstractTemperature):
 
 
 class Kelvin(AbstractTemperature):
+    """
+    Class to represent Kelvin temperature scale.
+
+    Attributes
+    ----------
+
+    _symbol : str
+        Kelvin official scale symbol.
+
+    _value : float
+        Temperature value (e.g. `36` or `-3.14`).
+    """
+
     _symbol = 'K'
 
     def convert_to(self, temp_cls: type[T]) -> T:
@@ -237,6 +376,19 @@ class Kelvin(AbstractTemperature):
 
 
 class Newton(AbstractTemperature):
+    """
+    Class to represent Newton temperature scale.
+
+    Attributes
+    ----------
+
+    _symbol : str
+        Newton official scale symbol.
+
+    _value : float
+        Temperature value (e.g. `36` or `-3.14`).
+    """
+
     _symbol = 'ºN'
 
     def convert_to(self, temp_cls: type[T]) -> T:
@@ -260,6 +412,19 @@ class Newton(AbstractTemperature):
 
 
 class Rankine(AbstractTemperature):
+    """
+    Class to represent Rankine temperature scale.
+
+    Attributes
+    ----------
+
+    _symbol : str
+        Rankine official scale symbol.
+
+    _value : float
+        Temperature value (e.g. `36` or `-3.14`).
+    """
+
     _symbol = 'ºR'
 
     def convert_to(self, temp_cls: type[T]) -> T:
@@ -283,6 +448,19 @@ class Rankine(AbstractTemperature):
 
 
 class Reaumur(AbstractTemperature):
+    """
+    Class to represent Réaumur temperature scale.
+
+    Attributes
+    ----------
+
+    _symbol : str
+        Réaumur official scale symbol.
+
+    _value : float
+        Temperature value (e.g. `36` or `-3.14`).
+    """
+
     _symbol = 'ºRé'
 
     def convert_to(self, temp_cls: type[T]) -> T:
@@ -306,6 +484,19 @@ class Reaumur(AbstractTemperature):
 
 
 class Romer(AbstractTemperature):
+    """
+    Class to represent Rømer temperature scale.
+
+    Attributes
+    ----------
+
+    _symbol : str
+        Rømer official scale symbol.
+
+    _value : float
+        Temperature value (e.g. `36` or `-3.14`).
+    """
+
     _symbol = 'ºRø'
 
     def convert_to(self, temp_cls: type[T]) -> T:
