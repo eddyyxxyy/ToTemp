@@ -111,6 +111,23 @@ class AbstractTemperature(metaclass=ABCMeta):
         except TypeError:
             return NotImplemented
 
+    def __eq__(self, other) -> bool:
+        """
+        Checks if the values in the objects are equal and then returns a boolean.
+
+        If `other` is a temperature instance, it is first converted to the
+        calling class, then the objects are evaluated. That means: if `other`
+        converted to the calling class has the same value, it returns True,
+        otherwise it returns False.
+        """
+        cls = self.__class__
+        try:
+            if isinstance(other, AbstractTemperature):
+                return self._value == other.convert_to(cls).value
+            return False
+        except TypeError:
+            return NotImplemented
+
     @property
     def value(self) -> float:
         """
