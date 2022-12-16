@@ -111,6 +111,54 @@ class AbstractTemperature(metaclass=ABCMeta):
         except TypeError:
             return NotImplemented
 
+    def __mul__(self: T, other: Any) -> T:
+        """
+        Returns a new instance of the same class with the multiplication of the values.
+
+        If `other` is a temperature instance, it is first converted to the
+        calling class, then the values are multiplicated.
+        Otherwise, an attempt is made to multiplicate `other` to the value directly.
+        """
+        cls = self.__class__
+        try:
+            if isinstance(other, AbstractTemperature):
+                return cls(self._value * other.convert_to(cls).value)
+            return cls(self._value * other)
+        except TypeError:
+            return NotImplemented
+
+    def __truediv__(self: T, other: Any) -> T:
+        """
+        Returns a new instance of the same class with the division of the values.
+
+        If `other` is a temperature instance, it is first converted to the
+        calling class, then the values are divided.
+        Otherwise, an attempt is made to divide `other` to the value directly.
+        """
+        cls = self.__class__
+        try:
+            if isinstance(other, AbstractTemperature):
+                return cls(self._value / other.convert_to(cls).value)
+            return cls(self._value / other)
+        except TypeError:
+            return NotImplemented
+
+    def __floordiv__(self: T, other: Any) -> T:
+        """
+        Returns a new instance of the same class with the floor division of the values.
+
+        If `other` is a temperature instance, it is first converted to the
+        calling class, then the values are divided and rounded.
+        Otherwise, an attempt is made to floor divide `other` to the value directly.
+        """
+        cls = self.__class__
+        try:
+            if isinstance(other, AbstractTemperature):
+                return cls(self._value // other.convert_to(cls).value)
+            return cls(self._value // other)
+        except TypeError:
+            return NotImplemented
+
     def __eq__(self, other) -> bool:
         """
         Checks if the values in the objects are equal and then returns a boolean.
