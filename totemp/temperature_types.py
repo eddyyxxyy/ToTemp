@@ -127,6 +127,22 @@ class AbstractTemperature(metaclass=ABCMeta):
         except TypeError:
             return NotImplemented
 
+    def __pow__(self: T, other: Any) -> T:
+        """
+        Returns a new instance of the same class with the exponentiation of the values.
+
+        If `other` is a temperature instance, it is first converted to the
+        calling class, then the values are multiplicated.
+        Otherwise, an attempt is made to multiplicate `other` to the value directly.
+        """
+        cls = self.__class__
+        try:
+            if isinstance(other, AbstractTemperature):
+                return cls(self._value ** other.convert_to(cls).value)
+            return cls(self._value**other)
+        except TypeError:
+            return NotImplemented
+
     def __truediv__(self: T, other: Any) -> T:
         """
         Returns a new instance of the same class with the division of the values.
@@ -156,6 +172,41 @@ class AbstractTemperature(metaclass=ABCMeta):
             if isinstance(other, AbstractTemperature):
                 return cls(self._value // other.convert_to(cls).value)
             return cls(self._value // other)
+        except TypeError:
+            return NotImplemented
+
+    def __mod__(self: T, other: Any) -> T:
+        """
+        Returns a new instance of the same class with the remainder from the division of the values.
+
+        If `other` is a temperature instance, it is first converted to the
+        calling class, then the values are divided.
+        Otherwise, an attempt is made to use modulo operation on `other` to the value directly.
+        """
+        cls = self.__class__
+        try:
+            if isinstance(other, AbstractTemperature):
+                return cls(self._value % other.convert_to(cls).value)
+            return cls(self._value % other)
+        except TypeError:
+            return NotImplemented
+
+    def __divmod__(self: T, other: Any) -> tuple[Any, Any]:
+        """
+        Returns a tuple of two new instances of the same class with the quotient and remainder.
+
+        If `other` is a temperature instance, it is first converted to the
+        calling class, then the values are divided.
+        Otherwise, an attempt is made to use divmod operation between the
+        calling class and `other` to the value directly.
+        """
+        cls = self.__class__
+        try:
+            if isinstance(other, AbstractTemperature):
+                result = divmod(self._value, other.convert_to(cls).value)
+                return cls(result[0]), cls(result[1])
+            result = divmod(self._value, other)
+            return cls(result[0]), cls(result[1])
         except TypeError:
             return NotImplemented
 
