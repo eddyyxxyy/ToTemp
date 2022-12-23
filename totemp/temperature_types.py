@@ -214,11 +214,11 @@ class AbstractTemperature(metaclass=ABCMeta):
         """
         Returns a new instance of the same class with the sum of the values.
 
-        An attempt is made to add `other` to the value directly.
+        An attempt is made to add the value to the `other`.
         """
         cls = self.__class__
         try:
-            return cls(self._value + other)
+            return cls(other + self._value)
         except TypeError:
             return NotImplemented
 
@@ -226,11 +226,11 @@ class AbstractTemperature(metaclass=ABCMeta):
         """
         Returns a new instance of the same class with the subtraction of the values.
 
-        An attempt is made to subtract `other` to the value directly.
+        An attempt is made to subtract the value to the `other`.
         """
         cls = self.__class__
         try:
-            return cls(self._value - other)
+            return cls(other - self._value)
         except TypeError:
             return NotImplemented
 
@@ -238,11 +238,11 @@ class AbstractTemperature(metaclass=ABCMeta):
         """
         Returns a new instance of the same class with the multiplication of the values.
 
-        An attempt is made to raise the value field to the power of `other`.
+        An attempt is made to multiply `other` by the value.
         """
         cls = self.__class__
         try:
-            return cls(self._value * other)
+            return cls(other * self._value)
         except TypeError:
             return NotImplemented
 
@@ -250,11 +250,11 @@ class AbstractTemperature(metaclass=ABCMeta):
         """
         Returns a new instance of the same class with the exponentiation of the values.
 
-        An attempt is made to raise the value field to the power of `other`.
+        An attempt is made to raise `other` to the power of the value.
         """
         cls = self.__class__
         try:
-            return cls(self._value**other)
+            return cls(other**self._value)
         except TypeError:
             return NotImplemented
 
@@ -262,11 +262,11 @@ class AbstractTemperature(metaclass=ABCMeta):
         """
         Returns a new instance of the same class with the division of the values.
 
-        An attempt is made to divide `other` to the value directly.
+        An attempt is made to divide the `other` by the value.
         """
         cls = self.__class__
         try:
-            return cls(self._value / other)
+            return cls(other / self._value)
         except TypeError:
             return NotImplemented
 
@@ -274,11 +274,11 @@ class AbstractTemperature(metaclass=ABCMeta):
         """
         Returns a new instance of the same class with the floor division of the values.
 
-        An attempt is made to floor divide `other` to the value directly.
+        An attempt is made to floor divide the value to `other`.
         """
         cls = self.__class__
         try:
-            return cls(self._value // other)
+            return cls(other // self._value)
         except TypeError:
             return NotImplemented
 
@@ -286,11 +286,11 @@ class AbstractTemperature(metaclass=ABCMeta):
         """
         Returns a new instance of the same class with the remainder from the division of the values.
 
-        An attempt is made to apply modulo on `other` to the value directly.
+        An attempt is made to apply modulo between `other` and value.
         """
         cls = self.__class__
         try:
-            return cls(self._value % other)
+            return cls(other % self._value)
         except TypeError:
             return NotImplemented
 
@@ -299,11 +299,11 @@ class AbstractTemperature(metaclass=ABCMeta):
         Returns a tuple of two new instances of the same class with the quotient and remainder.
 
         An attempt is made to apply divmod between the
-        calling class and `other` to the value directly.
+        calling class and the value.
         """
         cls = self.__class__
         try:
-            result = divmod(self._value, other)
+            result = divmod(other, self._value)
             return cls(result[0]), cls(result[1])
         except TypeError:
             return NotImplemented
