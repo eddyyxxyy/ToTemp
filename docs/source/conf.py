@@ -37,6 +37,7 @@ extensions = [
     'sphinx.ext.autosummary',
     'sphinx_autodoc_typehints',
     'sphinx.ext.autosectionlabel',
+    'sphinxcontrib.prettyspecialmethods',
     'numpydoc',
 ]
 

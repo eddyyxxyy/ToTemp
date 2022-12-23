@@ -4,16 +4,6 @@ ToTemp Module
 Classes to represent temperature scale objects, providing
 arithmetic and comparison operations between them.
 
-Base class
-**********
-
-**All classes inherit from this one.**
-
-.. autoclass:: totemp.temperature_types.AbstractTemperature
-   :special-members: __add__,__sub__
-   :show-inheritance:
-   :member-order: bysource
-
 Temperature Classes
 *******************
 
@@ -69,5 +59,15 @@ why those methods aren't included here in each class doc).
 .. autoclass:: totemp.Romer
    :members: symbol,value,rounded,to_celsius,to_fahrenheit,to_delisle,to_kelvin,to_newton,to_rankine,to_reaumur,convert_to
    :undoc-members:
+   :show-inheritance:
+   :member-order: bysource
+
+Base class
+**********
+
+**All classes inherit from this one.** Here are all public and special methods.
+
+.. autoclass:: totemp.temperature_types.AbstractTemperature
+   :special-members: __add__,__sub__,__mul__,__pow__,__truediv__,__floordiv__,__mod__,__divmod__,__radd__,__rsub__,__rmul__,__rpow__,__rtruediv__,__rfloordiv__,__rmod__,__rdivmod__,
    :show-inheritance:
    :member-order: bysource
