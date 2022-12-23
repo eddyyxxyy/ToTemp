@@ -210,6 +210,137 @@ class AbstractTemperature(metaclass=ABCMeta):
         except TypeError:
             return NotImplemented
 
+    def __radd__(self: T, other: Any) -> T:
+        """
+        Returns a new instance of the same class with the sum of the values.
+
+        If `other` is a temperature instance, it is first converted to the
+        calling class, then the values are added.
+        Otherwise, an attempt is made to add `other` to the value directly.
+        """
+        cls = self.__class__
+        try:
+            if isinstance(other, AbstractTemperature):
+                return cls(self._value + other.convert_to(cls).value)
+            return cls(self._value + other)
+        except TypeError:
+            return NotImplemented
+
+    def __rsub__(self: T, other: Any) -> T:
+        """
+        Returns a new instance of the same class with the subtraction of the values.
+
+        If `other` is a temperature instance, it is first converted to the
+        calling class, then the values are subtracted.
+        Otherwise, an attempt is made to subtract `other` to the value directly.
+        """
+        cls = self.__class__
+        try:
+            if isinstance(other, AbstractTemperature):
+                return cls(self._value - other.convert_to(cls).value)
+            return cls(self._value - other)
+        except TypeError:
+            return NotImplemented
+
+    def __rmul__(self: T, other: Any) -> T:
+        """
+        Returns a new instance of the same class with the multiplication of the values.
+
+        If `other` is a temperature instance, it is first converted to the
+        calling class, then the values are multiplicated.
+        Otherwise, an attempt is made to multiplicate `other` to the value directly.
+        """
+        cls = self.__class__
+        try:
+            if isinstance(other, AbstractTemperature):
+                return cls(self._value * other.convert_to(cls).value)
+            return cls(self._value * other)
+        except TypeError:
+            return NotImplemented
+
+    def __rpow__(self: T, other: Any) -> T:
+        """
+        Returns a new instance of the same class with the exponentiation of the values.
+
+        If `other` is a temperature instance, it is first converted to the
+        calling class, then the values are multiplicated.
+        Otherwise, an attempt is made to multiplicate `other` to the value directly.
+        """
+        cls = self.__class__
+        try:
+            if isinstance(other, AbstractTemperature):
+                return cls(self._value ** other.convert_to(cls).value)
+            return cls(self._value**other)
+        except TypeError:
+            return NotImplemented
+
+    def __rtruediv__(self: T, other: Any) -> T:
+        """
+        Returns a new instance of the same class with the division of the values.
+
+        If `other` is a temperature instance, it is first converted to the
+        calling class, then the values are divided.
+        Otherwise, an attempt is made to divide `other` to the value directly.
+        """
+        cls = self.__class__
+        try:
+            if isinstance(other, AbstractTemperature):
+                return cls(self._value / other.convert_to(cls).value)
+            return cls(self._value / other)
+        except TypeError:
+            return NotImplemented
+
+    def __rfloordiv__(self: T, other: Any) -> T:
+        """
+        Returns a new instance of the same class with the floor division of the values.
+
+        If `other` is a temperature instance, it is first converted to the
+        calling class, then the values are divided and rounded.
+        Otherwise, an attempt is made to floor divide `other` to the value directly.
+        """
+        cls = self.__class__
+        try:
+            if isinstance(other, AbstractTemperature):
+                return cls(self._value // other.convert_to(cls).value)
+            return cls(self._value // other)
+        except TypeError:
+            return NotImplemented
+
+    def __rmod__(self: T, other: Any) -> T:
+        """
+        Returns a new instance of the same class with the remainder from the division of the values.
+
+        If `other` is a temperature instance, it is first converted to the
+        calling class, then the values are divided.
+        Otherwise, an attempt is made to use modulo operation on `other` to the value directly.
+        """
+        cls = self.__class__
+        try:
+            if isinstance(other, AbstractTemperature):
+                return cls(self._value % other.convert_to(cls).value)
+            return cls(self._value % other)
+        except TypeError:
+            return NotImplemented
+
+    def __rdivmod__(self: T, other: Any) -> tuple[Any, Any]:
+        """
+        Returns a tuple of two new instances of the same class with the quotient and remainder.
+
+        If `other` is a temperature instance, it is first converted to the
+        calling class, then the values are divided.
+        Otherwise, an attempt is made to use divmod operation between the
+        calling class and `other` to the value directly.
+        """
+        cls = self.__class__
+        try:
+            if isinstance(other, AbstractTemperature):
+                result = divmod(self._value, other.convert_to(cls).value)
+                return cls(result[0]), cls(result[1])
+            result = divmod(self._value, other)
+            return cls(result[0]), cls(result[1])
+        except TypeError:
+            return NotImplemented
+
     def __eq__(self, other) -> bool:
         """
         Checks if the values in the objects are equal and then returns a boolean.
