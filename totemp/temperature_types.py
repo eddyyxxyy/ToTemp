@@ -323,6 +323,11 @@ class AbstractTemperature(metaclass=ABCMeta):
         cls = self.__class__
         return cls(-self._value)
 
+    def __invert__(self) -> AbstractTemperature:
+        """Return a new instance of the same class with bitwise NOT of `value`"""
+        cls = self.__class__
+        return cls(-self._value - 1)
+
     def __eq__(self, other) -> bool:
         """
         Checks if the values in the objects are equal and then returns a boolean.
