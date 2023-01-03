@@ -341,7 +341,7 @@ class AbstractTemperature(metaclass=ABCMeta):
         try:
             if isinstance(other, AbstractTemperature):
                 return self._value == other.convert_to(cls).value
-            return False
+            return self._value == other
         except TypeError:
             return NotImplemented
 
