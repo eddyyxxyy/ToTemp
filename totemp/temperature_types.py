@@ -328,6 +328,30 @@ class AbstractTemperature(metaclass=ABCMeta):
         cls = self.__class__
         return cls(-self._value - 1)
 
+    def __float__(self) -> float:
+        """
+        Returns a float of `value`.
+
+        Returns
+        -------
+        _value : float
+            float(self._value)
+
+        """
+        return float(self._value)
+
+    def __int__(self) -> int:
+        """
+        Returns an int of `value`.
+
+        Returns
+        -------
+        _value : float
+            int(self._value)
+
+        """
+        return int(self._value)
+
     def __eq__(self, other) -> bool:
         """
         Checks if the values in the objects are equal and then returns a boolean.
@@ -352,8 +376,8 @@ class AbstractTemperature(metaclass=ABCMeta):
 
         Returns
         -------
-        __value : float
-            self.__value
+        _value : float
+            self._value
         """
         return self._value
 
