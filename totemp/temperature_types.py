@@ -308,6 +308,21 @@ class AbstractTemperature(metaclass=ABCMeta):
         except TypeError:
             return NotImplemented
 
+    def __abs__(self) -> AbstractTemperature:
+        """Returns a new instance of the same class with the absolute of `value`"""
+        cls = self.__class__
+        return cls(abs(self._value))
+
+    def __pos__(self) -> AbstractTemperature:
+        """Returns a new instance of the same class with `+value`"""
+        cls = self.__class__
+        return cls(+self._value)
+
+    def __neg__(self) -> AbstractTemperature:
+        """Return a new instance of the same class with the negation of `value`"""
+        cls = self.__class__
+        return cls(-self._value)
+
     def __eq__(self, other) -> bool:
         """
         Checks if the values in the objects are equal and then returns a boolean.
