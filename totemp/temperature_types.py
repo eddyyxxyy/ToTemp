@@ -369,6 +369,95 @@ class AbstractTemperature(metaclass=ABCMeta):
         except TypeError:
             return NotImplemented
 
+    def __lt__(self, other) -> bool:
+        """
+        Checks if the calling temperature object value is lesser than `other` and then returns a boolean.
+
+        If `other` is a temperature instance, it is first converted to the
+        calling class, then the objects are evaluated. That means: if `other`
+        converted to the calling class has a greater value, it returns True,
+        otherwise it returns False.
+        """
+        cls = self.__class__
+        try:
+            if isinstance(other, AbstractTemperature):
+                return self._value < other.convert_to(cls).value
+            return self._value < other
+        except TypeError:
+            return NotImplemented
+
+    def __le__(self, other) -> bool:
+        """
+        Checks if the calling temperature object value is lesser or equal
+        than `other` and then returns a boolean.
+
+        If `other` is a temperature instance, it is first converted to the
+        calling class, then the objects are evaluated. That means: if `other`
+        converted to the calling class has a greater or equal value, it returns True,
+        otherwise it returns False.
+        """
+        cls = self.__class__
+        try:
+            if isinstance(other, AbstractTemperature):
+                return self._value <= other.convert_to(cls).value
+            return self._value <= other
+        except TypeError:
+            return NotImplemented
+
+    def __ne__(self, other) -> bool:
+        """
+        Checks if the calling temperature object value is different
+        from `other` and then returns a boolean.
+
+        If `other` is a temperature instance, it is first converted to the
+        calling class, then the objects are evaluated. That means: if `other`
+        converted to the calling class is different from `other`, it returns True,
+        otherwise it returns False.
+        """
+        cls = self.__class__
+        try:
+            if isinstance(other, AbstractTemperature):
+                return self._value != other.convert_to(cls).value
+            return self._value != other
+        except TypeError:
+            return NotImplemented
+
+    def __gt__(self, other) -> bool:
+        """
+        Checks if the calling temperature object value is greater
+        than `other` and then returns a boolean.
+
+        If `other` is a temperature instance, it is first converted to the
+        calling class, then the objects are evaluated. That means: if `other`
+        converted to the calling class is greater than `other`, it returns True,
+        otherwise it returns False.
+        """
+        cls = self.__class__
+        try:
+            if isinstance(other, AbstractTemperature):
+                return self._value > other.convert_to(cls).value
+            return self._value > other
+        except TypeError:
+            return NotImplemented
+
+    def __ge__(self, other) -> bool:
+        """
+        Checks if the calling temperature object value is greater
+        or equal to `other` and then returns a boolean.
+
+        If `other` is a temperature instance, it is first converted to the
+        calling class, then the objects are evaluated. That means: if `other`
+        converted to the calling class is greater or equal to `other`, it returns True,
+        otherwise it returns False.
+        """
+        cls = self.__class__
+        try:
+            if isinstance(other, AbstractTemperature):
+                return self._value >= other.convert_to(cls).value
+            return self._value >= other
+        except TypeError:
+            return NotImplemented
+
     @property
     def value(self) -> float:
         """
