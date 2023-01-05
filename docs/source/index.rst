@@ -18,7 +18,6 @@ Source code in Github_.
    :maxdepth: 2
    :caption: Contents:
 
-   index
    intro
    installation
    totemp
