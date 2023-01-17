@@ -79,6 +79,32 @@ class AbstractTemperature(metaclass=ABCMeta):
     def __repr__(self) -> str:
         return f'{self.__class__.__name__}({self._value})'
 
+    def __round__(self: T, ndigits=None) -> T:
+        """Returns a new instance of the same class with `value` rounded."""
+        cls = self.__class__
+        return cls(int(round(self._value, ndigits=ndigits)))
+
+    def __floor__(self: T) -> T:
+        """Returns a new instance of the same class with the floor of `value`."""
+        from math import floor
+
+        cls = self.__class__
+        return cls(floor(self._value))
+
+    def __ceil__(self: T) -> T:
+        """Returns a new instance of the same class with the ceiling of `value`."""
+        from math import ceil
+
+        cls = self.__class__
+        return cls(ceil(self._value))
+
+    def __trunc__(self: T) -> T:
+        """Returns a new instance of the same class with the truncated integer part of `value`."""
+        from math import trunc
+
+        cls = self.__class__
+        return cls(trunc(self._value))
+
     def __add__(self: T, other: Any) -> T:
         """
         Returns a new instance of the same class with the sum of the values.
