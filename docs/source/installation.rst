@@ -24,7 +24,7 @@ convertions, we often see a lack of "straight to the point"
 solutions beside of searching online for every single
 mathematical formula.
 
-In that sense, everytime `I <https://github.com/eddyyxxyy>`_ tried
+In that sense, everytime I (`Edson <https://github.com/eddyyxxyy>`_) tried
 to represent those temperatures (using packages or implementing my
 own code) to automate any calculation/operation/representation, I
 was often stuck with little to none precise and simple way of doing
@@ -117,3 +117,104 @@ data types.
 
         And now we have two type outputs, the first one is
         the type of the temp2 object and the type of its value.
+
+
+Arithmetic and comparison operations
+************************************
+
+Now we can look at the really interesting part of working
+with ToTemp temperature objects: **perform operations between
+temperature data types and its iterations with other numeric
+data types**.
+
+Let's go **straight to it**:
+
+    .. code-block:: Python
+        :linenos:
+        :emphasize-lines: 1,4,6
+
+        import totemp as tp
+
+        if __name__ == '__main__':
+            temp0, temp1 = tp.Celsius(0), tp.Fahrenheit(32)
+
+            # Celsius(0) > Fahrenheit(32)
+            if temp0 > temp1:
+                print(f'`temp0` -> {temp0} is greater than `temp1` -> {temp1}')
+            elif temp0 < temp1:
+                print(f'`temp0`->{temp0} is not greater than `temp1`->{temp1}')
+            else:
+                print('What...is...happening...?')
+
+
+**Outputs**:
+
+    From line 12::
+
+        >>> What...is...happening...?
+
+As you are probably thinking:
+
+    - *this doesn't make sense*... **or it does**?
+
+When doing comparisons between temperature data types what are
+we trying to achieve? To check if the objects "are the same" or to
+check if the values coincide?
+
+For example, *comparing int(1) and float(1)* would **return True**,
+and that's exactly what's happening in our temperature comparision.
+
+The *__gt__* special method (and most of the other comparision and arithmetic
+special methods) checks if the object being compared to the calling class is an
+Temperature Type, if so, it attempts to convert the other object to the calling
+class and then return the result of the evaluation (to be printed, in our case).
+
+Another example:
+
+    .. code-block:: Python
+        :linenos:
+        :emphasize-lines: 6,7,9,11,13
+
+        import totemp as tp
+
+        if __name__ == '__main__':
+            temp0, temp1 = tp.Celsius(0), tp.Fahrenheit(32)
+
+            print(f'temp0: {repr(temp0)}')
+            print(f'temp1: {repr(temp1.to_celsius())}')
+
+            print(temp0 > temp1.to_celsius())
+
+            print(temp0 < temp1.to_celsius())
+
+            print(temp0 == temp1.to_celsius())
+
+.. note::
+    Using *repr()* just for better visualization
+
+**Outputs**:
+
+    From line 6 and 7::
+
+        >>> temp0: Celsius(0)
+        >>> temp1: Celsius(0.0)
+
+        The comparision/arithmetic implementation attempts to convert the value
+        of other and then evaluate them.
+
+        That meaning:
+        `temp0` > `temp1.` is the same as `temp0` > `temp1.to_celsius()`
+
+        Because the calling class `temp0` is an Celsius instance.
+
+    From line 8::
+
+        >>> False
+
+    From line 10::
+
+        >>> False
+
+    From line 12::
+
+        >>> True
