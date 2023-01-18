@@ -79,7 +79,7 @@ class AbstractTemperature(metaclass=ABCMeta):
 
         Returns
         -------
-        __str__(self) : str
+        self.__str__() : str
             f'{self._value} {self._symbol}'
         """
         return f'{self._value} {self._symbol}'
@@ -90,7 +90,7 @@ class AbstractTemperature(metaclass=ABCMeta):
 
         Returns
         -------
-        __repr__(self) : str
+        self.__repr__() : str
             f'{self.__class__.__name__}({self._value})'
         """
         return f'{self.__class__.__name__}({self._value})'
