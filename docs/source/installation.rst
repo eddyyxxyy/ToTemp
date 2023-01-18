@@ -19,6 +19,11 @@ Or, in poetry environments:
 Basic Usage and Representation
 ******************************
 
+.. note::
+    The `Base Class </ToTemp/docs/build/html/totemp.html#totemp.base-class>`_ is the center of
+    attentions here, for all the detailed information go check every single method, property and
+    other implementations there.
+
 When working with temperature scales representations and
 convertions, we often see a lack of "straight to the point"
 solutions beside of searching online for every single
@@ -131,7 +136,7 @@ Let's go **straight to it**:
 
     .. code-block:: Python
         :linenos:
-        :emphasize-lines: 1,4,6
+        :emphasize-lines: 1,4,6,12
 
         import totemp as tp
 
@@ -140,7 +145,7 @@ Let's go **straight to it**:
 
             # Celsius(0) > Fahrenheit(32)
             if temp0 > temp1:
-                print(f'`temp0` -> {temp0} is greater than `temp1` -> {temp1}')
+                print(f'`temp0`->{temp0} is greater than `temp1`->{temp1}')
             elif temp0 < temp1:
                 print(f'`temp0`->{temp0} is not greater than `temp1`->{temp1}')
             else:
@@ -159,21 +164,22 @@ As you are probably thinking:
 
 When doing comparisons between temperature data types what are
 we trying to achieve? To check if the objects "are the same" or to
-check if the values coincide?
+check if the values equivalent? Or one is greater/lesser than another?
 
-For example, *comparing int(1) and float(1)* would **return True**,
+For example, *comparing int(1) == float(1)* would **return True**,
 and that's exactly what's happening in our temperature comparision.
 
 The *__gt__* special method (and most of the other comparision and arithmetic
 special methods) checks if the object being compared to the calling class is an
-Temperature Type, if so, it attempts to convert the other object to the calling
-class and then return the result of the evaluation (to be printed, in our case).
+Temperature Type or a float/integer, if `other` is a Temperature, it attempts to
+convert the other object to the calling class and then return the result of the
+evaluation (to be printed, in our case).
 
-Another example:
+Another example, with the same objects:
 
     .. code-block:: Python
         :linenos:
-        :emphasize-lines: 6,7,9,11,13
+        :emphasize-lines: 6,7,9,11,13,15,17,19
 
         import totemp as tp
 
@@ -183,18 +189,24 @@ Another example:
             print(f'temp0: {repr(temp0)}')
             print(f'temp1: {repr(temp1.to_celsius())}')
 
-            print(temp0 > temp1.to_celsius())
+            print(temp0 > temp1)
 
-            print(temp0 < temp1.to_celsius())
+            print(temp0 < temp1)
 
-            print(temp0 == temp1.to_celsius())
+            print(temp0 == temp1)
+
+            print(temp0 != temp1)
+
+            print(temp0 >= temp1)
+
+            print(temp0 <= temp1)
 
 .. note::
     Using *repr()* just for better visualization
 
 **Outputs**:
 
-    From line 6 and 7::
+    From lines 6 and 7::
 
         >>> temp0: Celsius(0)
         >>> temp1: Celsius(0.0)
@@ -205,16 +217,84 @@ Another example:
         That meaning:
         `temp0` > `temp1.` is the same as `temp0` > `temp1.to_celsius()`
 
-        Because the calling class `temp0` is an Celsius instance.
+        The values being compared here are the equivalent values already converted!
+        All that because of the calling class, `temp0` is an Celsius instance, so it
+        will trigger a convertion of `other` to be compared with after.
 
-    From line 8::
-
-        >>> False
-
-    From line 10::
+    From lines 9 and 11::
 
         >>> False
+        >>> False
 
-    From line 12::
+        The value of `temp0` isn't greater or lesser than `other` value, it is equal.
+
+    From lines 13 and 15::
 
         >>> True
+        >>> False
+
+        After the convertion of `temp1` (Celsius(0.0)) we could see that `temp1`
+        has the same value, or better saying, has equivalent value to `temp0`.
+
+    From lines 17 and 19::
+
+        >>> True
+        >>> True
+
+        And, as we saw in the previous outputs (from lines 13 and 15), comparisions
+        that declare ">=" or "<=" would return True in that case, even though they
+        aren't greater or lesser than each other, they are indeed equivalents.
+
+
+After understanding how comparisions are done, we can now see
+how the arithmetic operations work.
+
+**Look at this**:
+
+    .. code-block:: Python
+        :linenos:
+        :emphasize-lines: 1,7,13,14
+
+        from totemp import Newton, Rankine
+
+        if __name__ == '__main__':
+            temp0 = Newton(33)
+            temp1 = Rankine(671.67)
+
+            temp2 = temp0 + temp1
+
+            print('`temp2`:', temp2)
+            print('`temp2`:', repr(temp2))
+            print('`temp2`:', temp2.value, temp2.symbol)
+
+            print((temp0 + temp1).rounded())
+            print(repr((temp0 + temp1).rounded()))
+
+**Outputs**:
+
+    From lines 9, 10 and 11::
+
+        >>> `temp2`: 65.99999999999999 ºN
+        >>> `temp2`: Newton(65.99999999999999)
+        >>> `temp2`: 65.99999999999999 ºN
+
+        Just as the comparisions, most of the arithmetic operations
+        that can be performed by the objects attempts to convert `other`
+        to the same type as the calling class (in this case, to Newton).
+
+    From line 13 and 14::
+
+        >>> 66 ºN
+        >>> Newton(66)
+
+        And, if needed, we can work with aproximate results too,
+        we could aproximate just the values of `temp0` or `temp1`,
+        none of them or even both before the operation actually
+        happen.
+
+        The thing is that every object can work as an aproximate or
+        precise value of itself to perform more "embracing" operations,
+        that the limits are mostly the way the developer/user is using
+        it.
+
+So, with that said, we can already assume that the

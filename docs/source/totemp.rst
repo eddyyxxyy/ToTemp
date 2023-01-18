@@ -65,9 +65,9 @@ why those methods aren't included here in each class doc).
 Base class
 **********
 
-**All classes inherit from this one.** Here are all public and special methods.
+**All classes inherit from this one.** Here are all of the special and common methods docs.
 
 .. autoclass:: totemp.temperature_types.AbstractTemperature
-   :special-members: __add__,__sub__,__mul__,__pow__,__truediv__,__floordiv__,__mod__,__divmod__,__radd__,__rsub__,__rmul__,__rpow__,__rtruediv__,__rfloordiv__,__rmod__,__rdivmod__,__abs__,__pos__,__neg__,__invert__,__float__,__int__,__eq__,__lt__,__le__,__ne__,__gt__,__ge__
+   :special-members: __add__,__sub__,__mul__,__pow__,__truediv__,__floordiv__,__mod__,__pos__,__neg__,__invert__,__eq__,__lt__,__le__,__ne__,__gt__,__ge__,__divmod__,__radd__,__rsub__,__rmul__,__rpow__,__rtruediv__,__rfloordiv__,__rmod__,__rdivmod__,__abs__,__float__,__int__,__round__,__floor__,__ceil__,__trunc__,__str__,__repr__
    :show-inheritance:
    :member-order: bysource

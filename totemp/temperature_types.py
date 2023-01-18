@@ -74,36 +74,26 @@ class AbstractTemperature(metaclass=ABCMeta):
         self._value = value
 
     def __str__(self) -> str:
+        """
+        Returns the “informal” or nicely printable string representation of self.
+
+        Returns
+        -------
+        __str__(self) : str
+            f'{self._value} {self._symbol}'
+        """
         return f'{self._value} {self._symbol}'
 
     def __repr__(self) -> str:
+        """
+        Returns the “official” string representation of self.
+
+        Returns
+        -------
+        __repr__(self) : str
+            f'{self.__class__.__name__}({self._value})'
+        """
         return f'{self.__class__.__name__}({self._value})'
-
-    def __round__(self: T, ndigits=None) -> T:
-        """Returns a new instance of the same class with `value` rounded."""
-        cls = self.__class__
-        return cls(int(round(self._value, ndigits=ndigits)))
-
-    def __floor__(self: T) -> T:
-        """Returns a new instance of the same class with the floor of `value`."""
-        from math import floor
-
-        cls = self.__class__
-        return cls(floor(self._value))
-
-    def __ceil__(self: T) -> T:
-        """Returns a new instance of the same class with the ceiling of `value`."""
-        from math import ceil
-
-        cls = self.__class__
-        return cls(ceil(self._value))
-
-    def __trunc__(self: T) -> T:
-        """Returns a new instance of the same class with the truncated integer part of `value`."""
-        from math import trunc
-
-        cls = self.__class__
-        return cls(trunc(self._value))
 
     def __add__(self: T, other: Any) -> T:
         """
@@ -112,6 +102,15 @@ class AbstractTemperature(metaclass=ABCMeta):
         If `other` is a temperature instance, it is first converted to the
         calling class, then the values are added.
         Otherwise, an attempt is made to add `other` to the value directly.
+
+        Notes
+        -----
+        If `other` is not a temperature instance, atempts to return: cls(self._value + other)
+
+        Returns
+        -------
+        self.__add__(other) : T
+            cls(self._value + other.convert_to(cls).value)
         """
         cls = self.__class__
         try:
@@ -128,6 +127,15 @@ class AbstractTemperature(metaclass=ABCMeta):
         If `other` is a temperature instance, it is first converted to the
         calling class, then the values are subtracted.
         Otherwise, an attempt is made to subtract `other` to the value directly.
+
+        Notes
+        -----
+        If `other` is not a temperature instance, atempts to return: cls(self._value - other)
+
+        Returns
+        -------
+        self.__sub__(other) : T
+            cls(self._value - other.convert_to(cls).value)
         """
         cls = self.__class__
         try:
@@ -144,6 +152,15 @@ class AbstractTemperature(metaclass=ABCMeta):
         If `other` is a temperature instance, it is first converted to the
         calling class, then the values are multiplicated.
         Otherwise, an attempt is made to multiplicate `other` to the value directly.
+
+        Notes
+        -----
+        If `other` is not a temperature instance, atempts to return: cls(self._value * other)
+
+        Returns
+        -------
+        self.__mul__(other) : T
+            cls(self._value * other.convert_to(cls).value)
         """
         cls = self.__class__
         try:
@@ -160,6 +177,15 @@ class AbstractTemperature(metaclass=ABCMeta):
         If `other` is a temperature instance, it is first converted to the
         calling class, then the value is raised to the power of `other`.
         Otherwise, an attempt is made to raise the value field to the power of `other`.
+
+        Notes
+        -----
+        If `other` is not a temperature instance, atempts to return: cls(self._value ** other)
+
+        Returns
+        -------
+        self.__pow__(other) : T
+            cls(self._value ** other.convert_to(cls).value)
         """
         cls = self.__class__
         try:
@@ -176,6 +202,15 @@ class AbstractTemperature(metaclass=ABCMeta):
         If `other` is a temperature instance, it is first converted to the
         calling class, then the values are divided.
         Otherwise, an attempt is made to divide `other` to the value directly.
+
+        Notes
+        -----
+        If `other` is not a temperature instance, atempts to return: cls(self._value / other)
+
+        Returns
+        -------
+        self.__truediv__(other) : T
+            cls(self._value / other.convert_to(cls).value)
         """
         cls = self.__class__
         try:
@@ -192,6 +227,15 @@ class AbstractTemperature(metaclass=ABCMeta):
         If `other` is a temperature instance, it is first converted to the
         calling class, then the values are divided and rounded.
         Otherwise, an attempt is made to floor divide `other` to the value directly.
+
+        Notes
+        -----
+        If `other` is not a temperature instance, atempts to return: cls(self._value // other)
+
+        Returns
+        -------
+        self.__floordiv__(other) : T
+            cls(self._value // other.convert_to(cls).value)
         """
         cls = self.__class__
         try:
@@ -208,6 +252,15 @@ class AbstractTemperature(metaclass=ABCMeta):
         If `other` is a temperature instance, it is first converted to the
         calling class, then the values are divided.
         Otherwise, an attempt is made to use modulo operation on `other` to the value directly.
+
+        Notes
+        -----
+        If `other` is not a temperature instance, atempts to return: cls(self._value % other)
+
+        Returns
+        -------
+        self.__mod__(other) : T
+            cls(self._value % other.convert_to(cls).value)
         """
         cls = self.__class__
         try:
@@ -217,167 +270,6 @@ class AbstractTemperature(metaclass=ABCMeta):
         except TypeError:
             return NotImplemented
 
-    def __divmod__(self: T, other: Any) -> tuple[Any, Any]:
-        """
-        Returns a tuple of two new instances of the same class with the quotient and remainder.
-
-        If `other` is a temperature instance, it is first converted to the
-        calling class, then the values are divided.
-        Otherwise, an attempt is made to use divmod operation between the
-        calling class and `other` to the value directly.
-        """
-        cls = self.__class__
-        try:
-            if isinstance(other, AbstractTemperature):
-                result = divmod(self._value, other.convert_to(cls).value)
-                return cls(result[0]), cls(result[1])
-            result = divmod(self._value, other)
-            return cls(result[0]), cls(result[1])
-        except TypeError:
-            return NotImplemented
-
-    def __radd__(self: T, other: Any) -> T:
-        """
-        Returns a new instance of the same class with the sum of the values.
-
-        An attempt is made to add the value to the `other`.
-        """
-        cls = self.__class__
-        try:
-            return cls(other + self._value)
-        except TypeError:
-            return NotImplemented
-
-    def __rsub__(self: T, other: Any) -> T:
-        """
-        Returns a new instance of the same class with the subtraction of the values.
-
-        An attempt is made to subtract the value to the `other`.
-        """
-        cls = self.__class__
-        try:
-            return cls(other - self._value)
-        except TypeError:
-            return NotImplemented
-
-    def __rmul__(self: T, other: Any) -> T:
-        """
-        Returns a new instance of the same class with the multiplication of the values.
-
-        An attempt is made to multiply `other` by the value.
-        """
-        cls = self.__class__
-        try:
-            return cls(other * self._value)
-        except TypeError:
-            return NotImplemented
-
-    def __rpow__(self: T, other: Any) -> T:
-        """
-        Returns a new instance of the same class with the exponentiation of the values.
-
-        An attempt is made to raise `other` to the power of the value.
-        """
-        cls = self.__class__
-        try:
-            return cls(other**self._value)
-        except TypeError:
-            return NotImplemented
-
-    def __rtruediv__(self: T, other: Any) -> T:
-        """
-        Returns a new instance of the same class with the division of the values.
-
-        An attempt is made to divide the `other` by the value.
-        """
-        cls = self.__class__
-        try:
-            return cls(other / self._value)
-        except TypeError:
-            return NotImplemented
-
-    def __rfloordiv__(self: T, other: Any) -> T:
-        """
-        Returns a new instance of the same class with the floor division of the values.
-
-        An attempt is made to floor divide the value to `other`.
-        """
-        cls = self.__class__
-        try:
-            return cls(other // self._value)
-        except TypeError:
-            return NotImplemented
-
-    def __rmod__(self: T, other: Any) -> T:
-        """
-        Returns a new instance of the same class with the remainder from the division of the values.
-
-        An attempt is made to apply modulo between `other` and value.
-        """
-        cls = self.__class__
-        try:
-            return cls(other % self._value)
-        except TypeError:
-            return NotImplemented
-
-    def __rdivmod__(self: T, other: Any) -> tuple[Any, Any]:
-        """
-        Returns a tuple of two new instances of the same class with the quotient and remainder.
-
-        An attempt is made to apply divmod between the
-        calling class and the value.
-        """
-        cls = self.__class__
-        try:
-            result = divmod(other, self._value)
-            return cls(result[0]), cls(result[1])
-        except TypeError:
-            return NotImplemented
-
-    def __abs__(self) -> AbstractTemperature:
-        """Returns a new instance of the same class with the absolute of `value`"""
-        cls = self.__class__
-        return cls(abs(self._value))
-
-    def __pos__(self) -> AbstractTemperature:
-        """Returns a new instance of the same class with `+value`"""
-        cls = self.__class__
-        return cls(+self._value)
-
-    def __neg__(self) -> AbstractTemperature:
-        """Return a new instance of the same class with the negation of `value`"""
-        cls = self.__class__
-        return cls(-self._value)
-
-    def __invert__(self) -> AbstractTemperature:
-        """Return a new instance of the same class with bitwise NOT of `value`"""
-        cls = self.__class__
-        return cls(-self._value - 1)
-
-    def __float__(self) -> float:
-        """
-        Returns a float of `value`.
-
-        Returns
-        -------
-        _value : float
-            float(self._value)
-
-        """
-        return float(self._value)
-
-    def __int__(self) -> int:
-        """
-        Returns an int of `value`.
-
-        Returns
-        -------
-        _value : float
-            int(self._value)
-
-        """
-        return int(self._value)
-
     def __eq__(self, other) -> bool:
         """
         Checks if the values in the objects are equal and then returns a boolean.
@@ -386,6 +278,15 @@ class AbstractTemperature(metaclass=ABCMeta):
         calling class, then the objects are evaluated. That means: if `other`
         converted to the calling class has the same value, it returns True,
         otherwise it returns False.
+
+        Notes
+        -----
+        If `other` is not a temperature instance, atempts to return: self._value == other
+
+        Returns
+        -------
+        self.__eq__(other) : bool
+            self._value == other.convert_to(cls).value
         """
         cls = self.__class__
         try:
@@ -403,6 +304,15 @@ class AbstractTemperature(metaclass=ABCMeta):
         calling class, then the objects are evaluated. That means: if `other`
         converted to the calling class has a greater value, it returns True,
         otherwise it returns False.
+
+        Notes
+        -----
+        If `other` is not a temperature instance, atempts to return: self._value < other
+
+        Returns
+        -------
+        self.__lt__(other) : bool
+            self._value < other.convert_to(cls).value
         """
         cls = self.__class__
         try:
@@ -421,6 +331,15 @@ class AbstractTemperature(metaclass=ABCMeta):
         calling class, then the objects are evaluated. That means: if `other`
         converted to the calling class has a greater or equal value, it returns True,
         otherwise it returns False.
+
+        Notes
+        -----
+        If `other` is not a temperature instance, atempts to return: self._value <= other
+
+        Returns
+        -------
+        self.__le__(other) : bool
+            self._value <= other.convert_to(cls).value
         """
         cls = self.__class__
         try:
@@ -439,6 +358,15 @@ class AbstractTemperature(metaclass=ABCMeta):
         calling class, then the objects are evaluated. That means: if `other`
         converted to the calling class is different from `other`, it returns True,
         otherwise it returns False.
+
+        Notes
+        -----
+        If `other` is not a temperature instance, atempts to return: self._value != other
+
+        Returns
+        -------
+        self.__ne__(other) : bool
+            self._value != other.convert_to(cls).value
         """
         cls = self.__class__
         try:
@@ -457,6 +385,15 @@ class AbstractTemperature(metaclass=ABCMeta):
         calling class, then the objects are evaluated. That means: if `other`
         converted to the calling class is greater than `other`, it returns True,
         otherwise it returns False.
+
+        Notes
+        -----
+        If `other` is not a temperature instance, atempts to return: self._value > other
+
+        Returns
+        -------
+        self.__gt__(other) : bool
+            self._value > other.convert_to(cls).value
         """
         cls = self.__class__
         try:
@@ -475,6 +412,15 @@ class AbstractTemperature(metaclass=ABCMeta):
         calling class, then the objects are evaluated. That means: if `other`
         converted to the calling class is greater or equal to `other`, it returns True,
         otherwise it returns False.
+
+        Notes
+        -----
+        If `other` is not a temperature instance, atempts to return: self._value >= other
+
+        Returns
+        -------
+        self.__ge__(other) : bool
+            self._value >= other.convert_to(cls).value
         """
         cls = self.__class__
         try:
@@ -483,6 +429,303 @@ class AbstractTemperature(metaclass=ABCMeta):
             return self._value >= other
         except TypeError:
             return NotImplemented
+
+    def __divmod__(self: T, other: Any) -> tuple[Any, Any]:
+        """
+        Returns a tuple of two new instances of the same class with the quotient and remainder.
+
+        If `other` is a temperature instance, it is first converted to the
+        calling class, then the values are divided.
+        Otherwise, an attempt is made to use divmod operation between the
+        calling class and `other` to the value directly.
+
+        Notes
+        -----
+        If `other` is not a temperature instance, `result` is:
+            result = divmod(self._value, other)
+        If it is a temperature instance:
+                result = divmod(self._value, other.convert_to(cls).value)
+
+        Returns
+        -------
+        self.__divmod__(other) : bool
+            return cls(result[0]), cls(result[1])
+        """
+        cls = self.__class__
+        try:
+            if isinstance(other, AbstractTemperature):
+                result = divmod(self._value, other.convert_to(cls).value)
+                return cls(result[0]), cls(result[1])
+            result = divmod(self._value, other)
+            return cls(result[0]), cls(result[1])
+        except TypeError:
+            return NotImplemented
+
+    def __float__(self) -> float:
+        """
+        Returns a float of `value`.
+
+        Returns
+        -------
+        _value : float
+            float(self._value)
+        """
+        return float(self._value)
+
+    def __int__(self) -> int:
+        """
+        Returns an int of `value`.
+
+        Returns
+        -------
+        _value : int
+            int(self._value)
+        """
+        return int(self._value)
+
+    def __abs__(self) -> AbstractTemperature:
+        """
+        Returns a new instance of the same class with the absolute of `value`.
+
+        Returns
+        -------
+        self.__abs__() : float
+            cls(abs(self._value))
+        """
+        cls = self.__class__
+        return cls(abs(self._value))
+
+    def __pos__(self) -> AbstractTemperature:
+        """
+        Returns a new instance of the same class with `+value`.
+
+        Returns
+        -------
+        self.__pos__() : T
+            cls(+self._value)
+        """
+        cls = self.__class__
+        return cls(+self._value)
+
+    def __neg__(self) -> AbstractTemperature:
+        """
+        Return a new instance of the same class with the negation of `value`.
+
+        Returns
+        -------
+        self.__neg__() : T
+            cls(-self._value)
+        """
+        cls = self.__class__
+        return cls(-self._value)
+
+    def __invert__(self) -> AbstractTemperature:
+        """
+        Return a new instance of the same class with bitwise NOT of `value`.
+
+        Returns
+        -------
+        self.__invert__() : T
+            cls(-self._value - 1)
+        """
+        cls = self.__class__
+        return cls(-self._value - 1)
+
+    def __radd__(self: T, other: Any) -> T:
+        """
+        Returns a new instance of the same class with the sum of the values.
+
+        An attempt is made to add the value to the `other`.
+
+        Returns
+        -------
+        self.__radd__(other) : T
+            cls(other + self._value)
+        """
+        cls = self.__class__
+        try:
+            return cls(other + self._value)
+        except TypeError:
+            return NotImplemented
+
+    def __rsub__(self: T, other: Any) -> T:
+        """
+        Returns a new instance of the same class with the subtraction of the values.
+
+        An attempt is made to subtract the value to the `other`.
+
+        Returns
+        -------
+        self.__rsub__(other) : T
+            cls(other - self._value)
+        """
+        cls = self.__class__
+        try:
+            return cls(other - self._value)
+        except TypeError:
+            return NotImplemented
+
+    def __rmul__(self: T, other: Any) -> T:
+        """
+        Returns a new instance of the same class with the multiplication of the values.
+
+        An attempt is made to multiply `other` by the value.
+
+        Returns
+        -------
+        self.__rmul__(other) : T
+            cls(other * self._value)
+        """
+        cls = self.__class__
+        try:
+            return cls(other * self._value)
+        except TypeError:
+            return NotImplemented
+
+    def __rpow__(self: T, other: Any) -> T:
+        """
+        Returns a new instance of the same class with the exponentiation of the values.
+
+        An attempt is made to raise `other` to the power of the value.
+
+        Returns
+        -------
+        self.__rpow__(other) : T
+            cls(other**self._value)
+        """
+        cls = self.__class__
+        try:
+            return cls(other**self._value)
+        except TypeError:
+            return NotImplemented
+
+    def __rtruediv__(self: T, other: Any) -> T:
+        """
+        Returns a new instance of the same class with the division of the values.
+
+        An attempt is made to divide the `other` by the value.
+
+        Returns
+        -------
+        self.__rtruediv__(other) : T
+            cls(other / self._value)
+        """
+        cls = self.__class__
+        try:
+            return cls(other / self._value)
+        except TypeError:
+            return NotImplemented
+
+    def __rfloordiv__(self: T, other: Any) -> T:
+        """
+        Returns a new instance of the same class with the floor division of the values.
+
+        An attempt is made to floor divide the value to `other`.
+
+        Returns
+        -------
+        self.__rfloordiv__(other) : T
+            cls(other // self._value)
+        """
+        cls = self.__class__
+        try:
+            return cls(other // self._value)
+        except TypeError:
+            return NotImplemented
+
+    def __rmod__(self: T, other: Any) -> T:
+        """
+        Returns a new instance of the same class with the remainder from the division of the values.
+
+        An attempt is made to apply modulo between `other` and value.
+
+        Returns
+        -------
+        self.__rmod__(other) : T
+            cls(other % self._value)
+        """
+        cls = self.__class__
+        try:
+            return cls(other % self._value)
+        except TypeError:
+            return NotImplemented
+
+    def __rdivmod__(self: T, other: Any) -> tuple[Any, Any]:
+        """
+        Returns a tuple of two new instances of the same class with the quotient and remainder.
+
+        An attempt is made to apply divmod between the
+        calling class and the value.
+
+        Notes
+        -----
+        `result` is a tuple with the results of: divmod(other, self._value)
+
+        Returns
+        -------
+        self.__rdivmod__(other) : T
+            cls(result[0]), cls(result[1])
+        """
+        cls = self.__class__
+        try:
+            result = divmod(other, self._value)
+            return cls(result[0]), cls(result[1])
+        except TypeError:
+            return NotImplemented
+
+    def __round__(self: T, ndigits=None) -> T:
+        """
+        Returns a new instance of the same class with `value` rounded.
+
+        Returns
+        -------
+        self.__round__(other) : T
+            cls(int(round(self._value, ndigits=ndigits)))
+        """
+        cls = self.__class__
+        return cls(int(round(self._value, ndigits=ndigits)))
+
+    def __floor__(self: T) -> T:
+        """
+        Returns a new instance of the same class with the floor of `value`.
+
+        Returns
+        -------
+        self.__floor__(other) : T
+            cls(floor(self._value))
+        """
+        from math import floor
+
+        cls = self.__class__
+        return cls(floor(self._value))
+
+    def __ceil__(self: T) -> T:
+        """
+        Returns a new instance of the same class with the ceiling of `value`.
+
+        Returns
+        -------
+        self.__ceil__(other) : T
+            cls(ceil(self._value))
+        """
+        from math import ceil
+
+        cls = self.__class__
+        return cls(ceil(self._value))
+
+    def __trunc__(self: T) -> T:
+        """
+        Returns a new instance of the same class with the truncated integer part of `value`.
+
+        Returns
+        -------
+        self.__trunc__(other) : T
+            cls(trunc(self._value))
+        """
+        from math import trunc
+
+        cls = self.__class__
+        return cls(trunc(self._value))
 
     @property
     def value(self) -> float:
