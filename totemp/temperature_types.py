@@ -461,6 +461,60 @@ class AbstractTemperature(metaclass=ABCMeta):
         except TypeError:
             return NotImplemented
 
+    def __round__(self: T, ndigits=None) -> T:
+        """
+        Returns a new instance of the same class with `value` rounded.
+
+        Returns
+        -------
+        self.__round__(other) : T
+            cls(int(round(self._value, ndigits=ndigits)))
+        """
+        cls = self.__class__
+        return cls(int(round(self._value, ndigits=ndigits)))
+
+    def __floor__(self: T) -> T:
+        """
+        Returns a new instance of the same class with the floor of `value`.
+
+        Returns
+        -------
+        self.__floor__(other) : T
+            cls(floor(self._value))
+        """
+        from math import floor
+
+        cls = self.__class__
+        return cls(floor(self._value))
+
+    def __ceil__(self: T) -> T:
+        """
+        Returns a new instance of the same class with the ceiling of `value`.
+
+        Returns
+        -------
+        self.__ceil__(other) : T
+            cls(ceil(self._value))
+        """
+        from math import ceil
+
+        cls = self.__class__
+        return cls(ceil(self._value))
+
+    def __trunc__(self: T) -> T:
+        """
+        Returns a new instance of the same class with the truncated integer part of `value`.
+
+        Returns
+        -------
+        self.__trunc__(other) : T
+            cls(trunc(self._value))
+        """
+        from math import trunc
+
+        cls = self.__class__
+        return cls(trunc(self._value))
+
     def __float__(self) -> float:
         """
         Returns a float of `value`.
@@ -672,60 +726,6 @@ class AbstractTemperature(metaclass=ABCMeta):
             return cls(result[0]), cls(result[1])
         except TypeError:
             return NotImplemented
-
-    def __round__(self: T, ndigits=None) -> T:
-        """
-        Returns a new instance of the same class with `value` rounded.
-
-        Returns
-        -------
-        self.__round__(other) : T
-            cls(int(round(self._value, ndigits=ndigits)))
-        """
-        cls = self.__class__
-        return cls(int(round(self._value, ndigits=ndigits)))
-
-    def __floor__(self: T) -> T:
-        """
-        Returns a new instance of the same class with the floor of `value`.
-
-        Returns
-        -------
-        self.__floor__(other) : T
-            cls(floor(self._value))
-        """
-        from math import floor
-
-        cls = self.__class__
-        return cls(floor(self._value))
-
-    def __ceil__(self: T) -> T:
-        """
-        Returns a new instance of the same class with the ceiling of `value`.
-
-        Returns
-        -------
-        self.__ceil__(other) : T
-            cls(ceil(self._value))
-        """
-        from math import ceil
-
-        cls = self.__class__
-        return cls(ceil(self._value))
-
-    def __trunc__(self: T) -> T:
-        """
-        Returns a new instance of the same class with the truncated integer part of `value`.
-
-        Returns
-        -------
-        self.__trunc__(other) : T
-            cls(trunc(self._value))
-        """
-        from math import trunc
-
-        cls = self.__class__
-        return cls(trunc(self._value))
 
     @property
     def value(self) -> float:
