@@ -246,8 +246,8 @@ Another example, with the same objects:
         aren't greater or lesser than each other, they are indeed equivalents.
 
 
-After understanding how comparisions are done, we can now see
-how the arithmetic operations work.
+After understanding *how comparisions are done*, we can now see
+**how the arithmetic operations work**.
 
 **Look at this**:
 
@@ -297,4 +297,6 @@ how the arithmetic operations work.
         that the limits are mostly the way the developer/user is using
         it.
 
-So, with that said, we can already assume that the
+So, with that said, we can already assume that the other arithmetic
+operations do the same (attempts to convert `other` to the same type
+as the calling class).

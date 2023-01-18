@@ -30,4 +30,4 @@ As my main use-case scenario was to operate over diverse temperature scales, the
 - `Réaumur </ToTemp/docs/build/html/totemp.html#totemp.Reaumur>`_
 - `Rømer </ToTemp/docs/build/html/totemp.html#totemp.Romer>`_
 
-For usage information and example code, go to :doc:`Installation and Usage <installation>`.
+For usage information and example code, go to :doc:`Installation and Usage <installation_usage>`.

@@ -19,5 +19,5 @@ Source code in Github_.
    :caption: Contents:
 
    intro
-   installation
+   installation_usage
    totemp
