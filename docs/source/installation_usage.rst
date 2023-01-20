@@ -215,7 +215,7 @@ Another example, with the same objects:
         >>> temp1: Celsius(0.0)
 
         The comparision/arithmetic implementation attempts to convert the value
-        of other and then evaluate them.
+        of other and then evaluate the expression.
 
         That meaning:
         `temp0` > `temp1.` is the same as `temp0` > `temp1.to_celsius()`
