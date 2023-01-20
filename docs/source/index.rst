@@ -6,7 +6,7 @@ What is ToTemp API?
 
 ToTemp_ is an API for temperature conversions distributed as a
 python package. It provides dynamic Classes able to represent
-temperature scales and perform convertions, arithmetic operations
+temperature scales and perform conversions, arithmetic operations
 and comparisons between them and numeric values.
 
 Source code in Github_.
