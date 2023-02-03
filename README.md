@@ -19,15 +19,15 @@ scale data types.
 
 First of all, install the package:
 
-```
+````shell
 pip install totemp
-```
+````
 
 or, to have an example in poetry environments:
 
-```
+````shell
 poetry add totemp
-```
+````
 
 ### The instances:
 
@@ -195,6 +195,7 @@ if __name__ == '__main__':
 
     5 - ***Known problemns***:
       - *`pow()` doesn't work as intended;*
+
 ---
 
 ## License
