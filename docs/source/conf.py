@@ -64,6 +64,7 @@ exclude_patterns: list[None] = []
 #
 html_theme = 'sphinx_rtd_theme'
 html_logo = '../source/logo-no-background.png'
+html_favicon = 'favicon.ico'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,

@@ -14,7 +14,7 @@ The goal here was to define dynamic objects which would allow users/developers t
 precision, without worrying about the calculations needed to convert temperature scales, providing them the option to
 get precise and rounded values to their operations.
 
-The current implementation has been developed for Python ^3.10 (since it uses new syntax and features from available
+The current implementation has been developed for Python ^3.10 (since it uses new syntax and features available
 in those releases).
 
 Limitations

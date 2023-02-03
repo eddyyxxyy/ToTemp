@@ -87,7 +87,8 @@ scale data types.
         Calls to the __str__ method of the temperature object returns
         "`value`º `symbol`". That means that every call that need string
         representations of the temperature (such as print(), str() or
-        `object`.__str__()) returns the value and its official symbol.
+        `object`.__str__()) returns the value and its official symbol as
+        a string.
 
     From line 6 and 11::
 
@@ -96,7 +97,7 @@ scale data types.
 
         And here we can see the "real representation" of the objects,
         shown by **__repr__** special method, that specifies its nature
-        (like which scale it is and it's value, and we can create a "new"
+        (which scale it is and it's value, and we can create a "new"
         object with those representations).
 
     From line 15, 16, 17 and 18::
@@ -124,7 +125,8 @@ scale data types.
         >>> <class 'int'> -> 75
 
         And now we have two type outputs, the first one is
-        the type of the temp2 object and the type of its value.
+        the type of the temp2 object and the other is the type
+        of its value.
 
 
 Arithmetic and comparison operations
@@ -172,11 +174,12 @@ check if the values equivalent? Or one is greater/lesser than another?
 For example, *comparing int(1) == float(1)* would **return True**,
 and that's exactly what's happening in our temperature comparision.
 
-The *__gt__* special method (and most of the other comparision and arithmetic
-special methods) checks if the object being compared to the calling class is an
-Temperature Type or a float/integer, if `other` is a Temperature, it attempts to
-convert the other object to the calling class and then return the result of the
-evaluation (to be printed, in our case).
+The :meth:`__gt__<totemp.temperature_types.AbstractTemperature.__gt__>` special
+method (and most of the other comparision and arithmetic special methods) checks
+if the object being compared to the calling class is an Temperature Type or a
+float/integer, if `other` is a Temperature, it attempts to convert the other object
+to the calling class and then return the result of the evaluation (to be printed,
+in our case).
 
 Another example, with the same objects:
 
@@ -395,7 +398,7 @@ conversions**:
         >>> 0.0 ºRé
         >>> 7.5 ºRø
 
-**Now using :meth:`convert_to()<totemp.temperature_types.AbstractTemperature.convert_to>`**:
+**Now using** :meth:`convert_to()<totemp.temperature_types.AbstractTemperature.convert_to>`:
 
     .. code-block:: Python
         :linenos:
@@ -427,3 +430,9 @@ conversions**:
         >>> 491.67 ºR
         >>> 0.0 ºRé
         >>> 7.5 ºRø
+
+---
+
+And that's an overall vision of the package and what it can do.
+
+Now, you can go to the :doc:`Module<totemp>` section.
