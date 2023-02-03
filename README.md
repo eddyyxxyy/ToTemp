@@ -29,6 +29,8 @@ or, to have an example in poetry environments:
 poetry add totemp
 ````
 
+> For more information, read the docs: [ToTemp Docs]('insert link here')
+
 ### The instances:
 
 ````python
