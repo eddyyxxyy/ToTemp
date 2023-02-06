@@ -5,9 +5,12 @@
   <img src="https://shields.io/pypi/v/totemp"  alt="package version"/>
   <img src="https://img.shields.io/pypi/l/totemp.svg"  alt="license"/>
   <img src="https://results.pre-commit.ci/badge/github/eddyyxxyy/ToTemp/main.svg" alt="pre-commit.ci"/>
+  <img src='https://readthedocs.org/projects/totemp/badge/?version=latest' alt='Documentation Status'/>
 </div>
 
 **ToTemp** is a temperature conversion package with Celsius, Delisle, Fahrenheit, Kelvin, Rankine, Réaumur, Newton and Rømer scales.
+
+For more information [read the docs](https://totemp.readthedocs.io/en/latest/).
 
 > This package aims to bring the simple and straight to the point,
 but precise, Object Oriented experience of working with temperature
