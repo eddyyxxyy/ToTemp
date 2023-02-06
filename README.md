@@ -171,7 +171,7 @@ if __name__ == '__main__':
 - _0.4.0_:
   - There are two new Classes, Kelvin and Delisle, functional and ready-to-use.
 
-- **0.5.0**:
+- **0.5.1**:
   - The implementation has been **completely refactored**:
 
     1 - ***All classes inhehits from `AbstractTemperature`** (our new abstract  Base Class)*;

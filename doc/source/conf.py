@@ -23,9 +23,9 @@ copyright = '2022, Edson Pimenta, Dávilos Tavares and Raul Silva'
 author = 'Edson Pimenta, Dávilos Tavares and Raul Silva'
 
 # The full version, including alpha/beta/rc tags
-release = '0.5.0'
+release = '0.5.1'
 
-version = '0.5.0'
+version = '0.5.1'
 
 
 # -- General configuration ---------------------------------------------------

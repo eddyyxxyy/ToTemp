@@ -15,7 +15,7 @@ from .temperature_types import (
 __author__ = 'Edson Pimenta, Raul Silva and Dávilos Tavares'
 __credits__ = ['Edson Pimenta', 'Dávilos Tavares', 'Raul Silva']
 __license__ = 'GPL-3.0'
-__version__ = '0.5.0'
+__version__ = '0.5.1'
 __maintainer__ = [
     'Edson Pimenta <edson.tibo@gmail.com>',
     'Dávilos Tavares <daviloscostagg@hotmail.com>',
