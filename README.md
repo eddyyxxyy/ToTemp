@@ -1,4 +1,4 @@
-![To Temp logo](https://raw.githubusercontent.com/eddyyxxyy/ToTemp/Develop-0.5.0/logo.png)
+![To Temp logo](https://raw.githubusercontent.com/eddyyxxyy/ToTemp/main/logo.png)
 
 # ToTemp
 <div style="display: inline-block">
