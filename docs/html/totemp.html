@@ -1,0 +1,2971 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ToTemp Module &mdash; ToTemp 0.5.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Installation and Usage" href="installation_usage.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> ToTemp
+            <img src="_static/logo-no-background.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation_usage.html">Installation and Usage</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ToTemp Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#base-class">Base Class</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#totemp.temperature_types.AbstractTemperature"><code class="docutils literal notranslate"><span class="pre">AbstractTemperature</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.temperature_types.AbstractTemperature.__str__"><code class="docutils literal notranslate"><span class="pre">AbstractTemperature.__str__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.temperature_types.AbstractTemperature.__repr__"><code class="docutils literal notranslate"><span class="pre">AbstractTemperature.__repr__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.temperature_types.AbstractTemperature.__add__"><code class="docutils literal notranslate"><span class="pre">AbstractTemperature.__add__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.temperature_types.AbstractTemperature.__sub__"><code class="docutils literal notranslate"><span class="pre">AbstractTemperature.__sub__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.temperature_types.AbstractTemperature.__mul__"><code class="docutils literal notranslate"><span class="pre">AbstractTemperature.__mul__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.temperature_types.AbstractTemperature.__pow__"><code class="docutils literal notranslate"><span class="pre">AbstractTemperature.__pow__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.temperature_types.AbstractTemperature.__truediv__"><code class="docutils literal notranslate"><span class="pre">AbstractTemperature.__truediv__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.temperature_types.AbstractTemperature.__floordiv__"><code class="docutils literal notranslate"><span class="pre">AbstractTemperature.__floordiv__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.temperature_types.AbstractTemperature.__mod__"><code class="docutils literal notranslate"><span class="pre">AbstractTemperature.__mod__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.temperature_types.AbstractTemperature.__eq__"><code class="docutils literal notranslate"><span class="pre">AbstractTemperature.__eq__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.temperature_types.AbstractTemperature.__lt__"><code class="docutils literal notranslate"><span class="pre">AbstractTemperature.__lt__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.temperature_types.AbstractTemperature.__le__"><code class="docutils literal notranslate"><span class="pre">AbstractTemperature.__le__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.temperature_types.AbstractTemperature.__ne__"><code class="docutils literal notranslate"><span class="pre">AbstractTemperature.__ne__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.temperature_types.AbstractTemperature.__gt__"><code class="docutils literal notranslate"><span class="pre">AbstractTemperature.__gt__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.temperature_types.AbstractTemperature.__ge__"><code class="docutils literal notranslate"><span class="pre">AbstractTemperature.__ge__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.temperature_types.AbstractTemperature.__divmod__"><code class="docutils literal notranslate"><span class="pre">AbstractTemperature.__divmod__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.temperature_types.AbstractTemperature.__round__"><code class="docutils literal notranslate"><span class="pre">AbstractTemperature.__round__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.temperature_types.AbstractTemperature.__floor__"><code class="docutils literal notranslate"><span class="pre">AbstractTemperature.__floor__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.temperature_types.AbstractTemperature.__ceil__"><code class="docutils literal notranslate"><span class="pre">AbstractTemperature.__ceil__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.temperature_types.AbstractTemperature.__trunc__"><code class="docutils literal notranslate"><span class="pre">AbstractTemperature.__trunc__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.temperature_types.AbstractTemperature.__float__"><code class="docutils literal notranslate"><span class="pre">AbstractTemperature.__float__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.temperature_types.AbstractTemperature.__int__"><code class="docutils literal notranslate"><span class="pre">AbstractTemperature.__int__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.temperature_types.AbstractTemperature.__abs__"><code class="docutils literal notranslate"><span class="pre">AbstractTemperature.__abs__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.temperature_types.AbstractTemperature.__pos__"><code class="docutils literal notranslate"><span class="pre">AbstractTemperature.__pos__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.temperature_types.AbstractTemperature.__neg__"><code class="docutils literal notranslate"><span class="pre">AbstractTemperature.__neg__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.temperature_types.AbstractTemperature.__invert__"><code class="docutils literal notranslate"><span class="pre">AbstractTemperature.__invert__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.temperature_types.AbstractTemperature.__radd__"><code class="docutils literal notranslate"><span class="pre">AbstractTemperature.__radd__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.temperature_types.AbstractTemperature.__rsub__"><code class="docutils literal notranslate"><span class="pre">AbstractTemperature.__rsub__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.temperature_types.AbstractTemperature.__rmul__"><code class="docutils literal notranslate"><span class="pre">AbstractTemperature.__rmul__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.temperature_types.AbstractTemperature.__rpow__"><code class="docutils literal notranslate"><span class="pre">AbstractTemperature.__rpow__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.temperature_types.AbstractTemperature.__rtruediv__"><code class="docutils literal notranslate"><span class="pre">AbstractTemperature.__rtruediv__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.temperature_types.AbstractTemperature.__rfloordiv__"><code class="docutils literal notranslate"><span class="pre">AbstractTemperature.__rfloordiv__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.temperature_types.AbstractTemperature.__rmod__"><code class="docutils literal notranslate"><span class="pre">AbstractTemperature.__rmod__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.temperature_types.AbstractTemperature.__rdivmod__"><code class="docutils literal notranslate"><span class="pre">AbstractTemperature.__rdivmod__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.temperature_types.AbstractTemperature.rounded"><code class="docutils literal notranslate"><span class="pre">AbstractTemperature.rounded()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.temperature_types.AbstractTemperature.convert_to"><code class="docutils literal notranslate"><span class="pre">AbstractTemperature.convert_to()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#temperature-classes">Temperature Classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#totemp.Celsius"><code class="docutils literal notranslate"><span class="pre">Celsius</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Celsius.convert_to"><code class="docutils literal notranslate"><span class="pre">Celsius.convert_to()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Celsius.symbol"><code class="docutils literal notranslate"><span class="pre">Celsius.symbol</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Celsius.value"><code class="docutils literal notranslate"><span class="pre">Celsius.value</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Celsius.rounded"><code class="docutils literal notranslate"><span class="pre">Celsius.rounded()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Celsius.to_delisle"><code class="docutils literal notranslate"><span class="pre">Celsius.to_delisle()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Celsius.to_fahrenheit"><code class="docutils literal notranslate"><span class="pre">Celsius.to_fahrenheit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Celsius.to_kelvin"><code class="docutils literal notranslate"><span class="pre">Celsius.to_kelvin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Celsius.to_newton"><code class="docutils literal notranslate"><span class="pre">Celsius.to_newton()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Celsius.to_rankine"><code class="docutils literal notranslate"><span class="pre">Celsius.to_rankine()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Celsius.to_reaumur"><code class="docutils literal notranslate"><span class="pre">Celsius.to_reaumur()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Celsius.to_romer"><code class="docutils literal notranslate"><span class="pre">Celsius.to_romer()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#totemp.Fahrenheit"><code class="docutils literal notranslate"><span class="pre">Fahrenheit</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Fahrenheit.convert_to"><code class="docutils literal notranslate"><span class="pre">Fahrenheit.convert_to()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Fahrenheit.symbol"><code class="docutils literal notranslate"><span class="pre">Fahrenheit.symbol</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Fahrenheit.value"><code class="docutils literal notranslate"><span class="pre">Fahrenheit.value</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Fahrenheit.rounded"><code class="docutils literal notranslate"><span class="pre">Fahrenheit.rounded()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Fahrenheit.to_celsius"><code class="docutils literal notranslate"><span class="pre">Fahrenheit.to_celsius()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Fahrenheit.to_delisle"><code class="docutils literal notranslate"><span class="pre">Fahrenheit.to_delisle()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Fahrenheit.to_kelvin"><code class="docutils literal notranslate"><span class="pre">Fahrenheit.to_kelvin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Fahrenheit.to_newton"><code class="docutils literal notranslate"><span class="pre">Fahrenheit.to_newton()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Fahrenheit.to_rankine"><code class="docutils literal notranslate"><span class="pre">Fahrenheit.to_rankine()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Fahrenheit.to_reaumur"><code class="docutils literal notranslate"><span class="pre">Fahrenheit.to_reaumur()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Fahrenheit.to_romer"><code class="docutils literal notranslate"><span class="pre">Fahrenheit.to_romer()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#totemp.Delisle"><code class="docutils literal notranslate"><span class="pre">Delisle</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Delisle.convert_to"><code class="docutils literal notranslate"><span class="pre">Delisle.convert_to()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Delisle.symbol"><code class="docutils literal notranslate"><span class="pre">Delisle.symbol</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Delisle.value"><code class="docutils literal notranslate"><span class="pre">Delisle.value</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Delisle.rounded"><code class="docutils literal notranslate"><span class="pre">Delisle.rounded()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Delisle.to_celsius"><code class="docutils literal notranslate"><span class="pre">Delisle.to_celsius()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Delisle.to_fahrenheit"><code class="docutils literal notranslate"><span class="pre">Delisle.to_fahrenheit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Delisle.to_kelvin"><code class="docutils literal notranslate"><span class="pre">Delisle.to_kelvin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Delisle.to_newton"><code class="docutils literal notranslate"><span class="pre">Delisle.to_newton()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Delisle.to_rankine"><code class="docutils literal notranslate"><span class="pre">Delisle.to_rankine()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Delisle.to_reaumur"><code class="docutils literal notranslate"><span class="pre">Delisle.to_reaumur()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Delisle.to_romer"><code class="docutils literal notranslate"><span class="pre">Delisle.to_romer()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#totemp.Kelvin"><code class="docutils literal notranslate"><span class="pre">Kelvin</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Kelvin.convert_to"><code class="docutils literal notranslate"><span class="pre">Kelvin.convert_to()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Kelvin.symbol"><code class="docutils literal notranslate"><span class="pre">Kelvin.symbol</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Kelvin.value"><code class="docutils literal notranslate"><span class="pre">Kelvin.value</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Kelvin.rounded"><code class="docutils literal notranslate"><span class="pre">Kelvin.rounded()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Kelvin.to_celsius"><code class="docutils literal notranslate"><span class="pre">Kelvin.to_celsius()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Kelvin.to_fahrenheit"><code class="docutils literal notranslate"><span class="pre">Kelvin.to_fahrenheit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Kelvin.to_delisle"><code class="docutils literal notranslate"><span class="pre">Kelvin.to_delisle()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Kelvin.to_newton"><code class="docutils literal notranslate"><span class="pre">Kelvin.to_newton()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Kelvin.to_rankine"><code class="docutils literal notranslate"><span class="pre">Kelvin.to_rankine()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Kelvin.to_reaumur"><code class="docutils literal notranslate"><span class="pre">Kelvin.to_reaumur()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Kelvin.to_romer"><code class="docutils literal notranslate"><span class="pre">Kelvin.to_romer()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#totemp.Newton"><code class="docutils literal notranslate"><span class="pre">Newton</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Newton.convert_to"><code class="docutils literal notranslate"><span class="pre">Newton.convert_to()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Newton.symbol"><code class="docutils literal notranslate"><span class="pre">Newton.symbol</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Newton.value"><code class="docutils literal notranslate"><span class="pre">Newton.value</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Newton.rounded"><code class="docutils literal notranslate"><span class="pre">Newton.rounded()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Newton.to_celsius"><code class="docutils literal notranslate"><span class="pre">Newton.to_celsius()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Newton.to_fahrenheit"><code class="docutils literal notranslate"><span class="pre">Newton.to_fahrenheit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Newton.to_delisle"><code class="docutils literal notranslate"><span class="pre">Newton.to_delisle()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Newton.to_kelvin"><code class="docutils literal notranslate"><span class="pre">Newton.to_kelvin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Newton.to_rankine"><code class="docutils literal notranslate"><span class="pre">Newton.to_rankine()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Newton.to_reaumur"><code class="docutils literal notranslate"><span class="pre">Newton.to_reaumur()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Newton.to_romer"><code class="docutils literal notranslate"><span class="pre">Newton.to_romer()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#totemp.Rankine"><code class="docutils literal notranslate"><span class="pre">Rankine</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Rankine.convert_to"><code class="docutils literal notranslate"><span class="pre">Rankine.convert_to()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Rankine.symbol"><code class="docutils literal notranslate"><span class="pre">Rankine.symbol</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Rankine.value"><code class="docutils literal notranslate"><span class="pre">Rankine.value</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Rankine.rounded"><code class="docutils literal notranslate"><span class="pre">Rankine.rounded()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Rankine.to_celsius"><code class="docutils literal notranslate"><span class="pre">Rankine.to_celsius()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Rankine.to_fahrenheit"><code class="docutils literal notranslate"><span class="pre">Rankine.to_fahrenheit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Rankine.to_delisle"><code class="docutils literal notranslate"><span class="pre">Rankine.to_delisle()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Rankine.to_kelvin"><code class="docutils literal notranslate"><span class="pre">Rankine.to_kelvin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Rankine.to_newton"><code class="docutils literal notranslate"><span class="pre">Rankine.to_newton()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Rankine.to_reaumur"><code class="docutils literal notranslate"><span class="pre">Rankine.to_reaumur()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Rankine.to_romer"><code class="docutils literal notranslate"><span class="pre">Rankine.to_romer()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#totemp.Reaumur"><code class="docutils literal notranslate"><span class="pre">Reaumur</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Reaumur.convert_to"><code class="docutils literal notranslate"><span class="pre">Reaumur.convert_to()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Reaumur.symbol"><code class="docutils literal notranslate"><span class="pre">Reaumur.symbol</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Reaumur.value"><code class="docutils literal notranslate"><span class="pre">Reaumur.value</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Reaumur.rounded"><code class="docutils literal notranslate"><span class="pre">Reaumur.rounded()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Reaumur.to_celsius"><code class="docutils literal notranslate"><span class="pre">Reaumur.to_celsius()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Reaumur.to_fahrenheit"><code class="docutils literal notranslate"><span class="pre">Reaumur.to_fahrenheit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Reaumur.to_delisle"><code class="docutils literal notranslate"><span class="pre">Reaumur.to_delisle()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Reaumur.to_kelvin"><code class="docutils literal notranslate"><span class="pre">Reaumur.to_kelvin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Reaumur.to_newton"><code class="docutils literal notranslate"><span class="pre">Reaumur.to_newton()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Reaumur.to_rankine"><code class="docutils literal notranslate"><span class="pre">Reaumur.to_rankine()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Reaumur.to_romer"><code class="docutils literal notranslate"><span class="pre">Reaumur.to_romer()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#totemp.Romer"><code class="docutils literal notranslate"><span class="pre">Romer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Romer.symbol"><code class="docutils literal notranslate"><span class="pre">Romer.symbol</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Romer.value"><code class="docutils literal notranslate"><span class="pre">Romer.value</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Romer.rounded"><code class="docutils literal notranslate"><span class="pre">Romer.rounded()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Romer.to_celsius"><code class="docutils literal notranslate"><span class="pre">Romer.to_celsius()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Romer.to_fahrenheit"><code class="docutils literal notranslate"><span class="pre">Romer.to_fahrenheit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Romer.to_delisle"><code class="docutils literal notranslate"><span class="pre">Romer.to_delisle()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Romer.to_kelvin"><code class="docutils literal notranslate"><span class="pre">Romer.to_kelvin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Romer.to_newton"><code class="docutils literal notranslate"><span class="pre">Romer.to_newton()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Romer.to_rankine"><code class="docutils literal notranslate"><span class="pre">Romer.to_rankine()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Romer.to_reaumur"><code class="docutils literal notranslate"><span class="pre">Romer.to_reaumur()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#totemp.Romer.convert_to"><code class="docutils literal notranslate"><span class="pre">Romer.convert_to()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ToTemp</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">ToTemp Module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/totemp.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="totemp-module">
+<h1>ToTemp Module<a class="headerlink" href="#totemp-module" title="Permalink to this heading"></a></h1>
+<p>Classes to represent temperature scale objects, providing
+arithmetic and comparison operations between them.</p>
+<section id="base-class">
+<h2>Base Class<a class="headerlink" href="#base-class" title="Permalink to this heading"></a></h2>
+<p><strong>All classes inherit from this one.</strong> Here are all of the special and common methods docs.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="totemp.temperature_types.AbstractTemperature">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">totemp.temperature_types.</span></span><span class="sig-name descname"><span class="pre">AbstractTemperature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#totemp.temperature_types.AbstractTemperature" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Abstract base class for all temperature types.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Attributes</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>_symbol</strong><span class="classifier">ClassVar[str]</span></dt><dd><p>Official scale symbol.</p>
+</dd>
+<dt><strong>_value</strong><span class="classifier">float</span></dt><dd><p>Temperature value (e.g. <cite>36</cite> or <cite>-3.14</cite>).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>rounded()</strong></p></td>
+<td><p>returns a new object of the same class with the value converted to int.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>to_celsius()</strong></p></td>
+<td><p>returns a Celsius object which contains the converted value.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>to_fahrenheit()</strong></p></td>
+<td><p>returns a Fahrenheit object which contains the converted value.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>to_delisle()</strong></p></td>
+<td><p>returns a Delisle object which contains the converted value.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>to_kelvin()</strong></p></td>
+<td><p>returns a Kelvin object which contains the converted value.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>to_newton()</strong></p></td>
+<td><p>returns a Newton object which contains the converted value.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>to_rankine()</strong></p></td>
+<td><p>returns a Rankine object which contains the converted value.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>to_reaumur()</strong></p></td>
+<td><p>returns a Réaumur object which contains the converted value.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>to_romer()</strong></p></td>
+<td><p>returns a Rømer object which contains the converted value.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>convert_to(temp_cls)</strong></p></td>
+<td><p>returns an instance of <cite>temp_cls</cite> which contains the converted value.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.temperature_types.AbstractTemperature.__str__">
+<span class="sig-name descname"><span class="pre">str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#totemp.temperature_types.AbstractTemperature.__str__" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the “informal” or nicely printable string representation of self.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>self.__str__()</strong><span class="classifier">str</span></dt><dd><p>f’{self._value} {self._symbol}’</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.temperature_types.AbstractTemperature.__repr__">
+<span class="sig-name descname"><span class="pre">repr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#totemp.temperature_types.AbstractTemperature.__repr__" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the “official” string representation of self.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>self.__repr__()</strong><span class="classifier">str</span></dt><dd><p>f’{self.__class__.__name__}({self._value})’</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.temperature_types.AbstractTemperature.__add__">
+<span class="sig-name descname"><em><span class="pre">self</span></em> <span class="sig-name descname"><span class="pre">+</span></span> <em><span class="pre">other</span></em></span><a class="headerlink" href="#totemp.temperature_types.AbstractTemperature.__add__" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a new instance of the same class with the sum of the values.</p>
+<p>If <cite>other</cite> is a temperature instance, it is first converted to the
+calling class, then the values are added.
+Otherwise, an attempt is made to add <cite>other</cite> to the value directly.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>self.__add__(other)</strong><span class="classifier">T</span></dt><dd><p>cls(self._value + other.convert_to(cls).value)</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">T</span></code>, bound= AbstractTemperature)
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>If <cite>other</cite> is not a temperature instance, atempts to return: cls(self._value + other)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.temperature_types.AbstractTemperature.__sub__">
+<span class="sig-name descname"><em><span class="pre">self</span></em> <span class="sig-name descname"><span class="pre">-</span></span> <em><span class="pre">other</span></em></span><a class="headerlink" href="#totemp.temperature_types.AbstractTemperature.__sub__" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a new instance of the same class with the subtraction of the values.</p>
+<p>If <cite>other</cite> is a temperature instance, it is first converted to the
+calling class, then the values are subtracted.
+Otherwise, an attempt is made to subtract <cite>other</cite> to the value directly.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>self.__sub__(other)</strong><span class="classifier">T</span></dt><dd><p>cls(self._value - other.convert_to(cls).value)</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">T</span></code>, bound= AbstractTemperature)
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>If <cite>other</cite> is not a temperature instance, atempts to return: cls(self._value - other)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.temperature_types.AbstractTemperature.__mul__">
+<span class="sig-name descname"><em><span class="pre">self</span></em> <span class="sig-name descname"><span class="pre">*</span></span> <em><span class="pre">other</span></em></span><a class="headerlink" href="#totemp.temperature_types.AbstractTemperature.__mul__" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a new instance of the same class with the multiplication of the values.</p>
+<p>If <cite>other</cite> is a temperature instance, it is first converted to the
+calling class, then the values are multiplicated.
+Otherwise, an attempt is made to multiplicate <cite>other</cite> to the value directly.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>self.__mul__(other)</strong><span class="classifier">T</span></dt><dd><p>cls(self._value * other.convert_to(cls).value)</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">T</span></code>, bound= AbstractTemperature)
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>If <cite>other</cite> is not a temperature instance, atempts to return: cls(self._value * other)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.temperature_types.AbstractTemperature.__pow__">
+<span class="sig-name descname"><em><span class="pre">self</span></em> <span class="sig-name descname"><span class="pre">**</span></span> <em><span class="pre">other</span></em></span><a class="headerlink" href="#totemp.temperature_types.AbstractTemperature.__pow__" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a new instance of the same class with the exponentiation of the values.</p>
+<p>If <cite>other</cite> is a temperature instance, it is first converted to the
+calling class, then the value is raised to the power of <cite>other</cite>.
+Otherwise, an attempt is made to raise the value field to the power of <cite>other</cite>.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>self.__pow__(other)</strong><span class="classifier">T</span></dt><dd><p>cls(self._value ** other.convert_to(cls).value)</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">T</span></code>, bound= AbstractTemperature)
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>If <cite>other</cite> is not a temperature instance, atempts to return: cls(self._value ** other)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.temperature_types.AbstractTemperature.__truediv__">
+<span class="sig-name descname"><em><span class="pre">self</span></em> <span class="sig-name descname"><span class="pre">/</span></span> <em><span class="pre">other</span></em></span><a class="headerlink" href="#totemp.temperature_types.AbstractTemperature.__truediv__" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a new instance of the same class with the division of the values.</p>
+<p>If <cite>other</cite> is a temperature instance, it is first converted to the
+calling class, then the values are divided.
+Otherwise, an attempt is made to divide <cite>other</cite> to the value directly.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>self.__truediv__(other)</strong><span class="classifier">T</span></dt><dd><p>cls(self._value / other.convert_to(cls).value)</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">T</span></code>, bound= AbstractTemperature)
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>If <cite>other</cite> is not a temperature instance, atempts to return: cls(self._value / other)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.temperature_types.AbstractTemperature.__floordiv__">
+<span class="sig-name descname"><em><span class="pre">self</span></em> <span class="sig-name descname"><span class="pre">//</span></span> <em><span class="pre">other</span></em></span><a class="headerlink" href="#totemp.temperature_types.AbstractTemperature.__floordiv__" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a new instance of the same class with the floor division of the values.</p>
+<p>If <cite>other</cite> is a temperature instance, it is first converted to the
+calling class, then the values are divided and rounded.
+Otherwise, an attempt is made to floor divide <cite>other</cite> to the value directly.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>self.__floordiv__(other)</strong><span class="classifier">T</span></dt><dd><p>cls(self._value // other.convert_to(cls).value)</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">T</span></code>, bound= AbstractTemperature)
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>If <cite>other</cite> is not a temperature instance, atempts to return: cls(self._value // other)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.temperature_types.AbstractTemperature.__mod__">
+<span class="sig-name descname"><em><span class="pre">self</span></em> <span class="sig-name descname"><span class="pre">%</span></span> <em><span class="pre">other</span></em></span><a class="headerlink" href="#totemp.temperature_types.AbstractTemperature.__mod__" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a new instance of the same class with the remainder from the division of the values.</p>
+<p>If <cite>other</cite> is a temperature instance, it is first converted to the
+calling class, then the values are divided.
+Otherwise, an attempt is made to use modulo operation on <cite>other</cite> to the value directly.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>self.__mod__(other)</strong><span class="classifier">T</span></dt><dd><p>cls(self._value % other.convert_to(cls).value)</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">T</span></code>, bound= AbstractTemperature)
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>If <cite>other</cite> is not a temperature instance, atempts to return: cls(self._value % other)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.temperature_types.AbstractTemperature.__eq__">
+<span class="sig-name descname"><em><span class="pre">self</span></em> <span class="sig-name descname"><span class="pre">==</span></span> <em><span class="pre">other</span></em></span><a class="headerlink" href="#totemp.temperature_types.AbstractTemperature.__eq__" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if the values in the objects are equal and then returns a boolean.</p>
+<p>If <cite>other</cite> is a temperature instance, it is first converted to the
+calling class, then the objects are evaluated. That means: if <cite>other</cite>
+converted to the calling class has the same value, it returns True,
+otherwise it returns False.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>self.__eq__(other)</strong><span class="classifier">bool</span></dt><dd><p>self._value == other.convert_to(cls).value</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>If <cite>other</cite> is not a temperature instance, atempts to return: self._value == other</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.temperature_types.AbstractTemperature.__lt__">
+<span class="sig-name descname"><em><span class="pre">self</span></em> <span class="sig-name descname"><span class="pre">&lt;</span></span> <em><span class="pre">other</span></em></span><a class="headerlink" href="#totemp.temperature_types.AbstractTemperature.__lt__" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if the calling temperature object value is lesser than <cite>other</cite> and then returns a boolean.</p>
+<p>If <cite>other</cite> is a temperature instance, it is first converted to the
+calling class, then the objects are evaluated. That means: if <cite>other</cite>
+converted to the calling class has a greater value, it returns True,
+otherwise it returns False.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>self.__lt__(other)</strong><span class="classifier">bool</span></dt><dd><p>self._value &lt; other.convert_to(cls).value</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>If <cite>other</cite> is not a temperature instance, atempts to return: self._value &lt; other</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.temperature_types.AbstractTemperature.__le__">
+<span class="sig-name descname"><em><span class="pre">self</span></em> <span class="sig-name descname"><span class="pre">&lt;=</span></span> <em><span class="pre">other</span></em></span><a class="headerlink" href="#totemp.temperature_types.AbstractTemperature.__le__" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if the calling temperature object value is lesser or equal
+than <cite>other</cite> and then returns a boolean.</p>
+<p>If <cite>other</cite> is a temperature instance, it is first converted to the
+calling class, then the objects are evaluated. That means: if <cite>other</cite>
+converted to the calling class has a greater or equal value, it returns True,
+otherwise it returns False.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>self.__le__(other)</strong><span class="classifier">bool</span></dt><dd><p>self._value &lt;= other.convert_to(cls).value</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>If <cite>other</cite> is not a temperature instance, atempts to return: self._value &lt;= other</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.temperature_types.AbstractTemperature.__ne__">
+<span class="sig-name descname"><em><span class="pre">self</span></em> <span class="sig-name descname"><span class="pre">!=</span></span> <em><span class="pre">other</span></em></span><a class="headerlink" href="#totemp.temperature_types.AbstractTemperature.__ne__" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if the calling temperature object value is different
+from <cite>other</cite> and then returns a boolean.</p>
+<p>If <cite>other</cite> is a temperature instance, it is first converted to the
+calling class, then the objects are evaluated. That means: if <cite>other</cite>
+converted to the calling class is different from <cite>other</cite>, it returns True,
+otherwise it returns False.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>self.__ne__(other)</strong><span class="classifier">bool</span></dt><dd><p>self._value != other.convert_to(cls).value</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>If <cite>other</cite> is not a temperature instance, atempts to return: self._value != other</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.temperature_types.AbstractTemperature.__gt__">
+<span class="sig-name descname"><em><span class="pre">self</span></em> <span class="sig-name descname"><span class="pre">&gt;</span></span> <em><span class="pre">other</span></em></span><a class="headerlink" href="#totemp.temperature_types.AbstractTemperature.__gt__" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if the calling temperature object value is greater
+than <cite>other</cite> and then returns a boolean.</p>
+<p>If <cite>other</cite> is a temperature instance, it is first converted to the
+calling class, then the objects are evaluated. That means: if <cite>other</cite>
+converted to the calling class is greater than <cite>other</cite>, it returns True,
+otherwise it returns False.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>self.__gt__(other)</strong><span class="classifier">bool</span></dt><dd><p>self._value &gt; other.convert_to(cls).value</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>If <cite>other</cite> is not a temperature instance, atempts to return: self._value &gt; other</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.temperature_types.AbstractTemperature.__ge__">
+<span class="sig-name descname"><em><span class="pre">self</span></em> <span class="sig-name descname"><span class="pre">&gt;=</span></span> <em><span class="pre">other</span></em></span><a class="headerlink" href="#totemp.temperature_types.AbstractTemperature.__ge__" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if the calling temperature object value is greater
+or equal to <cite>other</cite> and then returns a boolean.</p>
+<p>If <cite>other</cite> is a temperature instance, it is first converted to the
+calling class, then the objects are evaluated. That means: if <cite>other</cite>
+converted to the calling class is greater or equal to <cite>other</cite>, it returns True,
+otherwise it returns False.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>self.__ge__(other)</strong><span class="classifier">bool</span></dt><dd><p>self._value &gt;= other.convert_to(cls).value</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>If <cite>other</cite> is not a temperature instance, atempts to return: self._value &gt;= other</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.temperature_types.AbstractTemperature.__divmod__">
+<span class="sig-name descname"><span class="pre">divmod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self</span></em>, <em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#totemp.temperature_types.AbstractTemperature.__divmod__" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a tuple of two new instances of the same class with the quotient and remainder.</p>
+<p>If <cite>other</cite> is a temperature instance, it is first converted to the
+calling class, then the values are divided.
+Otherwise, an attempt is made to use divmod operation between the
+calling class and <cite>other</cite> to the value directly.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>self.__divmod__(other)</strong><span class="classifier">bool</span></dt><dd><p>return cls(result[0]), cls(result[1])</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>]
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<dl class="simple">
+<dt>If <cite>other</cite> is not a temperature instance, <cite>result</cite> is:</dt><dd><p>result = divmod(self._value, other)</p>
+</dd>
+<dt>If it is a temperature instance:</dt><dd><p>result = divmod(self._value, other.convert_to(cls).value)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.temperature_types.AbstractTemperature.__round__">
+<span class="sig-name descname"><span class="pre">round</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self</span></em>, <em class="sig-param"><span class="n"><span class="pre">ndigits</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#totemp.temperature_types.AbstractTemperature.__round__" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a new instance of the same class with <cite>value</cite> rounded.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>self.__round__(other)</strong><span class="classifier">T</span></dt><dd><p>cls(int(round(self._value, ndigits=ndigits)))</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">T</span></code>, bound= AbstractTemperature)
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.temperature_types.AbstractTemperature.__floor__">
+<span class="sig-name descname"><span class="pre">math.floor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#totemp.temperature_types.AbstractTemperature.__floor__" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a new instance of the same class with the floor of <cite>value</cite>.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>self.__floor__(other)</strong><span class="classifier">T</span></dt><dd><p>cls(floor(self._value))</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">T</span></code>, bound= AbstractTemperature)
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.temperature_types.AbstractTemperature.__ceil__">
+<span class="sig-name descname"><span class="pre">math.ceil</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#totemp.temperature_types.AbstractTemperature.__ceil__" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a new instance of the same class with the ceiling of <cite>value</cite>.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>self.__ceil__(other)</strong><span class="classifier">T</span></dt><dd><p>cls(ceil(self._value))</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">T</span></code>, bound= AbstractTemperature)
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.temperature_types.AbstractTemperature.__trunc__">
+<span class="sig-name descname"><span class="pre">math.trunc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#totemp.temperature_types.AbstractTemperature.__trunc__" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a new instance of the same class with the truncated integer part of <cite>value</cite>.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>self.__trunc__(other)</strong><span class="classifier">T</span></dt><dd><p>cls(trunc(self._value))</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">T</span></code>, bound= AbstractTemperature)
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.temperature_types.AbstractTemperature.__float__">
+<span class="sig-name descname"><span class="pre">float</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#totemp.temperature_types.AbstractTemperature.__float__" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a float of <cite>value</cite>.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>_value</strong><span class="classifier">float</span></dt><dd><p>float(self._value)</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.temperature_types.AbstractTemperature.__int__">
+<span class="sig-name descname"><span class="pre">int</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#totemp.temperature_types.AbstractTemperature.__int__" title="Permalink to this definition"></a></dt>
+<dd><p>Returns an int of <cite>value</cite>.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>_value</strong><span class="classifier">int</span></dt><dd><p>int(self._value)</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.temperature_types.AbstractTemperature.__abs__">
+<span class="sig-name descname"><span class="pre">abs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#totemp.temperature_types.AbstractTemperature.__abs__" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a new instance of the same class with the absolute of <cite>value</cite>.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>self.__abs__()</strong><span class="classifier">float</span></dt><dd><p>cls(abs(self._value))</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.temperature_types.AbstractTemperature" title="totemp.temperature_types.AbstractTemperature"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractTemperature</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.temperature_types.AbstractTemperature.__pos__">
+<span class="sig-name descname"><span class="pre">+</span></span><em><span class="pre">self</span></em><a class="headerlink" href="#totemp.temperature_types.AbstractTemperature.__pos__" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a new instance of the same class with <cite>+value</cite>.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>self.__pos__()</strong><span class="classifier">T</span></dt><dd><p>cls(+self._value)</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.temperature_types.AbstractTemperature" title="totemp.temperature_types.AbstractTemperature"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractTemperature</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.temperature_types.AbstractTemperature.__neg__">
+<span class="sig-name descname"><span class="pre">-</span></span><em><span class="pre">self</span></em><a class="headerlink" href="#totemp.temperature_types.AbstractTemperature.__neg__" title="Permalink to this definition"></a></dt>
+<dd><p>Return a new instance of the same class with the negation of <cite>value</cite>.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>self.__neg__()</strong><span class="classifier">T</span></dt><dd><p>cls(-self._value)</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.temperature_types.AbstractTemperature" title="totemp.temperature_types.AbstractTemperature"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractTemperature</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.temperature_types.AbstractTemperature.__invert__">
+<span class="sig-name descname"><span class="pre">~</span></span><em><span class="pre">self</span></em><a class="headerlink" href="#totemp.temperature_types.AbstractTemperature.__invert__" title="Permalink to this definition"></a></dt>
+<dd><p>Return a new instance of the same class with bitwise NOT of <cite>value</cite>.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>self.__invert__()</strong><span class="classifier">T</span></dt><dd><p>cls(-self._value - 1)</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.temperature_types.AbstractTemperature" title="totemp.temperature_types.AbstractTemperature"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractTemperature</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.temperature_types.AbstractTemperature.__radd__">
+<span class="sig-name descname"><span class="pre">__radd__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#totemp.temperature_types.AbstractTemperature.__radd__" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a new instance of the same class with the sum of the values.</p>
+<p>An attempt is made to add the value to the <cite>other</cite>.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>self.__radd__(other)</strong><span class="classifier">T</span></dt><dd><p>cls(other + self._value)</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">T</span></code>, bound= AbstractTemperature)
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.temperature_types.AbstractTemperature.__rsub__">
+<span class="sig-name descname"><span class="pre">__rsub__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#totemp.temperature_types.AbstractTemperature.__rsub__" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a new instance of the same class with the subtraction of the values.</p>
+<p>An attempt is made to subtract the value to the <cite>other</cite>.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>self.__rsub__(other)</strong><span class="classifier">T</span></dt><dd><p>cls(other - self._value)</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">T</span></code>, bound= AbstractTemperature)
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.temperature_types.AbstractTemperature.__rmul__">
+<span class="sig-name descname"><span class="pre">__rmul__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#totemp.temperature_types.AbstractTemperature.__rmul__" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a new instance of the same class with the multiplication of the values.</p>
+<p>An attempt is made to multiply <cite>other</cite> by the value.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>self.__rmul__(other)</strong><span class="classifier">T</span></dt><dd><p>cls(other * self._value)</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">T</span></code>, bound= AbstractTemperature)
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.temperature_types.AbstractTemperature.__rpow__">
+<span class="sig-name descname"><span class="pre">__rpow__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#totemp.temperature_types.AbstractTemperature.__rpow__" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a new instance of the same class with the exponentiation of the values.</p>
+<p>An attempt is made to raise <cite>other</cite> to the power of the value.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>self.__rpow__(other)</strong><span class="classifier">T</span></dt><dd><p>cls(other**self._value)</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">T</span></code>, bound= AbstractTemperature)
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.temperature_types.AbstractTemperature.__rtruediv__">
+<span class="sig-name descname"><span class="pre">__rtruediv__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#totemp.temperature_types.AbstractTemperature.__rtruediv__" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a new instance of the same class with the division of the values.</p>
+<p>An attempt is made to divide the <cite>other</cite> by the value.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>self.__rtruediv__(other)</strong><span class="classifier">T</span></dt><dd><p>cls(other / self._value)</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">T</span></code>, bound= AbstractTemperature)
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.temperature_types.AbstractTemperature.__rfloordiv__">
+<span class="sig-name descname"><span class="pre">__rfloordiv__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#totemp.temperature_types.AbstractTemperature.__rfloordiv__" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a new instance of the same class with the floor division of the values.</p>
+<p>An attempt is made to floor divide the value to <cite>other</cite>.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>self.__rfloordiv__(other)</strong><span class="classifier">T</span></dt><dd><p>cls(other // self._value)</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">T</span></code>, bound= AbstractTemperature)
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.temperature_types.AbstractTemperature.__rmod__">
+<span class="sig-name descname"><span class="pre">__rmod__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#totemp.temperature_types.AbstractTemperature.__rmod__" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a new instance of the same class with the remainder from the division of the values.</p>
+<p>An attempt is made to apply modulo between <cite>other</cite> and value.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>self.__rmod__(other)</strong><span class="classifier">T</span></dt><dd><p>cls(other % self._value)</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">T</span></code>, bound= AbstractTemperature)
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.temperature_types.AbstractTemperature.__rdivmod__">
+<span class="sig-name descname"><span class="pre">__rdivmod__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#totemp.temperature_types.AbstractTemperature.__rdivmod__" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a tuple of two new instances of the same class with the quotient and remainder.</p>
+<p>An attempt is made to apply divmod between the
+calling class and the value.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>self.__rdivmod__(other)</strong><span class="classifier">T</span></dt><dd><p>cls(result[0]), cls(result[1])</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>]
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p><cite>result</cite> is a tuple with the results of: divmod(other, self._value)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.temperature_types.AbstractTemperature.rounded">
+<span class="sig-name descname"><span class="pre">rounded</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.temperature_types.AbstractTemperature.rounded" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the temperature object with converted value to int (rounded).</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>__class__(int(round(self._value)))</strong><span class="classifier">T</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">T</span></code>, bound= AbstractTemperature)
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.temperature_types.AbstractTemperature.convert_to">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">convert_to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temp_cls</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#totemp.temperature_types.AbstractTemperature.convert_to" title="Permalink to this definition"></a></dt>
+<dd><p>Returns an instance of <cite>temp_cls</cite> containing the converted value.</p>
+<p>If no conversion to <cite>temp_cls</cite> is possible, <cite>TypeError</cite> is raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">T</span></code>, bound= AbstractTemperature)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="temperature-classes">
+<h2>Temperature Classes<a class="headerlink" href="#temperature-classes" title="Permalink to this heading"></a></h2>
+<p>All <strong>temperature objects inherit a conversion to itself</strong> that
+<strong>when called it will always return the same object</strong> (and that’s
+why those methods aren’t included here in each class doc).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <strong>symbol property is read-only</strong> and different for each class.</p>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="totemp.Celsius">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">totemp.</span></span><span class="sig-name descname"><span class="pre">Celsius</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Celsius" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#totemp.temperature_types.AbstractTemperature" title="totemp.temperature_types.AbstractTemperature"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractTemperature</span></code></a></p>
+<p>Class to represent Celsius temperature scale.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Attributes</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>_symbol</strong><span class="classifier">str</span></dt><dd><p>Celsius official scale symbol.</p>
+</dd>
+<dt><strong>_value</strong><span class="classifier">float</span></dt><dd><p>Temperature value (e.g. <cite>36</cite> or <cite>-3.14</cite>).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Celsius.convert_to">
+<span class="sig-name descname"><span class="pre">convert_to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temp_cls</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Celsius.convert_to" title="Permalink to this definition"></a></dt>
+<dd><p>Returns an instance of <cite>temp_cls</cite> containing the converted value.</p>
+<p>If no conversion to <cite>temp_cls</cite> is possible, <cite>TypeError</cite> is raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">T</span></code>, bound= AbstractTemperature)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="totemp.Celsius.symbol">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">symbol</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#totemp.Celsius.symbol" title="Permalink to this definition"></a></dt>
+<dd><p>Returns official scale symbol (read-only).</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>_symbol</strong><span class="classifier">str</span></dt><dd><p>self._symbol</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="totemp.Celsius.value">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#totemp.Celsius.value" title="Permalink to this definition"></a></dt>
+<dd><p>Returns temperature object value.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>_value</strong><span class="classifier">float</span></dt><dd><p>self._value</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Celsius.rounded">
+<span class="sig-name descname"><span class="pre">rounded</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Celsius.rounded" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the temperature object with converted value to int (rounded).</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>__class__(int(round(self._value)))</strong><span class="classifier">T</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">T</span></code>, bound= AbstractTemperature)
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Celsius.to_delisle">
+<span class="sig-name descname"><span class="pre">to_delisle</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Celsius.to_delisle" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Delisle object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Delisle)</strong><span class="classifier">Delisle</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Delisle" title="totemp.temperature_types.Delisle"><code class="xref py py-class docutils literal notranslate"><span class="pre">Delisle</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Celsius.to_fahrenheit">
+<span class="sig-name descname"><span class="pre">to_fahrenheit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Celsius.to_fahrenheit" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Fahrenheit object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Fahrenheit)</strong><span class="classifier">Fahrenheit</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Fahrenheit" title="totemp.temperature_types.Fahrenheit"><code class="xref py py-class docutils literal notranslate"><span class="pre">Fahrenheit</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Celsius.to_kelvin">
+<span class="sig-name descname"><span class="pre">to_kelvin</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Celsius.to_kelvin" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Kelvin object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Kelvin)</strong><span class="classifier">Kelvin</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Kelvin" title="totemp.temperature_types.Kelvin"><code class="xref py py-class docutils literal notranslate"><span class="pre">Kelvin</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Celsius.to_newton">
+<span class="sig-name descname"><span class="pre">to_newton</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Celsius.to_newton" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Newton object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Newton)</strong><span class="classifier">Newton</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Newton" title="totemp.temperature_types.Newton"><code class="xref py py-class docutils literal notranslate"><span class="pre">Newton</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Celsius.to_rankine">
+<span class="sig-name descname"><span class="pre">to_rankine</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Celsius.to_rankine" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Rankine object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Rankine)</strong><span class="classifier">Rankine</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Rankine" title="totemp.temperature_types.Rankine"><code class="xref py py-class docutils literal notranslate"><span class="pre">Rankine</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Celsius.to_reaumur">
+<span class="sig-name descname"><span class="pre">to_reaumur</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Celsius.to_reaumur" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Réaumur object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Reaumur)</strong><span class="classifier">Reaumur</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Reaumur" title="totemp.temperature_types.Reaumur"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reaumur</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Celsius.to_romer">
+<span class="sig-name descname"><span class="pre">to_romer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Celsius.to_romer" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Rømer object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Rømer)</strong><span class="classifier">Rømer</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Romer" title="totemp.temperature_types.Romer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Romer</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="totemp.Fahrenheit">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">totemp.</span></span><span class="sig-name descname"><span class="pre">Fahrenheit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Fahrenheit" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#totemp.temperature_types.AbstractTemperature" title="totemp.temperature_types.AbstractTemperature"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractTemperature</span></code></a></p>
+<p>Class to represent Fahrenheit temperature scale.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Attributes</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>_symbol</strong><span class="classifier">str</span></dt><dd><p>Fahrenheit official scale symbol.</p>
+</dd>
+<dt><strong>_value</strong><span class="classifier">float</span></dt><dd><p>Temperature value (e.g. <cite>36</cite> or <cite>-3.14</cite>).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Fahrenheit.convert_to">
+<span class="sig-name descname"><span class="pre">convert_to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temp_cls</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Fahrenheit.convert_to" title="Permalink to this definition"></a></dt>
+<dd><p>Returns an instance of <cite>temp_cls</cite> containing the converted value.</p>
+<p>If no conversion to <cite>temp_cls</cite> is possible, <cite>TypeError</cite> is raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">T</span></code>, bound= AbstractTemperature)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="totemp.Fahrenheit.symbol">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">symbol</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#totemp.Fahrenheit.symbol" title="Permalink to this definition"></a></dt>
+<dd><p>Returns official scale symbol (read-only).</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>_symbol</strong><span class="classifier">str</span></dt><dd><p>self._symbol</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="totemp.Fahrenheit.value">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#totemp.Fahrenheit.value" title="Permalink to this definition"></a></dt>
+<dd><p>Returns temperature object value.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>_value</strong><span class="classifier">float</span></dt><dd><p>self._value</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Fahrenheit.rounded">
+<span class="sig-name descname"><span class="pre">rounded</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Fahrenheit.rounded" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the temperature object with converted value to int (rounded).</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>__class__(int(round(self._value)))</strong><span class="classifier">T</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">T</span></code>, bound= AbstractTemperature)
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Fahrenheit.to_celsius">
+<span class="sig-name descname"><span class="pre">to_celsius</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Fahrenheit.to_celsius" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Celsius object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Celsius)</strong><span class="classifier">Celsius</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Celsius" title="totemp.temperature_types.Celsius"><code class="xref py py-class docutils literal notranslate"><span class="pre">Celsius</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Fahrenheit.to_delisle">
+<span class="sig-name descname"><span class="pre">to_delisle</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Fahrenheit.to_delisle" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Delisle object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Delisle)</strong><span class="classifier">Delisle</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Delisle" title="totemp.temperature_types.Delisle"><code class="xref py py-class docutils literal notranslate"><span class="pre">Delisle</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Fahrenheit.to_kelvin">
+<span class="sig-name descname"><span class="pre">to_kelvin</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Fahrenheit.to_kelvin" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Kelvin object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Kelvin)</strong><span class="classifier">Kelvin</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Kelvin" title="totemp.temperature_types.Kelvin"><code class="xref py py-class docutils literal notranslate"><span class="pre">Kelvin</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Fahrenheit.to_newton">
+<span class="sig-name descname"><span class="pre">to_newton</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Fahrenheit.to_newton" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Newton object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Newton)</strong><span class="classifier">Newton</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Newton" title="totemp.temperature_types.Newton"><code class="xref py py-class docutils literal notranslate"><span class="pre">Newton</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Fahrenheit.to_rankine">
+<span class="sig-name descname"><span class="pre">to_rankine</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Fahrenheit.to_rankine" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Rankine object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Rankine)</strong><span class="classifier">Rankine</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Rankine" title="totemp.temperature_types.Rankine"><code class="xref py py-class docutils literal notranslate"><span class="pre">Rankine</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Fahrenheit.to_reaumur">
+<span class="sig-name descname"><span class="pre">to_reaumur</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Fahrenheit.to_reaumur" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Réaumur object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Reaumur)</strong><span class="classifier">Reaumur</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Reaumur" title="totemp.temperature_types.Reaumur"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reaumur</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Fahrenheit.to_romer">
+<span class="sig-name descname"><span class="pre">to_romer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Fahrenheit.to_romer" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Rømer object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Rømer)</strong><span class="classifier">Rømer</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Romer" title="totemp.temperature_types.Romer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Romer</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="totemp.Delisle">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">totemp.</span></span><span class="sig-name descname"><span class="pre">Delisle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Delisle" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#totemp.temperature_types.AbstractTemperature" title="totemp.temperature_types.AbstractTemperature"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractTemperature</span></code></a></p>
+<p>Class to represent Delisle temperature scale.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Attributes</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>_symbol</strong><span class="classifier">str</span></dt><dd><p>Delisle official scale symbol.</p>
+</dd>
+<dt><strong>_value</strong><span class="classifier">float</span></dt><dd><p>Temperature value (e.g. <cite>36</cite> or <cite>-3.14</cite>).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Delisle.convert_to">
+<span class="sig-name descname"><span class="pre">convert_to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temp_cls</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Delisle.convert_to" title="Permalink to this definition"></a></dt>
+<dd><p>Returns an instance of <cite>temp_cls</cite> containing the converted value.</p>
+<p>If no conversion to <cite>temp_cls</cite> is possible, <cite>TypeError</cite> is raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">T</span></code>, bound= AbstractTemperature)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="totemp.Delisle.symbol">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">symbol</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#totemp.Delisle.symbol" title="Permalink to this definition"></a></dt>
+<dd><p>Returns official scale symbol (read-only).</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>_symbol</strong><span class="classifier">str</span></dt><dd><p>self._symbol</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="totemp.Delisle.value">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#totemp.Delisle.value" title="Permalink to this definition"></a></dt>
+<dd><p>Returns temperature object value.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>_value</strong><span class="classifier">float</span></dt><dd><p>self._value</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Delisle.rounded">
+<span class="sig-name descname"><span class="pre">rounded</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Delisle.rounded" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the temperature object with converted value to int (rounded).</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>__class__(int(round(self._value)))</strong><span class="classifier">T</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">T</span></code>, bound= AbstractTemperature)
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Delisle.to_celsius">
+<span class="sig-name descname"><span class="pre">to_celsius</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Delisle.to_celsius" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Celsius object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Celsius)</strong><span class="classifier">Celsius</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Celsius" title="totemp.temperature_types.Celsius"><code class="xref py py-class docutils literal notranslate"><span class="pre">Celsius</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Delisle.to_fahrenheit">
+<span class="sig-name descname"><span class="pre">to_fahrenheit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Delisle.to_fahrenheit" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Fahrenheit object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Fahrenheit)</strong><span class="classifier">Fahrenheit</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Fahrenheit" title="totemp.temperature_types.Fahrenheit"><code class="xref py py-class docutils literal notranslate"><span class="pre">Fahrenheit</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Delisle.to_kelvin">
+<span class="sig-name descname"><span class="pre">to_kelvin</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Delisle.to_kelvin" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Kelvin object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Kelvin)</strong><span class="classifier">Kelvin</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Kelvin" title="totemp.temperature_types.Kelvin"><code class="xref py py-class docutils literal notranslate"><span class="pre">Kelvin</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Delisle.to_newton">
+<span class="sig-name descname"><span class="pre">to_newton</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Delisle.to_newton" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Newton object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Newton)</strong><span class="classifier">Newton</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Newton" title="totemp.temperature_types.Newton"><code class="xref py py-class docutils literal notranslate"><span class="pre">Newton</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Delisle.to_rankine">
+<span class="sig-name descname"><span class="pre">to_rankine</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Delisle.to_rankine" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Rankine object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Rankine)</strong><span class="classifier">Rankine</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Rankine" title="totemp.temperature_types.Rankine"><code class="xref py py-class docutils literal notranslate"><span class="pre">Rankine</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Delisle.to_reaumur">
+<span class="sig-name descname"><span class="pre">to_reaumur</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Delisle.to_reaumur" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Réaumur object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Reaumur)</strong><span class="classifier">Reaumur</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Reaumur" title="totemp.temperature_types.Reaumur"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reaumur</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Delisle.to_romer">
+<span class="sig-name descname"><span class="pre">to_romer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Delisle.to_romer" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Rømer object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Rømer)</strong><span class="classifier">Rømer</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Romer" title="totemp.temperature_types.Romer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Romer</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="totemp.Kelvin">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">totemp.</span></span><span class="sig-name descname"><span class="pre">Kelvin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Kelvin" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#totemp.temperature_types.AbstractTemperature" title="totemp.temperature_types.AbstractTemperature"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractTemperature</span></code></a></p>
+<p>Class to represent Kelvin temperature scale.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Attributes</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>_symbol</strong><span class="classifier">str</span></dt><dd><p>Kelvin official scale symbol.</p>
+</dd>
+<dt><strong>_value</strong><span class="classifier">float</span></dt><dd><p>Temperature value (e.g. <cite>36</cite> or <cite>-3.14</cite>).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Kelvin.convert_to">
+<span class="sig-name descname"><span class="pre">convert_to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temp_cls</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Kelvin.convert_to" title="Permalink to this definition"></a></dt>
+<dd><p>Returns an instance of <cite>temp_cls</cite> containing the converted value.</p>
+<p>If no conversion to <cite>temp_cls</cite> is possible, <cite>TypeError</cite> is raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">T</span></code>, bound= AbstractTemperature)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="totemp.Kelvin.symbol">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">symbol</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#totemp.Kelvin.symbol" title="Permalink to this definition"></a></dt>
+<dd><p>Returns official scale symbol (read-only).</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>_symbol</strong><span class="classifier">str</span></dt><dd><p>self._symbol</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="totemp.Kelvin.value">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#totemp.Kelvin.value" title="Permalink to this definition"></a></dt>
+<dd><p>Returns temperature object value.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>_value</strong><span class="classifier">float</span></dt><dd><p>self._value</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Kelvin.rounded">
+<span class="sig-name descname"><span class="pre">rounded</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Kelvin.rounded" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the temperature object with converted value to int (rounded).</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>__class__(int(round(self._value)))</strong><span class="classifier">T</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">T</span></code>, bound= AbstractTemperature)
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Kelvin.to_celsius">
+<span class="sig-name descname"><span class="pre">to_celsius</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Kelvin.to_celsius" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Celsius object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Celsius)</strong><span class="classifier">Celsius</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Celsius" title="totemp.temperature_types.Celsius"><code class="xref py py-class docutils literal notranslate"><span class="pre">Celsius</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Kelvin.to_fahrenheit">
+<span class="sig-name descname"><span class="pre">to_fahrenheit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Kelvin.to_fahrenheit" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Fahrenheit object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Fahrenheit)</strong><span class="classifier">Fahrenheit</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Fahrenheit" title="totemp.temperature_types.Fahrenheit"><code class="xref py py-class docutils literal notranslate"><span class="pre">Fahrenheit</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Kelvin.to_delisle">
+<span class="sig-name descname"><span class="pre">to_delisle</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Kelvin.to_delisle" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Delisle object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Delisle)</strong><span class="classifier">Delisle</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Delisle" title="totemp.temperature_types.Delisle"><code class="xref py py-class docutils literal notranslate"><span class="pre">Delisle</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Kelvin.to_newton">
+<span class="sig-name descname"><span class="pre">to_newton</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Kelvin.to_newton" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Newton object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Newton)</strong><span class="classifier">Newton</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Newton" title="totemp.temperature_types.Newton"><code class="xref py py-class docutils literal notranslate"><span class="pre">Newton</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Kelvin.to_rankine">
+<span class="sig-name descname"><span class="pre">to_rankine</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Kelvin.to_rankine" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Rankine object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Rankine)</strong><span class="classifier">Rankine</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Rankine" title="totemp.temperature_types.Rankine"><code class="xref py py-class docutils literal notranslate"><span class="pre">Rankine</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Kelvin.to_reaumur">
+<span class="sig-name descname"><span class="pre">to_reaumur</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Kelvin.to_reaumur" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Réaumur object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Reaumur)</strong><span class="classifier">Reaumur</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Reaumur" title="totemp.temperature_types.Reaumur"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reaumur</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Kelvin.to_romer">
+<span class="sig-name descname"><span class="pre">to_romer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Kelvin.to_romer" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Rømer object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Rømer)</strong><span class="classifier">Rømer</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Romer" title="totemp.temperature_types.Romer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Romer</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="totemp.Newton">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">totemp.</span></span><span class="sig-name descname"><span class="pre">Newton</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Newton" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#totemp.temperature_types.AbstractTemperature" title="totemp.temperature_types.AbstractTemperature"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractTemperature</span></code></a></p>
+<p>Class to represent Newton temperature scale.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Attributes</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>_symbol</strong><span class="classifier">str</span></dt><dd><p>Newton official scale symbol.</p>
+</dd>
+<dt><strong>_value</strong><span class="classifier">float</span></dt><dd><p>Temperature value (e.g. <cite>36</cite> or <cite>-3.14</cite>).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Newton.convert_to">
+<span class="sig-name descname"><span class="pre">convert_to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temp_cls</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Newton.convert_to" title="Permalink to this definition"></a></dt>
+<dd><p>Returns an instance of <cite>temp_cls</cite> containing the converted value.</p>
+<p>If no conversion to <cite>temp_cls</cite> is possible, <cite>TypeError</cite> is raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">T</span></code>, bound= AbstractTemperature)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="totemp.Newton.symbol">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">symbol</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#totemp.Newton.symbol" title="Permalink to this definition"></a></dt>
+<dd><p>Returns official scale symbol (read-only).</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>_symbol</strong><span class="classifier">str</span></dt><dd><p>self._symbol</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="totemp.Newton.value">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#totemp.Newton.value" title="Permalink to this definition"></a></dt>
+<dd><p>Returns temperature object value.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>_value</strong><span class="classifier">float</span></dt><dd><p>self._value</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Newton.rounded">
+<span class="sig-name descname"><span class="pre">rounded</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Newton.rounded" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the temperature object with converted value to int (rounded).</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>__class__(int(round(self._value)))</strong><span class="classifier">T</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">T</span></code>, bound= AbstractTemperature)
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Newton.to_celsius">
+<span class="sig-name descname"><span class="pre">to_celsius</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Newton.to_celsius" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Celsius object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Celsius)</strong><span class="classifier">Celsius</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Celsius" title="totemp.temperature_types.Celsius"><code class="xref py py-class docutils literal notranslate"><span class="pre">Celsius</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Newton.to_fahrenheit">
+<span class="sig-name descname"><span class="pre">to_fahrenheit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Newton.to_fahrenheit" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Fahrenheit object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Fahrenheit)</strong><span class="classifier">Fahrenheit</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Fahrenheit" title="totemp.temperature_types.Fahrenheit"><code class="xref py py-class docutils literal notranslate"><span class="pre">Fahrenheit</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Newton.to_delisle">
+<span class="sig-name descname"><span class="pre">to_delisle</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Newton.to_delisle" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Delisle object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Delisle)</strong><span class="classifier">Delisle</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Delisle" title="totemp.temperature_types.Delisle"><code class="xref py py-class docutils literal notranslate"><span class="pre">Delisle</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Newton.to_kelvin">
+<span class="sig-name descname"><span class="pre">to_kelvin</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Newton.to_kelvin" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Kelvin object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Kelvin)</strong><span class="classifier">Kelvin</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Kelvin" title="totemp.temperature_types.Kelvin"><code class="xref py py-class docutils literal notranslate"><span class="pre">Kelvin</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Newton.to_rankine">
+<span class="sig-name descname"><span class="pre">to_rankine</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Newton.to_rankine" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Rankine object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Rankine)</strong><span class="classifier">Rankine</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Rankine" title="totemp.temperature_types.Rankine"><code class="xref py py-class docutils literal notranslate"><span class="pre">Rankine</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Newton.to_reaumur">
+<span class="sig-name descname"><span class="pre">to_reaumur</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Newton.to_reaumur" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Réaumur object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Reaumur)</strong><span class="classifier">Reaumur</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Reaumur" title="totemp.temperature_types.Reaumur"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reaumur</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Newton.to_romer">
+<span class="sig-name descname"><span class="pre">to_romer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Newton.to_romer" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Rømer object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Rømer)</strong><span class="classifier">Rømer</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Romer" title="totemp.temperature_types.Romer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Romer</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="totemp.Rankine">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">totemp.</span></span><span class="sig-name descname"><span class="pre">Rankine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Rankine" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#totemp.temperature_types.AbstractTemperature" title="totemp.temperature_types.AbstractTemperature"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractTemperature</span></code></a></p>
+<p>Class to represent Rankine temperature scale.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Attributes</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>_symbol</strong><span class="classifier">str</span></dt><dd><p>Rankine official scale symbol.</p>
+</dd>
+<dt><strong>_value</strong><span class="classifier">float</span></dt><dd><p>Temperature value (e.g. <cite>36</cite> or <cite>-3.14</cite>).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Rankine.convert_to">
+<span class="sig-name descname"><span class="pre">convert_to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temp_cls</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Rankine.convert_to" title="Permalink to this definition"></a></dt>
+<dd><p>Returns an instance of <cite>temp_cls</cite> containing the converted value.</p>
+<p>If no conversion to <cite>temp_cls</cite> is possible, <cite>TypeError</cite> is raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">T</span></code>, bound= AbstractTemperature)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="totemp.Rankine.symbol">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">symbol</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#totemp.Rankine.symbol" title="Permalink to this definition"></a></dt>
+<dd><p>Returns official scale symbol (read-only).</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>_symbol</strong><span class="classifier">str</span></dt><dd><p>self._symbol</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="totemp.Rankine.value">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#totemp.Rankine.value" title="Permalink to this definition"></a></dt>
+<dd><p>Returns temperature object value.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>_value</strong><span class="classifier">float</span></dt><dd><p>self._value</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Rankine.rounded">
+<span class="sig-name descname"><span class="pre">rounded</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Rankine.rounded" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the temperature object with converted value to int (rounded).</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>__class__(int(round(self._value)))</strong><span class="classifier">T</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">T</span></code>, bound= AbstractTemperature)
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Rankine.to_celsius">
+<span class="sig-name descname"><span class="pre">to_celsius</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Rankine.to_celsius" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Celsius object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Celsius)</strong><span class="classifier">Celsius</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Celsius" title="totemp.temperature_types.Celsius"><code class="xref py py-class docutils literal notranslate"><span class="pre">Celsius</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Rankine.to_fahrenheit">
+<span class="sig-name descname"><span class="pre">to_fahrenheit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Rankine.to_fahrenheit" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Fahrenheit object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Fahrenheit)</strong><span class="classifier">Fahrenheit</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Fahrenheit" title="totemp.temperature_types.Fahrenheit"><code class="xref py py-class docutils literal notranslate"><span class="pre">Fahrenheit</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Rankine.to_delisle">
+<span class="sig-name descname"><span class="pre">to_delisle</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Rankine.to_delisle" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Delisle object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Delisle)</strong><span class="classifier">Delisle</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Delisle" title="totemp.temperature_types.Delisle"><code class="xref py py-class docutils literal notranslate"><span class="pre">Delisle</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Rankine.to_kelvin">
+<span class="sig-name descname"><span class="pre">to_kelvin</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Rankine.to_kelvin" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Kelvin object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Kelvin)</strong><span class="classifier">Kelvin</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Kelvin" title="totemp.temperature_types.Kelvin"><code class="xref py py-class docutils literal notranslate"><span class="pre">Kelvin</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Rankine.to_newton">
+<span class="sig-name descname"><span class="pre">to_newton</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Rankine.to_newton" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Newton object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Newton)</strong><span class="classifier">Newton</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Newton" title="totemp.temperature_types.Newton"><code class="xref py py-class docutils literal notranslate"><span class="pre">Newton</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Rankine.to_reaumur">
+<span class="sig-name descname"><span class="pre">to_reaumur</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Rankine.to_reaumur" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Réaumur object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Reaumur)</strong><span class="classifier">Reaumur</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Reaumur" title="totemp.temperature_types.Reaumur"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reaumur</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Rankine.to_romer">
+<span class="sig-name descname"><span class="pre">to_romer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Rankine.to_romer" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Rømer object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Rømer)</strong><span class="classifier">Rømer</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Romer" title="totemp.temperature_types.Romer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Romer</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="totemp.Reaumur">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">totemp.</span></span><span class="sig-name descname"><span class="pre">Reaumur</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Reaumur" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#totemp.temperature_types.AbstractTemperature" title="totemp.temperature_types.AbstractTemperature"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractTemperature</span></code></a></p>
+<p>Class to represent Réaumur temperature scale.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Attributes</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>_symbol</strong><span class="classifier">str</span></dt><dd><p>Réaumur official scale symbol.</p>
+</dd>
+<dt><strong>_value</strong><span class="classifier">float</span></dt><dd><p>Temperature value (e.g. <cite>36</cite> or <cite>-3.14</cite>).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Reaumur.convert_to">
+<span class="sig-name descname"><span class="pre">convert_to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temp_cls</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Reaumur.convert_to" title="Permalink to this definition"></a></dt>
+<dd><p>Returns an instance of <cite>temp_cls</cite> containing the converted value.</p>
+<p>If no conversion to <cite>temp_cls</cite> is possible, <cite>TypeError</cite> is raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">T</span></code>, bound= AbstractTemperature)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="totemp.Reaumur.symbol">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">symbol</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#totemp.Reaumur.symbol" title="Permalink to this definition"></a></dt>
+<dd><p>Returns official scale symbol (read-only).</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>_symbol</strong><span class="classifier">str</span></dt><dd><p>self._symbol</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="totemp.Reaumur.value">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#totemp.Reaumur.value" title="Permalink to this definition"></a></dt>
+<dd><p>Returns temperature object value.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>_value</strong><span class="classifier">float</span></dt><dd><p>self._value</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Reaumur.rounded">
+<span class="sig-name descname"><span class="pre">rounded</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Reaumur.rounded" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the temperature object with converted value to int (rounded).</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>__class__(int(round(self._value)))</strong><span class="classifier">T</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">T</span></code>, bound= AbstractTemperature)
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Reaumur.to_celsius">
+<span class="sig-name descname"><span class="pre">to_celsius</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Reaumur.to_celsius" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Celsius object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Celsius)</strong><span class="classifier">Celsius</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Celsius" title="totemp.temperature_types.Celsius"><code class="xref py py-class docutils literal notranslate"><span class="pre">Celsius</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Reaumur.to_fahrenheit">
+<span class="sig-name descname"><span class="pre">to_fahrenheit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Reaumur.to_fahrenheit" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Fahrenheit object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Fahrenheit)</strong><span class="classifier">Fahrenheit</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Fahrenheit" title="totemp.temperature_types.Fahrenheit"><code class="xref py py-class docutils literal notranslate"><span class="pre">Fahrenheit</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Reaumur.to_delisle">
+<span class="sig-name descname"><span class="pre">to_delisle</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Reaumur.to_delisle" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Delisle object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Delisle)</strong><span class="classifier">Delisle</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Delisle" title="totemp.temperature_types.Delisle"><code class="xref py py-class docutils literal notranslate"><span class="pre">Delisle</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Reaumur.to_kelvin">
+<span class="sig-name descname"><span class="pre">to_kelvin</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Reaumur.to_kelvin" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Kelvin object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Kelvin)</strong><span class="classifier">Kelvin</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Kelvin" title="totemp.temperature_types.Kelvin"><code class="xref py py-class docutils literal notranslate"><span class="pre">Kelvin</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Reaumur.to_newton">
+<span class="sig-name descname"><span class="pre">to_newton</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Reaumur.to_newton" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Newton object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Newton)</strong><span class="classifier">Newton</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Newton" title="totemp.temperature_types.Newton"><code class="xref py py-class docutils literal notranslate"><span class="pre">Newton</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Reaumur.to_rankine">
+<span class="sig-name descname"><span class="pre">to_rankine</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Reaumur.to_rankine" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Rankine object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Rankine)</strong><span class="classifier">Rankine</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Rankine" title="totemp.temperature_types.Rankine"><code class="xref py py-class docutils literal notranslate"><span class="pre">Rankine</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Reaumur.to_romer">
+<span class="sig-name descname"><span class="pre">to_romer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Reaumur.to_romer" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Rømer object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Rømer)</strong><span class="classifier">Rømer</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Romer" title="totemp.temperature_types.Romer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Romer</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="totemp.Romer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">totemp.</span></span><span class="sig-name descname"><span class="pre">Romer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Romer" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#totemp.temperature_types.AbstractTemperature" title="totemp.temperature_types.AbstractTemperature"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractTemperature</span></code></a></p>
+<p>Class to represent Rømer temperature scale.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Attributes</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>_symbol</strong><span class="classifier">str</span></dt><dd><p>Rømer official scale symbol.</p>
+</dd>
+<dt><strong>_value</strong><span class="classifier">float</span></dt><dd><p>Temperature value (e.g. <cite>36</cite> or <cite>-3.14</cite>).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="totemp.Romer.symbol">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">symbol</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#totemp.Romer.symbol" title="Permalink to this definition"></a></dt>
+<dd><p>Returns official scale symbol (read-only).</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>_symbol</strong><span class="classifier">str</span></dt><dd><p>self._symbol</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="totemp.Romer.value">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#totemp.Romer.value" title="Permalink to this definition"></a></dt>
+<dd><p>Returns temperature object value.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>_value</strong><span class="classifier">float</span></dt><dd><p>self._value</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Romer.rounded">
+<span class="sig-name descname"><span class="pre">rounded</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Romer.rounded" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the temperature object with converted value to int (rounded).</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>__class__(int(round(self._value)))</strong><span class="classifier">T</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">T</span></code>, bound= AbstractTemperature)
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Romer.to_celsius">
+<span class="sig-name descname"><span class="pre">to_celsius</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Romer.to_celsius" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Celsius object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Celsius)</strong><span class="classifier">Celsius</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Celsius" title="totemp.temperature_types.Celsius"><code class="xref py py-class docutils literal notranslate"><span class="pre">Celsius</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Romer.to_fahrenheit">
+<span class="sig-name descname"><span class="pre">to_fahrenheit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Romer.to_fahrenheit" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Fahrenheit object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Fahrenheit)</strong><span class="classifier">Fahrenheit</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Fahrenheit" title="totemp.temperature_types.Fahrenheit"><code class="xref py py-class docutils literal notranslate"><span class="pre">Fahrenheit</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Romer.to_delisle">
+<span class="sig-name descname"><span class="pre">to_delisle</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Romer.to_delisle" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Delisle object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Delisle)</strong><span class="classifier">Delisle</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Delisle" title="totemp.temperature_types.Delisle"><code class="xref py py-class docutils literal notranslate"><span class="pre">Delisle</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Romer.to_kelvin">
+<span class="sig-name descname"><span class="pre">to_kelvin</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Romer.to_kelvin" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Kelvin object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Kelvin)</strong><span class="classifier">Kelvin</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Kelvin" title="totemp.temperature_types.Kelvin"><code class="xref py py-class docutils literal notranslate"><span class="pre">Kelvin</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Romer.to_newton">
+<span class="sig-name descname"><span class="pre">to_newton</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Romer.to_newton" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Newton object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Newton)</strong><span class="classifier">Newton</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Newton" title="totemp.temperature_types.Newton"><code class="xref py py-class docutils literal notranslate"><span class="pre">Newton</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Romer.to_rankine">
+<span class="sig-name descname"><span class="pre">to_rankine</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Romer.to_rankine" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Rankine object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Rankine)</strong><span class="classifier">Rankine</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Rankine" title="totemp.temperature_types.Rankine"><code class="xref py py-class docutils literal notranslate"><span class="pre">Rankine</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Romer.to_reaumur">
+<span class="sig-name descname"><span class="pre">to_reaumur</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Romer.to_reaumur" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a Réaumur object which contains the class attribute “value”
+with the result from the conversion typed the same as the attribute.</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>convert_to(Reaumur)</strong><span class="classifier">Reaumur</span></dt><dd></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#totemp.Reaumur" title="totemp.temperature_types.Reaumur"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reaumur</span></code></a>
+..</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="totemp.Romer.convert_to">
+<span class="sig-name descname"><span class="pre">convert_to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temp_cls</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#totemp.Romer.convert_to" title="Permalink to this definition"></a></dt>
+<dd><p>Returns an instance of <cite>temp_cls</cite> containing the converted value.</p>
+<p>If no conversion to <cite>temp_cls</cite> is possible, <cite>TypeError</cite> is raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">T</span></code>, bound= AbstractTemperature)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="installation_usage.html" class="btn btn-neutral float-left" title="Installation and Usage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Edson Pimenta, Dávilos Tavares and Raul Silva.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

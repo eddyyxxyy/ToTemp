@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installation and Usage &mdash; ToTemp 0.5.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="ToTemp Module" href="totemp.html" />
+    <link rel="prev" title="Introduction" href="intro.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> ToTemp
+            <img src="_static/logo-no-background.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation and Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#basic-usage-and-representation">Basic Usage and Representation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#arithmetic-and-comparison-operations">Arithmetic and comparison operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#temperature-instance-conversions">Temperature Instance Conversions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="totemp.html">ToTemp Module</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ToTemp</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Installation and Usage</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/installation_usage.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installation-and-usage">
+<h1>Installation and Usage<a class="headerlink" href="#installation-and-usage" title="Permalink to this heading"></a></h1>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h2>
+<p>Install the package (or add it to your <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pip install totemp
+</pre></div>
+</div>
+<p>Or, in poetry environments:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>poetry add totemp
+</pre></div>
+</div>
+</section>
+<section id="basic-usage-and-representation">
+<h2>Basic Usage and Representation<a class="headerlink" href="#basic-usage-and-representation" title="Permalink to this heading"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <a class="reference internal" href="totemp.html#totemp.temperature_types.AbstractTemperature" title="totemp.temperature_types.AbstractTemperature"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Base</span> <span class="pre">Class</span></code></a> is the one who makes the magic
+happen in this package, for all the module detailed information go <a class="reference internal" href="totemp.html"><span class="doc">check every single class, its
+methods, properties and other implementations there</span></a>.</p>
+<p>Thanks to <a class="reference external" href="https://github.com/daniil-berg">Daniil Fajnberg</a> we could finally solve the problems
+when trying to implement this base class.</p>
+</div>
+<p>When working with temperature scales representations and
+conversions, we often see a lack of “straight to the point”
+solutions beside of searching online for every single
+mathematical formula.</p>
+<p>In that sense, everytime I (<a class="reference external" href="https://github.com/eddyyxxyy">Edson</a>) tried
+to represent those temperatures (using packages or implementing my
+own code) to automate any calculation/operation/representation, I
+was often stuck with little to none precise and simple way of doing
+it.</p>
+<p>This package aims to bring the simple and straight to the point,
+but precise, Object Oriented experience of working with temperature
+scale data types.</p>
+<p><strong>For example, this</strong>:</p>
+<blockquote>
+<div><div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">totemp</span> <span class="kn">import</span> <span class="n">Celsius</span><span class="p">,</span> <span class="n">Fahrenheit</span><span class="p">,</span> <span class="n">Kelvin</span><span class="p">,</span> <span class="n">Delisle</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<span class="linenos"> 4</span>    <span class="n">temps</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="n">Celsius</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">Celsius</span><span class="p">(</span><span class="mi">25</span><span class="p">),</span> <span class="n">Celsius</span><span class="p">(</span><span class="mi">50</span><span class="p">)]</span>
+<span class="hll"><span class="linenos"> 5</span>    <span class="nb">print</span><span class="p">(</span><span class="n">temps</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</span><span class="hll"><span class="linenos"> 6</span>    <span class="nb">print</span><span class="p">(</span><span class="n">temps</span><span class="p">)</span>
+</span><span class="linenos"> 7</span>
+<span class="linenos"> 8</span>    <span class="c1"># Converts all Celsius objects using to_fahrenheit() method</span>
+<span class="linenos"> 9</span>    <span class="n">temps</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">Celsius</span><span class="o">.</span><span class="n">to_fahrenheit</span><span class="p">,</span> <span class="n">temps</span><span class="p">))</span>
+<span class="hll"><span class="linenos">10</span>    <span class="nb">print</span><span class="p">(</span><span class="n">temps</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</span><span class="hll"><span class="linenos">11</span>    <span class="nb">print</span><span class="p">(</span><span class="n">temps</span><span class="p">)</span>
+</span><span class="linenos">12</span>
+<span class="linenos">13</span>    <span class="c1"># Unpacks the temperature objects list</span>
+<span class="linenos">14</span>    <span class="n">temp0</span><span class="p">,</span> <span class="n">temp1</span><span class="p">,</span> <span class="n">temp2</span> <span class="o">=</span> <span class="n">temps</span>
+<span class="hll"><span class="linenos">15</span>    <span class="nb">print</span><span class="p">(</span><span class="n">temp0</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">())</span>
+</span><span class="hll"><span class="linenos">16</span>    <span class="nb">print</span><span class="p">(</span><span class="n">temp0</span><span class="o">.</span><span class="fm">__str__</span><span class="p">())</span>
+</span><span class="hll"><span class="linenos">17</span>    <span class="nb">print</span><span class="p">(</span><span class="n">temp0</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos">18</span>    <span class="nb">print</span><span class="p">(</span><span class="n">temp0</span><span class="o">.</span><span class="n">symbol</span><span class="p">)</span>
+</span><span class="linenos">19</span>
+<span class="linenos">20</span>    <span class="c1"># Converts to Kelvin and then rounds the value</span>
+<span class="linenos">21</span>    <span class="n">temp1</span> <span class="o">=</span> <span class="n">temp1</span><span class="o">.</span><span class="n">to_kelvin</span><span class="p">()</span>
+<span class="hll"><span class="linenos">22</span>    <span class="nb">print</span><span class="p">(</span><span class="n">temp1</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos">23</span>    <span class="nb">print</span><span class="p">(</span><span class="n">temp1</span><span class="o">.</span><span class="n">rounded</span><span class="p">())</span>
+</span><span class="linenos">24</span>
+<span class="linenos">25</span>    <span class="c1"># Converts to Delisle</span>
+<span class="linenos">26</span>    <span class="n">temp2</span> <span class="o">=</span> <span class="n">temp2</span><span class="o">.</span><span class="n">to_delisle</span><span class="p">()</span><span class="o">.</span><span class="n">rounded</span><span class="p">()</span>
+<span class="hll"><span class="linenos">27</span>    <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">temp2</span><span class="p">))</span>
+</span><span class="hll"><span class="linenos">28</span>    <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">temp2</span><span class="o">.</span><span class="n">value</span><span class="p">),</span> <span class="sa">f</span><span class="s1">&#39;-&gt; </span><span class="si">{</span><span class="n">temp2</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</div></blockquote>
+<p><strong>Outputs</strong>:</p>
+<blockquote>
+<div><p>From line 5 and 10:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="s1">&#39;12 ºC&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s1">&#39;53.6 ºF&#39;</span>
+
+<span class="go">Calls to the __str__ method of the temperature object returns</span>
+<span class="go">&quot;`value`º `symbol`&quot;. That means that every call that need string</span>
+<span class="go">representations of the temperature (such as print(), str() or</span>
+<span class="go">`object`.__str__()) returns the value and its official symbol as</span>
+<span class="go">a string.</span>
+</pre></div>
+</div>
+<p>From line 6 and 11:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">Celsius</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span> <span class="n">Celsius</span><span class="p">(</span><span class="mi">25</span><span class="p">),</span> <span class="n">Celsius</span><span class="p">(</span><span class="mi">50</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">Fahrenheit</span><span class="p">(</span><span class="mf">53.6</span><span class="p">),</span> <span class="n">Fahrenheit</span><span class="p">(</span><span class="mf">77.0</span><span class="p">),</span> <span class="n">Fahrenheit</span><span class="p">(</span><span class="mf">122.0</span><span class="p">)]</span>
+
+<span class="go">And here we can see the &quot;real representation&quot; of the objects,</span>
+<span class="go">shown by **__repr__** special method, that specifies its nature</span>
+<span class="go">(which scale it is and it&#39;s value, and we can create a &quot;new&quot;</span>
+<span class="go">object with those representations).</span>
+</pre></div>
+</div>
+<p>From line 15, 16, 17 and 18:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="s1">&#39;Fahrenheit(53.6)&#39;</span>  <span class="c1"># __repr__()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s1">&#39;53.6 ºF&#39;</span>  <span class="c1"># __str__()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mf">53.6</span>  <span class="c1"># `value` property</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s1">&#39;ºF&#39;</span>  <span class="c1"># Official `symbol` property</span>
+
+<span class="go">Both special methods and the symbol property returns</span>
+<span class="go">strings, but value is numeric, a float.</span>
+</pre></div>
+</div>
+<p>From line 22 and 23:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mf">298.15000000000003</span> <span class="n">K</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">298</span> <span class="n">K</span>
+
+<span class="go">Here we can see the calculation precision and the</span>
+<span class="go">simplicity to make the result to be rounded, to</span>
+<span class="go">become an aproximate int value.</span>
+</pre></div>
+</div>
+<p>From line 27 and 28:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; &lt;class &#39;totemp.temperature_types.Delisle&#39;&gt;
+&gt;&gt;&gt; &lt;class &#39;int&#39;&gt; -&gt; 75
+
+And now we have two type outputs, the first one is
+the type of the temp2 object and the other is the type
+of its value.
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+<section id="arithmetic-and-comparison-operations">
+<h2>Arithmetic and comparison operations<a class="headerlink" href="#arithmetic-and-comparison-operations" title="Permalink to this heading"></a></h2>
+<p>Now we can look at the really interesting part of working
+with ToTemp temperature objects: <strong>perform operations between
+temperature data types and its iterations with other numeric
+data types</strong>.</p>
+<p>Let’s go <strong>straight to it</strong>:</p>
+<blockquote>
+<div><div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">totemp</span> <span class="k">as</span> <span class="nn">tp</span>
+</span><span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<span class="hll"><span class="linenos"> 4</span>    <span class="n">temp0</span><span class="p">,</span> <span class="n">temp1</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">Celsius</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">tp</span><span class="o">.</span><span class="n">Fahrenheit</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span>
+</span><span class="linenos"> 5</span>
+<span class="hll"><span class="linenos"> 6</span>    <span class="c1"># Celsius(0) &gt; Fahrenheit(32)</span>
+</span><span class="linenos"> 7</span>    <span class="k">if</span> <span class="n">temp0</span> <span class="o">&gt;</span> <span class="n">temp1</span><span class="p">:</span>
+<span class="linenos"> 8</span>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;`temp0`-&gt;</span><span class="si">{</span><span class="n">temp0</span><span class="si">}</span><span class="s1"> is greater than `temp1`-&gt;</span><span class="si">{</span><span class="n">temp1</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="linenos"> 9</span>    <span class="k">elif</span> <span class="n">temp0</span> <span class="o">&lt;</span> <span class="n">temp1</span><span class="p">:</span>
+<span class="linenos">10</span>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;`temp0`-&gt;</span><span class="si">{</span><span class="n">temp0</span><span class="si">}</span><span class="s1"> is not greater than `temp1`-&gt;</span><span class="si">{</span><span class="n">temp1</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="linenos">11</span>    <span class="k">else</span><span class="p">:</span>
+<span class="hll"><span class="linenos">12</span>        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;What...is...happening...?&#39;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</div></blockquote>
+<p><strong>Outputs</strong>:</p>
+<blockquote>
+<div><p>From line 12:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; What...is...happening...?
+</pre></div>
+</div>
+</div></blockquote>
+<p>As you are probably thinking:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><em>this doesn’t make sense</em>… <strong>or it does</strong>?</p></li>
+</ul>
+</div></blockquote>
+<p>When doing comparisons between temperature data types what are
+we trying to achieve? To check if the objects “are the same” or to
+check if the values equivalent? Or one is greater/lesser than another?</p>
+<p>For example, <em>comparing int(1) == float(1)</em> would <strong>return True</strong>,
+and that’s exactly what’s happening in our temperature comparision.</p>
+<p>The <a class="reference internal" href="totemp.html#totemp.temperature_types.AbstractTemperature.__gt__" title="totemp.temperature_types.AbstractTemperature.__gt__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__gt__</span></code></a> special
+method (and most of the other comparision and arithmetic special methods) checks
+if the object being compared to the calling class is an Temperature Type or a
+float/integer, if <cite>other</cite> is a Temperature, it attempts to convert the other object
+to the calling class and then return the result of the evaluation (to be printed,
+in our case).</p>
+<p>Another example, with the same objects:</p>
+<blockquote>
+<div><div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">totemp</span> <span class="k">as</span> <span class="nn">tp</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<span class="linenos"> 4</span>    <span class="n">temp0</span><span class="p">,</span> <span class="n">temp1</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">Celsius</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">tp</span><span class="o">.</span><span class="n">Fahrenheit</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span>
+<span class="linenos"> 5</span>
+<span class="hll"><span class="linenos"> 6</span>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;temp0: </span><span class="si">{</span><span class="nb">repr</span><span class="p">(</span><span class="n">temp0</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos"> 7</span>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;temp1: </span><span class="si">{</span><span class="nb">repr</span><span class="p">(</span><span class="n">temp1</span><span class="o">.</span><span class="n">to_celsius</span><span class="p">())</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</span><span class="linenos"> 8</span>
+<span class="hll"><span class="linenos"> 9</span>    <span class="nb">print</span><span class="p">(</span><span class="n">temp0</span> <span class="o">&gt;</span> <span class="n">temp1</span><span class="p">)</span>
+</span><span class="linenos">10</span>
+<span class="hll"><span class="linenos">11</span>    <span class="nb">print</span><span class="p">(</span><span class="n">temp0</span> <span class="o">&lt;</span> <span class="n">temp1</span><span class="p">)</span>
+</span><span class="linenos">12</span>
+<span class="hll"><span class="linenos">13</span>    <span class="nb">print</span><span class="p">(</span><span class="n">temp0</span> <span class="o">==</span> <span class="n">temp1</span><span class="p">)</span>
+</span><span class="linenos">14</span>
+<span class="hll"><span class="linenos">15</span>    <span class="nb">print</span><span class="p">(</span><span class="n">temp0</span> <span class="o">!=</span> <span class="n">temp1</span><span class="p">)</span>
+</span><span class="linenos">16</span>
+<span class="hll"><span class="linenos">17</span>    <span class="nb">print</span><span class="p">(</span><span class="n">temp0</span> <span class="o">&gt;=</span> <span class="n">temp1</span><span class="p">)</span>
+</span><span class="linenos">18</span>
+<span class="hll"><span class="linenos">19</span>    <span class="nb">print</span><span class="p">(</span><span class="n">temp0</span> <span class="o">&lt;=</span> <span class="n">temp1</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Using <em>repr()</em> just for better visualization</p>
+</div>
+<p><strong>Outputs</strong>:</p>
+<blockquote>
+<div><p>From lines 6 and 7:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">temp0</span><span class="p">:</span> <span class="n">Celsius</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">temp1</span><span class="p">:</span> <span class="n">Celsius</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
+
+<span class="go">The comparision/arithmetic implementation attempts to convert the value</span>
+<span class="go">of other and then evaluate the expression.</span>
+
+<span class="go">That meaning:</span>
+<span class="go">`temp0` &gt; `temp1.` is the same as `temp0` &gt; `temp1.to_celsius()`</span>
+
+<span class="go">The values being compared here are the equivalent values already converted!</span>
+<span class="go">All that because of the calling class, `temp0` is an Celsius instance, so it</span>
+<span class="go">will trigger a conversion of `other` to be compared with after.</span>
+</pre></div>
+</div>
+<p>From lines 9 and 11:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kc">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kc">False</span>
+
+<span class="go">The value of `temp0` isn&#39;t greater or lesser than `other` value, it is equal.</span>
+</pre></div>
+</div>
+<p>From lines 13 and 15:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kc">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kc">False</span>
+
+<span class="go">After the conversion of `temp1` (Celsius(0.0)) we could see that `temp1`</span>
+<span class="go">has the same value, or better saying, has equivalent value to `temp0`.</span>
+</pre></div>
+</div>
+<p>From lines 17 and 19:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kc">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kc">True</span>
+
+<span class="go">And, as we saw in the previous outputs (from lines 13 and 15), comparisions</span>
+<span class="go">that declare &quot;&gt;=&quot; or &quot;&lt;=&quot; would return True in that case, even though they</span>
+<span class="go">aren&#39;t greater or lesser than each other, they are indeed equivalents.</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>After understanding <em>how comparisions are done</em>, we can now see
+<strong>how the arithmetic operations work</strong>.</p>
+<p><strong>Look at this</strong>:</p>
+<blockquote>
+<div><div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">totemp</span> <span class="kn">import</span> <span class="n">Newton</span><span class="p">,</span> <span class="n">Rankine</span>
+</span><span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<span class="linenos"> 4</span>    <span class="n">temp0</span> <span class="o">=</span> <span class="n">Newton</span><span class="p">(</span><span class="mi">33</span><span class="p">)</span>
+<span class="linenos"> 5</span>    <span class="n">temp1</span> <span class="o">=</span> <span class="n">Rankine</span><span class="p">(</span><span class="mf">671.67</span><span class="p">)</span>
+<span class="linenos"> 6</span>
+<span class="hll"><span class="linenos"> 7</span>    <span class="n">temp2</span> <span class="o">=</span> <span class="n">temp0</span> <span class="o">+</span> <span class="n">temp1</span>
+</span><span class="linenos"> 8</span>
+<span class="linenos"> 9</span>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;`temp2`:&#39;</span><span class="p">,</span> <span class="n">temp2</span><span class="p">)</span>
+<span class="linenos">10</span>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;`temp2`:&#39;</span><span class="p">,</span> <span class="nb">repr</span><span class="p">(</span><span class="n">temp2</span><span class="p">))</span>
+<span class="linenos">11</span>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;`temp2`:&#39;</span><span class="p">,</span> <span class="n">temp2</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">temp2</span><span class="o">.</span><span class="n">symbol</span><span class="p">)</span>
+<span class="linenos">12</span>
+<span class="hll"><span class="linenos">13</span>    <span class="nb">print</span><span class="p">((</span><span class="n">temp0</span> <span class="o">+</span> <span class="n">temp1</span><span class="p">)</span><span class="o">.</span><span class="n">rounded</span><span class="p">())</span>
+</span><span class="hll"><span class="linenos">14</span>    <span class="nb">print</span><span class="p">(</span><span class="nb">repr</span><span class="p">((</span><span class="n">temp0</span> <span class="o">+</span> <span class="n">temp1</span><span class="p">)</span><span class="o">.</span><span class="n">rounded</span><span class="p">()))</span>
+</span><span class="linenos">15</span>
+<span class="hll"><span class="linenos">16</span>    <span class="nb">print</span><span class="p">(</span><span class="n">temp2</span> <span class="o">+</span> <span class="mf">12.55</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos">17</span>    <span class="nb">print</span><span class="p">((</span><span class="mi">12</span> <span class="o">+</span> <span class="n">temp2</span><span class="o">.</span><span class="n">rounded</span><span class="p">()))</span>
+</span></pre></div>
+</div>
+</div></blockquote>
+<p><strong>Outputs</strong>:</p>
+<blockquote>
+<div><p>From lines 9, 10 and 11:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; `temp2`: 65.99999999999999 ºN
+&gt;&gt;&gt; `temp2`: Newton(65.99999999999999)
+&gt;&gt;&gt; `temp2`: 65.99999999999999 ºN
+
+Just as the comparisions, most of the arithmetic operations
+that can be performed by the objects attempts to convert `other`
+to the same type as the calling class (in this case, to Newton).
+</pre></div>
+</div>
+<p>From line 13 and 14:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mi">66</span> <span class="n">ºN</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Newton</span><span class="p">(</span><span class="mi">66</span><span class="p">)</span>
+
+<span class="go">And, if needed, we can work with aproximate results too,</span>
+<span class="go">we could aproximate just the values of `temp0` or `temp1`,</span>
+<span class="go">none of them or even both before the operation actually</span>
+<span class="go">happen.</span>
+
+<span class="go">The thing is that every object can work as an aproximate or</span>
+<span class="go">precise value of itself to perform more &quot;embracing&quot; operations,</span>
+<span class="go">that the limits are mostly the way the developer/user is using</span>
+<span class="go">it.</span>
+</pre></div>
+</div>
+<p>From line 16 and 17:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mf">78.54999999999998</span> <span class="n">ºN</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">78</span> <span class="n">ºN</span>
+
+<span class="go">Finally, as we can see, using ints and floats, even if the calling</span>
+<span class="go">object isn&#39;t the temperature scale, it can return the right result.</span>
+</pre></div>
+</div>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>ToTemp classes can work with many built-in Python functions:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="totemp.html#totemp.temperature_types.AbstractTemperature.__float__" title="totemp.temperature_types.AbstractTemperature.__float__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">float()</span></code></a></p></li>
+<li><p><a class="reference internal" href="totemp.html#totemp.temperature_types.AbstractTemperature.__int__" title="totemp.temperature_types.AbstractTemperature.__int__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">int()</span></code></a></p></li>
+<li><p><a class="reference internal" href="totemp.html#totemp.temperature_types.AbstractTemperature.__round__" title="totemp.temperature_types.AbstractTemperature.__round__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">round()</span></code></a></p></li>
+<li><p><a class="reference internal" href="totemp.html#totemp.temperature_types.AbstractTemperature.__abs__" title="totemp.temperature_types.AbstractTemperature.__abs__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">abs()</span></code></a></p></li>
+<li><p><a class="reference internal" href="totemp.html#totemp.temperature_types.AbstractTemperature.__divmod__" title="totemp.temperature_types.AbstractTemperature.__divmod__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">divmod()</span></code></a></p></li>
+<li><p><a class="reference internal" href="totemp.html#totemp.temperature_types.AbstractTemperature.__floor__" title="totemp.temperature_types.AbstractTemperature.__floor__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">math.floor()</span></code></a></p></li>
+<li><p><a class="reference internal" href="totemp.html#totemp.temperature_types.AbstractTemperature.__ceil__" title="totemp.temperature_types.AbstractTemperature.__ceil__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">math.ceil()</span></code></a></p></li>
+<li><p><a class="reference internal" href="totemp.html#totemp.temperature_types.AbstractTemperature.__trunc__" title="totemp.temperature_types.AbstractTemperature.__trunc__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">math.trunc()</span></code></a></p></li>
+</ul>
+<p>And temperature objects accept this kind of syntax:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">temp</span> <span class="o">=</span> <span class="n">Celsius</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">temp0</span> <span class="o">=</span> <span class="o">-</span><span class="n">temp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">temp1</span> <span class="o">=</span> <span class="o">-</span><span class="n">temp0</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">temp0</span><span class="p">)</span>  <span class="c1"># -12 ºC</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">temp0</span><span class="p">))</span>  <span class="c1"># Celsius(-12)</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">temp1</span><span class="p">)</span>  <span class="c1"># 12 ºC</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">temp1</span><span class="p">))</span>  <span class="c1"># Celsius(12)</span>
+</pre></div>
+</div>
+</div>
+<p>So, with that shown, we can already assume that the other arithmetic
+operations do the same (attempts to convert <cite>other</cite> to the same type
+as the calling class, if don’t, it attempts to apply <cite>other</cite> to value
+directly).</p>
+</section>
+<section id="temperature-instance-conversions">
+<h2>Temperature Instance Conversions<a class="headerlink" href="#temperature-instance-conversions" title="Permalink to this heading"></a></h2>
+<p><strong>Every</strong> temperature class has <strong>7 conversions “from self to another”</strong> <em>class which
+contains the converted value</em> and <strong>one that returns a new instance of itself</strong> <em>with
+the same value</em>.</p>
+<p>All “to_*” methods calls the <strong>convert_to()</strong> <em>abstract method</em> that was <em>inhehited from the</em>
+<a class="reference internal" href="totemp.html#totemp.temperature_types.AbstractTemperature" title="totemp.temperature_types.AbstractTemperature"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Base</span> <span class="pre">Class</span></code></a>, this implies
+that <strong>every class implements individual calculations for each of the following
+conversions</strong>:</p>
+<ul class="simple">
+<li><p><strong>to_celsius()</strong> -&gt; returns a <a class="reference internal" href="totemp.html#totemp.Celsius" title="totemp.Celsius"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Celsius</span></code></a> object;</p></li>
+<li><p><strong>to_fahrenheit()</strong> -&gt; returns a <a class="reference internal" href="totemp.html#totemp.Fahrenheit" title="totemp.Fahrenheit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Fahrenheit</span></code></a> object;</p></li>
+<li><p><strong>to_delisle()</strong> -&gt; returns a <a class="reference internal" href="totemp.html#totemp.Delisle" title="totemp.Delisle"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Delisle</span></code></a> object;</p></li>
+<li><p><strong>to_kelvin()</strong> -&gt; returns a <a class="reference internal" href="totemp.html#totemp.Kelvin" title="totemp.Kelvin"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Kelvin</span></code></a> object;</p></li>
+<li><p><strong>to_newton()</strong> -&gt; returns a <a class="reference internal" href="totemp.html#totemp.Newton" title="totemp.Newton"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Newton</span></code></a> object;</p></li>
+<li><p><strong>to_rankine()</strong> -&gt; returns a <a class="reference internal" href="totemp.html#totemp.Rankine" title="totemp.Rankine"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Rankine</span></code></a> object;</p></li>
+<li><p><strong>to_reaumur()</strong> -&gt; returns a <a class="reference internal" href="totemp.html#totemp.Reaumur" title="totemp.Reaumur"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Réaumur</span></code></a> object;</p></li>
+<li><p><strong>to_romer()</strong> -&gt; returns a <a class="reference internal" href="totemp.html#totemp.Romer" title="totemp.Romer"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Rømer</span></code></a> object.</p></li>
+</ul>
+<p><strong>Just an example</strong>:</p>
+<blockquote>
+<div><div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">totemp</span> <span class="k">as</span> <span class="nn">tp</span>
+</span><span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<span class="hll"><span class="linenos"> 4</span>    <span class="n">temp</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">Fahrenheit</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span>
+</span><span class="linenos"> 5</span>
+<span class="hll"><span class="linenos"> 6</span>    <span class="nb">print</span><span class="p">(</span><span class="n">temp</span><span class="o">.</span><span class="n">to_celsius</span><span class="p">())</span>
+</span><span class="hll"><span class="linenos"> 7</span>    <span class="nb">print</span><span class="p">(</span><span class="n">temp</span><span class="o">.</span><span class="n">to_fahrenheit</span><span class="p">())</span>
+</span><span class="hll"><span class="linenos"> 8</span>    <span class="nb">print</span><span class="p">(</span><span class="n">temp</span><span class="o">.</span><span class="n">to_delisle</span><span class="p">())</span>
+</span><span class="hll"><span class="linenos"> 9</span>    <span class="nb">print</span><span class="p">(</span><span class="n">temp</span><span class="o">.</span><span class="n">to_kelvin</span><span class="p">())</span>
+</span><span class="hll"><span class="linenos">10</span>    <span class="nb">print</span><span class="p">(</span><span class="n">temp</span><span class="o">.</span><span class="n">to_newton</span><span class="p">())</span>
+</span><span class="hll"><span class="linenos">11</span>    <span class="nb">print</span><span class="p">(</span><span class="n">temp</span><span class="o">.</span><span class="n">to_rankine</span><span class="p">())</span>
+</span><span class="hll"><span class="linenos">12</span>    <span class="nb">print</span><span class="p">(</span><span class="n">temp</span><span class="o">.</span><span class="n">to_reaumur</span><span class="p">())</span>
+</span><span class="hll"><span class="linenos">13</span>    <span class="nb">print</span><span class="p">(</span><span class="n">temp</span><span class="o">.</span><span class="n">to_romer</span><span class="p">())</span>
+</span></pre></div>
+</div>
+</div></blockquote>
+<p><strong>Outputs</strong>:</p>
+<blockquote>
+<div><p>From line 6 and 13:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mf">0.0</span> <span class="n">ºC</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">32</span> <span class="n">ºF</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mf">150.0</span> <span class="n">ºDe</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mf">273.15</span> <span class="n">K</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mf">0.0</span> <span class="n">ºN</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mf">491.67</span> <span class="n">ºR</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mf">0.0</span> <span class="n">ºRé</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mf">7.5</span> <span class="n">ºRø</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>Now using</strong> <a class="reference internal" href="totemp.html#totemp.temperature_types.AbstractTemperature.convert_to" title="totemp.temperature_types.AbstractTemperature.convert_to"><code class="xref py py-meth docutils literal notranslate"><span class="pre">convert_to()</span></code></a>:</p>
+<blockquote>
+<div><div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="linenos"> 1</span><span class="kn">from</span> <span class="nn">totemp</span> <span class="kn">import</span> <span class="o">*</span>
+</span><span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<span class="hll"><span class="linenos"> 4</span>    <span class="n">temp</span> <span class="o">=</span> <span class="n">tp</span><span class="o">.</span><span class="n">Fahrenheit</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span>
+</span><span class="linenos"> 5</span>
+<span class="hll"><span class="linenos"> 6</span>    <span class="nb">print</span><span class="p">(</span><span class="n">temp</span><span class="o">.</span><span class="n">convert_to</span><span class="p">(</span><span class="n">Celsius</span><span class="p">))</span>
+</span><span class="hll"><span class="linenos"> 7</span>    <span class="nb">print</span><span class="p">(</span><span class="n">temp</span><span class="o">.</span><span class="n">convert_to</span><span class="p">(</span><span class="n">Fahrenheit</span><span class="p">))</span>
+</span><span class="hll"><span class="linenos"> 8</span>    <span class="nb">print</span><span class="p">(</span><span class="n">temp</span><span class="o">.</span><span class="n">convert_to</span><span class="p">(</span><span class="n">Delisle</span><span class="p">))</span>
+</span><span class="hll"><span class="linenos"> 9</span>    <span class="nb">print</span><span class="p">(</span><span class="n">temp</span><span class="o">.</span><span class="n">convert_to</span><span class="p">(</span><span class="n">Kelvin</span><span class="p">))</span>
+</span><span class="hll"><span class="linenos">10</span>    <span class="nb">print</span><span class="p">(</span><span class="n">temp</span><span class="o">.</span><span class="n">convert_to</span><span class="p">(</span><span class="n">Newton</span><span class="p">))</span>
+</span><span class="hll"><span class="linenos">11</span>    <span class="nb">print</span><span class="p">(</span><span class="n">temp</span><span class="o">.</span><span class="n">convert_to</span><span class="p">(</span><span class="n">Rankine</span><span class="p">))</span>
+</span><span class="hll"><span class="linenos">12</span>    <span class="nb">print</span><span class="p">(</span><span class="n">temp</span><span class="o">.</span><span class="n">convert_to</span><span class="p">(</span><span class="n">Reaumur</span><span class="p">))</span>
+</span><span class="hll"><span class="linenos">13</span>    <span class="nb">print</span><span class="p">(</span><span class="n">temp</span><span class="o">.</span><span class="n">convert_to</span><span class="p">(</span><span class="n">Romer</span><span class="p">))</span>
+</span></pre></div>
+</div>
+</div></blockquote>
+<p><strong>Outputs</strong>:</p>
+<blockquote>
+<div><p>From line 6 and 13:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mf">0.0</span> <span class="n">ºC</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">32</span> <span class="n">ºF</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mf">150.0</span> <span class="n">ºDe</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mf">273.15</span> <span class="n">K</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mf">0.0</span> <span class="n">ºN</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mf">491.67</span> <span class="n">ºR</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mf">0.0</span> <span class="n">ºRé</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mf">7.5</span> <span class="n">ºRø</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>—</p>
+<p>And that’s an overall vision of the package and what it can do.</p>
+<p>Now, you can go to the <a class="reference internal" href="totemp.html"><span class="doc">Module</span></a> section.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="intro.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="totemp.html" class="btn btn-neutral float-right" title="ToTemp Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Edson Pimenta, Dávilos Tavares and Raul Silva.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
