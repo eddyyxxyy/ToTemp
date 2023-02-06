@@ -1,472 +1,1151 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+from __future__ import annotations
 
-from math import trunc
+from abc import ABCMeta, abstractmethod
+from typing import Any, ClassVar, TypeVar
+
+T = TypeVar('T', bound='AbstractTemperature')
 
 
-class Celsius:
-    """Provides conversion of Celsius to other temperature scales"""
+class AbstractTemperature(metaclass=ABCMeta):
+    """
+    Abstract base class for all temperature types.
 
-    @staticmethod
-    def to_fahrenheit(
-        celsius: float | int, /, *, float_ret=True
-    ) -> float | int:
+    Attributes
+    ----------
+
+    _symbol : ClassVar[str]
+        Official scale symbol.
+
+    _value : float
+        Temperature value (e.g. `36` or `-3.14`).
+
+    Methods
+    -------
+
+    rounded()
+        returns a new object of the same class with the value converted to int.
+
+    to_celsius()
+        returns a Celsius object which contains the converted value.
+
+    to_fahrenheit()
+        returns a Fahrenheit object which contains the converted value.
+
+    to_delisle()
+        returns a Delisle object which contains the converted value.
+
+    to_kelvin()
+        returns a Kelvin object which contains the converted value.
+
+    to_newton()
+        returns a Newton object which contains the converted value.
+
+    to_rankine()
+        returns a Rankine object which contains the converted value.
+
+    to_reaumur()
+        returns a Réaumur object which contains the converted value.
+
+    to_romer()
+        returns a Rømer object which contains the converted value.
+
+    convert_to(temp_cls)
+        returns an instance of `temp_cls` which contains the converted value.
+
+    """
+
+    _symbol: ClassVar[str]
+    _value: float
+
+    @classmethod
+    def __init_subclass__(cls, **kwargs: object) -> None:
+        """Ensures subclasses set the `_symbol` attribute."""
+        super().__init_subclass__(**kwargs)
+        try:
+            _ = cls._symbol
+        except AttributeError:
+            raise AttributeError(
+                'Temperature subclasses must set the `_symbol` class attribute'
+            ) from None
+
+    def __init__(self, value: float) -> None:
+        self._value = value
+
+    def __str__(self) -> str:
         """
-        Converts Celsius to Fahrenheit, returning a float by default.
+        Returns the “informal” or nicely printable string representation of self.
 
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
-
-        :param celsius: Celsius value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
+        Returns
+        -------
+        self.__str__() : str
+            f'{self._value} {self._symbol}'
         """
-        if float_ret:
-            return float(celsius * 9 / 5 + 32)
-        return trunc(celsius * 9 / 5 + 32)
+        return f'{self._value} {self._symbol}'
 
-    @staticmethod
-    def to_delisle(celsius: float | int, /, *, float_ret=True) -> float | int:
+    def __repr__(self) -> str:
         """
-        Converts Celsius to Delisle, returning a float by default.
+        Returns the “official” string representation of self.
 
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
-
-        :param celsius: Celsius value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
+        Returns
+        -------
+        self.__repr__() : str
+            f'{self.__class__.__name__}({self._value})'
         """
-        if float_ret:
-            return float((100 - celsius) * 3 / 2)
-        return trunc((100 - celsius) * 3 / 2)
+        return f'{self.__class__.__name__}({self._value})'
 
-    @staticmethod
-    def to_kelvin(celsius: float | int, /, *, float_ret=True) -> float | int:
+    def __add__(self: T, other: Any) -> T:
         """
-        Converts Celsius to Kelvin, returning a float by default.
+        Returns a new instance of the same class with the sum of the values.
 
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
+        If `other` is a temperature instance, it is first converted to the
+        calling class, then the values are added.
+        Otherwise, an attempt is made to add `other` to the value directly.
 
-        :param celsius: Celsius value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
+        Notes
+        -----
+        If `other` is not a temperature instance, atempts to return: cls(self._value + other)
+
+        Returns
+        -------
+        self.__add__(other) : T
+            cls(self._value + other.convert_to(cls).value)
         """
-        if float_ret:
-            return float(celsius + 273.15)
-        return trunc(celsius + 273.15)
+        cls = self.__class__
+        try:
+            if isinstance(other, AbstractTemperature):
+                return cls(self._value + other.convert_to(cls).value)
+            return cls(self._value + other)
+        except TypeError:
+            return NotImplemented
 
-    @staticmethod
-    def to_newton(celsius: float | int, /, *, float_ret=True) -> float | int:
+    def __sub__(self: T, other: Any) -> T:
         """
-        Converts Celsius to Newton, returning a float by default.
+        Returns a new instance of the same class with the subtraction of the values.
 
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
+        If `other` is a temperature instance, it is first converted to the
+        calling class, then the values are subtracted.
+        Otherwise, an attempt is made to subtract `other` to the value directly.
 
-        :param celsius: Celsius value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
+        Notes
+        -----
+        If `other` is not a temperature instance, atempts to return: cls(self._value - other)
+
+        Returns
+        -------
+        self.__sub__(other) : T
+            cls(self._value - other.convert_to(cls).value)
         """
-        if float_ret:
-            return float(celsius * 33 / 100)
-        return trunc(celsius * 33 / 100)
+        cls = self.__class__
+        try:
+            if isinstance(other, AbstractTemperature):
+                return cls(self._value - other.convert_to(cls).value)
+            return cls(self._value - other)
+        except TypeError:
+            return NotImplemented
 
-    @staticmethod
-    def to_rankine(celsius: float | int, /, *, float_ret=True) -> float | int:
+    def __mul__(self: T, other: Any) -> T:
         """
-        Converts Celsius to Rankine, returning a float by default.
+        Returns a new instance of the same class with the multiplication of the values.
 
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
+        If `other` is a temperature instance, it is first converted to the
+        calling class, then the values are multiplicated.
+        Otherwise, an attempt is made to multiplicate `other` to the value directly.
 
-        :param celsius: Celsius value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
+        Notes
+        -----
+        If `other` is not a temperature instance, atempts to return: cls(self._value * other)
+
+        Returns
+        -------
+        self.__mul__(other) : T
+            cls(self._value * other.convert_to(cls).value)
         """
-        if float_ret:
-            return float(celsius * 9 / 5 + 491.67)
-        return trunc(celsius * 9 / 5 + 491.67)
+        cls = self.__class__
+        try:
+            if isinstance(other, AbstractTemperature):
+                return cls(self._value * other.convert_to(cls).value)
+            return cls(self._value * other)
+        except TypeError:
+            return NotImplemented
 
-    @staticmethod
-    def to_reaumur(celsius: float | int, /, *, float_ret=True) -> float | int:
+    def __pow__(self: T, other: Any) -> T:
         """
-        Converts Celsius to Réaumur, returning a float by default.
+        Returns a new instance of the same class with the exponentiation of the values.
 
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
+        If `other` is a temperature instance, it is first converted to the
+        calling class, then the value is raised to the power of `other`.
+        Otherwise, an attempt is made to raise the value field to the power of `other`.
 
-        :param celsius: Celsius value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
+        Notes
+        -----
+        If `other` is not a temperature instance, atempts to return: cls(self._value ** other)
+
+        Returns
+        -------
+        self.__pow__(other) : T
+            cls(self._value ** other.convert_to(cls).value)
         """
-        if float_ret:
-            return float(celsius * 4 / 5)
-        return trunc(celsius * 4 / 5)
+        cls = self.__class__
+        try:
+            if isinstance(other, AbstractTemperature):
+                return cls(self._value ** other.convert_to(cls).value)
+            return cls(self._value**other)
+        except TypeError:
+            return NotImplemented
 
-    @staticmethod
-    def to_romer(celsius: float | int, /, *, float_ret=True) -> float | int:
+    def __truediv__(self: T, other: Any) -> T:
         """
-        Converts Celsius to Rømer, returning a float by default.
+        Returns a new instance of the same class with the division of the values.
 
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
+        If `other` is a temperature instance, it is first converted to the
+        calling class, then the values are divided.
+        Otherwise, an attempt is made to divide `other` to the value directly.
 
-        :param celsius: Celsius value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
+        Notes
+        -----
+        If `other` is not a temperature instance, atempts to return: cls(self._value / other)
+
+        Returns
+        -------
+        self.__truediv__(other) : T
+            cls(self._value / other.convert_to(cls).value)
         """
-        if float_ret:
-            return float(celsius * 21 / 40 + 7.5)
-        return trunc(celsius * 21 / 40 + 7.5)
+        cls = self.__class__
+        try:
+            if isinstance(other, AbstractTemperature):
+                return cls(self._value / other.convert_to(cls).value)
+            return cls(self._value / other)
+        except TypeError:
+            return NotImplemented
 
-
-class Fahrenheit:
-    """Provides conversion of Fahrenheit to other temperature scales"""
-
-    @staticmethod
-    def to_celsius(
-        fahrenheit: float | int, /, *, float_ret=True
-    ) -> float | int:
+    def __floordiv__(self: T, other: Any) -> T:
         """
-        Converts Fahrenheit to Celsius, returning a float by default.
+        Returns a new instance of the same class with the floor division of the values.
 
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
+        If `other` is a temperature instance, it is first converted to the
+        calling class, then the values are divided and rounded.
+        Otherwise, an attempt is made to floor divide `other` to the value directly.
 
-        :param fahrenheit: Fahrenheit value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
+        Notes
+        -----
+        If `other` is not a temperature instance, atempts to return: cls(self._value // other)
+
+        Returns
+        -------
+        self.__floordiv__(other) : T
+            cls(self._value // other.convert_to(cls).value)
         """
-        if float_ret:
-            return float((fahrenheit - 32) * 5 / 9)
-        return trunc((fahrenheit - 32) * 5 / 9)
+        cls = self.__class__
+        try:
+            if isinstance(other, AbstractTemperature):
+                return cls(self._value // other.convert_to(cls).value)
+            return cls(self._value // other)
+        except TypeError:
+            return NotImplemented
 
-    @staticmethod
-    def to_delisle(
-        fahrenheit: float | int, /, *, float_ret=True
-    ) -> float | int:
+    def __mod__(self: T, other: Any) -> T:
         """
-        Converts Fahrenheit to Delisle, returning a float by default.
+        Returns a new instance of the same class with the remainder from the division of the values.
 
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
+        If `other` is a temperature instance, it is first converted to the
+        calling class, then the values are divided.
+        Otherwise, an attempt is made to use modulo operation on `other` to the value directly.
 
-        :param fahrenheit: Fahrenheit value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
+        Notes
+        -----
+        If `other` is not a temperature instance, atempts to return: cls(self._value % other)
+
+        Returns
+        -------
+        self.__mod__(other) : T
+            cls(self._value % other.convert_to(cls).value)
         """
-        if float_ret:
-            return float((212 - fahrenheit) * 5 / 6)
-        return trunc((212 - fahrenheit) * 5 / 6)
+        cls = self.__class__
+        try:
+            if isinstance(other, AbstractTemperature):
+                return cls(self._value % other.convert_to(cls).value)
+            return cls(self._value % other)
+        except TypeError:
+            return NotImplemented
 
-    @staticmethod
-    def to_kelvin(
-        fahrenheit: float | int, /, *, float_ret=True
-    ) -> float | int:
+    def __eq__(self, other) -> bool:
         """
-        Converts Fahrenheit to Kelvin, returning a float by default.
+        Checks if the values in the objects are equal and then returns a boolean.
 
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
+        If `other` is a temperature instance, it is first converted to the
+        calling class, then the objects are evaluated. That means: if `other`
+        converted to the calling class has the same value, it returns True,
+        otherwise it returns False.
 
-        :param fahrenheit: Fahrenheit value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
+        Notes
+        -----
+        If `other` is not a temperature instance, atempts to return: self._value == other
+
+        Returns
+        -------
+        self.__eq__(other) : bool
+            self._value == other.convert_to(cls).value
         """
-        if float_ret:
-            return float((fahrenheit + 459.67) * 5 / 9)
-        return trunc((fahrenheit + 459.67) * 5 / 9)
+        cls = self.__class__
+        try:
+            if isinstance(other, AbstractTemperature):
+                return self._value == other.convert_to(cls).value
+            return self._value == other
+        except TypeError:
+            return NotImplemented
 
-    @staticmethod
-    def to_newton(
-        fahrenheit: float | int, /, *, float_ret=True
-    ) -> float | int:
+    def __lt__(self, other) -> bool:
         """
-        Converts Fahrenheit to Newton, returning a float by default.
+        Checks if the calling temperature object value is lesser than `other` and then returns a boolean.
 
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
+        If `other` is a temperature instance, it is first converted to the
+        calling class, then the objects are evaluated. That means: if `other`
+        converted to the calling class has a greater value, it returns True,
+        otherwise it returns False.
 
-        :param fahrenheit: Fahrenheit value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
+        Notes
+        -----
+        If `other` is not a temperature instance, atempts to return: self._value < other
+
+        Returns
+        -------
+        self.__lt__(other) : bool
+            self._value < other.convert_to(cls).value
         """
-        if float_ret:
-            return float((fahrenheit - 32) * 11 / 60)
-        return trunc((fahrenheit - 32) * 11 / 60)
+        cls = self.__class__
+        try:
+            if isinstance(other, AbstractTemperature):
+                return self._value < other.convert_to(cls).value
+            return self._value < other
+        except TypeError:
+            return NotImplemented
 
-    @staticmethod
-    def to_rankine(
-        fahrenheit: float | int, /, *, float_ret=True
-    ) -> float | int:
+    def __le__(self, other) -> bool:
         """
-        Converts Fahrenheit to Rankine, returning a float by default.
+        Checks if the calling temperature object value is lesser or equal
+        than `other` and then returns a boolean.
 
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
+        If `other` is a temperature instance, it is first converted to the
+        calling class, then the objects are evaluated. That means: if `other`
+        converted to the calling class has a greater or equal value, it returns True,
+        otherwise it returns False.
 
-        :param fahrenheit: Fahrenheit value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
+        Notes
+        -----
+        If `other` is not a temperature instance, atempts to return: self._value <= other
+
+        Returns
+        -------
+        self.__le__(other) : bool
+            self._value <= other.convert_to(cls).value
         """
-        if float_ret:
-            return float(fahrenheit + 459.67)
-        return trunc(fahrenheit + 459.67)
+        cls = self.__class__
+        try:
+            if isinstance(other, AbstractTemperature):
+                return self._value <= other.convert_to(cls).value
+            return self._value <= other
+        except TypeError:
+            return NotImplemented
 
-    @staticmethod
-    def to_reaumur(
-        fahrenheit: float | int, /, *, float_ret=True
-    ) -> float | int:
+    def __ne__(self, other) -> bool:
         """
-        Converts Fahrenheit to Réaumur, returning a float by default.
+        Checks if the calling temperature object value is different
+        from `other` and then returns a boolean.
 
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
+        If `other` is a temperature instance, it is first converted to the
+        calling class, then the objects are evaluated. That means: if `other`
+        converted to the calling class is different from `other`, it returns True,
+        otherwise it returns False.
 
-        :param fahrenheit: Fahrenheit value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
+        Notes
+        -----
+        If `other` is not a temperature instance, atempts to return: self._value != other
+
+        Returns
+        -------
+        self.__ne__(other) : bool
+            self._value != other.convert_to(cls).value
         """
-        if float_ret:
-            return float((fahrenheit - 32) * 4 / 9)
-        return trunc((fahrenheit - 32) * 4 / 9)
+        cls = self.__class__
+        try:
+            if isinstance(other, AbstractTemperature):
+                return self._value != other.convert_to(cls).value
+            return self._value != other
+        except TypeError:
+            return NotImplemented
 
-    @staticmethod
-    def to_romer(fahrenheit: float | int, /, *, float_ret=True) -> float | int:
+    def __gt__(self, other) -> bool:
         """
-        Converts Fahrenheit to Rømer, returning a float by default.
+        Checks if the calling temperature object value is greater
+        than `other` and then returns a boolean.
 
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
+        If `other` is a temperature instance, it is first converted to the
+        calling class, then the objects are evaluated. That means: if `other`
+        converted to the calling class is greater than `other`, it returns True,
+        otherwise it returns False.
 
-        :param fahrenheit: Fahrenheit value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
+        Notes
+        -----
+        If `other` is not a temperature instance, atempts to return: self._value > other
+
+        Returns
+        -------
+        self.__gt__(other) : bool
+            self._value > other.convert_to(cls).value
         """
-        if float_ret:
-            return float((fahrenheit - 32) * (7 / 24) + 7.5)
-        return trunc((fahrenheit - 32) * (7 / 24) + 7.5)
+        cls = self.__class__
+        try:
+            if isinstance(other, AbstractTemperature):
+                return self._value > other.convert_to(cls).value
+            return self._value > other
+        except TypeError:
+            return NotImplemented
 
-
-class Delisle:
-    """Provides conversion of Delisle to other temperature scales"""
-
-    @staticmethod
-    def to_celsius(delisle: float | int, /, *, float_ret=True) -> float | int:
+    def __ge__(self, other) -> bool:
         """
-        Converts Delisle to Celsius, returning a float by default.
+        Checks if the calling temperature object value is greater
+        or equal to `other` and then returns a boolean.
 
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
+        If `other` is a temperature instance, it is first converted to the
+        calling class, then the objects are evaluated. That means: if `other`
+        converted to the calling class is greater or equal to `other`, it returns True,
+        otherwise it returns False.
 
-        :param delisle: Delisle value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
+        Notes
+        -----
+        If `other` is not a temperature instance, atempts to return: self._value >= other
+
+        Returns
+        -------
+        self.__ge__(other) : bool
+            self._value >= other.convert_to(cls).value
         """
-        if float_ret:
-            return float(100 - delisle * 2 / 3)
-        return trunc(100 - delisle * 2 / 3)
+        cls = self.__class__
+        try:
+            if isinstance(other, AbstractTemperature):
+                return self._value >= other.convert_to(cls).value
+            return self._value >= other
+        except TypeError:
+            return NotImplemented
 
-    @staticmethod
-    def to_fahrenheit(
-        delisle: float | int, /, *, float_ret=True
-    ) -> float | int:
+    def __divmod__(self: T, other: Any) -> tuple[Any, Any]:
         """
-        Converts Delisle to Fahrenheit, returning a float by default.
+        Returns a tuple of two new instances of the same class with the quotient and remainder.
 
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
+        If `other` is a temperature instance, it is first converted to the
+        calling class, then the values are divided.
+        Otherwise, an attempt is made to use divmod operation between the
+        calling class and `other` to the value directly.
 
-        :param delisle: Delisle value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
+        Notes
+        -----
+        If `other` is not a temperature instance, `result` is:
+            result = divmod(self._value, other)
+        If it is a temperature instance:
+                result = divmod(self._value, other.convert_to(cls).value)
+
+        Returns
+        -------
+        self.__divmod__(other) : bool
+            return cls(result[0]), cls(result[1])
         """
-        if float_ret:
-            return float(212 - delisle * 6 / 5)
-        return trunc(212 - delisle * 6 / 5)
+        cls = self.__class__
+        try:
+            if isinstance(other, AbstractTemperature):
+                result = divmod(self._value, other.convert_to(cls).value)
+                return cls(result[0]), cls(result[1])
+            result = divmod(self._value, other)
+            return cls(result[0]), cls(result[1])
+        except TypeError:
+            return NotImplemented
 
-    @staticmethod
-    def to_kelvin(delisle: float | int, /, *, float_ret=True) -> float | int:
+    def __round__(self: T, ndigits=None) -> T:
         """
-        Converts Delisle to Kelvin, returning a float by default.
+        Returns a new instance of the same class with `value` rounded.
 
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
+        Returns
+        -------
+        self.__round__(other) : T
+            cls(int(round(self._value, ndigits=ndigits)))
+        """
+        cls = self.__class__
+        return cls(int(round(self._value, ndigits=ndigits)))
 
-        :param delisle: Delisle value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
+    def __floor__(self: T) -> T:
         """
-        if float_ret:
-            return float(373.15 - (delisle * 2 / 3))
-        return trunc(373.15 - (delisle * 2 / 3))
+        Returns a new instance of the same class with the floor of `value`.
 
-    @staticmethod
-    def to_newton(delisle: float | int, /, *, float_ret=True) -> float | int:
+        Returns
+        -------
+        self.__floor__(other) : T
+            cls(floor(self._value))
         """
-        Converts Delisle to Newton, returning a float by default.
+        from math import floor
 
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
+        cls = self.__class__
+        return cls(floor(self._value))
 
-        :param delisle: Delisle value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
+    def __ceil__(self: T) -> T:
         """
-        if float_ret:
-            return float(33 - delisle * 11 / 50)
-        return trunc(33 - delisle * 11 / 50)
+        Returns a new instance of the same class with the ceiling of `value`.
 
-    @staticmethod
-    def to_rankine(delisle: float | int, /, *, float_ret=True) -> float | int:
+        Returns
+        -------
+        self.__ceil__(other) : T
+            cls(ceil(self._value))
         """
-        Converts Delisle to Rankine, returning a float by default.
+        from math import ceil
 
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
+        cls = self.__class__
+        return cls(ceil(self._value))
 
-        :param delisle: Delisle value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
+    def __trunc__(self: T) -> T:
         """
-        if float_ret:
-            return float(671.67 - delisle * 6 / 5)
-        return trunc(671.67 - delisle * 6 / 5)
+        Returns a new instance of the same class with the truncated integer part of `value`.
 
-    @staticmethod
-    def to_reaumur(delisle: float | int, /, *, float_ret=True) -> float | int:
+        Returns
+        -------
+        self.__trunc__(other) : T
+            cls(trunc(self._value))
         """
-        Converts Delisle to Réaumur, returning a float by default.
+        from math import trunc
 
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
+        cls = self.__class__
+        return cls(trunc(self._value))
 
-        :param delisle: Delisle value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
+    def __float__(self) -> float:
         """
-        if float_ret:
-            return float(80 - delisle * 8 / 15)
-        return trunc(80 - delisle * 8 / 15)
+        Returns a float of `value`.
 
-    @staticmethod
-    def to_romer(delisle: float | int, /, *, float_ret=True) -> float | int:
+        Returns
+        -------
+        _value : float
+            float(self._value)
         """
-        Converts Delisle to Rømer, returning a float by default.
+        return float(self._value)
 
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
+    def __int__(self) -> int:
+        """
+        Returns an int of `value`.
 
-        :param delisle: Delisle value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
+        Returns
+        -------
+        _value : int
+            int(self._value)
         """
-        if float_ret:
-            return float(60 - delisle * 7 / 20)
-        return trunc(60 - delisle * 7 / 20)
+        return int(self._value)
+
+    def __abs__(self) -> AbstractTemperature:
+        """
+        Returns a new instance of the same class with the absolute of `value`.
+
+        Returns
+        -------
+        self.__abs__() : float
+            cls(abs(self._value))
+        """
+        cls = self.__class__
+        return cls(abs(self._value))
+
+    def __pos__(self) -> AbstractTemperature:
+        """
+        Returns a new instance of the same class with `+value`.
+
+        Returns
+        -------
+        self.__pos__() : T
+            cls(+self._value)
+        """
+        cls = self.__class__
+        return cls(+self._value)
+
+    def __neg__(self) -> AbstractTemperature:
+        """
+        Return a new instance of the same class with the negation of `value`.
+
+        Returns
+        -------
+        self.__neg__() : T
+            cls(-self._value)
+        """
+        cls = self.__class__
+        return cls(-self._value)
+
+    def __invert__(self) -> AbstractTemperature:
+        """
+        Return a new instance of the same class with bitwise NOT of `value`.
+
+        Returns
+        -------
+        self.__invert__() : T
+            cls(-self._value - 1)
+        """
+        cls = self.__class__
+        return cls(-self._value - 1)
+
+    def __radd__(self: T, other: Any) -> T:
+        """
+        Returns a new instance of the same class with the sum of the values.
+
+        An attempt is made to add the value to the `other`.
+
+        Returns
+        -------
+        self.__radd__(other) : T
+            cls(other + self._value)
+        """
+        cls = self.__class__
+        try:
+            return cls(other + self._value)
+        except TypeError:
+            return NotImplemented
+
+    def __rsub__(self: T, other: Any) -> T:
+        """
+        Returns a new instance of the same class with the subtraction of the values.
+
+        An attempt is made to subtract the value to the `other`.
+
+        Returns
+        -------
+        self.__rsub__(other) : T
+            cls(other - self._value)
+        """
+        cls = self.__class__
+        try:
+            return cls(other - self._value)
+        except TypeError:
+            return NotImplemented
+
+    def __rmul__(self: T, other: Any) -> T:
+        """
+        Returns a new instance of the same class with the multiplication of the values.
+
+        An attempt is made to multiply `other` by the value.
+
+        Returns
+        -------
+        self.__rmul__(other) : T
+            cls(other * self._value)
+        """
+        cls = self.__class__
+        try:
+            return cls(other * self._value)
+        except TypeError:
+            return NotImplemented
+
+    def __rpow__(self: T, other: Any) -> T:
+        """
+        Returns a new instance of the same class with the exponentiation of the values.
+
+        An attempt is made to raise `other` to the power of the value.
+
+        Returns
+        -------
+        self.__rpow__(other) : T
+            cls(other**self._value)
+        """
+        cls = self.__class__
+        try:
+            return cls(other**self._value)
+        except TypeError:
+            return NotImplemented
+
+    def __rtruediv__(self: T, other: Any) -> T:
+        """
+        Returns a new instance of the same class with the division of the values.
+
+        An attempt is made to divide the `other` by the value.
+
+        Returns
+        -------
+        self.__rtruediv__(other) : T
+            cls(other / self._value)
+        """
+        cls = self.__class__
+        try:
+            return cls(other / self._value)
+        except TypeError:
+            return NotImplemented
+
+    def __rfloordiv__(self: T, other: Any) -> T:
+        """
+        Returns a new instance of the same class with the floor division of the values.
+
+        An attempt is made to floor divide the value to `other`.
+
+        Returns
+        -------
+        self.__rfloordiv__(other) : T
+            cls(other // self._value)
+        """
+        cls = self.__class__
+        try:
+            return cls(other // self._value)
+        except TypeError:
+            return NotImplemented
+
+    def __rmod__(self: T, other: Any) -> T:
+        """
+        Returns a new instance of the same class with the remainder from the division of the values.
+
+        An attempt is made to apply modulo between `other` and value.
+
+        Returns
+        -------
+        self.__rmod__(other) : T
+            cls(other % self._value)
+        """
+        cls = self.__class__
+        try:
+            return cls(other % self._value)
+        except TypeError:
+            return NotImplemented
+
+    def __rdivmod__(self: T, other: Any) -> tuple[Any, Any]:
+        """
+        Returns a tuple of two new instances of the same class with the quotient and remainder.
+
+        An attempt is made to apply divmod between the
+        calling class and the value.
+
+        Notes
+        -----
+        `result` is a tuple with the results of: divmod(other, self._value)
+
+        Returns
+        -------
+        self.__rdivmod__(other) : T
+            cls(result[0]), cls(result[1])
+        """
+        cls = self.__class__
+        try:
+            result = divmod(other, self._value)
+            return cls(result[0]), cls(result[1])
+        except TypeError:
+            return NotImplemented
+
+    @property
+    def value(self) -> float:
+        """
+        Returns temperature object value.
+
+        Returns
+        -------
+        _value : float
+            self._value
+        """
+        return self._value
+
+    @value.setter
+    def value(self, other: float) -> None:
+        self._value = other
+
+    @property
+    def symbol(self) -> str:
+        """
+        Returns official scale symbol (read-only).
+
+        Returns
+        -------
+        _symbol : str
+            self._symbol
+        """
+        return self._symbol
+
+    def rounded(self: T) -> T:
+        """
+        Returns the temperature object with converted value to int (rounded).
+
+        Returns
+        -------
+        __class__(int(round(self._value))) : T
+        """
+        return self.__class__(int(round(self._value)))
+
+    def to_celsius(self) -> Celsius:
+        """
+        Returns a Celsius object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
+
+        Returns
+        -------
+        convert_to(Celsius) : Celsius
+        """
+        return self.convert_to(Celsius)
+
+    def to_fahrenheit(self) -> Fahrenheit:
+        """
+        Returns a Fahrenheit object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
+
+        Returns
+        -------
+        convert_to(Fahrenheit) : Fahrenheit
+        """
+        return self.convert_to(Fahrenheit)
+
+    def to_delisle(self) -> Delisle:
+        """
+        Returns a Delisle object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
+
+        Returns
+        -------
+        convert_to(Delisle) : Delisle
+        """
+        return self.convert_to(Delisle)
+
+    def to_kelvin(self) -> Kelvin:
+        """
+        Returns a Kelvin object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
+
+        Returns
+        -------
+        convert_to(Kelvin) : Kelvin
+        """
+        return self.convert_to(Kelvin)
+
+    def to_newton(self) -> Newton:
+        """
+        Returns a Newton object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
+
+        Returns
+        -------
+        convert_to(Newton) : Newton
+        """
+        return self.convert_to(Newton)
+
+    def to_rankine(self) -> Rankine:
+        """
+        Returns a Rankine object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
+
+        Returns
+        -------
+        convert_to(Rankine) : Rankine
+        """
+        return self.convert_to(Rankine)
+
+    def to_reaumur(self) -> Reaumur:
+        """
+        Returns a Réaumur object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
+
+        Returns
+        -------
+        convert_to(Reaumur) : Reaumur
+        """
+        return self.convert_to(Reaumur)
+
+    def to_romer(self) -> Romer:
+        """
+        Returns a Rømer object which contains the class attribute "value"
+        with the result from the conversion typed the same as the attribute.
+
+        Returns
+        -------
+        convert_to(Rømer) : Rømer
+        """
+        return self.convert_to(Romer)
+
+    @abstractmethod
+    def convert_to(self, temp_cls: type[T]) -> T:
+        """
+        Returns an instance of `temp_cls` containing the converted value.
+
+        If no conversion to `temp_cls` is possible, `TypeError` is raised.
+        """
+        ...
 
 
-class Kelvin:
-    """Provides conversion of Kelvin to other temperature scales"""
+class Celsius(AbstractTemperature):
+    """
+    Class to represent Celsius temperature scale.
 
-    @staticmethod
-    def to_celsius(kelvin: float | int, /, *, float_ret=True) -> float | int:
-        """
-        Converts Kelvin to Celsius, returning a float by default.
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
-        :param kelvin: Kelvin value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
-        """
-        if float_ret:
-            return float(kelvin - 273.15)
-        return trunc(kelvin - 273.15)
+    Attributes
+    ----------
 
-    @staticmethod
-    def to_delisle(kelvin: float | int, /, *, float_ret=True) -> float | int:
-        """
-        Converts Kelvin to Delisle, returning a float by default.
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
-        :param kelvin: Kelvin value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
-        """
-        if float_ret:
-            return float((373.15 - kelvin) * 3 / 2)
-        return trunc((373.15 - kelvin) * 3 / 2)
+    _symbol : str
+        Celsius official scale symbol.
 
-    @staticmethod
-    def to_fahrenheit(
-        kelvin: float | int, /, *, float_ret=True
-    ) -> float | int:
-        """
-        Converts Kelvin to Fahrenheit, returning a float by default.
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
-        :param kelvin: Kelvin value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
-        """
-        if float_ret:
-            return float((kelvin * 9 / 5) - 459.67)
-        return trunc((kelvin * 9 / 5) - 459.67)
+    _value : float
+        Temperature value (e.g. `36` or `-3.14`).
+    """
 
-    @staticmethod
-    def to_newton(kelvin: float | int, /, *, float_ret=True) -> float | int:
-        """
-        Converts Kelvin to Newton, returning a float by default.
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
-        :param kelvin: Kelvin value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
-        """
-        if float_ret:
-            return float((kelvin - 273.15) * 33 / 100)
-        return trunc((kelvin - 273.15) * 33 / 100)
+    _symbol = 'ºC'
 
-    @staticmethod
-    def to_rankine(kelvin: float | int, /, *, float_ret=True) -> float | int:
-        """
-        Converts Kelvin to Rankine, returning a float by default.
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
-        :param kelvin: Kelvin value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
-        """
-        if float_ret:
-            return float(kelvin * 1.8)
-        return trunc(kelvin * 1.8)
+    def convert_to(self, temp_cls: type[T]) -> T:
+        if temp_cls is Celsius:
+            return temp_cls(self._value)
+        if temp_cls is Fahrenheit:
+            return temp_cls(self._value * 9 / 5 + 32)
+        if temp_cls is Delisle:
+            return temp_cls((100 - self._value) * 3 / 2)
+        if temp_cls is Kelvin:
+            return temp_cls(self._value + 273.15)
+        if temp_cls is Newton:
+            return temp_cls(self._value * 33 / 100)
+        if temp_cls is Rankine:
+            return temp_cls((self._value + 273.15) * 9 / 5)
+        if temp_cls is Reaumur:
+            return temp_cls(self._value * 4 / 5)
+        if temp_cls is Romer:
+            return temp_cls(self._value * 21 / 40 + 7.5)
+        raise TypeError
 
-    @staticmethod
-    def to_reaumur(kelvin: float | int, /, *, float_ret=True) -> float | int:
-        """
-        Converts Kelvin to Réaumur, returning a float by default.
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
-        :param kelvin: Kelvin value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
-        """
-        if float_ret:
-            return float((kelvin - 273.15) * 4 / 5)
-        return trunc((kelvin - 273.15) * 4 / 5)
 
-    @staticmethod
-    def to_romer(kelvin: float | int, /, *, float_ret=True) -> float | int:
-        """
-        Converts Kelvin to Rømer, returning a float by default.
-        If the float_ret parameter is False, it returns an approximate int value
-        (using the math's module trunc function).
-        :param kelvin: Kelvin value to be converted
-        :param float_ret: Optional, True by default to return floats
-        :return: float or int
-        """
-        if float_ret:
-            return float((kelvin - 273.15) * (21 / 40) + 7.5)
-        return trunc((kelvin - 273.15) * (21 / 40) + 7.5)
+class Fahrenheit(AbstractTemperature):
+    """
+    Class to represent Fahrenheit temperature scale.
+
+    Attributes
+    ----------
+
+    _symbol : str
+        Fahrenheit official scale symbol.
+
+    _value : float
+        Temperature value (e.g. `36` or `-3.14`).
+    """
+
+    _symbol = 'ºF'
+
+    def convert_to(self, temp_cls: type[T]) -> T:
+        if temp_cls is Celsius:
+            return temp_cls((self._value - 32) * 5 / 9)
+        if temp_cls is Fahrenheit:
+            return temp_cls(self._value)
+        if temp_cls is Delisle:
+            return temp_cls((212 - self._value) * 5 / 6)
+        if temp_cls is Kelvin:
+            return temp_cls((self._value + 459.67) * 5 / 9)
+        if temp_cls is Newton:
+            return temp_cls((self._value - 32) * 11 / 60)
+        if temp_cls is Rankine:
+            return temp_cls(self._value + 459.67)
+        if temp_cls is Reaumur:
+            return temp_cls((self._value - 32) * 4 / 9)
+        if temp_cls is Romer:
+            return temp_cls((self._value - 32) * (7 / 24) + 7.5)
+        raise TypeError
+
+
+class Delisle(AbstractTemperature):
+    """
+    Class to represent Delisle temperature scale.
+
+    Attributes
+    ----------
+
+    _symbol : str
+        Delisle official scale symbol.
+
+    _value : float
+        Temperature value (e.g. `36` or `-3.14`).
+    """
+
+    _symbol = 'ºDe'
+
+    def convert_to(self, temp_cls: type[T]) -> T:
+        if temp_cls is Celsius:
+            return temp_cls(100 - self._value * 2 / 3)
+        if temp_cls is Fahrenheit:
+            return temp_cls(212 - self._value * 6 / 5)
+        if temp_cls is Delisle:
+            return temp_cls(self._value)
+        if temp_cls is Kelvin:
+            return temp_cls(373.15 - self._value * 2 / 3)
+        if temp_cls is Newton:
+            return temp_cls(33 - self._value * 11 / 50)
+        if temp_cls is Rankine:
+            return temp_cls(671.67 - self._value * 6 / 5)
+        if temp_cls is Reaumur:
+            return temp_cls(80 - self._value * 8 / 15)
+        if temp_cls is Romer:
+            return temp_cls(60 - self._value * 7 / 20)
+        raise TypeError
+
+
+class Kelvin(AbstractTemperature):
+    """
+    Class to represent Kelvin temperature scale.
+
+    Attributes
+    ----------
+
+    _symbol : str
+        Kelvin official scale symbol.
+
+    _value : float
+        Temperature value (e.g. `36` or `-3.14`).
+    """
+
+    _symbol = 'K'
+
+    def convert_to(self, temp_cls: type[T]) -> T:
+        if temp_cls is Celsius:
+            return temp_cls(self._value - 273.15)
+        if temp_cls is Fahrenheit:
+            return temp_cls(self._value * 9 / 5 - 459.67)
+        if temp_cls is Delisle:
+            return temp_cls((373.15 - self._value) * 3 / 2)
+        if temp_cls is Kelvin:
+            return temp_cls(self._value)
+        if temp_cls is Newton:
+            return temp_cls((self._value - 273.15) * 33 / 100)
+        if temp_cls is Rankine:
+            return temp_cls(self._value * 1.8)
+        if temp_cls is Reaumur:
+            return temp_cls((self._value - 273.15) * 4 / 5)
+        if temp_cls is Romer:
+            return temp_cls((self._value - 273.15) * 21 / 40 + 7.5)
+        raise TypeError
+
+
+class Newton(AbstractTemperature):
+    """
+    Class to represent Newton temperature scale.
+
+    Attributes
+    ----------
+
+    _symbol : str
+        Newton official scale symbol.
+
+    _value : float
+        Temperature value (e.g. `36` or `-3.14`).
+    """
+
+    _symbol = 'ºN'
+
+    def convert_to(self, temp_cls: type[T]) -> T:
+        if temp_cls is Celsius:
+            return temp_cls(self._value / 0.33)
+        if temp_cls is Fahrenheit:
+            return temp_cls(self._value * 60 / 11 + 32)
+        if temp_cls is Delisle:
+            return temp_cls((33 - self._value) * 50 / 11)
+        if temp_cls is Kelvin:
+            return temp_cls(self._value / 0.33000 + 273.15)
+        if temp_cls is Newton:
+            return temp_cls(self._value)
+        if temp_cls is Rankine:
+            return temp_cls(self._value * 60 / 11 + 491.67)
+        if temp_cls is Reaumur:
+            return temp_cls(self._value * 80 / 33)
+        if temp_cls is Romer:
+            return temp_cls(self._value * 35 / 22 + 7.5)
+        raise TypeError
+
+
+class Rankine(AbstractTemperature):
+    """
+    Class to represent Rankine temperature scale.
+
+    Attributes
+    ----------
+
+    _symbol : str
+        Rankine official scale symbol.
+
+    _value : float
+        Temperature value (e.g. `36` or `-3.14`).
+    """
+
+    _symbol = 'ºR'
+
+    def convert_to(self, temp_cls: type[T]) -> T:
+        if temp_cls is Celsius:
+            return temp_cls((self._value - 491.67) * 5 / 9)
+        if temp_cls is Fahrenheit:
+            return temp_cls(self._value - 459.67)
+        if temp_cls is Delisle:
+            return temp_cls((671.67 - self._value) * 5 / 6)
+        if temp_cls is Kelvin:
+            return temp_cls(self._value * 5 / 9)
+        if temp_cls is Newton:
+            return temp_cls((self._value - 491.67) * 11 / 60)
+        if temp_cls is Rankine:
+            return temp_cls(self._value)
+        if temp_cls is Reaumur:
+            return temp_cls((self._value - 491.67) * 4 / 9)
+        if temp_cls is Romer:
+            return temp_cls((self._value - 491.67) * 7 / 24 + 7.5)
+        raise TypeError
+
+
+class Reaumur(AbstractTemperature):
+    """
+    Class to represent Réaumur temperature scale.
+
+    Attributes
+    ----------
+
+    _symbol : str
+        Réaumur official scale symbol.
+
+    _value : float
+        Temperature value (e.g. `36` or `-3.14`).
+    """
+
+    _symbol = 'ºRé'
+
+    def convert_to(self, temp_cls: type[T]) -> T:
+        if temp_cls is Celsius:
+            return temp_cls(self._value * 5 / 4)
+        if temp_cls is Fahrenheit:
+            return temp_cls(self._value * 9 / 4 + 32)
+        if temp_cls is Delisle:
+            return temp_cls((80 - self._value) * 15 / 8)
+        if temp_cls is Kelvin:
+            return temp_cls(self._value * 5 / 4 + 273.15)
+        if temp_cls is Newton:
+            return temp_cls(self._value * 33 / 80)
+        if temp_cls is Rankine:
+            return temp_cls(self._value * 9 / 4 + 491.67)
+        if temp_cls is Reaumur:
+            return temp_cls(self._value)
+        if temp_cls is Romer:
+            return temp_cls(self._value * 21 / 32 + 7.5)
+        raise TypeError
+
+
+class Romer(AbstractTemperature):
+    """
+    Class to represent Rømer temperature scale.
+
+    Attributes
+    ----------
+
+    _symbol : str
+        Rømer official scale symbol.
+
+    _value : float
+        Temperature value (e.g. `36` or `-3.14`).
+    """
+
+    _symbol = 'ºRø'
+
+    def convert_to(self, temp_cls: type[T]) -> T:
+        if temp_cls is Celsius:
+            return temp_cls((self._value - 7.5) * 40 / 21)
+        if temp_cls is Fahrenheit:
+            return temp_cls((self._value - 7.5) * 24 / 7 + 32)
+        if temp_cls is Delisle:
+            return temp_cls((60 - self._value) * 20 / 7)
+        if temp_cls is Kelvin:
+            return temp_cls((self._value - 7.5) * 40 / 21 + 273.15)
+        if temp_cls is Newton:
+            return temp_cls((self._value - 7.5) * 22 / 35)
+        if temp_cls is Rankine:
+            return temp_cls((self._value - 7.5) * 24 / 7 + 491.67)
+        if temp_cls is Reaumur:
+            return temp_cls((self._value - 7.5) * 32 / 21)
+        if temp_cls is Romer:
+            return temp_cls(self._value)
+        raise TypeError

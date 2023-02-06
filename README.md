@@ -1,107 +1,156 @@
+![To Temp logo](https://raw.githubusercontent.com/eddyyxxyy/ToTemp/Develop-0.5.0/logo.png)
+
 # ToTemp
 <div style="display: inline-block">
   <img src="https://shields.io/pypi/v/totemp"  alt="package version"/>
   <img src="https://img.shields.io/pypi/l/totemp.svg"  alt="license"/>
+  <img src="https://results.pre-commit.ci/badge/github/eddyyxxyy/ToTemp/main.svg" alt="pre-commit.ci"/>
 </div>
 
-**ToTemp** is a temperature conversion package between Celsius, Delisle, Fahrenheit, Kelvin, Rankine, Reaumur, Newton and Romer
+**ToTemp** is a temperature conversion package with Celsius, Delisle, Fahrenheit, Kelvin, Rankine, Réaumur, Newton and Rømer scales.
+
+> This package aims to bring the simple and straight to the point,
+but precise, Object Oriented experience of working with temperature
+scale data types.
+
+---
 
 ## Usage
 
 First of all, install the package:
 
-```
+````shell
 pip install totemp
-```
+````
 
 or, to have an example in poetry environments:
 
-```
-poetry add --group dev totemp
-```
-
-Then, just use it:
-
-> In these examples, you can observe the methods working with all
-available Classes in this package
-
-````python
-# Import Celsius class
-from totemp import Celsius
-
-temperature = Celsius.to_fahrenheit(35)
-print(temperature)  # 95.0 -> float
-
-temperature = Celsius.to_fahrenheit(35, float_ret=False)
-print(temperature)  # 95 -> int
+````shell
+poetry add totemp
 ````
+
+> For more information, read the docs: [ToTemp Docs]('insert link here')
+
+### The instances:
+
 ````python
-# Import Fahrenheit class
+from totemp import Celsius, Fahrenheit
+
+if __name__ == '__main__':
+    temps: list = [Celsius(12), Celsius(25), Celsius(50)]
+    print(temps[0])  # '12 ºC'
+    print(temps)  # [Celsius(12), Celsius(25), Celsius(50)]
+
+    temps = list(map(Celsius.to_fahrenheit, temps))
+    print(temps[0])  # '53.6 ºF'
+    print(temps)  # [Fahrenheit(53.6), Fahrenheit(77.0), Fahrenheit(122.0)]
+````
+
+### It's representations and properties:
+
+> Property *`symbol`* is **read-only**.
+
+````python
 from totemp import Fahrenheit
 
-temperature = Fahrenheit.to_newton(18.746)
-print(temperature)  # -2.4299000000000004 -> float
-
-temperature = Fahrenheit.to_newton(18.746, float_ret=False)
-print(temperature)  # -2 -> int
+if __name__ == '__main__':
+    temp0 = Fahrenheit(53.6)
+    print(temp0.__repr__())  # 'Fahrenheit(53.6)'
+    print(temp0.__str__())  # '53.6 ºF'
+    print(temp0.symbol)  # 'ºF'
+    print(temp0.value)  # 53.6
 ````
+
+### Comparision operations ('==', '!=', '>', '>=', '<',...):
+
+> The comparision/arithmetic implementation attempts to convert the value of `other` (if it is a temperature instance) and then evaluate the expression.
+
 ````python
-# Import Delisle class
-from totemp import Delisle
-
-temperature = Delisle.to_romer(37263.271)
-print(temperature)  # -12982.14485 -> float
-
-temperature = Delisle.to_romer(37263.271, float_ret=False)
-print(temperature)  # -12982 -> int
-````
-````python
-# Import Kelvin class
-from totemp import Kelvin
-
-temperature = Kelvin.to_reaumur(44.28137746)
-print(temperature)  # -183.094898032 -> float
-
-temperature = Kelvin.to_reaumur(44.28137746, float_ret=False)
-print(temperature)  # -183 -> int
-````
-````python
-# Import all classes
 import totemp as tp
 
-temperature = tp.Celsius.to_delisle(345.797)
-print(temperature)  # -368.69550000000004 -> float
+if __name__ == '__main__':
+    temp0, temp1 = tp.Celsius(0), tp.Fahrenheit(32)
 
-temperature = tp.Celsius.to_delisle(345.797, float_ret=False)
-print(temperature)  # -368 -> int
+    print(f'temp0: {repr(temp0)}')  # Celsius(0)
+    print(f'temp1: {repr(temp1.to_celsius())}')  # Celsius(0.0)
 
-temperature = tp.Fahrenheit.to_rankine(500)
-print(temperature)  # 959.6700000000001 -> float
+    print(temp0 != temp1)  # False
 
-temperature = tp.Fahrenheit.to_rankine(500, float_ret=False)
-print(temperature)  # 959 -> int
+    print(temp0 > temp1)  # False
 
-temperature = tp.Delisle.to_kelvin(12.5887)
-print(temperature)  # 364.7575333333333 -> float
+    print(temp0 < temp1)  # False
 
-temperature = tp.Delisle.to_kelvin(12.5887, float_ret=False)
-print(temperature)  # 364 -> int
+    print(temp0 >= temp1)  # True
 
-temperature = tp.Kelvin.to_romer(44.28137746)
-print(temperature)  # -112.6560268335 -> float
+    print(temp0 <= temp1)  # True
 
-temperature = tp.Kelvin.to_reaumur(44.28137746, float_ret=False)
-print(temperature)  # -112 -> int
+    print(temp0 == temp1)  # True
 ````
 
-Note that **all returns are *float values*** if you don't specify "float_ret"
-parameter as False, which is True by default and that **applies to all methods**.
+### Arithmetic operations ('+', '-', '*', '**', '/', '//', '%', ...):
 
-All methods have two parameters, the **value** (which is positional-only)
-and the **return type** (which is <float_ret>, that is by default True to return float
-values and keyword-only)
+````python
+from totemp import Newton, Rankine
 
-## Package Versions
+if __name__ == '__main__':
+    temp0 = Newton(33)
+    temp1 = Rankine(671.67)
+
+    temp2 = temp0 + temp1
+
+    print('temp2:', temp2)  # temp2: 65.99999999999999 ºN
+    print('temp2:', repr(temp2))  # temp2: Newton(65.99999999999999)
+    print('temp2:', temp2.value, temp2.symbol)  # temp2: 65.99999999999999 ºN
+
+    print((temp0 + temp1).rounded())  # 66 ºN
+    print(repr((temp0 + temp1).rounded()))  # Newton(66)
+
+    print(temp2 + 12.55)  # 78.54999999999998 ºN
+    print((12 + temp2.rounded()))  # 78 ºN
+````
+
+### ToTemp classes can work with many built-in Python functions:
+
+````python
+from math import floor, ceil, trunc
+
+from totemp import Reaumur
+
+if __name__ == '__main__':
+    temp = Reaumur(100.4)
+
+    float(temp)  # 100.4
+    int(temp)  # 100
+    round(temp)  # Reaumur(100)
+    abs(temp)  # Reaumur(100)
+    floor(temp)  # Reaumur(100)
+    ceil(temp)  # Reaumur(101)
+    trunc(temp)  # Reaumur(100)
+    divmod(temp, temp0 := Reaumur(25.1))  # (Reaumur(4.0), Reaumur(0.0))
+
+````
+
+
+
+### Temperature Instance Conversions:
+
+````python
+import totemp
+
+if __name__ == '__main__':
+    temp = totemp.Fahrenheit(32)
+
+    print(temp.to_celsius())  # 0.0 ºC
+    print(temp.to_fahrenheit())  # 32 ºF
+    print(temp.to_delisle())  # 150.0 ºDe
+    print(temp.to_kelvin())  # 273.15 K
+    print(temp.to_newton())  # 0.0 ºN
+    print(temp.to_rankine())  # 491.67 ºR
+    print(temp.to_reaumur())  # 0.0 ºRé
+    print(temp.to_romer())  # 7.5 ºRø
+````
+
+## Changelog
 
 ---
 
@@ -116,10 +165,39 @@ values and keyword-only)
       - Adds new parameter -> float_ret -> Float Return (True by default, keyword-only);
       - Celsius class methods were updated and enhanced;
       - Can now convert Fahrenheit to Celsius, Delisle, Kelvin, Newton, Rankine, Réaumur and Rømer.
+- _0.4.0_:
+  - There are two new Classes, Kelvin and Delisle, functional and ready-to-use.
 
+- **0.5.0**:
+  - The implementation has been **completely refactored**:
 
-- **0.4.0**:
-  - There are **two new Classes**, **Kelvin** and **Delisle**, functional and ready-to-use.
+    1 - ***All classes inhehits from `AbstractTemperature`** (our new abstract  Base Class)*;
+
+    2 - ***All classes now available***:
+      - *`Celsius`;*
+      - *`Fahrenheit`;*
+      - *`Delisle`;*
+      - *`Kelvin`;*
+      - ***(\*New)** `Newton`;*
+      - ***(\*New)** `Rankine`;*
+      - ***(\*New)** `Réaumur`;*
+      - ***(\*New)** `Rømer`.*
+
+    3 - ***New features***:
+      - *The majority of Python's built-in functions works with the instances*;
+      - *More pythonic properties and methods implementations*;
+      - *Arithmetic operations;*
+      - *Comparision operations;*
+      - *`convert_to()` method;*
+
+    4 - ***Removals***:
+      - *`precise()` method;*
+      - *`float_ret()` param;*
+      - *differentiating int/float;*
+
+    5 - ***Known problemns***:
+      - *`pow()` doesn't work as intended;*
+
 ---
 
 ## License
