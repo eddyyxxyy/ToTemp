@@ -25,6 +25,8 @@ author = 'Edson Pimenta, Dávilos Tavares and Raul Silva'
 # The full version, including alpha/beta/rc tags
 release = '0.5.0'
 
+version = '0.5.0'
+
 
 # -- General configuration ---------------------------------------------------
 
@@ -54,7 +56,6 @@ templates_path = ['_templates']
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns: list[None] = []
 
 
 # -- Options for HTML output -------------------------------------------------
